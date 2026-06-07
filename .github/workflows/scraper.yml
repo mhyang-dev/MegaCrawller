@@ -1,0 +1,36 @@
+name: 태블릿 핫딜 스크래퍼
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # 매 1시간마다 실행
+  workflow_dispatch:       # 수동 실행 버튼
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 코드 체크아웃
+        uses: actions/checkout@v4
+
+      - name: Ruby 설치
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+
+      - name: Chrome 설치 확인
+        run: google-chrome --version
+
+      - name: 의존성 설치
+        run: gem install selenium-webdriver nokogiri
+
+      - name: 스크래퍼 실행
+        run: ruby scraper.rb
+
+      - name: 변경사항 커밋 및 푸시
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add _data/deals.yml
+          git diff --cached --quiet || git commit -m "자동 업데이트: 태블릿 핫딜 $(date +'%Y-%m-%d %H:%M')"
+          git push
