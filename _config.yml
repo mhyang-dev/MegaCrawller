@@ -21,8 +21,8 @@
 title: Hello Jekyll
 email: ymhoon0207@gmail.com
 description: 나의 첫 번째 Jekyll 사이트
-baseurl: ""
-url: ""
+baseurl: "/MegaCrawller"
+url: "https://mhyang-dev.github.io"
 
 # Build settings
 theme: minima
