@@ -44,9 +44,10 @@ permalink: /mystocks/
 .na      { color: #ccc; }
 
 /* ── 공시 셀 ─────────────────────────────────────── */
-.disclosure-cell  { text-align: left !important; max-width: 280px; }
+.disclosure-cell  { text-align: left !important; max-width: 280px; overflow: hidden; word-break: break-all; overflow-wrap: break-word; }
 .disclosure-title { display: block; }
-.disclosure-meta  { color: #999; font-size: 0.82em; }
+.disclosure-title a { word-break: break-all; }
+.disclosure-meta  { color: #999; font-size: 0.82em; word-break: break-all; }
 .target-count     { color: #999; font-size: 0.82em; }
 
 /* ── ETF 구성 종목 셀 ────────────────────────────── */
