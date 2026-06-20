@@ -121,6 +121,8 @@ permalink: /mystocks/
   /* 테이블 가로 스크롤 */
   .tables-col {
     min-width: 0;
+  }
+  .table-scroll {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
@@ -151,6 +153,7 @@ permalink: /mystocks/
 <div class="tables-col">
 
 <p class="section-title">개별 주식</p>
+<div class="table-scroll">
 <table class="stock-table">
 <thead>
   <tr>
@@ -192,8 +195,10 @@ permalink: /mystocks/
 {% endfor %}
 </tbody>
 </table>
+</div>
 
 <p class="section-title">ETF / ETN</p>
+<div class="table-scroll">
 <table class="stock-table">
 <thead>
   <tr>
@@ -227,6 +232,7 @@ permalink: /mystocks/
 {% endfor %}
 </tbody>
 </table>
+</div>
 
 </div><!-- .tables-col -->
 
