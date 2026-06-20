@@ -24,20 +24,6 @@ MY_STOCKS = {
 
 ETF_CODES = %w[487240 494670].freeze
 
-# ── 경쟁사 정의 (직접 편집) ─────────────────────────────
-# 형식: '내 종목 코드' => [['경쟁사 코드', '경쟁사 이름'], ...]
-COMPETITORS = {
-  '005930' => [['000660', 'SK하이닉스'], ['009150', '삼성전기']],
-  '000660' => [['005930', '삼성전자'],   ['009150', '삼성전기']],
-  '009150' => [['005930', '삼성전자'],   ['000660', 'SK하이닉스']],
-  '005380' => [['000270', '기아'],       ['012330', '현대모비스']],
-  '012330' => [['005380', '현대차'],     ['000270', '기아']],
-  '032830' => [['000810', '삼성화재'],   ['005830', 'DB손보']],
-  '069960' => [['004170', '신세계'],     ['023530', '롯데쇼핑']],
-  '020000' => [['004170', '신세계'],     ['051600', '한전KPS']],
-  '278470' => [['090430', '아모레퍼시픽'], ['051900', 'LG생활건강']],
-}.freeze
-
 def kst_now
   (Time.now.utc + 9 * 3600).strftime('%Y-%m-%d %H:%M KST')
 end
@@ -100,26 +86,6 @@ def format_market_cap(eok)
   else
     eok.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\1,').reverse + '억'
   end
-end
-
-def fetch_competitor_per(code)
-  html = http_get(
-    "https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A#{code}",
-    extra_headers: { 'Referer' => 'https://comp.fnguide.com/' }
-  )
-  return nil unless html
-  grid_idx = html.index('svdMainGrid9')
-  return nil unless grid_idx
-  row_m = html[grid_idx, 20_000].match(
-    /<tr[^>]*rwc_g[^>]*>[\s\S]{0,100}?
-     <td[^>]*clf[^>]*>[\s\S]{0,30}?<\/td>\s*
-     <td[^>]*>[\d,]+<\/td>\s*
-     <td[^>]*>[\d,]+<\/td>\s*
-     <td[^>]*>([\d,.]+)<\/td>/x
-  )
-  row_m ? row_m[1].to_f : nil
-rescue StandardError
-  nil
 end
 
 def fetch_naver_market_cap(code)
@@ -189,9 +155,14 @@ def fetch_fnguide_consensus(code)
   cap_match = html.match(/보통주,억원[\s\S]{0,500}?<td[^>]*class="r"[^>]*>\s*([\d,]+)\s*<\/td>/)
   market_cap_eok = cap_match ? cap_match[1].gsub(',', '').to_i : nil
 
+  # 업종 PER: id="h_u_per" 직후 <dd> 값
+  indu_per_m = html.match(/id="h_u_per"[\s\S]{0,200}?<\/dt>\s*<dd>([\d.]+)<\/dd>/)
+  indu_per   = indu_per_m ? indu_per_m[1].to_f : nil
+
   {
     'analyst_target'       => { 'avg' => target_price, 'avg_formatted' => avg_formatted, 'count' => analyst_count },
     'per'                  => per,
+    'indu_per'             => indu_per,
     'market_cap_eok'       => market_cap_eok,
     'market_cap_formatted' => market_cap_eok ? format_market_cap(market_cap_eok) : nil,
     'fics'                 => fics
@@ -397,6 +368,7 @@ stocks = MY_STOCKS.filter_map do |code, fallback|
     basic['disclosure']       = fetch_disclosure(code)
     basic['opinion']          = rule_based_opinion(basic)
     basic['fics']             = consensus&.dig('fics')
+    basic['indu_per']         = consensus&.dig('indu_per')
     basic['investor_streaks'] = fetch_investor_streaks(code)
   end
 
@@ -413,21 +385,7 @@ end
 individual = stocks.select { |s| s['category'] == 'stock' }
                    .sort_by { |s| -(s['market_cap_eok'] || 0) }
 etfs       = stocks.select { |s| s['category'] == 'etf' }
-
-# ── 경쟁사 PER 수집 ─────────────────────────────────────
-# 내 포트폴리오에 이미 있는 종목은 재사용, 없는 종목만 추가 요청
-my_per = individual.each_with_object({}) { |s, h| h[s['code']] = s['per'] }
-
-individual.each do |stock|
-  comp_list = COMPETITORS[stock['code']] || []
-  next if comp_list.empty?
-  stock['competitors'] = comp_list.map do |comp_code, comp_name|
-    per = my_per[comp_code] || fetch_competitor_per(comp_code)
-    { 'code' => comp_code, 'name' => comp_name, 'per' => per }
-  end
-end
-
-sorted = individual + etfs
+sorted     = individual + etfs
 
 File.write(DATA_FILE, { 'fetched_at' => kst_now, 'stocks' => sorted }.to_yaml)
 puts "[완료] #{stocks.size}/#{MY_STOCKS.size}개 종목 저장"

@@ -1,5 +1,5 @@
 ---
-fetched_at: 2026-06-21 00:06 KST
+fetched_at: 2026-06-21 00:30 KST
 stocks:
 - code: '005930'
   name: 삼성전자
@@ -25,6 +25,7 @@ stocks:
   opinion: PER 8.0배로 적정 밸류에이션 수준. 소폭 하락하며 숨 고르기 국면. 애널리스트 목표가까지 25.9% 상승 여력 — 중장기
     매력적.
   fics: 반도체 및 관련장비
+  indu_per: 51.91
   investor_streaks:
     gigan: -1
     foreign: -1
@@ -53,6 +54,7 @@ stocks:
     url: https://finance.naver.com/item/news_notice_read.naver?no=32054032&code=000660&page_notice=
   opinion: PER 9.1배로 적정 밸류에이션 수준. 소폭 상승하며 긍정적 흐름 유지. 현재가가 목표가를 1.0% 상회 — 단기 과열 가능성.
   fics: 반도체 및 관련장비
+  indu_per: 51.91
   investor_streaks:
     gigan: 5
     foreign: -1
@@ -82,6 +84,7 @@ stocks:
   opinion: PER 137.2배로 고평가 구간 — 이익 성장 기대감이 선반영된 상황. 당일 3.18% 급등하며 강한 매수세 유입 중. 현재가가
     목표가를 16.8% 상회 — 단기 과열 가능성.
   fics: 전자 장비 및 기기
+  indu_per: 51.91
   investor_streaks:
     gigan: 2
     foreign: 6
@@ -111,6 +114,7 @@ stocks:
   opinion: PER 15.5배로 다소 고평가된 상태. 소폭 상승하며 긍정적 흐름 유지. 애널리스트 목표가까지 33.7% 상승 여력 — 중장기
     매력적.
   fics: 자동차
+  indu_per: 17.59
   investor_streaks:
     gigan: -6
     foreign: 1
@@ -140,6 +144,7 @@ stocks:
   opinion: PER 34.9배로 고평가 구간 — 이익 성장 기대감이 선반영된 상황. 당일 5.97% 급등하며 강한 매수세 유입 중. 현재가가
     목표가를 23.5% 상회 — 단기 과열 가능성.
   fics: 보험
+  indu_per: 17.64
   investor_streaks:
     gigan: 2
     foreign: 1
@@ -169,6 +174,7 @@ stocks:
   opinion: PER 13.5배로 적정 밸류에이션 수준. 소폭 상승하며 긍정적 흐름 유지. 애널리스트 목표가까지 27.1% 상승 여력 — 중장기
     매력적.
   fics: 자동차부품
+  indu_per: 17.59
   investor_streaks:
     gigan: -3
     foreign: 2
@@ -198,6 +204,7 @@ stocks:
   opinion: PER 27.0배로 고평가 구간 — 이익 성장 기대감이 선반영된 상황. 소폭 상승하며 긍정적 흐름 유지. 애널리스트 목표가까지
     33.9% 상승 여력 — 중장기 매력적.
   fics: 개인생활용품
+  indu_per:
   investor_streaks:
     gigan: 1
     foreign: 1
@@ -227,6 +234,7 @@ stocks:
   opinion: PER 15.9배로 다소 고평가된 상태. 당일 4.56% 급락 — 단기 조정 또는 매도 압력 주의. 현재가가 목표가를 3.3%
     상회 — 단기 과열 가능성.
   fics: 백화점
+  indu_per: 26.02
   investor_streaks:
     gigan: -5
     foreign: 1
@@ -256,6 +264,7 @@ stocks:
   opinion: PER 5.9배로 동종업 대비 저평가 구간에 위치. 소폭 상승하며 긍정적 흐름 유지. 애널리스트 목표가까지 64.3% 상승 여력
     — 중장기 매력적.
   fics: 섬유 및 의복
+  indu_per: 9.15
   investor_streaks:
     gigan: 1
     foreign: 6

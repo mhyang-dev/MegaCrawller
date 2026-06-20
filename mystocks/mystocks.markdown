@@ -98,20 +98,6 @@ permalink: /mystocks/
   font-weight: normal;
 }
 
-/* ── 경쟁사 비교 ─────────────────────────────────── */
-.comp-list { margin-top: 4px; }
-.comp-item {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.75em;
-  color: #999;
-  gap: 6px;
-  white-space: nowrap;
-}
-.comp-per-low  { color: #3498db; } /* 경쟁사 PER이 낮음 = 내 주식이 상대적 고평가 */
-.comp-per-high { color: #e74c3c; } /* 경쟁사 PER이 높음 = 내 주식이 상대적 저평가 */
-.comp-per-eq   { color: #aaa; }
-
 /* ── 매수 주체 셀 ──────────────────────────────────── */
 .investor-cell {
   text-align: center !important;
@@ -271,22 +257,7 @@ permalink: /mystocks/
   <td data-sort="{{ item.price | remove: ',' }}">{{ item.price }}</td>
   <td data-sort="{{ item.change_pct }}" class="{{ cls }}">{{ arrow }} {{ item.change | remove: "-" }} <span class="sub">({{ item.change_pct }}%)</span></td>
   <td data-sort="{{ item.per | default: 0 }}">
-    {% if item.per %}{{ item.per }}배{% else %}<span class="na">—</span>{% endif %}
-    {% if item.competitors and item.competitors.size > 0 %}
-      <div class="comp-list">
-      {% for c in item.competitors %}
-        {% if c.per %}
-          {% if c.per > item.per %}{% assign comp_cls = "comp-per-high" %}
-          {% elsif c.per < item.per %}{% assign comp_cls = "comp-per-low" %}
-          {% else %}{% assign comp_cls = "comp-per-eq" %}{% endif %}
-          <div class="comp-item">
-            <span>{{ c.name }}</span>
-            <span class="{{ comp_cls }}">{{ c.per }}배</span>
-          </div>
-        {% endif %}
-      {% endfor %}
-      </div>
-    {% endif %}
+    {% if item.per %}{{ item.per }}배{% if item.indu_per %}<span class="sub">(업종 {{ item.indu_per }})</span>{% endif %}{% else %}<span class="na">—</span>{% endif %}
   </td>
   <td data-sort="{{ item.upside_pct | default: -999 }}">
     {% if item.analyst_target %}
