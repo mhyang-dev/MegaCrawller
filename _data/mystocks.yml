@@ -1,5 +1,5 @@
 ---
-fetched_at: 2026-06-20 16:57 KST
+fetched_at: 2026-06-20 17:15 KST
 stocks:
 - code: '005930'
   name: 삼성전자
@@ -8,6 +8,7 @@ stocks:
   change_pct: -2.34
   direction: FALLING
   market: KOSPI
+  category: stock
   per: 5.7
   analyst_target:
     avg: 536000
@@ -24,6 +25,7 @@ stocks:
   change_pct: 2.94
   direction: RISING
   market: KOSPI
+  category: stock
   per: 7.5
   analyst_target:
     avg: 3800000
@@ -40,6 +42,7 @@ stocks:
   change_pct: 3.18
   direction: RISING
   market: KOSPI
+  category: stock
   per: 106.7
   analyst_target:
     avg: 2025000
@@ -56,6 +59,7 @@ stocks:
   change_pct: 2.0
   direction: RISING
   market: KOSPI
+  category: stock
   per: 10.4
   analyst_target:
     avg: 750000
@@ -72,6 +76,7 @@ stocks:
   change_pct: 1.49
   direction: RISING
   market: KOSPI
+  category: stock
   per: 14.9
   analyst_target:
     avg: 890000
@@ -88,6 +93,7 @@ stocks:
   change_pct: 5.97
   direction: RISING
   market: KOSPI
+  category: stock
   per: 30.1
   analyst_target:
     avg: 406000
@@ -104,6 +110,7 @@ stocks:
   change_pct: -4.56
   direction: FALLING
   market: KOSPI
+  category: stock
   per: 9.9
   analyst_target:
     avg: 227500
@@ -120,6 +127,7 @@ stocks:
   change_pct: 0.47
   direction: RISING
   market: KOSPI
+  category: stock
   per: 4.6
   analyst_target:
   disclosure:
@@ -133,6 +141,7 @@ stocks:
   change_pct: 1.98
   direction: RISING
   market: KOSPI
+  category: stock
   per: 21.0
   analyst_target:
     avg: 610000
@@ -149,12 +158,18 @@ stocks:
   change_pct: 0.74
   direction: RISING
   market: KOSPI
-  per:
-  analyst_target:
-  disclosure:
-    title: 삼성 KODEX AI전력핵심설비증권상장지수투자신탁[주식] ETF 괴리율 초과 발생
-    datetime: 2026-05-12 06:50
-    author: KOSCOM
+  category: etf
+  holdings:
+  - name: 효성중공업
+    ratio: 21.50%
+  - name: LS ELECTRIC
+    ratio: 20.43%
+  - name: HD현대일렉트릭
+    ratio: 18.89%
+  - name: LS
+    ratio: 13.62%
+  - name: 대한전선
+    ratio: 8.57%
 - code: '494670'
   name: TIGER 조선TOP10
   price: '29,030'
@@ -162,9 +177,15 @@ stocks:
   change_pct: -1.38
   direction: FALLING
   market: KOSPI
-  per:
-  analyst_target:
-  disclosure:
-    title: 미래에셋 TIGER 조선TOP10증권상장지수투자신탁(주식) ETF변경등록ㆍ집합투자규약 변경
-    datetime: 2026-05-28 06:51
-    author: KOSCOM
+  category: etf
+  holdings:
+  - name: 한화오션
+    ratio: 25.70%
+  - name: HD현대중공업
+    ratio: 23.88%
+  - name: HD한국조선해양
+    ratio: 19.37%
+  - name: 삼성중공업
+    ratio: 15.84%
+  - name: HD현대마린솔루션
+    ratio: 6.64%

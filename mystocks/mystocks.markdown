@@ -13,7 +13,8 @@ permalink: /mystocks/
   padding: 0 2em;
   box-sizing: border-box;
 }
-.stock-table { width: 100%; border-collapse: collapse; font-size: 0.88em; }
+.section-title { font-size: 1.05em; font-weight: bold; margin: 1.6em 0 0.5em; color: #333; border-left: 3px solid #555; padding-left: 0.6em; }
+.stock-table { width: 100%; border-collapse: collapse; font-size: 0.88em; margin-bottom: 2em; }
 .stock-table th { background: #f0f0f0; padding: 7px 10px; text-align: right; border-bottom: 2px solid #ddd; white-space: nowrap; }
 .stock-table th:first-child, .stock-table th.left { text-align: left; }
 .stock-table td { padding: 6px 10px; border-bottom: 1px solid #eee; text-align: right; vertical-align: top; }
@@ -25,6 +26,10 @@ permalink: /mystocks/
 .disclosure-title { display: block; }
 .disclosure-meta  { color: #999; font-size: 0.82em; }
 .target-count { color: #999; font-size: 0.82em; }
+.holdings-cell { text-align: left !important; }
+.holdings-list { margin: 0; padding: 0; list-style: none; }
+.holdings-list li { font-size: 0.85em; line-height: 1.6; white-space: nowrap; }
+.holdings-ratio { color: #888; font-size: 0.9em; margin-left: 0.4em; }
 .na { color: #bbb; }
 .meta { color: #999; font-size: 0.85em; margin-bottom: 1em; }
 </style>
@@ -32,7 +37,12 @@ permalink: /mystocks/
 {% if site.data.mystocks and site.data.mystocks.stocks.size > 0 %}
 <p class="meta">마지막 업데이트: {{ site.data.mystocks.fetched_at }} · 매 시간 자동 갱신</p>
 
+{% assign individual = site.data.mystocks.stocks | where: "category", "stock" %}
+{% assign etfs = site.data.mystocks.stocks | where: "category", "etf" %}
+
 <div class="stock-wrapper">
+
+<p class="section-title">개별 주식</p>
 <table class="stock-table">
 <thead>
   <tr>
@@ -46,7 +56,7 @@ permalink: /mystocks/
   </tr>
 </thead>
 <tbody>
-{% for item in site.data.mystocks.stocks %}
+{% for item in individual %}
 {% assign cls = "even" %}{% assign arrow = "—" %}
 {% if item.direction == "RISING" %}{% assign cls = "rising" %}{% assign arrow = "▲" %}
 {% elsif item.direction == "FALLING" %}{% assign cls = "falling" %}{% assign arrow = "▼" %}{% endif %}
@@ -55,9 +65,7 @@ permalink: /mystocks/
   <td>{{ item.price }}</td>
   <td class="{{ cls }}">{{ arrow }} {{ item.change | remove: "-" }}</td>
   <td class="{{ cls }}">{{ item.change_pct }}%</td>
-  <td>
-    {% if item.per %}{{ item.per }}배{% else %}<span class="na">—</span>{% endif %}
-  </td>
+  <td>{% if item.per %}{{ item.per }}배{% else %}<span class="na">—</span>{% endif %}</td>
   <td class="disclosure-cell">
     {% if item.disclosure %}
       <span class="disclosure-title">{{ item.disclosure.title | truncate: 40 }}</span>
@@ -74,6 +82,42 @@ permalink: /mystocks/
 {% endfor %}
 </tbody>
 </table>
+
+<p class="section-title">ETF / ETN</p>
+<table class="stock-table">
+<thead>
+  <tr>
+    <th>종목</th>
+    <th>현재가</th>
+    <th>전일비</th>
+    <th>등락률</th>
+    <th class="left">구성 종목 TOP5</th>
+  </tr>
+</thead>
+<tbody>
+{% for item in etfs %}
+{% assign cls = "even" %}{% assign arrow = "—" %}
+{% if item.direction == "RISING" %}{% assign cls = "rising" %}{% assign arrow = "▲" %}
+{% elsif item.direction == "FALLING" %}{% assign cls = "falling" %}{% assign arrow = "▼" %}{% endif %}
+<tr>
+  <td><a href="https://m.stock.naver.com/domestic/stock/{{ item.code }}" target="_blank">{{ item.name }}</a></td>
+  <td>{{ item.price }}</td>
+  <td class="{{ cls }}">{{ arrow }} {{ item.change | remove: "-" }}</td>
+  <td class="{{ cls }}">{{ item.change_pct }}%</td>
+  <td class="holdings-cell">
+    {% if item.holdings %}
+      <ul class="holdings-list">
+      {% for h in item.holdings %}
+        <li>{{ h.name }}<span class="holdings-ratio">{{ h.ratio }}</span></li>
+      {% endfor %}
+      </ul>
+    {% else %}<span class="na">—</span>{% endif %}
+  </td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+
 </div>
 
 {% else %}

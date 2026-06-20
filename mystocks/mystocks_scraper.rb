@@ -39,7 +39,7 @@ def http_get(url, from_encoding: 'UTF-8', extra_headers: {})
   extra_headers.each { |k, v| req[k] = v }
   res = http.request(req)
   return nil unless res.code == '200'
-  res.body.encode('UTF-8', from_encoding, invalid: :replace, undef: :replace)
+  res.body.force_encoding(from_encoding).encode('UTF-8', invalid: :replace, undef: :replace)
 rescue StandardError => e
   puts "  [HTTP 오류] #{e.message}"
   nil
@@ -87,7 +87,6 @@ def fetch_expected_profit(code)
   tr_list = annual['trTitleList']
   return nil unless columns && tr_list && columns.size >= 3
 
-  # columns[2] = 영업이익 row; trTitleList index maps to columns value index (offset +1)
   consensus_idx = tr_list.rindex { |t| t['isConsensus'] == 'Y' }
   return nil unless consensus_idx
 
@@ -166,6 +165,24 @@ rescue StandardError => e
   nil
 end
 
+def fetch_etf_holdings(code)
+  html = http_get(
+    "https://finance.naver.com/item/main.naver?code=#{code}",
+    extra_headers: { 'Referer' => 'https://finance.naver.com/' }
+  )
+  return nil unless html
+
+  matches = html.scan(
+    /<a href="\/item\/main\.naver\?code=\d+"[^>]*>([^<]+)<\/a>[\s\S]*?<td class="per">\s*([\d.]+%)\s*<\/td>/m
+  )
+  return nil if matches.empty?
+
+  matches.first(5).map { |name, ratio| { 'name' => name.strip, 'ratio' => ratio.strip } }
+rescue StandardError => e
+  puts "  [ETF 구성 오류] #{e.message}"
+  nil
+end
+
 def notify_discord(item)
   webhook_url = ENV['DISCORD_WEBHOOK_URL']
   return unless webhook_url
@@ -202,10 +219,10 @@ stocks = MY_STOCKS.filter_map do |code, fallback|
   end
 
   is_etf = ETF_CODES.include?(code)
+  basic['category'] = is_etf ? 'etf' : 'stock'
 
   if is_etf
-    basic['per']            = nil
-    basic['analyst_target'] = nil
+    basic['holdings'] = fetch_etf_holdings(code)
   else
     market_cap      = fetch_market_cap(code)
     expected_profit = fetch_expected_profit(code)
@@ -214,11 +231,10 @@ stocks = MY_STOCKS.filter_map do |code, fallback|
     end
     basic['per']            = per
     basic['analyst_target'] = fetch_analyst_targets(code)
+    basic['disclosure']     = fetch_disclosure(code)
   end
 
-  basic['disclosure'] = fetch_disclosure(code)
-
-  puts "  #{basic['name']}(#{code}): #{basic['price']} (#{basic['change_pct']}%) PER=#{basic['per']}"
+  puts "  #{basic['name']}(#{code}): #{basic['price']} (#{basic['change_pct']}%) [#{basic['category']}]"
 
   prev = prev_stocks[code]
   notify_discord(basic) if basic['change_pct'].abs >= ALERT_THRESHOLD && (prev.nil? || prev.abs < ALERT_THRESHOLD)
