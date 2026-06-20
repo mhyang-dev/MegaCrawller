@@ -1,5 +1,5 @@
 ---
-fetched_at: 2026-06-21 00:36 KST
+fetched_at: 2026-06-21 00:55 KST
 stocks:
 - code: '005930'
   name: 삼성전자
@@ -308,3 +308,20 @@ stocks:
     ratio: 15.84%
   - name: HD현대마린솔루션
     ratio: 6.64%
+- code: MU
+  name: Micron Technology, Inc.
+  price: "$1133.99"
+  change: '90.80'
+  change_pct: 0.09
+  direction: RISING
+  currency: USD
+  market: US
+  category: us_stock
+  fics: Semiconductors
+  per: 9.6
+  market_cap_formatted: "$1.3T"
+  analyst_target:
+    avg: 945.6
+    avg_formatted: "$945.60"
+    count: 40
+  upside_pct: -16.6

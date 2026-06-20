@@ -312,6 +312,56 @@ permalink: /mystocks/
   * 매수 주체: 최근 일자 기준 연속 순매수(빨강)·순매도(파랑) 일수. 개인=-(외국인+기관) 추정치.
 </p>
 
+{% assign us_stocks = site.data.mystocks.stocks | where: "category", "us_stock" %}
+{% if us_stocks.size > 0 %}
+<p class="section-title">해외 주식</p>
+<div class="table-scroll">
+<table class="stock-table" id="us-stock-table">
+<thead>
+  <tr>
+    <th class="left" data-col="fics">업종 <span class="sort-icon">⇅</span></th>
+    <th data-col="name">종목 <span class="sort-icon">⇅</span></th>
+    <th data-col="cap">시총 <span class="sort-icon">⇅</span></th>
+    <th data-col="price">현재가 <span class="sort-icon">⇅</span></th>
+    <th data-col="change">전일비 / 등락률 <span class="sort-icon">⇅</span></th>
+    <th data-col="per">PER <span class="sort-icon">⇅</span></th>
+    <th data-col="target">목표가 / 대비 <span class="sort-icon">⇅</span></th>
+  </tr>
+</thead>
+<tbody>
+{% for item in us_stocks %}
+{% assign cls = "even" %}{% assign arrow = "—" %}
+{% if item.direction == "RISING" %}{% assign cls = "rising" %}{% assign arrow = "▲" %}
+{% elsif item.direction == "FALLING" %}{% assign cls = "falling" %}{% assign arrow = "▼" %}{% endif %}
+{% assign upside = item.upside_pct %}
+{% if upside > 0 %}{% assign upside_cls = "rising" %}{% assign upside_sign = "+" %}
+{% elsif upside < 0 %}{% assign upside_cls = "falling" %}{% assign upside_sign = "" %}
+{% else %}{% assign upside_cls = "even" %}{% assign upside_sign = "" %}{% endif %}
+<tr>
+  <td class="fics-cell" data-sort="{{ item.fics | default: '' }}">{% if item.fics %}<span class="fics-tag">{{ item.fics }}</span>{% else %}<span class="na">—</span>{% endif %}</td>
+  <td data-sort="{{ item.name }}"><a href="https://finance.yahoo.com/quote/{{ item.code }}" target="_blank">{{ item.name }}</a></td>
+  <td>{% if item.market_cap_formatted %}{{ item.market_cap_formatted }}{% else %}<span class="na">—</span>{% endif %}</td>
+  <td data-sort="{{ item.price | remove: '$' }}">{{ item.price }}</td>
+  <td data-sort="{{ item.change_pct }}" class="{{ cls }}">{{ arrow }} {{ item.change }} <span class="sub">({{ item.change_pct }}%)</span></td>
+  <td data-sort="{{ item.per | default: 0 }}">{% if item.per %}{{ item.per }}{% else %}<span class="na">—</span>{% endif %}</td>
+  <td data-sort="{{ item.upside_pct | default: -999 }}">
+    {% if item.analyst_target %}
+      {{ item.analyst_target.avg_formatted }}<span class="sub">({{ item.analyst_target.count }}건)</span>
+      {% if item.upside_pct %}<br><span class="{{ upside_cls }}">{{ upside_sign }}{{ item.upside_pct }}%</span>{% endif %}
+    {% else %}<span class="na">—</span>{% endif %}
+  </td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+<p class="table-note">
+  * 업종: Yahoo Finance 산업 분류<br>
+  * PER: Yahoo Finance Forward PE (없을 경우 Trailing PE)<br>
+  * 목표가: Yahoo Finance 애널리스트 컨센서스 (USD)
+</p>
+{% endif %}
+
 <p class="section-title">ETF / ETN</p>
 <div class="table-scroll">
 <table class="stock-table" id="etf-table">

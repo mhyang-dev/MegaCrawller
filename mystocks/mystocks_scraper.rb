@@ -24,6 +24,10 @@ MY_STOCKS = {
 
 ETF_CODES = %w[487240 494670].freeze
 
+US_STOCKS = {
+  'MU' => '마이크론 테크놀로지'
+}.freeze
+
 def kst_now
   (Time.now.utc + 9 * 3600).strftime('%Y-%m-%d %H:%M KST')
 end
@@ -55,8 +59,8 @@ def http_get(url, from_encoding: 'UTF-8', extra_headers: {}, retries: 1)
   end
 end
 
-def get_json(url)
-  body = http_get(url)
+def get_json(url, extra_headers: {})
+  body = http_get(url, extra_headers: extra_headers)
   return nil unless body
   JSON.parse(body)
 rescue StandardError => e
@@ -86,6 +90,149 @@ def format_market_cap(eok)
   else
     eok.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\1,').reverse + '억'
   end
+end
+
+def format_market_cap_usd(billion_usd)
+  if billion_usd >= 1000
+    format('$%.1fT', billion_usd / 1000.0)
+  else
+    format('$%.0fB', billion_usd.round)
+  end
+end
+
+@yahoo_cookie = nil
+@yahoo_crumb  = nil
+
+def yahoo_crumb
+  return [@yahoo_cookie, @yahoo_crumb] if @yahoo_crumb
+
+  ua = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+
+  uri1 = URI.parse('https://fc.yahoo.com/')
+  http1 = Net::HTTP.new(uri1.host, uri1.port)
+  http1.use_ssl = true; http1.open_timeout = 10; http1.read_timeout = 10
+  req1 = Net::HTTP::Get.new(uri1.request_uri)
+  req1['User-Agent'] = ua
+  res1 = http1.request(req1)
+  @yahoo_cookie = res1['set-cookie']&.split(';')&.first
+
+  uri2 = URI.parse('https://query1.finance.yahoo.com/v1/test/getcrumb')
+  http2 = Net::HTTP.new(uri2.host, uri2.port)
+  http2.use_ssl = true; http2.open_timeout = 10; http2.read_timeout = 10
+  req2 = Net::HTTP::Get.new(uri2.request_uri)
+  req2['User-Agent'] = ua
+  req2['Cookie'] = @yahoo_cookie if @yahoo_cookie
+  res2 = http2.request(req2)
+  @yahoo_crumb = res2.body.strip
+
+  puts "  [Yahoo] crumb 획득 완료"
+  [@yahoo_cookie, @yahoo_crumb]
+rescue StandardError => e
+  puts "  [Yahoo 인증 오류] #{e.message}"
+  [nil, nil]
+end
+
+# Yahoo Finance v10 quoteSummary: price, PE, market cap, analyst target, industry
+def fetch_yahoo_data(ticker, fallback_name)
+  cookie, crumb = yahoo_crumb
+  ua = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+  headers = {
+    'Accept'          => 'application/json',
+    'Accept-Language' => 'en-US,en;q=0.9',
+    'Referer'         => 'https://finance.yahoo.com/',
+    'User-Agent'      => ua
+  }
+  headers['Cookie'] = cookie if cookie
+
+  modules = 'price,summaryDetail,defaultKeyStatistics,assetProfile,financialData'
+  crumb_param = crumb ? "&crumb=#{URI.encode_www_form_component(crumb)}" : ''
+  data = get_json(
+    "https://query2.finance.yahoo.com/v10/finance/quoteSummary/#{ticker}?modules=#{modules}#{crumb_param}",
+    extra_headers: headers
+  )
+  result = data&.dig('quoteSummary', 'result', 0)
+
+  if result
+    price_mod  = result['price']                || {}
+    summary    = result['summaryDetail']        || {}
+    stats      = result['defaultKeyStatistics'] || {}
+    profile    = result['assetProfile']         || {}
+    financial  = result['financialData']        || {}
+
+    current_price = price_mod.dig('regularMarketPrice', 'raw')
+    change        = price_mod.dig('regularMarketChange', 'raw')
+    change_pct    = price_mod.dig('regularMarketChangePercent', 'raw')
+    market_cap    = price_mod.dig('marketCap', 'raw')
+    name          = price_mod['shortName'] || fallback_name
+
+    unless current_price
+      puts "  [Yahoo] #{ticker}: regularMarketPrice 없음"
+      return nil
+    end
+
+    forward_pe  = stats.dig('forwardPE', 'raw')
+    trailing_pe = summary.dig('trailingPE', 'raw')
+    per         = forward_pe || trailing_pe
+
+    target    = financial.dig('targetMeanPrice', 'raw')
+    ana_count = financial.dig('numberOfAnalystOpinions', 'raw')&.to_i
+    industry  = profile['industry']
+
+    market_cap_b = market_cap ? market_cap / 1_000_000_000.0 : nil
+    upside_pct   = (target && current_price > 0) ? ((target / current_price - 1) * 100).round(1) : nil
+
+    return {
+      'code'                 => ticker,
+      'name'                 => name,
+      'price'                => format('$%.2f', current_price),
+      'change'               => format('%.2f', change.abs),
+      'change_pct'           => change_pct&.round(2),
+      'direction'            => (change || 0) >= 0 ? 'RISING' : 'FALLING',
+      'currency'             => 'USD',
+      'market'               => 'US',
+      'category'             => 'us_stock',
+      'fics'                 => industry,
+      'per'                  => per&.round(1),
+      'market_cap_formatted' => market_cap_b ? format_market_cap_usd(market_cap_b) : nil,
+      'analyst_target'       => target ? {
+        'avg'           => target.round(2),
+        'avg_formatted' => format('$%.2f', target),
+        'count'         => ana_count
+      } : nil,
+      'upside_pct' => upside_pct
+    }
+  end
+
+  # v10 실패 시 v8 chart API 폴백
+  puts "  [Yahoo] #{ticker}: v10 실패, v8 차트로 폴백"
+  chart = get_json(
+    "https://query1.finance.yahoo.com/v8/finance/chart/#{ticker}?interval=1d&range=1d",
+    extra_headers: headers
+  )
+  meta = chart&.dig('chart', 'result', 0, 'meta')
+  return nil unless meta
+
+  price = meta['regularMarketPrice']
+  prev  = meta['previousClose'] || meta['chartPreviousClose']
+  return nil unless price && prev
+
+  change     = price - prev
+  change_pct = ((change / prev) * 100).round(2)
+
+  {
+    'code'       => ticker,
+    'name'       => fallback_name,
+    'price'      => format('$%.2f', price),
+    'change'     => format('%.2f', change.abs),
+    'change_pct' => change_pct,
+    'direction'  => change >= 0 ? 'RISING' : 'FALLING',
+    'currency'   => 'USD',
+    'market'     => 'US',
+    'category'   => 'us_stock'
+  }
+rescue StandardError => e
+  puts "  [Yahoo 오류] #{e.message}"
+  nil
 end
 
 def fetch_naver_market_cap(code)
@@ -382,10 +529,22 @@ stocks = MY_STOCKS.filter_map do |code, fallback|
   basic
 end
 
+us_stocks = US_STOCKS.filter_map do |ticker, fallback_name|
+  data = fetch_yahoo_data(ticker, fallback_name)
+  unless data
+    puts "  #{fallback_name}(#{ticker}): 데이터 실패"
+    next nil
+  end
+  puts "  #{data['name']}(#{ticker}): #{data['price']} (#{data['change_pct']}%) [us_stock]"
+  sleep 0.5
+  data
+end
+
 individual = stocks.select { |s| s['category'] == 'stock' }
                    .sort_by { |s| -(s['market_cap_eok'] || 0) }
 etfs       = stocks.select { |s| s['category'] == 'etf' }
-sorted     = individual + etfs
+sorted     = individual + etfs + us_stocks
 
+total_target = MY_STOCKS.size + US_STOCKS.size
 File.write(DATA_FILE, { 'fetched_at' => kst_now, 'stocks' => sorted }.to_yaml)
-puts "[완료] #{stocks.size}/#{MY_STOCKS.size}개 종목 저장"
+puts "[완료] #{sorted.size}/#{total_target}개 종목 저장"
