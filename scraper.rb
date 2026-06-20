@@ -52,9 +52,11 @@ def fetch_posts
     items = driver.find_elements(css: '.title a, li.hotdeal_item a, .fm_best_widget a')
 
     if items.empty?
-      # 범용 링크 탐색
       items = driver.find_elements(css: 'a[href*="/hotdeal/"]')
     end
+
+    puts "  [디버그] 발견된 링크 수: #{items.size}"
+    items.first(5).each { |el| puts "  [디버그] 샘플: #{el.text.strip[0..50]}" }
 
     items.each do |el|
       title = el.text.strip
