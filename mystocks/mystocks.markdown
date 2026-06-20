@@ -83,7 +83,8 @@ permalink: /mystocks/
 /* ── 공시 셀 ─────────────────────────────────────── */
 .disclosure-cell {
   text-align: left !important;
-  max-width: 260px;
+  min-width: 500px;
+  width: 500px;
   white-space: normal;
   word-break: break-all;
   overflow-wrap: break-word;
@@ -160,7 +161,7 @@ permalink: /mystocks/
   }
   .stock-table th,
   .stock-table td { padding: 5px 7px; }
-  .disclosure-cell { max-width: 180px; }
+  .disclosure-cell { min-width: 320px; width: 320px; }
 }
 </style>
 
