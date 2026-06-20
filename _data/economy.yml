@@ -1,0 +1,59 @@
+---
+fetched_at: 2026-06-20 16:24 KST
+kr_indices:
+- code: KOSPI
+  name: KOSPI
+  price: '9,052.42'
+  change: "-11.42"
+  change_pct: -0.13
+  direction: FALLING
+- code: KOSDAQ
+  name: KOSDAQ
+  price: '966.59'
+  change: "-34.34"
+  change_pct: -3.43
+  direction: FALLING
+us_indices:
+- code: "^IXIC"
+  name: NASDAQ
+  price: '26517.93'
+  change: '141.59'
+  change_pct: 0.54
+  direction: RISING
+- code: "^GSPC"
+  name: S&P 500
+  price: '7500.58'
+  change: "-10.77"
+  change_pct: -0.14
+  direction: FALLING
+- code: "^DJI"
+  name: Dow Jones
+  price: '51564.7'
+  change: "-434.97"
+  change_pct: -0.84
+  direction: FALLING
+fx_rates:
+- code: USDKRW=X
+  name: USD/KRW
+  price: '1529.89'
+  change: '4.47'
+  change_pct: 0.29
+  direction: RISING
+- code: EURKRW=X
+  name: EUR/KRW
+  price: '1754.0'
+  change: "-1.9"
+  change_pct: -0.11
+  direction: FALLING
+- code: JPYKRW=X
+  name: 100JPY/KRW
+  price: '946.0'
+  change: "-4.0"
+  change_pct: -0.39
+  direction: FALLING
+- code: CNYKRW=X
+  name: CNY/KRW
+  price: '226.1'
+  change: "-1.33"
+  change_pct: -0.58
+  direction: FALLING

@@ -29,8 +29,13 @@ jobs:
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
 
-      - name: 주식 스크래퍼 실행
-        run: ruby stock_scraper.rb
+      - name: 경제 지표 스크래퍼 실행
+        run: ruby economy_scraper.rb
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+
+      - name: 내 주식 스크래퍼 실행
+        run: ruby mystocks_scraper.rb
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
 
@@ -39,7 +44,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
-          git add _data/stocks.yml _data/deals.yml
-          git diff --cached --quiet || git commit -m "자동 업데이트: 주식·핫딜 $(date +'%Y-%m-%d %H:%M')"
+          git add _data/economy.yml _data/mystocks.yml _data/deals.yml
+          git diff --cached --quiet || git commit -m "자동 업데이트: $(date +'%Y-%m-%d %H:%M') KST"
           git pull --rebase origin master
           git push origin master
