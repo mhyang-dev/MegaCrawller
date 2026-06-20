@@ -3,9 +3,12 @@ require 'json'
 require 'yaml'
 require 'time'
 require 'date'
+require 'thread'
 
-DATA_FILE       = File.join(__dir__, '..', '_data', 'mystocks.yml')
-ALERT_THRESHOLD = 3.0
+DATA_FILE        = File.join(__dir__, '..', '_data', 'mystocks.yml')
+THEME_CACHE_FILE = File.join(__dir__, '..', '_data', 'theme_cache.yml')
+ALERT_THRESHOLD  = 3.0
+THEME_CACHE_TTL  = 86400  # 24 hours
 
 MY_STOCKS = {
   '005930' => '삼성전자',
@@ -85,7 +88,6 @@ def fetch_fnguide_consensus(code)
   )
   return nil unless html
 
-  # 컨센서스 (투자의견·목표주가·EPS·PER·추정기관수)
   grid_match = html.match(/id="svdMainGrid9"[\s\S]{1,2000}?<tbody>([\s\S]{1,500}?)<\/tbody>/)
   return nil unless grid_match
 
@@ -99,7 +101,6 @@ def fetch_fnguide_consensus(code)
 
   avg_formatted = target_price.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\1,').reverse
 
-  # 시가총액 (보통주, 억원)
   cap_match = html.match(/보통주,억원[\s\S]*?<td class="r">([\d,]+)<\/td>/)
   market_cap_eok = cap_match ? cap_match[1].gsub(',', '').to_i : nil
 
@@ -146,6 +147,129 @@ rescue StandardError => e
   nil
 end
 
+# ── 연속 매수/매도 계산 ──────────────────────────────────
+# values: 순매매량 배열 (최신→과거 순서). 양수=매수, 음수=매도.
+# 반환값: 양수=연속 매수일, 음수=연속 매도일, 0=해당없음
+def consecutive_streak(values)
+  return 0 if values.nil? || values.empty?
+  first_nonzero = values.find { |v| v != 0 }
+  return 0 unless first_nonzero
+
+  direction = first_nonzero > 0 ? 1 : -1
+  count = 0
+  values.each do |v|
+    break if v == 0 || (v > 0 ? 1 : -1) != direction
+    count += 1
+  end
+  direction * count
+end
+
+def fetch_investor_streaks(code)
+  html = http_get(
+    "https://finance.naver.com/item/frgn.naver?code=#{code}",
+    from_encoding: 'EUC-KR',
+    extra_headers: { 'Referer' => "https://finance.naver.com/item/main.naver?code=#{code}" }
+  )
+  return nil unless html
+
+  # Parse rows: find date spans (gray03) then extract 기관(w=66) and 외국인(w=80) net amounts
+  gigan_vals   = []
+  foreign_vals = []
+
+  html.scan(
+    /<span[^>]*gray03[^>]*>([\d.]+)<\/span>[\s\S]{0,1800}?<td[^>]*width="66"[^>]*>[\s\S]{0,300}?<span[^>]*>([+\-]?[\d,]+)<\/span>[\s\S]{0,600}?<td[^>]*width="80"[^>]*>[\s\S]{0,300}?<span[^>]*>([+\-]?[\d,]+)<\/span>/
+  ) do |_date, gigan_raw, foreign_raw|
+    gigan_vals   << gigan_raw.gsub(/[+,]/, '').to_i
+    foreign_vals << foreign_raw.gsub(/[+,]/, '').to_i
+  end
+
+  return nil if gigan_vals.empty?
+
+  indi_vals = gigan_vals.zip(foreign_vals).map { |g, f| -(g + f) }
+
+  {
+    'gigan'   => consecutive_streak(gigan_vals),
+    'foreign' => consecutive_streak(foreign_vals),
+    'indi'    => consecutive_streak(indi_vals)
+  }
+rescue StandardError => e
+  puts "  [수급 오류] #{e.message}"
+  nil
+end
+
+# ── 테마 데이터 (24h 캐시) ──────────────────────────────
+def theme_cache_fresh?
+  return false unless File.exist?(THEME_CACHE_FILE)
+  (Time.now - File.mtime(THEME_CACHE_FILE)) < THEME_CACHE_TTL
+end
+
+def load_theme_cache
+  YAML.load_file(THEME_CACHE_FILE) || {}
+rescue StandardError
+  {}
+end
+
+def build_theme_cache(stock_codes)
+  puts "  [테마] 캐시 구축 시작..."
+
+  # Step 1: 전체 테마 목록 수집 (7페이지)
+  theme_map = {}
+  (1..7).each do |page|
+    html = http_get(
+      "https://finance.naver.com/sise/theme.naver?page=#{page}",
+      from_encoding: 'EUC-KR',
+      extra_headers: { 'Referer' => 'https://finance.naver.com/sise/theme.naver' }
+    )
+    next unless html
+    html.scan(/sise_group_detail\.naver\?type=theme&no=(\d+)">([^<]+)<\/a>/) do |no, name|
+      theme_map[no] = name.strip
+    end
+  end
+  puts "  [테마] #{theme_map.size}개 테마 발견"
+
+  # Step 2: 각 테마 상세 페이지에서 종목 코드 추출 (스레드 병렬)
+  stock_themes = stock_codes.each_with_object({}) { |c, h| h[c] = [] }
+  mutex   = Mutex.new
+  queue   = theme_map.to_a.dup
+  threads = 8.times.map do
+    Thread.new do
+      loop do
+        item = mutex.synchronize { queue.shift }
+        break unless item
+        no, name = item
+        html = http_get(
+          "https://finance.naver.com/sise/sise_group_detail.naver?type=theme&no=#{no}",
+          from_encoding: 'EUC-KR',
+          extra_headers: { 'Referer' => 'https://finance.naver.com/sise/theme.naver' }
+        )
+        next unless html
+        codes_in_theme = html.scan(/code=(\d{6})/).flatten.uniq
+        stock_codes.each do |code|
+          mutex.synchronize { stock_themes[code] << name } if codes_in_theme.include?(code)
+        end
+      end
+    end
+  end
+  threads.each(&:join)
+
+  File.write(THEME_CACHE_FILE, stock_themes.to_yaml)
+  puts "  [테마] 캐시 저장 완료"
+  stock_themes
+end
+
+def fetch_themes_for_stocks(stock_codes)
+  if theme_cache_fresh?
+    puts "  [테마] 캐시 사용"
+    load_theme_cache
+  else
+    build_theme_cache(stock_codes)
+  end
+rescue StandardError => e
+  puts "  [테마 오류] #{e.message}"
+  {}
+end
+
+# ── 규칙 기반 Claude 의견 ───────────────────────────────
 def rule_based_opinion(item)
   per        = item['per']
   change_pct = item['change_pct']
@@ -155,7 +279,6 @@ def rule_based_opinion(item)
 
   parts = []
 
-  # 밸류에이션 평가
   if per
     parts << if per < 8
       "PER #{per}배로 동종업 대비 저평가 구간에 위치."
@@ -168,7 +291,6 @@ def rule_based_opinion(item)
     end
   end
 
-  # 단기 가격 흐름
   parts << if direction == 'RISING' && change_pct >= 3
     "당일 #{change_pct}% 급등하며 강한 매수세 유입 중."
   elsif direction == 'RISING' && change_pct > 0
@@ -181,7 +303,6 @@ def rule_based_opinion(item)
     "보합세로 방향성 탐색 중."
   end
 
-  # 목표가 대비 상승 여력
   if target_avg && price_raw > 0
     upside = ((target_avg / price_raw - 1) * 100).round(1)
     parts << if upside >= 20
@@ -203,7 +324,7 @@ def notify_discord(item)
   return unless webhook_url
   arrow = item['direction'] == 'RISING' ? '📈' : '📉'
   sign  = item['change_pct'] >= 0 ? '+' : ''
-  msg   = "#{arrow} **[내 주식] #{item['name']}** #{sign}#{item['change_pct']}% 급등락!\n" \
+  msg   = "#{arrow} **[내 포트폴리오] #{item['name']}** #{sign}#{item['change_pct']}% 급등락!\n" \
           "현재가: **#{item['price']}** (#{sign}#{item['change']})"
   uri = URI.parse(webhook_url)
   http = Net::HTTP.new(uri.host, uri.port)
@@ -217,7 +338,7 @@ rescue StandardError => e
   puts "  [Discord 오류] #{e.message}"
 end
 
-puts "[#{kst_now}] 내 주식 수집 시작"
+puts "[#{kst_now}] 내 포트폴리오 수집 시작"
 
 prev_stocks = if File.exist?(DATA_FILE)
   (YAML.load_file(DATA_FILE) || {}).fetch('stocks', [])
@@ -225,6 +346,10 @@ prev_stocks = if File.exist?(DATA_FILE)
 else
   {}
 end
+
+# 테마 데이터 수집 (개별 주식 코드만)
+individual_codes = MY_STOCKS.keys - ETF_CODES
+theme_data = fetch_themes_for_stocks(individual_codes)
 
 stocks = MY_STOCKS.filter_map do |code, fallback|
   basic = fetch_basic(code, fallback)
@@ -251,8 +376,10 @@ stocks = MY_STOCKS.filter_map do |code, fallback|
       ((target_avg / price_raw.to_f - 1) * 100).round(1)
     end
 
-    basic['disclosure'] = fetch_disclosure(code)
-    basic['opinion']    = rule_based_opinion(basic)
+    basic['disclosure']       = fetch_disclosure(code)
+    basic['opinion']          = rule_based_opinion(basic)
+    basic['themes']           = theme_data[code] || []
+    basic['investor_streaks'] = fetch_investor_streaks(code)
   end
 
   puts "  #{basic['name']}(#{code}): #{basic['price']} (#{basic['change_pct']}%) [#{basic['category']}]"

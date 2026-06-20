@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 내 주식
+title: 내 포트폴리오
 permalink: /mystocks/
 ---
 
@@ -79,6 +79,52 @@ permalink: /mystocks/
 
 /* ── 셀 서브텍스트 ────────────────────────────────── */
 .sub { color: #999; font-size: 0.82em; margin-left: 2px; }
+
+/* ── 테마 셀 ─────────────────────────────────────── */
+.theme-cell {
+  text-align: left !important;
+  min-width: 180px;
+  white-space: normal;
+  word-break: keep-all;
+}
+.theme-tag {
+  display: inline-block;
+  background: #f0f4ff;
+  border: 1px solid #c8d4f8;
+  color: #3a5bc7;
+  font-size: 0.74em;
+  padding: 1px 5px;
+  border-radius: 3px;
+  margin: 1px 2px 1px 0;
+  white-space: nowrap;
+}
+
+/* ── 매수 주체 셀 ──────────────────────────────────── */
+.investor-cell {
+  text-align: center !important;
+  min-width: 130px;
+  white-space: nowrap;
+}
+.investor-row {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+.investor-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 28px;
+}
+.investor-label {
+  font-size: 0.7em;
+  color: #999;
+  margin-bottom: 1px;
+}
+.investor-buy  { color: #e74c3c; font-weight: bold; font-size: 0.9em; }
+.investor-sell { color: #3498db; font-weight: bold; font-size: 0.9em; }
+.investor-zero { color: #ccc; font-size: 0.85em; }
 
 /* ── 공시 셀 ─────────────────────────────────────── */
 .disclosure-cell {
@@ -162,6 +208,8 @@ permalink: /mystocks/
   .stock-table th,
   .stock-table td { padding: 5px 7px; }
   .disclosure-cell { min-width: 320px; width: 320px; }
+  .theme-cell { min-width: 120px; }
+  .investor-cell { min-width: 110px; }
 }
 </style>
 
@@ -188,6 +236,8 @@ permalink: /mystocks/
     <th data-col="change">전일비 / 등락률 <span class="sort-icon">⇅</span></th>
     <th data-col="per">PER <span class="sort-icon">⇅</span></th>
     <th data-col="target">목표가 / 대비 <span class="sort-icon">⇅</span></th>
+    <th class="left">테마</th>
+    <th class="left">매수 주체</th>
     <th class="left">최근 공시</th>
   </tr>
 </thead>
@@ -212,6 +262,39 @@ permalink: /mystocks/
       {% if item.upside_pct %}<br><span class="{{ upside_cls }}">{{ upside_sign }}{{ item.upside_pct }}%</span>{% endif %}
     {% else %}<span class="na">—</span>{% endif %}
   </td>
+  <td class="theme-cell">
+    {% if item.themes and item.themes.size > 0 %}
+      {% for t in item.themes %}<span class="theme-tag">{{ t }}</span>{% endfor %}
+    {% else %}<span class="na">—</span>{% endif %}
+  </td>
+  <td class="investor-cell">
+    {% if item.investor_streaks %}
+      {% assign is = item.investor_streaks %}
+      <div class="investor-row">
+        {% assign indi_v = is.indi | default: 0 %}
+        <div class="investor-item">
+          <span class="investor-label">개인</span>
+          {% if indi_v > 0 %}<span class="investor-buy">{{ indi_v }}</span>
+          {% elsif indi_v < 0 %}<span class="investor-sell">{{ indi_v | abs }}</span>
+          {% else %}<span class="investor-zero">—</span>{% endif %}
+        </div>
+        {% assign foreign_v = is.foreign | default: 0 %}
+        <div class="investor-item">
+          <span class="investor-label">외인</span>
+          {% if foreign_v > 0 %}<span class="investor-buy">{{ foreign_v }}</span>
+          {% elsif foreign_v < 0 %}<span class="investor-sell">{{ foreign_v | abs }}</span>
+          {% else %}<span class="investor-zero">—</span>{% endif %}
+        </div>
+        {% assign gigan_v = is.gigan | default: 0 %}
+        <div class="investor-item">
+          <span class="investor-label">기관</span>
+          {% if gigan_v > 0 %}<span class="investor-buy">{{ gigan_v }}</span>
+          {% elsif gigan_v < 0 %}<span class="investor-sell">{{ gigan_v | abs }}</span>
+          {% else %}<span class="investor-zero">—</span>{% endif %}
+        </div>
+      </div>
+    {% else %}<span class="na">—</span>{% endif %}
+  </td>
   <td class="disclosure-cell">
     {% if item.disclosure %}
       <span class="disclosure-title"><a href="{{ item.disclosure.url }}" target="_blank">{{ item.disclosure.title | truncate: 38 }}</a></span>
@@ -225,7 +308,8 @@ permalink: /mystocks/
 </div>
 <p class="table-note">
   * PER: FnGuide FY1 컨센서스 — 증권사 평균 예상 EPS 기준 (시총 ÷ 추정 순이익)<br>
-  * 목표가: FnGuide 컨센서스 목표주가 단순 평균 / 목표가 대비: (목표가 − 현재가) ÷ 현재가 × 100
+  * 목표가: FnGuide 컨센서스 목표주가 단순 평균 / 목표가 대비: (목표가 − 현재가) ÷ 현재가 × 100<br>
+  * 매수 주체: 최근 일자 기준 연속 순매수(빨강)·순매도(파랑) 일수. 개인=-(외국인+기관) 추정치. 연기금은 별도 열 미제공.
 </p>
 
 <p class="section-title">ETF / ETN</p>
