@@ -125,6 +125,7 @@ permalink: /mystocks/
 .investor-buy  { color: #e74c3c; font-weight: bold; font-size: 0.9em; }
 .investor-sell { color: #3498db; font-weight: bold; font-size: 0.9em; }
 .investor-zero { color: #ccc; font-size: 0.85em; }
+.investor-as-of { font-size: 0.7em; color: #bbb; margin-top: 2px; }
 
 /* ── 공시 셀 ─────────────────────────────────────── */
 .disclosure-cell {
@@ -293,6 +294,7 @@ permalink: /mystocks/
           {% else %}<span class="investor-zero">—</span>{% endif %}
         </div>
       </div>
+      {% if is.as_of %}<div class="investor-as-of">{{ is.as_of }} 기준</div>{% endif %}
     {% else %}<span class="na">—</span>{% endif %}
   </td>
   <td class="disclosure-cell">

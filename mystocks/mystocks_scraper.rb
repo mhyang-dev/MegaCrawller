@@ -173,12 +173,15 @@ def fetch_investor_streaks(code)
   return nil unless html
 
   # Parse rows: find date spans (gray03) then extract 기관(w=66) and 외국인(w=80) net amounts
+  # Rows are sorted most-recent-first by frgn.naver
+  dates        = []
   gigan_vals   = []
   foreign_vals = []
 
   html.scan(
     /<span[^>]*gray03[^>]*>([\d.]+)<\/span>[\s\S]{0,1800}?<td[^>]*width="66"[^>]*>[\s\S]{0,300}?<span[^>]*>([+\-]?[\d,]+)<\/span>[\s\S]{0,600}?<td[^>]*width="80"[^>]*>[\s\S]{0,300}?<span[^>]*>([+\-]?[\d,]+)<\/span>/
-  ) do |_date, gigan_raw, foreign_raw|
+  ) do |date, gigan_raw, foreign_raw|
+    dates        << date
     gigan_vals   << gigan_raw.gsub(/[+,]/, '').to_i
     foreign_vals << foreign_raw.gsub(/[+,]/, '').to_i
   end
@@ -187,10 +190,14 @@ def fetch_investor_streaks(code)
 
   indi_vals = gigan_vals.zip(foreign_vals).map { |g, f| -(g + f) }
 
+  # as_of: 마지막으로 시장이 열린 날 (frgn.naver의 가장 최신 행)
+  as_of = dates.first&.gsub('.', '-')  # "2026.06.19" → "2026-06-19"
+
   {
     'gigan'   => consecutive_streak(gigan_vals),
     'foreign' => consecutive_streak(foreign_vals),
-    'indi'    => consecutive_streak(indi_vals)
+    'indi'    => consecutive_streak(indi_vals),
+    'as_of'   => as_of
   }
 rescue StandardError => e
   puts "  [수급 오류] #{e.message}"
