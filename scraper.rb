@@ -1,6 +1,8 @@
 require 'selenium-webdriver'
 require 'yaml'
 require 'time'
+require 'net/http'
+require 'json'
 
 KEYWORD = '태블릿'
 TARGET_URL = 'https://www.fmkorea.com/hotdeal'
@@ -13,6 +15,24 @@ end
 
 def save_deals(deals)
   File.write(DATA_FILE, deals.to_yaml)
+end
+
+def notify_discord(post)
+  webhook_url = ENV['DISCORD_WEBHOOK_URL']
+  return unless webhook_url
+
+  uri = URI.parse(webhook_url)
+  message = {
+    content: "🔔 **태블릿 핫딜 발견!**\n**#{post['title']}**\n#{post['url']}"
+  }
+
+  http = Net::HTTP.new(uri.host, uri.port)
+  http.use_ssl = true
+  request = Net::HTTP::Post.new(uri.path)
+  request['Content-Type'] = 'application/json'
+  request.body = message.to_json
+  http.request(request)
+  puts "  [Discord 알림 전송완료]"
 end
 
 def fetch_posts
@@ -67,6 +87,7 @@ new_posts.each do |post|
   added += 1
   puts "  [추가] #{post['title']}"
   puts "         #{post['url']}"
+  notify_discord(post)
 end
 
 if added > 0
