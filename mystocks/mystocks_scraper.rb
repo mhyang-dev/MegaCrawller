@@ -5,10 +5,8 @@ require 'time'
 require 'date'
 require 'thread'
 
-DATA_FILE        = File.join(__dir__, '..', '_data', 'mystocks.yml')
-THEME_CACHE_FILE = File.join(__dir__, '..', '_data', 'theme_cache.yml')
-ALERT_THRESHOLD  = 3.0
-THEME_CACHE_TTL  = 86400  # 24 hours
+DATA_FILE       = File.join(__dir__, '..', '_data', 'mystocks.yml')
+ALERT_THRESHOLD = 3.0
 
 MY_STOCKS = {
   '005930' => '삼성전자',
@@ -117,11 +115,16 @@ def fetch_fnguide_consensus(code)
   cap_match = html.match(/보통주,억원[\s\S]*?<td class="r">([\d,]+)<\/td>/)
   market_cap_eok = cap_match ? cap_match[1].gsub(',', '').to_i : nil
 
+  # FICS 업종 분류: "대분류(소분류)" 패턴에서 괄호 안 소분류를 추출
+  fics_match = html.match(/FICS[\s\S]{0,800}?\(([^)<>"]{2,60})\)/)
+  fics = fics_match&.[](1)&.strip
+
   {
     'analyst_target'       => { 'avg' => target_price, 'avg_formatted' => avg_formatted, 'count' => analyst_count },
     'per'                  => per,
     'market_cap_eok'       => market_cap_eok,
-    'market_cap_formatted' => market_cap_eok ? format_market_cap(market_cap_eok) : nil
+    'market_cap_formatted' => market_cap_eok ? format_market_cap(market_cap_eok) : nil,
+    'fics'                 => fics
   }
 rescue StandardError => e
   puts "  [FnGuide 오류] #{e.message}"
@@ -217,78 +220,6 @@ rescue StandardError => e
   nil
 end
 
-# ── 테마 데이터 (24h 캐시) ──────────────────────────────
-def theme_cache_fresh?
-  return false unless File.exist?(THEME_CACHE_FILE)
-  (Time.now - File.mtime(THEME_CACHE_FILE)) < THEME_CACHE_TTL
-end
-
-def load_theme_cache
-  YAML.load_file(THEME_CACHE_FILE) || {}
-rescue StandardError
-  {}
-end
-
-def build_theme_cache(stock_codes)
-  puts "  [테마] 캐시 구축 시작..."
-
-  # Step 1: 전체 테마 목록 수집 (7페이지)
-  theme_map = {}
-  (1..7).each do |page|
-    html = http_get(
-      "https://finance.naver.com/sise/theme.naver?page=#{page}",
-      from_encoding: 'EUC-KR',
-      extra_headers: { 'Referer' => 'https://finance.naver.com/sise/theme.naver' }
-    )
-    next unless html
-    html.scan(/sise_group_detail\.naver\?type=theme&no=(\d+)">([^<]+)<\/a>/) do |no, name|
-      theme_map[no] = name.strip
-    end
-  end
-  puts "  [테마] #{theme_map.size}개 테마 발견"
-
-  # Step 2: 각 테마 상세 페이지에서 종목 코드 추출 (스레드 병렬)
-  stock_themes = stock_codes.each_with_object({}) { |c, h| h[c] = [] }
-  mutex   = Mutex.new
-  queue   = theme_map.to_a.dup
-  threads = 8.times.map do
-    Thread.new do
-      loop do
-        item = mutex.synchronize { queue.shift }
-        break unless item
-        no, name = item
-        html = http_get(
-          "https://finance.naver.com/sise/sise_group_detail.naver?type=theme&no=#{no}",
-          from_encoding: 'EUC-KR',
-          extra_headers: { 'Referer' => 'https://finance.naver.com/sise/theme.naver' }
-        )
-        next unless html
-        codes_in_theme = html.scan(/code=(\d{6})/).flatten.uniq
-        stock_codes.each do |code|
-          mutex.synchronize { stock_themes[code] << name } if codes_in_theme.include?(code)
-        end
-      end
-    end
-  end
-  threads.each(&:join)
-
-  File.write(THEME_CACHE_FILE, stock_themes.to_yaml)
-  puts "  [테마] 캐시 저장 완료"
-  stock_themes
-end
-
-def fetch_themes_for_stocks(stock_codes)
-  if theme_cache_fresh?
-    puts "  [테마] 캐시 사용"
-    load_theme_cache
-  else
-    build_theme_cache(stock_codes)
-  end
-rescue StandardError => e
-  puts "  [테마 오류] #{e.message}"
-  {}
-end
-
 # ── 규칙 기반 Claude 의견 ───────────────────────────────
 def rule_based_opinion(item)
   per        = item['per']
@@ -367,11 +298,6 @@ else
   {}
 end
 
-# 테마 데이터 수집 (개별 주식 코드만)
-individual_codes = MY_STOCKS.keys - ETF_CODES
-theme_data = fetch_themes_for_stocks(individual_codes)
-sleep 3  # 테마 수집 후 IP 쿨다운
-
 stocks = MY_STOCKS.filter_map do |code, fallback|
   basic = fetch_basic(code, fallback)
   unless basic
@@ -399,7 +325,7 @@ stocks = MY_STOCKS.filter_map do |code, fallback|
 
     basic['disclosure']       = fetch_disclosure(code)
     basic['opinion']          = rule_based_opinion(basic)
-    basic['themes']           = theme_data[code] || []
+    basic['fics']             = consensus&.dig('fics')
     basic['investor_streaks'] = fetch_investor_streaks(code)
   end
 
