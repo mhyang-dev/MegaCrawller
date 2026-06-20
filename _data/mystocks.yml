@@ -1,74 +1,6 @@
 ---
-fetched_at: 2026-06-20 22:25 KST
+fetched_at: 2026-06-20 23:22 KST
 stocks:
-- code: '005930'
-  name: 삼성전자
-  price: '354,000'
-  change: "-8,500"
-  change_pct: -2.34
-  direction: FALLING
-  market: KOSPI
-  category: stock
-  per: 8.0
-  analyst_target:
-    avg: 445600
-    avg_formatted: '445,600'
-    count: 25
-  market_cap_eok: 20695826
-  market_cap_formatted: 2,069.6조
-  upside_pct: 25.9
-  disclosure:
-    title: 삼성전자(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승)
-    datetime: 2026-06-12 06:50
-    author: KOSCOM
-    url: https://finance.naver.com/item/news_notice_read.naver?no=28360316&code=005930&page_notice=
-  opinion: PER 8.0배로 적정 밸류에이션 수준. 소폭 하락하며 숨 고르기 국면. 애널리스트 목표가까지 25.9% 상승 여력 — 중장기
-    매력적.
-- code: '000660'
-  name: SK하이닉스
-  price: '2,764,000'
-  change: '79,000'
-  change_pct: 2.94
-  direction: RISING
-  market: KOSPI
-  category: stock
-  per: 9.1
-  analyst_target:
-    avg: 2737600
-    avg_formatted: '2,737,600'
-    count: 25
-  market_cap_eok: 19699093
-  market_cap_formatted: 1,969.9조
-  upside_pct: -1.0
-  disclosure:
-    title: 에스케이하이닉스(주) 풍문 또는 보도에 대한 해명
-    datetime: 2026-06-16 06:52
-    author: KOSCOM
-    url: https://finance.naver.com/item/news_notice_read.naver?no=32054032&code=000660&page_notice=
-  opinion: PER 9.1배로 적정 밸류에이션 수준. 소폭 상승하며 긍정적 흐름 유지. 현재가가 목표가를 1.0% 상회 — 단기 과열 가능성.
-- code: '009150'
-  name: 삼성전기
-  price: '2,270,000'
-  change: '70,000'
-  change_pct: 3.18
-  direction: RISING
-  market: KOSPI
-  category: stock
-  per: 137.2
-  analyst_target:
-    avg: 1888600
-    avg_formatted: '1,888,600'
-    count: 20
-  market_cap_eok: 1695547
-  market_cap_formatted: 169.6조
-  upside_pct: -16.8
-  disclosure:
-    title: 삼성전기(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승)
-    datetime: 2026-06-19 10:22
-    author: KOSCOM
-    url: https://finance.naver.com/item/news_notice_read.naver?no=36940359&code=009150&page_notice=
-  opinion: PER 137.2배로 고평가 구간 — 이익 성장 기대감이 선반영된 상황. 당일 3.18% 급등하며 강한 매수세 유입 중. 현재가가
-    목표가를 16.8% 상회 — 단기 과열 가능성.
 - code: '005380'
   name: 현대차
   price: '613,000'
@@ -92,75 +24,23 @@ stocks:
     url: https://finance.naver.com/item/news_notice_read.naver?no=35415758&code=005380&page_notice=
   opinion: PER 15.5배로 다소 고평가된 상태. 소폭 상승하며 긍정적 흐름 유지. 애널리스트 목표가까지 33.7% 상승 여력 — 중장기
     매력적.
-- code: '032830'
-  name: 삼성생명
-  price: '497,000'
-  change: '28,000'
-  change_pct: 5.97
-  direction: RISING
-  market: KOSPI
-  category: stock
-  per: 34.9
-  analyst_target:
-    avg: 380321
-    avg_formatted: '380,321'
-    count: 14
-  market_cap_eok: 994000
-  market_cap_formatted: 99.4조
-  upside_pct: -23.5
-  disclosure:
-    title: 삼성생명보험(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승)
-    datetime: 2026-06-19 09:21
-    author: KOSCOM
-    url: https://finance.naver.com/item/news_notice_read.naver?no=36847827&code=032830&page_notice=
-  opinion: PER 34.9배로 고평가 구간 — 이익 성장 기대감이 선반영된 상황. 당일 5.97% 급등하며 강한 매수세 유입 중. 현재가가
-    목표가를 23.5% 상회 — 단기 과열 가능성.
-- code: '012330'
-  name: 현대모비스
-  price: '612,000'
-  change: '9,000'
-  change_pct: 1.49
-  direction: RISING
-  market: KOSPI
-  category: stock
-  per: 13.5
-  analyst_target:
-    avg: 778000
-    avg_formatted: '778,000'
-    count: 25
-  market_cap_eok: 555283
-  market_cap_formatted: 55.5조
-  upside_pct: 27.1
-  disclosure:
-    title: 현대모비스(주) 기업설명회(IR) 개최(안내공시)
-    datetime: 2026-06-19 15:49
-    author: KOSCOM
-    url: https://finance.naver.com/item/news_notice_read.naver?no=37450231&code=012330&page_notice=
-  opinion: PER 13.5배로 적정 밸류에이션 수준. 소폭 상승하며 긍정적 흐름 유지. 애널리스트 목표가까지 27.1% 상승 여력 — 중장기
-    매력적.
-- code: '278470'
-  name: 에이피알
-  price: '385,500'
-  change: '7,500'
-  change_pct: 1.98
-  direction: RISING
-  market: KOSPI
-  category: stock
-  per: 27.0
-  analyst_target:
-    avg: 516316
-    avg_formatted: '516,316'
-    count: 19
-  market_cap_eok: 144324
-  market_cap_formatted: 14.4조
-  upside_pct: 33.9
-  disclosure:
-    title: "(주)에이피알 지속가능경영보고서 등 관련사항(자율공시)"
-    datetime: 2026-06-19 15:42
-    author: KOSCOM
-    url: https://finance.naver.com/item/news_notice_read.naver?no=37438991&code=278470&page_notice=
-  opinion: PER 27.0배로 고평가 구간 — 이익 성장 기대감이 선반영된 상황. 소폭 상승하며 긍정적 흐름 유지. 애널리스트 목표가까지
-    33.9% 상승 여력 — 중장기 매력적.
+  themes:
+  - 자동차 대표주
+  - 코리아 밸류업 지수(Korea Value-up Index)
+  - 밸류업(24년 기업가치 제고계획 발표)
+  - 폐배터리
+  - 수소에너지(수소차/연료전지 등)
+  - UAM(도심항공모빌리티)
+  - 전기차
+  - 전기차(충전소/충전기)
+  - 메타버스(Metaverse)
+  - 자율주행차
+  - 피지컬 AI/휴머노이드 로봇
+  investor_streaks:
+    gigan: -6
+    foreign: 1
+    indi: -1
+    as_of: '2026-06-19'
 - code: '069960'
   name: 현대백화점
   price: '194,700'
@@ -184,6 +64,204 @@ stocks:
     url: https://finance.naver.com/item/news_notice_read.naver?no=37882286&code=069960&page_notice=
   opinion: PER 15.9배로 다소 고평가된 상태. 당일 4.56% 급락 — 단기 조정 또는 매도 압력 주의. 현재가가 목표가를 3.3%
     상회 — 단기 과열 가능성.
+  themes:
+  - 밸류업(24년 기업가치 제고계획 발표)
+  - 면세점
+  - 소매유통
+  - 백화점
+  investor_streaks:
+    gigan: -5
+    foreign: 1
+    indi: -1
+    as_of: '2026-06-19'
+- code: '005930'
+  name: 삼성전자
+  price: '354,000'
+  change: "-8,500"
+  change_pct: -2.34
+  direction: FALLING
+  market: KOSPI
+  category: stock
+  per:
+  analyst_target:
+  market_cap_eok:
+  market_cap_formatted:
+  upside_pct:
+  disclosure:
+    title: 삼성전자(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승)
+    datetime: 2026-06-12 06:50
+    author: KOSCOM
+    url: https://finance.naver.com/item/news_notice_read.naver?no=28360316&code=005930&page_notice=
+  opinion: 소폭 하락하며 숨 고르기 국면.
+  themes:
+  - 반도체 대표주(생산)
+  - IT 대표주
+  - 코리아 밸류업 지수(Korea Value-up Index)
+  - 삼성페이
+  - 스마트홈(홈네트워크)
+  - 고령화 사회(노인복지)
+  - 스마트폰
+  - 의료기기
+  - 갤럭시 부품주
+  - 아이폰
+  - OLED(유기 발광 다이오드)
+  - LED
+  - NFT(대체불가토큰)
+  - 공기청정기
+  - 가상현실(VR)
+  - 자율주행차
+  - 무선충전기술
+  - 제습기
+  - 전력반도체
+  - 피지컬 AI/휴머노이드 로봇
+  - 플렉서블 디스플레이
+  - 5G(5세대 이동통신)
+  - 시스템반도체
+  - 폴더블폰
+  - 온디바이스 AI
+  - 소캠(SOCAMM)
+  - CXL(컴퓨트익스프레스링크)
+  - HBM(고대역폭메모리)
+  - 마이크로 LED
+  - 뉴로모픽 반도체
+  investor_streaks:
+    gigan: -1
+    foreign: -1
+    indi: 1
+    as_of: '2026-06-19'
+- code: '000660'
+  name: SK하이닉스
+  price: '2,764,000'
+  change: '79,000'
+  change_pct: 2.94
+  direction: RISING
+  market: KOSPI
+  category: stock
+  per:
+  analyst_target:
+  market_cap_eok:
+  market_cap_formatted:
+  upside_pct:
+  disclosure:
+    title: 에스케이하이닉스(주) 풍문 또는 보도에 대한 해명
+    datetime: 2026-06-16 06:52
+    author: KOSCOM
+    url: https://finance.naver.com/item/news_notice_read.naver?no=32054032&code=000660&page_notice=
+  opinion: 소폭 상승하며 긍정적 흐름 유지.
+  themes:
+  - 반도체 대표주(생산)
+  - IT 대표주
+  - 코리아 밸류업 지수(Korea Value-up Index)
+  - 밸류업(24년 기업가치 제고계획 발표)
+  - 아이폰
+  - 자율주행차
+  - 전력반도체
+  - 시스템반도체
+  - 온디바이스 AI
+  - 소캠(SOCAMM)
+  - CXL(컴퓨트익스프레스링크)
+  - HBM(고대역폭메모리)
+  investor_streaks:
+    gigan: 5
+    foreign: -1
+    indi: 1
+    as_of: '2026-06-19'
+- code: '009150'
+  name: 삼성전기
+  price: '2,270,000'
+  change: '70,000'
+  change_pct: 3.18
+  direction: RISING
+  market: KOSPI
+  category: stock
+  per:
+  analyst_target:
+  market_cap_eok:
+  market_cap_formatted:
+  upside_pct:
+  disclosure:
+    title: 삼성전기(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승)
+    datetime: 2026-06-19 10:22
+    author: KOSCOM
+    url: https://finance.naver.com/item/news_notice_read.naver?no=36940359&code=009150&page_notice=
+  opinion: 당일 3.18% 급등하며 강한 매수세 유입 중.
+  themes:
+  - MLCC(적층세라믹콘덴서)
+  - 유리 기판
+  - 2차전지(전고체)
+  - 갤럭시 부품주
+  - 아이폰
+  - 자율주행차
+  - 폴더블폰
+  - 온디바이스 AI
+  - PCB(FPCB 등)
+  - 카메라모듈/부품
+  - 반도체 기판(FC-BGA/PCB/MLB 등)
+  investor_streaks:
+    gigan: 2
+    foreign: 6
+    indi: -2
+    as_of: '2026-06-19'
+- code: '012330'
+  name: 현대모비스
+  price: '612,000'
+  change: '9,000'
+  change_pct: 1.49
+  direction: RISING
+  market: KOSPI
+  category: stock
+  per:
+  analyst_target:
+  market_cap_eok:
+  market_cap_formatted:
+  upside_pct:
+  disclosure:
+    title: 현대모비스(주) 기업설명회(IR) 개최(안내공시)
+    datetime: 2026-06-19 15:49
+    author: KOSCOM
+    url: https://finance.naver.com/item/news_notice_read.naver?no=37450231&code=012330&page_notice=
+  opinion: 소폭 상승하며 긍정적 흐름 유지.
+  themes:
+  - 자동차 대표주
+  - 음성인식
+  - 코리아 밸류업 지수(Korea Value-up Index)
+  - 밸류업(24년 기업가치 제고계획 발표)
+  - 전기차
+  - 자동차부품
+  - 자율주행차
+  - 피지컬 AI/휴머노이드 로봇
+  - 스마트카(SMART CAR)
+  investor_streaks:
+    gigan: -3
+    foreign: 2
+    indi: -1
+    as_of: '2026-06-19'
+- code: '032830'
+  name: 삼성생명
+  price: '497,000'
+  change: '28,000'
+  change_pct: 5.97
+  direction: RISING
+  market: KOSPI
+  category: stock
+  per:
+  analyst_target:
+  market_cap_eok:
+  market_cap_formatted:
+  upside_pct:
+  disclosure:
+    title: 삼성생명보험(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승)
+    datetime: 2026-06-19 09:21
+    author: KOSCOM
+    url: https://finance.naver.com/item/news_notice_read.naver?no=36847827&code=032830&page_notice=
+  opinion: 당일 5.97% 급등하며 강한 매수세 유입 중.
+  themes:
+  - 생명보험
+  investor_streaks:
+    gigan: 2
+    foreign: 1
+    indi: -11
+    as_of: '2026-06-19'
 - code: '020000'
   name: 한섬
   price: '21,500'
@@ -192,21 +270,53 @@ stocks:
   direction: RISING
   market: KOSPI
   category: stock
-  per: 5.9
+  per:
   analyst_target:
-    avg: 35333
-    avg_formatted: '35,333'
-    count: 6
-  market_cap_eok: 4618
-  market_cap_formatted: 4,618억
-  upside_pct: 64.3
+  market_cap_eok:
+  market_cap_formatted:
+  upside_pct:
   disclosure:
     title: "(주)한섬 상장안내(주식소각 및 감자(주식소각))"
     datetime: 2026-05-13 06:53
     author: KOSCOM
     url: https://finance.naver.com/item/news_notice_read.naver?no=1640905&code=020000&page_notice=
-  opinion: PER 5.9배로 동종업 대비 저평가 구간에 위치. 소폭 상승하며 긍정적 흐름 유지. 애널리스트 목표가까지 64.3% 상승 여력
-    — 중장기 매력적.
+  opinion: 소폭 상승하며 긍정적 흐름 유지.
+  themes:
+  - 패션/의류
+  - 밸류업(24년 기업가치 제고계획 발표)
+  investor_streaks:
+    gigan: 1
+    foreign: 6
+    indi: -3
+    as_of: '2026-06-19'
+- code: '278470'
+  name: 에이피알
+  price: '385,500'
+  change: '7,500'
+  change_pct: 1.98
+  direction: RISING
+  market: KOSPI
+  category: stock
+  per:
+  analyst_target:
+  market_cap_eok:
+  market_cap_formatted:
+  upside_pct:
+  disclosure:
+    title: "(주)에이피알 지속가능경영보고서 등 관련사항(자율공시)"
+    datetime: 2026-06-19 15:42
+    author: KOSCOM
+    url: https://finance.naver.com/item/news_notice_read.naver?no=37438991&code=278470&page_notice=
+  opinion: 소폭 상승하며 긍정적 흐름 유지.
+  themes:
+  - 패션/의류
+  - 미용기기
+  - 화장품
+  investor_streaks:
+    gigan: 1
+    foreign: 1
+    indi: -1
+    as_of: '2026-06-19'
 - code: '487240'
   name: KODEX AI전력핵심설비
   price: '46,485'
