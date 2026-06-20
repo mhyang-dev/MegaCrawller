@@ -1,5 +1,5 @@
 ---
-fetched_at: 2026-06-20 18:18 KST
+fetched_at: 2026-06-20 22:25 KST
 stocks:
 - code: '005930'
   name: 삼성전자
@@ -14,6 +14,9 @@ stocks:
     avg: 445600
     avg_formatted: '445,600'
     count: 25
+  market_cap_eok: 20695826
+  market_cap_formatted: 2,069.6조
+  upside_pct: 25.9
   disclosure:
     title: 삼성전자(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승)
     datetime: 2026-06-12 06:50
@@ -34,6 +37,9 @@ stocks:
     avg: 2737600
     avg_formatted: '2,737,600'
     count: 25
+  market_cap_eok: 19699093
+  market_cap_formatted: 1,969.9조
+  upside_pct: -1.0
   disclosure:
     title: 에스케이하이닉스(주) 풍문 또는 보도에 대한 해명
     datetime: 2026-06-16 06:52
@@ -53,6 +59,9 @@ stocks:
     avg: 1888600
     avg_formatted: '1,888,600'
     count: 20
+  market_cap_eok: 1695547
+  market_cap_formatted: 169.6조
+  upside_pct: -16.8
   disclosure:
     title: 삼성전기(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승)
     datetime: 2026-06-19 10:22
@@ -73,32 +82,15 @@ stocks:
     avg: 819615
     avg_formatted: '819,615'
     count: 26
+  market_cap_eok: 1255165
+  market_cap_formatted: 125.5조
+  upside_pct: 33.7
   disclosure:
     title: 현대자동차(주) 기업설명회(IR) 개최(안내공시)
     datetime: 2026-06-18 06:51
     author: KOSCOM
     url: https://finance.naver.com/item/news_notice_read.naver?no=35415758&code=005380&page_notice=
   opinion: PER 15.5배로 다소 고평가된 상태. 소폭 상승하며 긍정적 흐름 유지. 애널리스트 목표가까지 33.7% 상승 여력 — 중장기
-    매력적.
-- code: '012330'
-  name: 현대모비스
-  price: '612,000'
-  change: '9,000'
-  change_pct: 1.49
-  direction: RISING
-  market: KOSPI
-  category: stock
-  per: 13.5
-  analyst_target:
-    avg: 778000
-    avg_formatted: '778,000'
-    count: 25
-  disclosure:
-    title: 현대모비스(주) 기업설명회(IR) 개최(안내공시)
-    datetime: 2026-06-19 15:49
-    author: KOSCOM
-    url: https://finance.naver.com/item/news_notice_read.naver?no=37450231&code=012330&page_notice=
-  opinion: PER 13.5배로 적정 밸류에이션 수준. 소폭 상승하며 긍정적 흐름 유지. 애널리스트 목표가까지 27.1% 상승 여력 — 중장기
     매력적.
 - code: '032830'
   name: 삼성생명
@@ -113,6 +105,9 @@ stocks:
     avg: 380321
     avg_formatted: '380,321'
     count: 14
+  market_cap_eok: 994000
+  market_cap_formatted: 99.4조
+  upside_pct: -23.5
   disclosure:
     title: 삼성생명보험(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승)
     datetime: 2026-06-19 09:21
@@ -120,6 +115,52 @@ stocks:
     url: https://finance.naver.com/item/news_notice_read.naver?no=36847827&code=032830&page_notice=
   opinion: PER 34.9배로 고평가 구간 — 이익 성장 기대감이 선반영된 상황. 당일 5.97% 급등하며 강한 매수세 유입 중. 현재가가
     목표가를 23.5% 상회 — 단기 과열 가능성.
+- code: '012330'
+  name: 현대모비스
+  price: '612,000'
+  change: '9,000'
+  change_pct: 1.49
+  direction: RISING
+  market: KOSPI
+  category: stock
+  per: 13.5
+  analyst_target:
+    avg: 778000
+    avg_formatted: '778,000'
+    count: 25
+  market_cap_eok: 555283
+  market_cap_formatted: 55.5조
+  upside_pct: 27.1
+  disclosure:
+    title: 현대모비스(주) 기업설명회(IR) 개최(안내공시)
+    datetime: 2026-06-19 15:49
+    author: KOSCOM
+    url: https://finance.naver.com/item/news_notice_read.naver?no=37450231&code=012330&page_notice=
+  opinion: PER 13.5배로 적정 밸류에이션 수준. 소폭 상승하며 긍정적 흐름 유지. 애널리스트 목표가까지 27.1% 상승 여력 — 중장기
+    매력적.
+- code: '278470'
+  name: 에이피알
+  price: '385,500'
+  change: '7,500'
+  change_pct: 1.98
+  direction: RISING
+  market: KOSPI
+  category: stock
+  per: 27.0
+  analyst_target:
+    avg: 516316
+    avg_formatted: '516,316'
+    count: 19
+  market_cap_eok: 144324
+  market_cap_formatted: 14.4조
+  upside_pct: 33.9
+  disclosure:
+    title: "(주)에이피알 지속가능경영보고서 등 관련사항(자율공시)"
+    datetime: 2026-06-19 15:42
+    author: KOSCOM
+    url: https://finance.naver.com/item/news_notice_read.naver?no=37438991&code=278470&page_notice=
+  opinion: PER 27.0배로 고평가 구간 — 이익 성장 기대감이 선반영된 상황. 소폭 상승하며 긍정적 흐름 유지. 애널리스트 목표가까지
+    33.9% 상승 여력 — 중장기 매력적.
 - code: '069960'
   name: 현대백화점
   price: '194,700'
@@ -133,6 +174,9 @@ stocks:
     avg: 188250
     avg_formatted: '188,250'
     count: 16
+  market_cap_eok: 41987
+  market_cap_formatted: 4.2조
+  upside_pct: -3.3
   disclosure:
     title: "(주)현대백화점 [투자주의]15일간 상승종목의 당일 소수계좌 매수관여 과다종목"
     datetime: 2026-06-19 20:00
@@ -153,6 +197,9 @@ stocks:
     avg: 35333
     avg_formatted: '35,333'
     count: 6
+  market_cap_eok: 4618
+  market_cap_formatted: 4,618억
+  upside_pct: 64.3
   disclosure:
     title: "(주)한섬 상장안내(주식소각 및 감자(주식소각))"
     datetime: 2026-05-13 06:53
@@ -160,26 +207,6 @@ stocks:
     url: https://finance.naver.com/item/news_notice_read.naver?no=1640905&code=020000&page_notice=
   opinion: PER 5.9배로 동종업 대비 저평가 구간에 위치. 소폭 상승하며 긍정적 흐름 유지. 애널리스트 목표가까지 64.3% 상승 여력
     — 중장기 매력적.
-- code: '278470'
-  name: 에이피알
-  price: '385,500'
-  change: '7,500'
-  change_pct: 1.98
-  direction: RISING
-  market: KOSPI
-  category: stock
-  per: 27.0
-  analyst_target:
-    avg: 516316
-    avg_formatted: '516,316'
-    count: 19
-  disclosure:
-    title: "(주)에이피알 지속가능경영보고서 등 관련사항(자율공시)"
-    datetime: 2026-06-19 15:42
-    author: KOSCOM
-    url: https://finance.naver.com/item/news_notice_read.naver?no=37438991&code=278470&page_notice=
-  opinion: PER 27.0배로 고평가 구간 — 이익 성장 기대감이 선반영된 상황. 소폭 상승하며 긍정적 흐름 유지. 애널리스트 목표가까지
-    33.9% 상승 여력 — 중장기 매력적.
 - code: '487240'
   name: KODEX AI전력핵심설비
   price: '46,485'

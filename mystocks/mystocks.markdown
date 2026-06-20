@@ -127,7 +127,7 @@ permalink: /mystocks/
     -webkit-overflow-scrolling: touch;
   }
   .stock-table {
-    min-width: 520px;
+    min-width: 680px;
     font-size: 0.78em;
   }
   .stock-table th,
@@ -158,11 +158,13 @@ permalink: /mystocks/
 <thead>
   <tr>
     <th>종목</th>
+    <th>시총</th>
     <th>현재가</th>
     <th>전일비</th>
     <th>등락률</th>
     <th>PER</th>
     <th>목표가 평균</th>
+    <th>목표가 대비</th>
     <th class="left">최근 공시</th>
   </tr>
 </thead>
@@ -171,8 +173,13 @@ permalink: /mystocks/
 {% assign cls = "even" %}{% assign arrow = "—" %}
 {% if item.direction == "RISING" %}{% assign cls = "rising" %}{% assign arrow = "▲" %}
 {% elsif item.direction == "FALLING" %}{% assign cls = "falling" %}{% assign arrow = "▼" %}{% endif %}
+{% assign upside = item.upside_pct %}
+{% if upside > 0 %}{% assign upside_cls = "rising" %}{% assign upside_sign = "+" %}
+{% elsif upside < 0 %}{% assign upside_cls = "falling" %}{% assign upside_sign = "" %}
+{% else %}{% assign upside_cls = "even" %}{% assign upside_sign = "" %}{% endif %}
 <tr>
   <td><a href="https://m.stock.naver.com/domestic/stock/{{ item.code }}" target="_blank">{{ item.name }}</a></td>
+  <td>{% if item.market_cap_formatted %}{{ item.market_cap_formatted }}{% else %}<span class="na">—</span>{% endif %}</td>
   <td>{{ item.price }}</td>
   <td class="{{ cls }}">{{ arrow }} {{ item.change | remove: "-" }}</td>
   <td class="{{ cls }}">{{ item.change_pct }}%</td>
@@ -182,6 +189,9 @@ permalink: /mystocks/
       {{ item.analyst_target.avg_formatted }}
       <span class="target-count">({{ item.analyst_target.count }}건)</span>
     {% else %}<span class="na">—</span>{% endif %}
+  </td>
+  <td class="{{ upside_cls }}">
+    {% if item.upside_pct %}{{ upside_sign }}{{ item.upside_pct }}%{% else %}<span class="na">—</span>{% endif %}
   </td>
   <td class="disclosure-cell">
     {% if item.disclosure %}

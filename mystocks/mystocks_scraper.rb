@@ -68,6 +68,16 @@ def fetch_basic(code, fallback_name)
   }
 end
 
+def format_market_cap(eok)
+  if eok >= 10_000
+    int_s, dec_s = format('%.1f', eok / 10_000.0).split('.')
+    int_fmt = int_s.reverse.gsub(/(\d{3})(?=\d)/, '\1,').reverse
+    "#{int_fmt}.#{dec_s}조"
+  else
+    eok.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\1,').reverse + '억'
+  end
+end
+
 def fetch_fnguide_consensus(code)
   html = http_get(
     "https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A#{code}",
@@ -75,6 +85,7 @@ def fetch_fnguide_consensus(code)
   )
   return nil unless html
 
+  # 컨센서스 (투자의견·목표주가·EPS·PER·추정기관수)
   grid_match = html.match(/id="svdMainGrid9"[\s\S]{1,2000}?<tbody>([\s\S]{1,500}?)<\/tbody>/)
   return nil unless grid_match
 
@@ -87,9 +98,16 @@ def fetch_fnguide_consensus(code)
   return nil if target_price == 0
 
   avg_formatted = target_price.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\1,').reverse
+
+  # 시가총액 (보통주, 억원)
+  cap_match = html.match(/보통주,억원[\s\S]*?<td class="r">([\d,]+)<\/td>/)
+  market_cap_eok = cap_match ? cap_match[1].gsub(',', '').to_i : nil
+
   {
-    'analyst_target' => { 'avg' => target_price, 'avg_formatted' => avg_formatted, 'count' => analyst_count },
-    'per'            => per
+    'analyst_target'       => { 'avg' => target_price, 'avg_formatted' => avg_formatted, 'count' => analyst_count },
+    'per'                  => per,
+    'market_cap_eok'       => market_cap_eok,
+    'market_cap_formatted' => market_cap_eok ? format_market_cap(market_cap_eok) : nil
   }
 rescue StandardError => e
   puts "  [FnGuide 오류] #{e.message}"
@@ -222,10 +240,19 @@ stocks = MY_STOCKS.filter_map do |code, fallback|
     basic['holdings'] = fetch_etf_holdings(code)
   else
     consensus = fetch_fnguide_consensus(code)
-    basic['per']            = consensus&.dig('per')
-    basic['analyst_target'] = consensus&.dig('analyst_target')
-    basic['disclosure']     = fetch_disclosure(code)
-    basic['opinion']        = rule_based_opinion(basic)
+    basic['per']                  = consensus&.dig('per')
+    basic['analyst_target']       = consensus&.dig('analyst_target')
+    basic['market_cap_eok']       = consensus&.dig('market_cap_eok')
+    basic['market_cap_formatted'] = consensus&.dig('market_cap_formatted')
+
+    price_raw  = basic['price'].to_s.gsub(',', '').to_i
+    target_avg = basic.dig('analyst_target', 'avg')
+    basic['upside_pct'] = if target_avg && price_raw > 0
+      ((target_avg / price_raw.to_f - 1) * 100).round(1)
+    end
+
+    basic['disclosure'] = fetch_disclosure(code)
+    basic['opinion']    = rule_based_opinion(basic)
   end
 
   puts "  #{basic['name']}(#{code}): #{basic['price']} (#{basic['change_pct']}%) [#{basic['category']}]"
@@ -236,5 +263,10 @@ stocks = MY_STOCKS.filter_map do |code, fallback|
   basic
 end
 
-File.write(DATA_FILE, { 'fetched_at' => kst_now, 'stocks' => stocks }.to_yaml)
+individual = stocks.select { |s| s['category'] == 'stock' }
+                   .sort_by { |s| -(s['market_cap_eok'] || 0) }
+etfs       = stocks.select { |s| s['category'] == 'etf' }
+sorted     = individual + etfs
+
+File.write(DATA_FILE, { 'fetched_at' => kst_now, 'stocks' => sorted }.to_yaml)
 puts "[완료] #{stocks.size}/#{MY_STOCKS.size}개 종목 저장"
