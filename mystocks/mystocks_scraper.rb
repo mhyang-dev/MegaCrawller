@@ -68,32 +68,31 @@ def fetch_basic(code, fallback_name)
   }
 end
 
-def fetch_market_cap(code)
-  data = get_json("https://polling.finance.naver.com/api/realtime/domestic/stock/#{code}")
-  raw = data&.dig('datas', 0, 'marketValueFullRaw')
-  raw ? raw.to_i : nil
-rescue StandardError
-  nil
-end
+def fetch_fnguide_consensus(code)
+  html = http_get(
+    "https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A#{code}",
+    extra_headers: { 'Referer' => 'https://comp.fnguide.com/' }
+  )
+  return nil unless html
 
-def fetch_expected_profit(code)
-  data = get_json("https://m.stock.naver.com/api/stock/#{code}/finance/summary")
-  return nil unless data
+  grid_match = html.match(/id="svdMainGrid9"[\s\S]{1,2000}?<tbody>([\s\S]{1,500}?)<\/tbody>/)
+  return nil unless grid_match
 
-  annual  = data.dig('chartIncomeStatement', 'annual')
-  return nil unless annual
+  cells = grid_match[1].scan(/<td[^>]*>([\d,.\-]+)<\/td>/).flatten
+  return nil if cells.size < 5
 
-  columns = annual['columns']
-  tr_list = annual['trTitleList']
-  return nil unless columns && tr_list && columns.size >= 3
+  target_price  = cells[1].gsub(',', '').to_i
+  per           = cells[3].to_f
+  analyst_count = cells[4].to_i
+  return nil if target_price == 0
 
-  consensus_idx = tr_list.rindex { |t| t['isConsensus'] == 'Y' }
-  return nil unless consensus_idx
-
-  val = columns[2][consensus_idx + 1]
-  val ? val.to_f : nil  # unit: 억원
+  avg_formatted = target_price.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\1,').reverse
+  {
+    'analyst_target' => { 'avg' => target_price, 'avg_formatted' => avg_formatted, 'count' => analyst_count },
+    'per'            => per
+  }
 rescue StandardError => e
-  puts "  [재무 오류] #{e.message}"
+  puts "  [FnGuide 오류] #{e.message}"
   nil
 end
 
@@ -108,61 +107,6 @@ def fetch_disclosure(code)
     'url'      => "https://finance.naver.com/item/board.naver?code=#{code}"
   }
 rescue StandardError
-  nil
-end
-
-def fetch_analyst_targets(code)
-  html = http_get(
-    "https://finance.naver.com/research/company_list.nhn?searchType=itemCode&itemCode=#{code}",
-    from_encoding: 'EUC-KR',
-    extra_headers: { 'Referer' => 'https://finance.naver.com/' }
-  )
-  return nil unless html
-
-  nids  = html.scan(/company_read\.naver\?nid=(\d+)/).flatten
-  dates = html.scan(/<td class="date"[^>]*>(\d{2}\.\d{2}\.\d{2})<\/td>/).flatten
-  return nil if nids.empty?
-
-  cutoff = Date.today - 30
-  recent_nids = nids.zip(dates).filter_map do |nid, date_str|
-    next unless date_str
-    y, m, d = date_str.split('.').map(&:to_i)
-    report_date = Date.new(2000 + y, m, d) rescue nil
-    nid if report_date && report_date >= cutoff
-  end
-  return nil if recent_nids.empty?
-
-  targets = []
-  mutex = Mutex.new
-  threads = recent_nids.map do |nid|
-    Thread.new do
-      report = http_get(
-        "https://finance.naver.com/research/company_read.naver?nid=#{nid}&searchType=itemCode&itemCode=#{code}",
-        from_encoding: 'EUC-KR',
-        extra_headers: { 'Referer' => 'https://finance.naver.com/research/company_list.nhn' }
-      )
-      next unless report
-      m2 = report.match(/class="money"><strong>([\d,]+)<\/strong>/)
-      next unless m2
-      price = m2[1].gsub(',', '').to_i
-      mutex.synchronize { targets << price } if price > 0
-    end
-  end
-  threads.each(&:join)
-  return nil if targets.empty?
-
-  if targets.size >= 5
-    sorted  = targets.sort
-    trimmed = sorted[1..-2]
-    avg = (trimmed.sum.to_f / trimmed.size).round(0).to_i
-  else
-    avg = (targets.sum.to_f / targets.size).round(0).to_i
-  end
-
-  avg_formatted = avg.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\1,').reverse
-  { 'avg' => avg, 'avg_formatted' => avg_formatted, 'count' => targets.size }
-rescue StandardError => e
-  puts "  [목표가 오류] #{e.message}"
   nil
 end
 
@@ -277,13 +221,9 @@ stocks = MY_STOCKS.filter_map do |code, fallback|
   if is_etf
     basic['holdings'] = fetch_etf_holdings(code)
   else
-    market_cap      = fetch_market_cap(code)
-    expected_profit = fetch_expected_profit(code)
-    per = if market_cap && expected_profit && expected_profit > 0
-      (market_cap / (expected_profit * 100_000_000.0)).round(1)
-    end
-    basic['per']            = per
-    basic['analyst_target'] = fetch_analyst_targets(code)
+    consensus = fetch_fnguide_consensus(code)
+    basic['per']            = consensus&.dig('per')
+    basic['analyst_target'] = consensus&.dig('analyst_target')
     basic['disclosure']     = fetch_disclosure(code)
     basic['opinion']        = rule_based_opinion(basic)
   end

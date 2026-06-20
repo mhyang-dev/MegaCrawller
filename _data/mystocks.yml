@@ -1,5 +1,5 @@
 ---
-fetched_at: 2026-06-20 17:50 KST
+fetched_at: 2026-06-20 18:03 KST
 stocks:
 - code: '005930'
   name: 삼성전자
@@ -9,18 +9,18 @@ stocks:
   direction: FALLING
   market: KOSPI
   category: stock
-  per: 5.7
+  per: 8.0
   analyst_target:
-    avg: 536000
-    avg_formatted: '536,000'
-    count: 7
+    avg: 445600
+    avg_formatted: '445,600'
+    count: 25
   disclosure:
     title: 삼성전자(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승)
     datetime: 2026-06-12 06:50
     author: KOSCOM
     url: https://finance.naver.com/item/board.naver?code=005930
-  opinion: PER 5.7배로 동종업 대비 저평가 구간에 위치. 소폭 하락하며 숨 고르기 국면. 애널리스트 목표가까지 51.4% 상승 여력
-    — 중장기 매력적.
+  opinion: PER 8.0배로 적정 밸류에이션 수준. 소폭 하락하며 숨 고르기 국면. 애널리스트 목표가까지 25.9% 상승 여력 — 중장기
+    매력적.
 - code: '000660'
   name: SK하이닉스
   price: '2,764,000'
@@ -29,18 +29,17 @@ stocks:
   direction: RISING
   market: KOSPI
   category: stock
-  per: 7.5
+  per: 9.1
   analyst_target:
-    avg: 3800000
-    avg_formatted: '3,800,000'
-    count: 5
+    avg: 2737600
+    avg_formatted: '2,737,600'
+    count: 25
   disclosure:
     title: 에스케이하이닉스(주) 풍문 또는 보도에 대한 해명
     datetime: 2026-06-16 06:52
     author: KOSCOM
     url: https://finance.naver.com/item/board.naver?code=000660
-  opinion: PER 7.5배로 동종업 대비 저평가 구간에 위치. 소폭 상승하며 긍정적 흐름 유지. 애널리스트 목표가까지 37.5% 상승 여력
-    — 중장기 매력적.
+  opinion: PER 9.1배로 적정 밸류에이션 수준. 소폭 상승하며 긍정적 흐름 유지. 현재가가 목표가를 1.0% 상회 — 단기 과열 가능성.
 - code: '009150'
   name: 삼성전기
   price: '2,270,000'
@@ -49,18 +48,18 @@ stocks:
   direction: RISING
   market: KOSPI
   category: stock
-  per: 106.7
+  per: 137.2
   analyst_target:
-    avg: 2025000
-    avg_formatted: '2,025,000'
-    count: 10
+    avg: 1888600
+    avg_formatted: '1,888,600'
+    count: 20
   disclosure:
     title: 삼성전기(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승)
     datetime: 2026-06-19 10:22
     author: KOSCOM
     url: https://finance.naver.com/item/board.naver?code=009150
-  opinion: PER 106.7배로 고평가 구간 — 이익 성장 기대감이 선반영된 상황. 당일 3.18% 급등하며 강한 매수세 유입 중. 현재가가
-    목표가를 10.8% 상회 — 단기 과열 가능성.
+  opinion: PER 137.2배로 고평가 구간 — 이익 성장 기대감이 선반영된 상황. 당일 3.18% 급등하며 강한 매수세 유입 중. 현재가가
+    목표가를 16.8% 상회 — 단기 과열 가능성.
 - code: '005380'
   name: 현대차
   price: '613,000'
@@ -69,17 +68,17 @@ stocks:
   direction: RISING
   market: KOSPI
   category: stock
-  per: 10.4
+  per: 15.5
   analyst_target:
-    avg: 750000
-    avg_formatted: '750,000'
-    count: 3
+    avg: 819615
+    avg_formatted: '819,615'
+    count: 26
   disclosure:
     title: 현대자동차(주) 기업설명회(IR) 개최(안내공시)
     datetime: 2026-06-18 06:51
     author: KOSCOM
     url: https://finance.naver.com/item/board.naver?code=005380
-  opinion: PER 10.4배로 적정 밸류에이션 수준. 소폭 상승하며 긍정적 흐름 유지. 애널리스트 목표가까지 22.3% 상승 여력 — 중장기
+  opinion: PER 15.5배로 다소 고평가된 상태. 소폭 상승하며 긍정적 흐름 유지. 애널리스트 목표가까지 33.7% 상승 여력 — 중장기
     매력적.
 - code: '012330'
   name: 현대모비스
@@ -89,17 +88,17 @@ stocks:
   direction: RISING
   market: KOSPI
   category: stock
-  per: 14.9
+  per: 13.5
   analyst_target:
-    avg: 890000
-    avg_formatted: '890,000'
-    count: 3
+    avg: 778000
+    avg_formatted: '778,000'
+    count: 25
   disclosure:
     title: 현대모비스(주) 기업설명회(IR) 개최(안내공시)
     datetime: 2026-06-19 15:49
     author: KOSCOM
     url: https://finance.naver.com/item/board.naver?code=012330
-  opinion: PER 14.9배로 적정 밸류에이션 수준. 소폭 상승하며 긍정적 흐름 유지. 애널리스트 목표가까지 45.4% 상승 여력 — 중장기
+  opinion: PER 13.5배로 적정 밸류에이션 수준. 소폭 상승하며 긍정적 흐름 유지. 애널리스트 목표가까지 27.1% 상승 여력 — 중장기
     매력적.
 - code: '032830'
   name: 삼성생명
@@ -109,18 +108,18 @@ stocks:
   direction: RISING
   market: KOSPI
   category: stock
-  per: 30.1
+  per: 34.9
   analyst_target:
-    avg: 406000
-    avg_formatted: '406,000'
-    count: 2
+    avg: 380321
+    avg_formatted: '380,321'
+    count: 14
   disclosure:
     title: 삼성생명보험(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승)
     datetime: 2026-06-19 09:21
     author: KOSCOM
     url: https://finance.naver.com/item/board.naver?code=032830
-  opinion: PER 30.1배로 고평가 구간 — 이익 성장 기대감이 선반영된 상황. 당일 5.97% 급등하며 강한 매수세 유입 중. 현재가가
-    목표가를 18.3% 상회 — 단기 과열 가능성.
+  opinion: PER 34.9배로 고평가 구간 — 이익 성장 기대감이 선반영된 상황. 당일 5.97% 급등하며 강한 매수세 유입 중. 현재가가
+    목표가를 23.5% 상회 — 단기 과열 가능성.
 - code: '069960'
   name: 현대백화점
   price: '194,700'
@@ -129,18 +128,18 @@ stocks:
   direction: FALLING
   market: KOSPI
   category: stock
-  per: 9.9
+  per: 15.9
   analyst_target:
-    avg: 227500
-    avg_formatted: '227,500'
-    count: 4
+    avg: 188250
+    avg_formatted: '188,250'
+    count: 16
   disclosure:
     title: "(주)현대백화점 [투자주의]15일간 상승종목의 당일 소수계좌 매수관여 과다종목"
     datetime: 2026-06-19 20:00
     author: KOSCOM
     url: https://finance.naver.com/item/board.naver?code=069960
-  opinion: PER 9.9배로 적정 밸류에이션 수준. 당일 4.56% 급락 — 단기 조정 또는 매도 압력 주의. 목표가 대비 16.8% 여력
-    존재.
+  opinion: PER 15.9배로 다소 고평가된 상태. 당일 4.56% 급락 — 단기 조정 또는 매도 압력 주의. 현재가가 목표가를 3.3%
+    상회 — 단기 과열 가능성.
 - code: '020000'
   name: 한섬
   price: '21,500'
@@ -149,14 +148,18 @@ stocks:
   direction: RISING
   market: KOSPI
   category: stock
-  per: 4.6
+  per: 5.9
   analyst_target:
+    avg: 35333
+    avg_formatted: '35,333'
+    count: 6
   disclosure:
     title: "(주)한섬 상장안내(주식소각 및 감자(주식소각))"
     datetime: 2026-05-13 06:53
     author: KOSCOM
     url: https://finance.naver.com/item/board.naver?code=020000
-  opinion: PER 4.6배로 동종업 대비 저평가 구간에 위치. 소폭 상승하며 긍정적 흐름 유지.
+  opinion: PER 5.9배로 동종업 대비 저평가 구간에 위치. 소폭 상승하며 긍정적 흐름 유지. 애널리스트 목표가까지 64.3% 상승 여력
+    — 중장기 매력적.
 - code: '278470'
   name: 에이피알
   price: '385,500'
@@ -165,18 +168,18 @@ stocks:
   direction: RISING
   market: KOSPI
   category: stock
-  per: 21.0
+  per: 27.0
   analyst_target:
-    avg: 610000
-    avg_formatted: '610,000'
-    count: 1
+    avg: 516316
+    avg_formatted: '516,316'
+    count: 19
   disclosure:
     title: "(주)에이피알 지속가능경영보고서 등 관련사항(자율공시)"
     datetime: 2026-06-19 15:42
     author: KOSCOM
     url: https://finance.naver.com/item/board.naver?code=278470
-  opinion: PER 21.0배로 다소 고평가된 상태. 소폭 상승하며 긍정적 흐름 유지. 애널리스트 목표가까지 58.2% 상승 여력 — 중장기
-    매력적.
+  opinion: PER 27.0배로 고평가 구간 — 이익 성장 기대감이 선반영된 상황. 소폭 상승하며 긍정적 흐름 유지. 애널리스트 목표가까지
+    33.9% 상승 여력 — 중장기 매력적.
 - code: '487240'
   name: KODEX AI전력핵심설비
   price: '46,485'
