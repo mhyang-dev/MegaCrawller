@@ -19,10 +19,13 @@
 # in the templates via {{ site.myvariable }}.
 
 title: MegaCrawler
-email: ymhoon0207@gmail.com
-description: 나의 첫 번째 Jekyll 사이트
+description: 모든 정보들을 크롤링합니다
 baseurl: "/MegaCrawller"
 url: "https://mhyang-dev.github.io"
+
+header_pages:
+  - stocks.markdown
+  - about.markdown
 
 # Build settings
 theme: minima
