@@ -21,7 +21,7 @@ permalink: /mystocks/
   align-items: start;
 }
 
-/* ── 표 영역 ──────────────────────────────────────── */
+/* ── 섹션 타이틀 ──────────────────────────────────── */
 .section-title {
   font-size: 1em;
   font-weight: bold;
@@ -30,12 +30,46 @@ permalink: /mystocks/
   border-left: 3px solid #555;
   padding-left: 0.6em;
 }
-.stock-table { width: 100%; border-collapse: collapse; font-size: 0.86em; margin-bottom: 2em; }
-.stock-table th { background: #f0f0f0; padding: 7px 9px; text-align: right; border-bottom: 2px solid #ddd; white-space: nowrap; }
-.stock-table th:first-child, .stock-table th.left { text-align: left; }
-.stock-table td { padding: 6px 9px; border-bottom: 1px solid #eee; text-align: right; vertical-align: top; white-space: nowrap; }
+
+/* ── 표 공통 ──────────────────────────────────────── */
+.stock-table {
+  width: auto;
+  border-collapse: collapse;
+  font-size: 0.86em;
+  margin-bottom: 0.4em;
+}
+.stock-table th {
+  background: #f0f0f0;
+  padding: 7px 10px;
+  text-align: right;
+  border-bottom: 2px solid #ddd;
+  white-space: nowrap;
+}
+.stock-table th:first-child,
+.stock-table th.left { text-align: left; }
+.stock-table td {
+  padding: 6px 10px;
+  border-bottom: 1px solid #eee;
+  text-align: right;
+  vertical-align: top;
+  white-space: nowrap;
+}
 .stock-table td:first-child { text-align: left; font-weight: bold; }
-.disclosure-cell { white-space: normal; }
+
+/* ── 정렬 버튼 ────────────────────────────────────── */
+.stock-table th[data-col] {
+  cursor: pointer;
+  user-select: none;
+}
+.stock-table th[data-col]:hover { background: #e2e2e2; }
+.sort-icon {
+  display: inline-block;
+  margin-left: 3px;
+  color: #bbb;
+  font-size: 0.75em;
+}
+.sort-asc .sort-icon,
+.sort-desc .sort-icon { color: #444; }
 
 /* ── 색상 ────────────────────────────────────────── */
 .rising  { color: #e74c3c; }
@@ -43,18 +77,34 @@ permalink: /mystocks/
 .even    { color: #888; }
 .na      { color: #ccc; }
 
+/* ── 셀 서브텍스트 ────────────────────────────────── */
+.sub { color: #999; font-size: 0.82em; margin-left: 2px; }
+
 /* ── 공시 셀 ─────────────────────────────────────── */
-.disclosure-cell  { text-align: left !important; max-width: 280px; word-break: break-all; overflow-wrap: break-word; }
+.disclosure-cell {
+  text-align: left !important;
+  max-width: 260px;
+  white-space: normal;
+  word-break: break-all;
+  overflow-wrap: break-word;
+}
 .disclosure-title { display: block; }
 .disclosure-title a { word-break: break-all; }
-.disclosure-meta  { color: #999; font-size: 0.82em; word-break: break-all; }
-.target-count     { color: #999; font-size: 0.82em; }
+.disclosure-meta { color: #999; font-size: 0.82em; }
 
 /* ── ETF 구성 종목 셀 ────────────────────────────── */
 .holdings-cell { text-align: left !important; }
 .holdings-list { margin: 0; padding: 0; list-style: none; }
 .holdings-list li { font-size: 0.84em; line-height: 1.65; white-space: nowrap; }
 .holdings-ratio { color: #999; margin-left: 0.4em; }
+
+/* ── 테이블 주석 ─────────────────────────────────── */
+.table-note {
+  color: #aaa;
+  font-size: 0.78em;
+  margin: 0 0 2em;
+  line-height: 1.7;
+}
 
 /* ── 우측 AI 사이드바 ────────────────────────────── */
 .ai-sidebar {
@@ -81,25 +131,15 @@ permalink: /mystocks/
   margin-bottom: 0.75em;
   font-size: 0.8em;
 }
-.opinion-name {
-  font-weight: bold;
-  font-size: 0.95em;
-  color: #222;
-  margin-bottom: 0.4em;
-}
+.opinion-name { font-weight: bold; font-size: 0.95em; color: #222; margin-bottom: 0.4em; }
 .opinion-text { color: #444; line-height: 1.55; }
-.opinion-pending {
-  color: #bbb;
-  font-style: italic;
-  font-size: 0.82em;
-}
+.opinion-pending { color: #bbb; font-style: italic; font-size: 0.82em; }
 
 /* ── 메타 ─────────────────────────────────────────── */
 .meta { color: #999; font-size: 0.84em; margin-bottom: 1em; }
 
 /* ── 모바일 반응형 ───────────────────────────────── */
 @media (max-width: 768px) {
-  /* page-outer 100vw 트릭 해제 */
   .page-outer {
     width: 100%;
     position: static;
@@ -107,36 +147,20 @@ permalink: /mystocks/
     transform: none;
     padding: 0;
   }
-
-  /* 1열 레이아웃으로 전환 */
-  .page-grid {
-    grid-template-columns: 1fr;
-  }
-
-  /* 사이드바 숨김 */
-  .ai-sidebar {
-    display: none;
-  }
-
-  /* 테이블 가로 스크롤 */
-  .tables-col {
-    min-width: 0;
-  }
+  .page-grid { grid-template-columns: 1fr; }
+  .ai-sidebar { display: none; }
+  .tables-col { min-width: 0; }
   .table-scroll {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
   .stock-table {
-    min-width: 680px;
+    min-width: 600px;
     font-size: 0.78em;
   }
   .stock-table th,
-  .stock-table td {
-    padding: 5px 7px;
-  }
-  .disclosure-cell {
-    max-width: 180px;
-  }
+  .stock-table td { padding: 5px 7px; }
+  .disclosure-cell { max-width: 180px; }
 }
 </style>
 
@@ -154,17 +178,15 @@ permalink: /mystocks/
 
 <p class="section-title">개별 주식</p>
 <div class="table-scroll">
-<table class="stock-table">
+<table class="stock-table" id="stock-table">
 <thead>
   <tr>
-    <th>종목</th>
-    <th>시총</th>
-    <th>현재가</th>
-    <th>전일비</th>
-    <th>등락률</th>
-    <th>PER</th>
-    <th>목표가 평균</th>
-    <th>목표가 대비</th>
+    <th data-col="name">종목 <span class="sort-icon">⇅</span></th>
+    <th data-col="cap">시총 <span class="sort-icon">⇅</span></th>
+    <th data-col="price">현재가 <span class="sort-icon">⇅</span></th>
+    <th data-col="change">전일비 / 등락률 <span class="sort-icon">⇅</span></th>
+    <th data-col="per">PER <span class="sort-icon">⇅</span></th>
+    <th data-col="target">목표가 / 대비 <span class="sort-icon">⇅</span></th>
     <th class="left">최근 공시</th>
   </tr>
 </thead>
@@ -178,26 +200,20 @@ permalink: /mystocks/
 {% elsif upside < 0 %}{% assign upside_cls = "falling" %}{% assign upside_sign = "" %}
 {% else %}{% assign upside_cls = "even" %}{% assign upside_sign = "" %}{% endif %}
 <tr>
-  <td><a href="https://m.stock.naver.com/domestic/stock/{{ item.code }}" target="_blank">{{ item.name }}</a></td>
-  <td>{% if item.market_cap_formatted %}{{ item.market_cap_formatted }}{% else %}<span class="na">—</span>{% endif %}</td>
-  <td>{{ item.price }}</td>
-  <td class="{{ cls }}">{{ arrow }} {{ item.change | remove: "-" }}</td>
-  <td class="{{ cls }}">{{ item.change_pct }}%</td>
-  <td>{% if item.per %}{{ item.per }}배{% else %}<span class="na">—</span>{% endif %}</td>
-  <td>
+  <td data-sort="{{ item.name }}"><a href="https://m.stock.naver.com/domestic/stock/{{ item.code }}" target="_blank">{{ item.name }}</a></td>
+  <td data-sort="{{ item.market_cap_eok | default: 0 }}">{% if item.market_cap_formatted %}{{ item.market_cap_formatted }}{% else %}<span class="na">—</span>{% endif %}</td>
+  <td data-sort="{{ item.price | remove: ',' }}">{{ item.price }}</td>
+  <td data-sort="{{ item.change_pct }}" class="{{ cls }}">{{ arrow }} {{ item.change | remove: "-" }} <span class="sub">({{ item.change_pct }}%)</span></td>
+  <td data-sort="{{ item.per | default: 0 }}">{% if item.per %}{{ item.per }}배{% else %}<span class="na">—</span>{% endif %}</td>
+  <td data-sort="{{ item.upside_pct | default: -999 }}">
     {% if item.analyst_target %}
-      {{ item.analyst_target.avg_formatted }}
-      <span class="target-count">({{ item.analyst_target.count }}건)</span>
+      {{ item.analyst_target.avg_formatted }}<span class="sub">({{ item.analyst_target.count }}건)</span>
+      {% if item.upside_pct %}<br><span class="{{ upside_cls }}">{{ upside_sign }}{{ item.upside_pct }}%</span>{% endif %}
     {% else %}<span class="na">—</span>{% endif %}
-  </td>
-  <td class="{{ upside_cls }}">
-    {% if item.upside_pct %}{{ upside_sign }}{{ item.upside_pct }}%{% else %}<span class="na">—</span>{% endif %}
   </td>
   <td class="disclosure-cell">
     {% if item.disclosure %}
-      <span class="disclosure-title">
-        <a href="{{ item.disclosure.url }}" target="_blank">{{ item.disclosure.title | truncate: 38 }}</a>
-      </span>
+      <span class="disclosure-title"><a href="{{ item.disclosure.url }}" target="_blank">{{ item.disclosure.title | truncate: 38 }}</a></span>
       <span class="disclosure-meta">{{ item.disclosure.datetime }} · {{ item.disclosure.author }}</span>
     {% else %}<span class="na">—</span>{% endif %}
   </td>
@@ -206,16 +222,19 @@ permalink: /mystocks/
 </tbody>
 </table>
 </div>
+<p class="table-note">
+  * PER: FnGuide FY1 컨센서스 — 증권사 평균 예상 EPS 기준 (시총 ÷ 추정 순이익)<br>
+  * 목표가: FnGuide 컨센서스 목표주가 단순 평균 / 목표가 대비: (목표가 − 현재가) ÷ 현재가 × 100
+</p>
 
 <p class="section-title">ETF / ETN</p>
 <div class="table-scroll">
-<table class="stock-table">
+<table class="stock-table" id="etf-table">
 <thead>
   <tr>
-    <th>종목</th>
-    <th>현재가</th>
-    <th>전일비</th>
-    <th>등락률</th>
+    <th data-col="name">종목 <span class="sort-icon">⇅</span></th>
+    <th data-col="price">현재가 <span class="sort-icon">⇅</span></th>
+    <th data-col="change">전일비 / 등락률 <span class="sort-icon">⇅</span></th>
     <th class="left">구성 종목 TOP5</th>
   </tr>
 </thead>
@@ -225,10 +244,9 @@ permalink: /mystocks/
 {% if item.direction == "RISING" %}{% assign cls = "rising" %}{% assign arrow = "▲" %}
 {% elsif item.direction == "FALLING" %}{% assign cls = "falling" %}{% assign arrow = "▼" %}{% endif %}
 <tr>
-  <td><a href="https://m.stock.naver.com/domestic/stock/{{ item.code }}" target="_blank">{{ item.name }}</a></td>
-  <td>{{ item.price }}</td>
-  <td class="{{ cls }}">{{ arrow }} {{ item.change | remove: "-" }}</td>
-  <td class="{{ cls }}">{{ item.change_pct }}%</td>
+  <td data-sort="{{ item.name }}"><a href="https://m.stock.naver.com/domestic/stock/{{ item.code }}" target="_blank">{{ item.name }}</a></td>
+  <td data-sort="{{ item.price | remove: ',' }}">{{ item.price }}</td>
+  <td data-sort="{{ item.change_pct }}" class="{{ cls }}">{{ arrow }} {{ item.change | remove: "-" }} <span class="sub">({{ item.change_pct }}%)</span></td>
   <td class="holdings-cell">
     {% if item.holdings %}
       <ul class="holdings-list">
@@ -267,3 +285,40 @@ permalink: /mystocks/
 {% else %}
 <p>데이터가 없습니다. <code>ruby mystocks/mystocks_scraper.rb</code>를 실행해주세요.</p>
 {% endif %}
+
+<script>
+(function () {
+  var state = {};
+  document.querySelectorAll('.stock-table th[data-col]').forEach(function (th) {
+    th.addEventListener('click', function () {
+      var table = th.closest('table');
+      var ths = Array.from(table.querySelectorAll('thead th'));
+      var ci = ths.indexOf(th);
+      var key = table.id + '-' + ci;
+      var asc = !state[key];
+      state[key] = asc;
+
+      ths.forEach(function (t) {
+        var ic = t.querySelector('.sort-icon');
+        if (ic) ic.textContent = '⇅';
+        t.classList.remove('sort-asc', 'sort-desc');
+      });
+      var icon = th.querySelector('.sort-icon');
+      if (icon) icon.textContent = asc ? '▲' : '▼';
+      th.classList.add(asc ? 'sort-asc' : 'sort-desc');
+
+      var tbody = table.querySelector('tbody');
+      var rows = Array.from(tbody.querySelectorAll('tr'));
+      rows.sort(function (a, b) {
+        var ac = a.cells[ci], bc = b.cells[ci];
+        var av = ac ? (ac.dataset.sort !== undefined ? ac.dataset.sort : ac.textContent.trim()) : '';
+        var bv = bc ? (bc.dataset.sort !== undefined ? bc.dataset.sort : bc.textContent.trim()) : '';
+        var an = parseFloat(av), bn = parseFloat(bv);
+        if (!isNaN(an) && !isNaN(bn)) return asc ? an - bn : bn - an;
+        return asc ? av.localeCompare(bv, 'ko') : bv.localeCompare(av, 'ko');
+      });
+      rows.forEach(function (r) { tbody.appendChild(r); });
+    });
+  });
+})();
+</script>
