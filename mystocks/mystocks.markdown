@@ -235,7 +235,7 @@ permalink: /mystocks/
     <th data-col="cap">시총 <span class="sort-icon">⇅</span></th>
     <th data-col="price">현재가 <span class="sort-icon">⇅</span></th>
     <th data-col="change">전일비 / 등락률 <span class="sort-icon">⇅</span></th>
-    <th data-col="per">PER <span class="sort-icon">⇅</span></th>
+    <th data-col="per">PER (업종 PER) <span class="sort-icon">⇅</span></th>
     <th data-col="target">목표가 / 대비 <span class="sort-icon">⇅</span></th>
     <th class="left">매수 주체</th>
     <th class="left">최근 공시</th>
@@ -257,7 +257,7 @@ permalink: /mystocks/
   <td data-sort="{{ item.price | remove: ',' }}">{{ item.price }}</td>
   <td data-sort="{{ item.change_pct }}" class="{{ cls }}">{{ arrow }} {{ item.change | remove: "-" }} <span class="sub">({{ item.change_pct }}%)</span></td>
   <td data-sort="{{ item.per | default: 0 }}">
-    {% if item.per %}{{ item.per }}배{% if item.indu_per %}<span class="sub">(업종 {{ item.indu_per }})</span>{% endif %}{% else %}<span class="na">—</span>{% endif %}
+    {% if item.per %}{{ item.per }}{% if item.indu_per %}<span class="sub">({{ item.indu_per }})</span>{% endif %}{% else %}<span class="na">—</span>{% endif %}
   </td>
   <td data-sort="{{ item.upside_pct | default: -999 }}">
     {% if item.analyst_target %}
