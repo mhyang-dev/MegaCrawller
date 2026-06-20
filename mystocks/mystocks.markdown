@@ -94,6 +94,45 @@ permalink: /mystocks/
 
 /* ── 메타 ─────────────────────────────────────────── */
 .meta { color: #999; font-size: 0.84em; margin-bottom: 1em; }
+
+/* ── 모바일 반응형 ───────────────────────────────── */
+@media (max-width: 768px) {
+  /* page-outer 100vw 트릭 해제 */
+  .page-outer {
+    width: 100%;
+    position: static;
+    left: auto;
+    transform: none;
+    padding: 0;
+  }
+
+  /* 1열 레이아웃으로 전환 */
+  .page-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* 사이드바 숨김 */
+  .ai-sidebar {
+    display: none;
+  }
+
+  /* 테이블 가로 스크롤 */
+  .tables-col {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .stock-table {
+    min-width: 520px;
+    font-size: 0.78em;
+  }
+  .stock-table th,
+  .stock-table td {
+    padding: 5px 7px;
+  }
+  .disclosure-cell {
+    max-width: 180px;
+  }
+}
 </style>
 
 {% if site.data.mystocks and site.data.mystocks.stocks.size > 0 %}

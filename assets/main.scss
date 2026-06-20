@@ -43,6 +43,14 @@
   margin-left: 0;
 }
 
+/* ── 모바일: wrapper 패딩 축소 ──────────────────── */
+@media screen and (max-width: 768px) {
+  .wrapper {
+    padding-left: 0.8em !important;
+    padding-right: 0.8em !important;
+  }
+}
+
 /* 모바일에서도 동일하게 한 줄 유지 */
 @media screen and (max-width: 600px) {
   .site-nav {
