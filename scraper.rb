@@ -4,7 +4,7 @@ require 'time'
 require 'net/http'
 require 'json'
 
-KEYWORD = '태블릿'
+KEYWORD = '마우스'
 TARGET_URL = 'https://www.fmkorea.com/hotdeal'
 DATA_FILE = File.join(__dir__, '_data', 'deals.yml')
 
