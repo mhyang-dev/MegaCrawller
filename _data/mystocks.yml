@@ -1,5 +1,5 @@
 ---
-fetched_at: 2026-06-20 18:03 KST
+fetched_at: 2026-06-20 18:18 KST
 stocks:
 - code: '005930'
   name: 삼성전자
@@ -18,7 +18,7 @@ stocks:
     title: 삼성전자(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승)
     datetime: 2026-06-12 06:50
     author: KOSCOM
-    url: https://finance.naver.com/item/board.naver?code=005930
+    url: https://finance.naver.com/item/news_notice_read.naver?no=28360316&code=005930&page_notice=
   opinion: PER 8.0배로 적정 밸류에이션 수준. 소폭 하락하며 숨 고르기 국면. 애널리스트 목표가까지 25.9% 상승 여력 — 중장기
     매력적.
 - code: '000660'
@@ -38,7 +38,7 @@ stocks:
     title: 에스케이하이닉스(주) 풍문 또는 보도에 대한 해명
     datetime: 2026-06-16 06:52
     author: KOSCOM
-    url: https://finance.naver.com/item/board.naver?code=000660
+    url: https://finance.naver.com/item/news_notice_read.naver?no=32054032&code=000660&page_notice=
   opinion: PER 9.1배로 적정 밸류에이션 수준. 소폭 상승하며 긍정적 흐름 유지. 현재가가 목표가를 1.0% 상회 — 단기 과열 가능성.
 - code: '009150'
   name: 삼성전기
@@ -57,7 +57,7 @@ stocks:
     title: 삼성전기(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승)
     datetime: 2026-06-19 10:22
     author: KOSCOM
-    url: https://finance.naver.com/item/board.naver?code=009150
+    url: https://finance.naver.com/item/news_notice_read.naver?no=36940359&code=009150&page_notice=
   opinion: PER 137.2배로 고평가 구간 — 이익 성장 기대감이 선반영된 상황. 당일 3.18% 급등하며 강한 매수세 유입 중. 현재가가
     목표가를 16.8% 상회 — 단기 과열 가능성.
 - code: '005380'
@@ -77,7 +77,7 @@ stocks:
     title: 현대자동차(주) 기업설명회(IR) 개최(안내공시)
     datetime: 2026-06-18 06:51
     author: KOSCOM
-    url: https://finance.naver.com/item/board.naver?code=005380
+    url: https://finance.naver.com/item/news_notice_read.naver?no=35415758&code=005380&page_notice=
   opinion: PER 15.5배로 다소 고평가된 상태. 소폭 상승하며 긍정적 흐름 유지. 애널리스트 목표가까지 33.7% 상승 여력 — 중장기
     매력적.
 - code: '012330'
@@ -97,7 +97,7 @@ stocks:
     title: 현대모비스(주) 기업설명회(IR) 개최(안내공시)
     datetime: 2026-06-19 15:49
     author: KOSCOM
-    url: https://finance.naver.com/item/board.naver?code=012330
+    url: https://finance.naver.com/item/news_notice_read.naver?no=37450231&code=012330&page_notice=
   opinion: PER 13.5배로 적정 밸류에이션 수준. 소폭 상승하며 긍정적 흐름 유지. 애널리스트 목표가까지 27.1% 상승 여력 — 중장기
     매력적.
 - code: '032830'
@@ -117,7 +117,7 @@ stocks:
     title: 삼성생명보험(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승)
     datetime: 2026-06-19 09:21
     author: KOSCOM
-    url: https://finance.naver.com/item/board.naver?code=032830
+    url: https://finance.naver.com/item/news_notice_read.naver?no=36847827&code=032830&page_notice=
   opinion: PER 34.9배로 고평가 구간 — 이익 성장 기대감이 선반영된 상황. 당일 5.97% 급등하며 강한 매수세 유입 중. 현재가가
     목표가를 23.5% 상회 — 단기 과열 가능성.
 - code: '069960'
@@ -137,7 +137,7 @@ stocks:
     title: "(주)현대백화점 [투자주의]15일간 상승종목의 당일 소수계좌 매수관여 과다종목"
     datetime: 2026-06-19 20:00
     author: KOSCOM
-    url: https://finance.naver.com/item/board.naver?code=069960
+    url: https://finance.naver.com/item/news_notice_read.naver?no=37882286&code=069960&page_notice=
   opinion: PER 15.9배로 다소 고평가된 상태. 당일 4.56% 급락 — 단기 조정 또는 매도 압력 주의. 현재가가 목표가를 3.3%
     상회 — 단기 과열 가능성.
 - code: '020000'
@@ -157,7 +157,7 @@ stocks:
     title: "(주)한섬 상장안내(주식소각 및 감자(주식소각))"
     datetime: 2026-05-13 06:53
     author: KOSCOM
-    url: https://finance.naver.com/item/board.naver?code=020000
+    url: https://finance.naver.com/item/news_notice_read.naver?no=1640905&code=020000&page_notice=
   opinion: PER 5.9배로 동종업 대비 저평가 구간에 위치. 소폭 상승하며 긍정적 흐름 유지. 애널리스트 목표가까지 64.3% 상승 여력
     — 중장기 매력적.
 - code: '278470'
@@ -177,7 +177,7 @@ stocks:
     title: "(주)에이피알 지속가능경영보고서 등 관련사항(자율공시)"
     datetime: 2026-06-19 15:42
     author: KOSCOM
-    url: https://finance.naver.com/item/board.naver?code=278470
+    url: https://finance.naver.com/item/news_notice_read.naver?no=37438991&code=278470&page_notice=
   opinion: PER 27.0배로 고평가 구간 — 이익 성장 기대감이 선반영된 상황. 소폭 상승하며 긍정적 흐름 유지. 애널리스트 목표가까지
     33.9% 상승 여력 — 중장기 매력적.
 - code: '487240'

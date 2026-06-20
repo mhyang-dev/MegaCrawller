@@ -104,7 +104,7 @@ def fetch_disclosure(code)
     'title'    => item['title'],
     'datetime' => item['datetime']&.slice(0, 16)&.tr('T', ' '),
     'author'   => item['author'],
-    'url'      => "https://finance.naver.com/item/board.naver?code=#{code}"
+    'url'      => "https://finance.naver.com/item/news_notice_read.naver?no=#{item['disclosureId']}&code=#{code}&page_notice="
   }
 rescue StandardError
   nil
