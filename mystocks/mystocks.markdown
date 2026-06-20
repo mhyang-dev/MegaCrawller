@@ -134,7 +134,9 @@ permalink: /mystocks/
   <td>{% if item.per %}{{ item.per }}배{% else %}<span class="na">—</span>{% endif %}</td>
   <td class="disclosure-cell">
     {% if item.disclosure %}
-      <span class="disclosure-title">{{ item.disclosure.title | truncate: 38 }}</span>
+      <span class="disclosure-title">
+        <a href="{{ item.disclosure.url }}" target="_blank">{{ item.disclosure.title | truncate: 38 }}</a>
+      </span>
       <span class="disclosure-meta">{{ item.disclosure.datetime }} · {{ item.disclosure.author }}</span>
     {% else %}<span class="na">—</span>{% endif %}
   </td>
@@ -192,10 +194,10 @@ permalink: /mystocks/
   {% for item in individual %}
   <div class="opinion-card">
     <div class="opinion-name">{{ item.name }}</div>
-    {% if item.ai_opinion %}
-      <div class="opinion-text">{{ item.ai_opinion }}</div>
+    {% if item.opinion %}
+      <div class="opinion-text">{{ item.opinion }}</div>
     {% else %}
-      <div class="opinion-pending">API 키 설정 후 생성됩니다</div>
+      <div class="opinion-pending">데이터 수집 후 표시됩니다</div>
     {% endif %}
   </div>
   {% endfor %}
