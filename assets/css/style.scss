@@ -3,14 +3,7 @@
 
 @import "minima";
 
-// 헤더 네비게이션을 좌측 정렬로 변경
-.site-header .wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-
 .site-nav {
-  float: none;
-  margin-left: 1.5em;
+  float: left !important;
+  margin-left: 2em;
 }
