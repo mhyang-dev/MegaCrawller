@@ -18,7 +18,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Hello Jekyll
+title: MegaCrawler
 email: ymhoon0207@gmail.com
 description: 나의 첫 번째 Jekyll 사이트
 baseurl: "/MegaCrawller"
