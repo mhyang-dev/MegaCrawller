@@ -15,42 +15,59 @@
   margin-right: 0 !important;
 }
 
-/* ── 헤더 왼쪽 정렬 ─────────────────────────────── */
-.site-header {
-  text-align: left;
+/* ── 헤더: flexbox 한 줄 왼쪽 정렬 ─────────────── */
+.site-header-inner {
+  display: flex;
+  align-items: center;
+  gap: 2em;
 }
 
 .site-title,
 .site-title:visited {
   float: none;
-  display: inline-block;
+  flex-shrink: 0;
 }
 
 .site-nav {
-  float: left !important;
-  margin-left: 2em;
-  position: static;
+  display: flex;
+  align-items: center;
+  gap: 1.5em;
+  float: none !important;
+  position: static !important;
+  background: none;
+  border: none;
   line-height: inherit;
 }
 
-/* 모바일 메뉴 텍스트 정렬도 왼쪽으로 */
+.site-nav .page-link {
+  margin-left: 0;
+}
+
+/* 모바일에서도 동일하게 한 줄 유지 */
 @media screen and (max-width: 600px) {
   .site-nav {
-    text-align: left !important;
-  }
-  .site-nav .menu-icon {
-    text-align: left !important;
-  }
-  .site-nav .trigger {
+    position: static !important;
     text-align: left;
   }
+  .site-nav input,
+  .site-nav label,
+  .site-nav .menu-icon {
+    display: none !important;
+  }
+  .site-nav .trigger {
+    display: flex !important;
+    gap: 1em;
+    padding: 0;
+    border: none;
+    background: none;
+  }
 }
 
-/* ── 푸터 왼쪽 정렬 ─────────────────────────────── */
+/* ── 푸터 오른쪽 정렬 ───────────────────────────── */
 .site-footer {
-  text-align: left;
+  text-align: right;
 }
 
-.footer-col-wrapper {
-  margin-left: 0;
+.footer-text {
+  margin: 0;
 }
