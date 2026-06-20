@@ -1,0 +1,124 @@
+---
+fetched_at: 2026-06-20 15:47
+indices:
+- type: index
+  code: KOSPI
+  name: KOSPI
+  price: '9,052.42'
+  change: "-11.42"
+  change_pct: -0.13
+  direction: FALLING
+  market: KOSPI
+  status: CLOSE
+  updated_at: 2026-06-20 15:47
+- type: index
+  code: KOSDAQ
+  name: KOSDAQ
+  price: '966.59'
+  change: "-34.34"
+  change_pct: -3.43
+  direction: FALLING
+  market: KOSDAQ
+  status: CLOSE
+  updated_at: 2026-06-20 15:47
+stocks:
+- type: stock
+  code: '005930'
+  name: 삼성전자
+  price: '354,000'
+  change: "-8,500"
+  change_pct: -2.34
+  direction: FALLING
+  market: KOSPI
+  status: CLOSE
+  updated_at: 2026-06-20 15:47
+- type: stock
+  code: '000660'
+  name: SK하이닉스
+  price: '2,764,000'
+  change: '79,000'
+  change_pct: 2.94
+  direction: RISING
+  market: KOSPI
+  status: CLOSE
+  updated_at: 2026-06-20 15:47
+- type: stock
+  code: '035420'
+  name: NAVER
+  price: '229,500'
+  change: "-5,500"
+  change_pct: -2.34
+  direction: FALLING
+  market: KOSPI
+  status: CLOSE
+  updated_at: 2026-06-20 15:47
+- type: stock
+  code: '035720'
+  name: 카카오
+  price: '37,750'
+  change: "-1,550"
+  change_pct: -3.94
+  direction: FALLING
+  market: KOSPI
+  status: CLOSE
+  updated_at: 2026-06-20 15:47
+- type: stock
+  code: '000270'
+  name: 기아
+  price: '154,900'
+  change: "-3,900"
+  change_pct: -2.46
+  direction: FALLING
+  market: KOSPI
+  status: CLOSE
+  updated_at: 2026-06-20 15:47
+- type: stock
+  code: '005380'
+  name: 현대차
+  price: '613,000'
+  change: '12,000'
+  change_pct: 2.0
+  direction: RISING
+  market: KOSPI
+  status: CLOSE
+  updated_at: 2026-06-20 15:47
+- type: stock
+  code: '051910'
+  name: LG화학
+  price: '338,000'
+  change: "-4,500"
+  change_pct: -1.31
+  direction: FALLING
+  market: KOSPI
+  status: CLOSE
+  updated_at: 2026-06-20 15:47
+- type: stock
+  code: '066570'
+  name: LG전자
+  price: '211,500'
+  change: "-17,000"
+  change_pct: -7.44
+  direction: FALLING
+  market: KOSPI
+  status: CLOSE
+  updated_at: 2026-06-20 15:47
+- type: stock
+  code: '207940'
+  name: 삼성바이오로직스
+  price: '1,374,000'
+  change: "-56,000"
+  change_pct: -3.92
+  direction: FALLING
+  market: KOSPI
+  status: CLOSE
+  updated_at: 2026-06-20 15:47
+- type: stock
+  code: '005490'
+  name: POSCO홀딩스
+  price: '356,500'
+  change: "-10,500"
+  change_pct: -2.86
+  direction: FALLING
+  market: KOSPI
+  status: CLOSE
+  updated_at: 2026-06-20 15:47

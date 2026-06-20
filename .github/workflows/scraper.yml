@@ -1,4 +1,4 @@
-name: 태블릿 핫딜 스크래퍼
+name: 데이터 수집기
 
 on:
   schedule:
@@ -24,8 +24,13 @@ jobs:
           ruby-version: '3.2'
           bundler-cache: false
 
-      - name: 스크래퍼 실행
+      - name: 핫딜 스크래퍼 실행
         run: ruby scraper.rb
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+
+      - name: 주식 스크래퍼 실행
+        run: ruby stock_scraper.rb
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
 
@@ -36,6 +41,6 @@ jobs:
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
           git fetch origin master
           git rebase origin/master
-          git add _data/deals.yml
-          git diff --cached --quiet || git commit -m "자동 업데이트: 핫딜 $(date +'%Y-%m-%d %H:%M')"
+          git add _data/stocks.yml _data/deals.yml
+          git diff --cached --quiet || git commit -m "자동 업데이트: 주식·핫딜 $(date +'%Y-%m-%d %H:%M')"
           git push origin master
