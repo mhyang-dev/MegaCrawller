@@ -1,5 +1,5 @@
 ---
-fetched_at: 2026-06-20 16:33 KST
+fetched_at: 2026-06-20 16:57 KST
 stocks:
 - code: '005930'
   name: 삼성전자
@@ -8,6 +8,15 @@ stocks:
   change_pct: -2.34
   direction: FALLING
   market: KOSPI
+  per: 5.7
+  analyst_target:
+    avg: 536000
+    avg_formatted: '536,000'
+    count: 7
+  disclosure:
+    title: 삼성전자(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승)
+    datetime: 2026-06-12 06:50
+    author: KOSCOM
 - code: '000660'
   name: SK하이닉스
   price: '2,764,000'
@@ -15,6 +24,15 @@ stocks:
   change_pct: 2.94
   direction: RISING
   market: KOSPI
+  per: 7.5
+  analyst_target:
+    avg: 3800000
+    avg_formatted: '3,800,000'
+    count: 5
+  disclosure:
+    title: 에스케이하이닉스(주) 풍문 또는 보도에 대한 해명
+    datetime: 2026-06-16 06:52
+    author: KOSCOM
 - code: '009150'
   name: 삼성전기
   price: '2,270,000'
@@ -22,6 +40,15 @@ stocks:
   change_pct: 3.18
   direction: RISING
   market: KOSPI
+  per: 106.7
+  analyst_target:
+    avg: 2025000
+    avg_formatted: '2,025,000'
+    count: 10
+  disclosure:
+    title: 삼성전기(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승)
+    datetime: 2026-06-19 10:22
+    author: KOSCOM
 - code: '005380'
   name: 현대차
   price: '613,000'
@@ -29,6 +56,15 @@ stocks:
   change_pct: 2.0
   direction: RISING
   market: KOSPI
+  per: 10.4
+  analyst_target:
+    avg: 750000
+    avg_formatted: '750,000'
+    count: 3
+  disclosure:
+    title: 현대자동차(주) 기업설명회(IR) 개최(안내공시)
+    datetime: 2026-06-18 06:51
+    author: KOSCOM
 - code: '012330'
   name: 현대모비스
   price: '612,000'
@@ -36,6 +72,15 @@ stocks:
   change_pct: 1.49
   direction: RISING
   market: KOSPI
+  per: 14.9
+  analyst_target:
+    avg: 890000
+    avg_formatted: '890,000'
+    count: 3
+  disclosure:
+    title: 현대모비스(주) 기업설명회(IR) 개최(안내공시)
+    datetime: 2026-06-19 15:49
+    author: KOSCOM
 - code: '032830'
   name: 삼성생명
   price: '497,000'
@@ -43,6 +88,15 @@ stocks:
   change_pct: 5.97
   direction: RISING
   market: KOSPI
+  per: 30.1
+  analyst_target:
+    avg: 406000
+    avg_formatted: '406,000'
+    count: 2
+  disclosure:
+    title: 삼성생명보험(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승)
+    datetime: 2026-06-19 09:21
+    author: KOSCOM
 - code: '069960'
   name: 현대백화점
   price: '194,700'
@@ -50,6 +104,15 @@ stocks:
   change_pct: -4.56
   direction: FALLING
   market: KOSPI
+  per: 9.9
+  analyst_target:
+    avg: 227500
+    avg_formatted: '227,500'
+    count: 4
+  disclosure:
+    title: "(주)현대백화점 [투자주의]15일간 상승종목의 당일 소수계좌 매수관여 과다종목"
+    datetime: 2026-06-19 20:00
+    author: KOSCOM
 - code: '020000'
   name: 한섬
   price: '21,500'
@@ -57,6 +120,12 @@ stocks:
   change_pct: 0.47
   direction: RISING
   market: KOSPI
+  per: 4.6
+  analyst_target:
+  disclosure:
+    title: "(주)한섬 상장안내(주식소각 및 감자(주식소각))"
+    datetime: 2026-05-13 06:53
+    author: KOSCOM
 - code: '278470'
   name: 에이피알
   price: '385,500'
@@ -64,6 +133,15 @@ stocks:
   change_pct: 1.98
   direction: RISING
   market: KOSPI
+  per: 21.0
+  analyst_target:
+    avg: 610000
+    avg_formatted: '610,000'
+    count: 1
+  disclosure:
+    title: "(주)에이피알 지속가능경영보고서 등 관련사항(자율공시)"
+    datetime: 2026-06-19 15:42
+    author: KOSCOM
 - code: '487240'
   name: KODEX AI전력핵심설비
   price: '46,485'
@@ -71,6 +149,12 @@ stocks:
   change_pct: 0.74
   direction: RISING
   market: KOSPI
+  per:
+  analyst_target:
+  disclosure:
+    title: 삼성 KODEX AI전력핵심설비증권상장지수투자신탁[주식] ETF 괴리율 초과 발생
+    datetime: 2026-05-12 06:50
+    author: KOSCOM
 - code: '494670'
   name: TIGER 조선TOP10
   price: '29,030'
@@ -78,3 +162,9 @@ stocks:
   change_pct: -1.38
   direction: FALLING
   market: KOSPI
+  per:
+  analyst_target:
+  disclosure:
+    title: 미래에셋 TIGER 조선TOP10증권상장지수투자신탁(주식) ETF변경등록ㆍ집합투자규약 변경
+    datetime: 2026-05-28 06:51
+    author: KOSCOM
