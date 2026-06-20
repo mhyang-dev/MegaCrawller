@@ -88,6 +88,24 @@ def format_market_cap(eok)
   end
 end
 
+def fetch_naver_market_cap(code)
+  html = http_get(
+    "https://finance.naver.com/item/main.naver?code=#{code}",
+    from_encoding: 'EUC-KR',
+    extra_headers: { 'Referer' => 'https://finance.naver.com/' }
+  )
+  return nil unless html
+  m = html.match(/_market_sum[^>]*>([^<]+)</)
+  return nil unless m
+  text = m[1].strip  # e.g. "125조 1,164억" or "4조 1,987억"
+  total = 0
+  total += $1.gsub(',', '').to_i * 10_000 if text.match(/(\d[\d,]*)조/)
+  total += $1.gsub(',', '').to_i          if text.match(/(\d[\d,]*)억/)
+  total > 0 ? total : nil
+rescue StandardError
+  nil
+end
+
 def fetch_fnguide_consensus(code)
   html = http_get(
     "https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A#{code}",
@@ -96,28 +114,35 @@ def fetch_fnguide_consensus(code)
   )
   return nil unless html
 
-  grid_match = html.match(/id="svdMainGrid9"[\s\S]{1,8000}?<tbody>([\s\S]{1,3000}?)<\/tbody>/)
-  unless grid_match
-    puts "  [FnGuide] #{code}: svdMainGrid9 미매칭 (size=#{html.size})"
-    return nil
+  # FICS 업종 분류: "대분류(소분류)" 형태에서 괄호 안 소분류 추출
+  fics_match = html.match(/FICS[\s\S]{0,800}?\(([^)<>"]{2,60})\)/)
+  fics = fics_match&.[](1)&.strip
+
+  # svdMainGrid9 컨센서스 섹션
+  grid_idx = html.index('svdMainGrid9')
+  unless grid_idx
+    puts "  [FnGuide] #{code}: svdMainGrid9 없음 (html #{html.size}B)"
+    return fics ? { 'fics' => fics } : nil
   end
+  grid_section = html[grid_idx, 20_000]
 
-  cells = grid_match[1].scan(/<td[^>]*>\s*([\d,.\-]+)\s*<\/td>/).flatten
-  return nil if cells.size < 5
+  # 셀 인덱스 대신 행 헤더명으로 각 값을 직접 추출
+  target_price  = grid_section.match(/목표주가[\s\S]{0,600}?<td[^>]*>\s*([\d,]+)\s*<\/td>/)
+                              &.[](1)&.gsub(',', '')&.to_i
+  per           = grid_section.match(/\bPER\b[\s\S]{0,600}?<td[^>]*>\s*([\d,.]+)\s*<\/td>/)
+                              &.[](1)&.gsub(',', '')&.to_f
+  analyst_count = grid_section.match(/추정기관수[\s\S]{0,600}?<td[^>]*>\s*(\d+)\s*<\/td>/)
+                              &.[](1)&.to_i
 
-  target_price  = cells[1].gsub(',', '').to_i
-  per           = cells[3].gsub(',', '').to_f
-  analyst_count = cells[4].gsub(',', '').to_i
-  return nil if target_price == 0
+  if target_price.nil? || target_price == 0
+    puts "  [FnGuide] #{code}: 목표주가 미매칭 (grid #{grid_section.size}B)"
+    return fics ? { 'fics' => fics } : nil
+  end
 
   avg_formatted = target_price.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\1,').reverse
 
-  cap_match = html.match(/보통주,억원[\s\S]*?<td class="r">([\d,]+)<\/td>/)
+  cap_match = html.match(/보통주,억원[\s\S]{0,500}?<td[^>]*class="r"[^>]*>\s*([\d,]+)\s*<\/td>/)
   market_cap_eok = cap_match ? cap_match[1].gsub(',', '').to_i : nil
-
-  # FICS 업종 분류: "대분류(소분류)" 패턴에서 괄호 안 소분류를 추출
-  fics_match = html.match(/FICS[\s\S]{0,800}?\(([^)<>"]{2,60})\)/)
-  fics = fics_match&.[](1)&.strip
 
   {
     'analyst_target'       => { 'avg' => target_price, 'avg_formatted' => avg_formatted, 'count' => analyst_count },
@@ -312,10 +337,11 @@ stocks = MY_STOCKS.filter_map do |code, fallback|
     basic['holdings'] = fetch_etf_holdings(code)
   else
     consensus = fetch_fnguide_consensus(code)
-    basic['per']                  = consensus&.dig('per')
-    basic['analyst_target']       = consensus&.dig('analyst_target')
-    basic['market_cap_eok']       = consensus&.dig('market_cap_eok')
-    basic['market_cap_formatted'] = consensus&.dig('market_cap_formatted')
+    basic['per']            = consensus&.dig('per')
+    basic['analyst_target'] = consensus&.dig('analyst_target')
+    cap_eok = consensus&.dig('market_cap_eok') || fetch_naver_market_cap(code)
+    basic['market_cap_eok']       = cap_eok
+    basic['market_cap_formatted'] = cap_eok ? format_market_cap(cap_eok) : nil
 
     price_raw  = basic['price'].to_s.gsub(',', '').to_i
     target_avg = basic.dig('analyst_target', 'avg')
