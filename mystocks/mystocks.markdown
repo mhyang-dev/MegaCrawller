@@ -33,8 +33,9 @@ permalink: /mystocks/
 .stock-table { width: 100%; border-collapse: collapse; font-size: 0.86em; margin-bottom: 2em; }
 .stock-table th { background: #f0f0f0; padding: 7px 9px; text-align: right; border-bottom: 2px solid #ddd; white-space: nowrap; }
 .stock-table th:first-child, .stock-table th.left { text-align: left; }
-.stock-table td { padding: 6px 9px; border-bottom: 1px solid #eee; text-align: right; vertical-align: top; }
-.stock-table td:first-child { text-align: left; font-weight: bold; white-space: nowrap; }
+.stock-table td { padding: 6px 9px; border-bottom: 1px solid #eee; text-align: right; vertical-align: top; white-space: nowrap; }
+.stock-table td:first-child { text-align: left; font-weight: bold; }
+.disclosure-cell { white-space: normal; }
 
 /* ── 색상 ────────────────────────────────────────── */
 .rising  { color: #e74c3c; }
