@@ -5,6 +5,14 @@ permalink: /mystocks/
 ---
 
 <style>
+.stock-wrapper {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0 2em;
+  box-sizing: border-box;
+}
 .stock-table { width: 100%; border-collapse: collapse; font-size: 0.88em; }
 .stock-table th { background: #f0f0f0; padding: 7px 10px; text-align: right; border-bottom: 2px solid #ddd; white-space: nowrap; }
 .stock-table th:first-child, .stock-table th.left { text-align: left; }
@@ -13,7 +21,7 @@ permalink: /mystocks/
 .rising  { color: #e74c3c; }
 .falling { color: #3498db; }
 .even    { color: #888; }
-.disclosure-cell { text-align: left !important; max-width: 260px; }
+.disclosure-cell { text-align: left !important; max-width: 320px; }
 .disclosure-title { display: block; }
 .disclosure-meta  { color: #999; font-size: 0.82em; }
 .target-count { color: #999; font-size: 0.82em; }
@@ -24,6 +32,7 @@ permalink: /mystocks/
 {% if site.data.mystocks and site.data.mystocks.stocks.size > 0 %}
 <p class="meta">마지막 업데이트: {{ site.data.mystocks.fetched_at }} · 매 시간 자동 갱신</p>
 
+<div class="stock-wrapper">
 <table class="stock-table">
 <thead>
   <tr>
@@ -65,6 +74,7 @@ permalink: /mystocks/
 {% endfor %}
 </tbody>
 </table>
+</div>
 
 {% else %}
 <p>데이터가 없습니다. <code>ruby mystocks/mystocks_scraper.rb</code>를 실행해주세요.</p>
