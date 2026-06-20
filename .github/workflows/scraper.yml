@@ -40,6 +40,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+          git fetch origin master
+          git rebase origin/master
           git add _data/deals.yml
-          git diff --cached --quiet || git commit -m "자동 업데이트: 태블릿 핫딜 $(date +'%Y-%m-%d %H:%M')"
+          git diff --cached --quiet || git commit -m "자동 업데이트: 핫딜 $(date +'%Y-%m-%d %H:%M')"
           git push origin master
