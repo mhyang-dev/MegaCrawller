@@ -30,22 +30,31 @@ def kst_now
   (Time.now.utc + 9 * 3600).strftime('%Y-%m-%d %H:%M KST')
 end
 
-def http_get(url, from_encoding: 'UTF-8', extra_headers: {})
-  uri = URI.parse(url)
-  http = Net::HTTP.new(uri.host, uri.port)
-  http.use_ssl = (uri.scheme == 'https')
-  http.open_timeout = 10
-  http.read_timeout = 15
-  req = Net::HTTP::Get.new(uri.request_uri)
-  req['User-Agent'] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
-  req['Accept'] = '*/*'
-  extra_headers.each { |k, v| req[k] = v }
-  res = http.request(req)
-  return nil unless res.code == '200'
-  res.body.force_encoding(from_encoding).encode('UTF-8', invalid: :replace, undef: :replace)
-rescue StandardError => e
-  puts "  [HTTP 오류] #{e.message}"
-  nil
+def http_get(url, from_encoding: 'UTF-8', extra_headers: {}, retries: 1)
+  attempts = 0
+  begin
+    attempts += 1
+    uri = URI.parse(url)
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = (uri.scheme == 'https')
+    http.open_timeout = 12
+    http.read_timeout = 20
+    req = Net::HTTP::Get.new(uri.request_uri)
+    req['User-Agent'] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+    req['Accept'] = 'text/html,application/xhtml+xml,*/*'
+    req['Accept-Language'] = 'ko-KR,ko;q=0.9'
+    extra_headers.each { |k, v| req[k] = v }
+    res = http.request(req)
+    return nil unless res.code == '200'
+    res.body.force_encoding(from_encoding).encode('UTF-8', invalid: :replace, undef: :replace)
+  rescue StandardError => e
+    if attempts <= retries
+      sleep(3)
+      retry
+    end
+    puts "  [HTTP 오류] #{e.message}"
+    nil
+  end
 end
 
 def get_json(url)
@@ -84,19 +93,23 @@ end
 def fetch_fnguide_consensus(code)
   html = http_get(
     "https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A#{code}",
-    extra_headers: { 'Referer' => 'https://comp.fnguide.com/' }
+    extra_headers: { 'Referer' => 'https://comp.fnguide.com/' },
+    retries: 2
   )
   return nil unless html
 
-  grid_match = html.match(/id="svdMainGrid9"[\s\S]{1,2000}?<tbody>([\s\S]{1,500}?)<\/tbody>/)
-  return nil unless grid_match
+  grid_match = html.match(/id="svdMainGrid9"[\s\S]{1,8000}?<tbody>([\s\S]{1,3000}?)<\/tbody>/)
+  unless grid_match
+    puts "  [FnGuide] #{code}: svdMainGrid9 미매칭 (size=#{html.size})"
+    return nil
+  end
 
-  cells = grid_match[1].scan(/<td[^>]*>([\d,.\-]+)<\/td>/).flatten
+  cells = grid_match[1].scan(/<td[^>]*>\s*([\d,.\-]+)\s*<\/td>/).flatten
   return nil if cells.size < 5
 
   target_price  = cells[1].gsub(',', '').to_i
-  per           = cells[3].to_f
-  analyst_count = cells[4].to_i
+  per           = cells[3].gsub(',', '').to_f
+  analyst_count = cells[4].gsub(',', '').to_i
   return nil if target_price == 0
 
   avg_formatted = target_price.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\1,').reverse
@@ -357,6 +370,7 @@ end
 # 테마 데이터 수집 (개별 주식 코드만)
 individual_codes = MY_STOCKS.keys - ETF_CODES
 theme_data = fetch_themes_for_stocks(individual_codes)
+sleep 3  # 테마 수집 후 IP 쿨다운
 
 stocks = MY_STOCKS.filter_map do |code, fallback|
   basic = fetch_basic(code, fallback)
@@ -393,6 +407,8 @@ stocks = MY_STOCKS.filter_map do |code, fallback|
 
   prev = prev_stocks[code]
   notify_discord(basic) if basic['change_pct'].abs >= ALERT_THRESHOLD && (prev.nil? || prev.abs < ALERT_THRESHOLD)
+
+  sleep 1 unless is_etf  # FnGuide 레이트리밋 방지
 
   basic
 end
