@@ -120,6 +120,7 @@ permalink: /mystocks/
 
   /* 테이블 가로 스크롤 */
   .tables-col {
+    min-width: 0;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
