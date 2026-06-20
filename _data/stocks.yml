@@ -1,5 +1,5 @@
 ---
-fetched_at: 2026-06-20 15:47
+fetched_at: 2026-06-20 06:50
 indices:
 - type: index
   code: KOSPI
@@ -10,7 +10,7 @@ indices:
   direction: FALLING
   market: KOSPI
   status: CLOSE
-  updated_at: 2026-06-20 15:47
+  updated_at: 2026-06-20 06:50
 - type: index
   code: KOSDAQ
   name: KOSDAQ
@@ -20,7 +20,7 @@ indices:
   direction: FALLING
   market: KOSDAQ
   status: CLOSE
-  updated_at: 2026-06-20 15:47
+  updated_at: 2026-06-20 06:50
 stocks:
 - type: stock
   code: '005930'
@@ -31,7 +31,7 @@ stocks:
   direction: FALLING
   market: KOSPI
   status: CLOSE
-  updated_at: 2026-06-20 15:47
+  updated_at: 2026-06-20 06:50
 - type: stock
   code: '000660'
   name: SK하이닉스
@@ -41,7 +41,7 @@ stocks:
   direction: RISING
   market: KOSPI
   status: CLOSE
-  updated_at: 2026-06-20 15:47
+  updated_at: 2026-06-20 06:50
 - type: stock
   code: '035420'
   name: NAVER
@@ -51,7 +51,7 @@ stocks:
   direction: FALLING
   market: KOSPI
   status: CLOSE
-  updated_at: 2026-06-20 15:47
+  updated_at: 2026-06-20 06:50
 - type: stock
   code: '035720'
   name: 카카오
@@ -61,7 +61,7 @@ stocks:
   direction: FALLING
   market: KOSPI
   status: CLOSE
-  updated_at: 2026-06-20 15:47
+  updated_at: 2026-06-20 06:50
 - type: stock
   code: '000270'
   name: 기아
@@ -71,7 +71,7 @@ stocks:
   direction: FALLING
   market: KOSPI
   status: CLOSE
-  updated_at: 2026-06-20 15:47
+  updated_at: 2026-06-20 06:50
 - type: stock
   code: '005380'
   name: 현대차
@@ -81,7 +81,7 @@ stocks:
   direction: RISING
   market: KOSPI
   status: CLOSE
-  updated_at: 2026-06-20 15:47
+  updated_at: 2026-06-20 06:50
 - type: stock
   code: '051910'
   name: LG화학
@@ -91,7 +91,7 @@ stocks:
   direction: FALLING
   market: KOSPI
   status: CLOSE
-  updated_at: 2026-06-20 15:47
+  updated_at: 2026-06-20 06:50
 - type: stock
   code: '066570'
   name: LG전자
@@ -101,7 +101,7 @@ stocks:
   direction: FALLING
   market: KOSPI
   status: CLOSE
-  updated_at: 2026-06-20 15:47
+  updated_at: 2026-06-20 06:50
 - type: stock
   code: '207940'
   name: 삼성바이오로직스
@@ -111,7 +111,7 @@ stocks:
   direction: FALLING
   market: KOSPI
   status: CLOSE
-  updated_at: 2026-06-20 15:47
+  updated_at: 2026-06-20 06:50
 - type: stock
   code: '005490'
   name: POSCO홀딩스
@@ -121,4 +121,4 @@ stocks:
   direction: FALLING
   market: KOSPI
   status: CLOSE
-  updated_at: 2026-06-20 15:47
+  updated_at: 2026-06-20 06:50
