@@ -157,8 +157,8 @@ permalink: /mystocks/
     <th>전일비</th>
     <th>등락률</th>
     <th>PER</th>
-    <th class="left">최근 공시</th>
     <th>목표가 평균</th>
+    <th class="left">최근 공시</th>
   </tr>
 </thead>
 <tbody>
@@ -172,18 +172,18 @@ permalink: /mystocks/
   <td class="{{ cls }}">{{ arrow }} {{ item.change | remove: "-" }}</td>
   <td class="{{ cls }}">{{ item.change_pct }}%</td>
   <td>{% if item.per %}{{ item.per }}배{% else %}<span class="na">—</span>{% endif %}</td>
+  <td>
+    {% if item.analyst_target %}
+      {{ item.analyst_target.avg_formatted }}
+      <span class="target-count">({{ item.analyst_target.count }}건)</span>
+    {% else %}<span class="na">—</span>{% endif %}
+  </td>
   <td class="disclosure-cell">
     {% if item.disclosure %}
       <span class="disclosure-title">
         <a href="{{ item.disclosure.url }}" target="_blank">{{ item.disclosure.title | truncate: 38 }}</a>
       </span>
       <span class="disclosure-meta">{{ item.disclosure.datetime }} · {{ item.disclosure.author }}</span>
-    {% else %}<span class="na">—</span>{% endif %}
-  </td>
-  <td>
-    {% if item.analyst_target %}
-      {{ item.analyst_target.avg_formatted }}
-      <span class="target-count">({{ item.analyst_target.count }}건)</span>
     {% else %}<span class="na">—</span>{% endif %}
   </td>
 </tr>
