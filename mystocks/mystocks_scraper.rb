@@ -114,9 +114,9 @@ def fetch_fnguide_consensus(code)
   )
   return nil unless html
 
-  # FICS 업종 분류: "대분류(소분류)" 형태에서 괄호 안 소분류 추출
-  fics_match = html.match(/FICS[\s\S]{0,800}?\(([^)<>"]{2,60})\)/)
-  fics = fics_match&.[](1)&.strip
+  # FICS 업종: <span class="stxt stxt2">FICS 자동차</span> 형태
+  fics_span = html.match(/stxt2">\s*FICS\s+([\s\S]{1,100}?)<\/span>/)
+  fics = fics_span ? fics_span[1].gsub(/&nbsp;/, ' ').gsub(/<[^>]+>/, '').strip : nil
 
   # svdMainGrid9 컨센서스 섹션
   grid_idx = html.index('svdMainGrid9')
@@ -126,16 +126,27 @@ def fetch_fnguide_consensus(code)
   end
   grid_section = html[grid_idx, 20_000]
 
-  # 셀 인덱스 대신 행 헤더명으로 각 값을 직접 추출
-  target_price  = grid_section.match(/목표주가[\s\S]{0,600}?<td[^>]*>\s*([\d,]+)\s*<\/td>/)
-                              &.[](1)&.gsub(',', '')&.to_i
-  per           = grid_section.match(/\bPER\b[\s\S]{0,600}?<td[^>]*>\s*([\d,.]+)\s*<\/td>/)
-                              &.[](1)&.gsub(',', '')&.to_f
-  analyst_count = grid_section.match(/추정기관수[\s\S]{0,600}?<td[^>]*>\s*(\d+)\s*<\/td>/)
-                              &.[](1)&.to_i
+  # tbody 행 구조: [clf=투자의견] [목표주가] [EPS] [PER] [cle=추정기관수]
+  # rwc_g 클래스 행에서 셀을 순서대로 추출
+  row_m = grid_section.match(
+    /<tr[^>]*rwc_g[^>]*>[\s\S]{0,100}?
+     <td[^>]*clf[^>]*>[\s\S]{0,30}?<\/td>\s*
+     <td[^>]*>([\d,]+)<\/td>\s*
+     <td[^>]*>[\d,]+<\/td>\s*
+     <td[^>]*>([\d,.]+)<\/td>\s*
+     <td[^>]*cle[^>]*>(\d+)<\/td>/x
+  )
+  unless row_m
+    puts "  [FnGuide] #{code}: 컨센서스 행 미매칭"
+    return fics ? { 'fics' => fics } : nil
+  end
 
-  if target_price.nil? || target_price == 0
-    puts "  [FnGuide] #{code}: 목표주가 미매칭 (grid #{grid_section.size}B)"
+  target_price  = row_m[1].gsub(',', '').to_i
+  per           = row_m[2].to_f
+  analyst_count = row_m[3].to_i
+
+  if target_price == 0
+    puts "  [FnGuide] #{code}: 목표주가 0"
     return fics ? { 'fics' => fics } : nil
   end
 
