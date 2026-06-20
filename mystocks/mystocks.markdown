@@ -5,42 +5,108 @@ permalink: /mystocks/
 ---
 
 <style>
-.stock-wrapper {
+/* ── 전체 레이아웃 ────────────────────────────────── */
+.page-outer {
   width: 100vw;
   position: relative;
   left: 50%;
   transform: translateX(-50%);
-  padding: 0 2em;
+  padding: 0 1.5em;
   box-sizing: border-box;
 }
-.section-title { font-size: 1.05em; font-weight: bold; margin: 1.6em 0 0.5em; color: #333; border-left: 3px solid #555; padding-left: 0.6em; }
-.stock-table { width: 100%; border-collapse: collapse; font-size: 0.88em; margin-bottom: 2em; }
-.stock-table th { background: #f0f0f0; padding: 7px 10px; text-align: right; border-bottom: 2px solid #ddd; white-space: nowrap; }
+.page-grid {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  gap: 1.5em;
+  align-items: start;
+}
+
+/* ── 표 영역 ──────────────────────────────────────── */
+.section-title {
+  font-size: 1em;
+  font-weight: bold;
+  margin: 1.4em 0 0.5em;
+  color: #333;
+  border-left: 3px solid #555;
+  padding-left: 0.6em;
+}
+.stock-table { width: 100%; border-collapse: collapse; font-size: 0.86em; margin-bottom: 2em; }
+.stock-table th { background: #f0f0f0; padding: 7px 9px; text-align: right; border-bottom: 2px solid #ddd; white-space: nowrap; }
 .stock-table th:first-child, .stock-table th.left { text-align: left; }
-.stock-table td { padding: 6px 10px; border-bottom: 1px solid #eee; text-align: right; vertical-align: top; }
+.stock-table td { padding: 6px 9px; border-bottom: 1px solid #eee; text-align: right; vertical-align: top; }
 .stock-table td:first-child { text-align: left; font-weight: bold; white-space: nowrap; }
+
+/* ── 색상 ────────────────────────────────────────── */
 .rising  { color: #e74c3c; }
 .falling { color: #3498db; }
 .even    { color: #888; }
-.disclosure-cell { text-align: left !important; max-width: 320px; }
+.na      { color: #ccc; }
+
+/* ── 공시 셀 ─────────────────────────────────────── */
+.disclosure-cell  { text-align: left !important; max-width: 280px; }
 .disclosure-title { display: block; }
 .disclosure-meta  { color: #999; font-size: 0.82em; }
-.target-count { color: #999; font-size: 0.82em; }
+.target-count     { color: #999; font-size: 0.82em; }
+
+/* ── ETF 구성 종목 셀 ────────────────────────────── */
 .holdings-cell { text-align: left !important; }
 .holdings-list { margin: 0; padding: 0; list-style: none; }
-.holdings-list li { font-size: 0.85em; line-height: 1.6; white-space: nowrap; }
-.holdings-ratio { color: #888; font-size: 0.9em; margin-left: 0.4em; }
-.na { color: #bbb; }
-.meta { color: #999; font-size: 0.85em; margin-bottom: 1em; }
+.holdings-list li { font-size: 0.84em; line-height: 1.65; white-space: nowrap; }
+.holdings-ratio { color: #999; margin-left: 0.4em; }
+
+/* ── 우측 AI 사이드바 ────────────────────────────── */
+.ai-sidebar {
+  position: sticky;
+  top: 1.5em;
+  max-height: calc(100vh - 3em);
+  overflow-y: auto;
+}
+.ai-sidebar-title {
+  font-size: 0.78em;
+  font-weight: bold;
+  color: #888;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 0.8em;
+  padding-bottom: 0.4em;
+  border-bottom: 1px solid #ddd;
+}
+.opinion-card {
+  background: #fafafa;
+  border: 1px solid #e8e8e8;
+  border-radius: 6px;
+  padding: 0.7em 0.9em;
+  margin-bottom: 0.75em;
+  font-size: 0.8em;
+}
+.opinion-name {
+  font-weight: bold;
+  font-size: 0.95em;
+  color: #222;
+  margin-bottom: 0.4em;
+}
+.opinion-text { color: #444; line-height: 1.55; }
+.opinion-pending {
+  color: #bbb;
+  font-style: italic;
+  font-size: 0.82em;
+}
+
+/* ── 메타 ─────────────────────────────────────────── */
+.meta { color: #999; font-size: 0.84em; margin-bottom: 1em; }
 </style>
 
 {% if site.data.mystocks and site.data.mystocks.stocks.size > 0 %}
 <p class="meta">마지막 업데이트: {{ site.data.mystocks.fetched_at }} · 매 시간 자동 갱신</p>
 
 {% assign individual = site.data.mystocks.stocks | where: "category", "stock" %}
-{% assign etfs = site.data.mystocks.stocks | where: "category", "etf" %}
+{% assign etfs       = site.data.mystocks.stocks | where: "category", "etf" %}
 
-<div class="stock-wrapper">
+<div class="page-outer">
+<div class="page-grid">
+
+<!-- ── 좌측: 표 영역 ──────────────────────────────── -->
+<div class="tables-col">
 
 <p class="section-title">개별 주식</p>
 <table class="stock-table">
@@ -68,7 +134,7 @@ permalink: /mystocks/
   <td>{% if item.per %}{{ item.per }}배{% else %}<span class="na">—</span>{% endif %}</td>
   <td class="disclosure-cell">
     {% if item.disclosure %}
-      <span class="disclosure-title">{{ item.disclosure.title | truncate: 40 }}</span>
+      <span class="disclosure-title">{{ item.disclosure.title | truncate: 38 }}</span>
       <span class="disclosure-meta">{{ item.disclosure.datetime }} · {{ item.disclosure.author }}</span>
     {% else %}<span class="na">—</span>{% endif %}
   </td>
@@ -118,7 +184,25 @@ permalink: /mystocks/
 </tbody>
 </table>
 
-</div>
+</div><!-- .tables-col -->
+
+<!-- ── 우측: AI 사이드바 ──────────────────────────── -->
+<aside class="ai-sidebar">
+  <p class="ai-sidebar-title">Claude 의견</p>
+  {% for item in individual %}
+  <div class="opinion-card">
+    <div class="opinion-name">{{ item.name }}</div>
+    {% if item.ai_opinion %}
+      <div class="opinion-text">{{ item.ai_opinion }}</div>
+    {% else %}
+      <div class="opinion-pending">API 키 설정 후 생성됩니다</div>
+    {% endif %}
+  </div>
+  {% endfor %}
+</aside>
+
+</div><!-- .page-grid -->
+</div><!-- .page-outer -->
 
 {% else %}
 <p>데이터가 없습니다. <code>ruby mystocks/mystocks_scraper.rb</code>를 실행해주세요.</p>

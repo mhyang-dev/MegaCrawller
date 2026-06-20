@@ -33,6 +33,7 @@ jobs:
         run: ruby mystocks/mystocks_scraper.rb
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
 
       - name: 변경사항 커밋 및 푸시
         run: |

@@ -183,6 +183,59 @@ rescue StandardError => e
   nil
 end
 
+def generate_ai_opinion(item)
+  api_key = ENV['ANTHROPIC_API_KEY']
+  return nil unless api_key
+
+  price       = item['price']
+  change_pct  = item['change_pct']
+  per         = item['per']
+  target_avg  = item.dig('analyst_target', 'avg')
+  target_fmt  = item.dig('analyst_target', 'avg_formatted')
+  direction   = item['direction']
+
+  upside = if target_avg && price
+    raw = price.to_s.gsub(',', '').to_f
+    raw > 0 ? ((target_avg / raw - 1) * 100).round(1) : nil
+  end
+
+  trend_word = { 'RISING' => '상승세', 'FALLING' => '하락세', 'EVEN' => '보합' }.fetch(direction, '보합')
+
+  prompt = <<~PROMPT
+    #{item['name']} 주식의 현재 상태를 평가해줘.
+
+    데이터:
+    - 현재가: #{price}원
+    - 등락률: #{change_pct > 0 ? '+' : ''}#{change_pct}% (#{trend_word})
+    - PER: #{per ? "#{per}배" : '데이터 없음'}
+    - 애널리스트 평균 목표가: #{target_fmt ? "#{target_fmt}원" : '없음'}#{upside ? " (현재가 대비 +#{upside}%)" : ''}
+
+    시총 밸류에이션과 단기 가격 흐름 기준으로 3문장 이내로 간결하게 평가해줘. 숫자 반복 없이 판단과 근거 위주로.
+  PROMPT
+
+  uri = URI.parse('https://api.anthropic.com/v1/messages')
+  http = Net::HTTP.new(uri.host, uri.port)
+  http.use_ssl = true
+  http.open_timeout = 15
+  http.read_timeout = 30
+  req = Net::HTTP::Post.new(uri.path)
+  req['x-api-key']         = api_key
+  req['anthropic-version'] = '2023-06-01'
+  req['content-type']      = 'application/json'
+  req.body = {
+    model:      'claude-haiku-4-5-20251001',
+    max_tokens: 250,
+    messages:   [{ role: 'user', content: prompt }]
+  }.to_json
+
+  res = http.request(req)
+  return nil unless res.code == '200'
+  JSON.parse(res.body).dig('content', 0, 'text')&.strip
+rescue StandardError => e
+  puts "  [AI 오류] #{e.message}"
+  nil
+end
+
 def notify_discord(item)
   webhook_url = ENV['DISCORD_WEBHOOK_URL']
   return unless webhook_url
@@ -232,6 +285,7 @@ stocks = MY_STOCKS.filter_map do |code, fallback|
     basic['per']            = per
     basic['analyst_target'] = fetch_analyst_targets(code)
     basic['disclosure']     = fetch_disclosure(code)
+    basic['ai_opinion']     = generate_ai_opinion(basic)
   end
 
   puts "  #{basic['name']}(#{code}): #{basic['price']} (#{basic['change_pct']}%) [#{basic['category']}]"
