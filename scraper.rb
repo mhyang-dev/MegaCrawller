@@ -1,11 +1,11 @@
-require 'selenium-webdriver'
 require 'yaml'
 require 'time'
 require 'net/http'
 require 'json'
+require 'rexml/document'
 
-KEYWORD = '마우스'
-TARGET_URL = 'https://www.fmkorea.com/hotdeal'
+KEYWORD   = '마우스'
+RSS_URL   = 'https://www.fmkorea.com/?act=atom&mid=hotdeal'
 DATA_FILE = File.join(__dir__, '_data', 'deals.yml')
 
 def load_existing_deals
@@ -23,7 +23,7 @@ def notify_discord(post)
 
   uri = URI.parse(webhook_url)
   message = {
-    content: "🔔 **태블릿 핫딜 발견!**\n**#{post['title']}**\n#{post['url']}"
+    content: "🔔 **핫딜 발견! (#{KEYWORD})**\n**#{post['title']}**\n#{post['url']}"
   }
 
   http = Net::HTTP.new(uri.host, uri.port)
@@ -36,51 +36,40 @@ def notify_discord(post)
 end
 
 def fetch_posts
-  options = Selenium::WebDriver::Chrome::Options.new
-  options.add_argument('--headless')
-  options.add_argument('--no-sandbox')
-  options.add_argument('--disable-dev-shm-usage')
-  options.add_argument('--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36')
+  uri = URI.parse(RSS_URL)
+  http = Net::HTTP.new(uri.host, uri.port)
+  http.use_ssl = uri.scheme == 'https'
 
-  driver = Selenium::WebDriver.for :chrome, options: options
+  request = Net::HTTP::Get.new(uri.request_uri)
+  request['User-Agent'] = 'Mozilla/5.0 (compatible; RSS reader)'
+
+  response = http.request(request)
+  puts "  [디버그] RSS 응답 코드: #{response.code}"
+
+  doc   = REXML::Document.new(response.body)
   posts = []
 
-  begin
-    driver.get(TARGET_URL)
-    sleep 3
+  doc.elements.each('feed/entry') do |entry|
+    title = entry.elements['title']&.text.to_s.strip
+    link  = entry.elements['link']&.attributes['href'].to_s.strip
 
-    items = driver.find_elements(css: '.title a, li.hotdeal_item a, .fm_best_widget a')
+    next if title.empty? || link.empty?
+    next unless title.include?(KEYWORD)
 
-    if items.empty?
-      items = driver.find_elements(css: 'a[href*="/hotdeal/"]')
-    end
-
-    puts "  [디버그] 발견된 링크 수: #{items.size}"
-    items.first(5).each { |el| puts "  [디버그] 샘플: #{el.text.strip[0..50]}" }
-
-    items.each do |el|
-      title = el.text.strip
-      href  = el.attribute('href')
-      next if title.empty? || href.nil?
-      next unless title.include?(KEYWORD)
-
-      href = "https://www.fmkorea.com#{href}" unless href.start_with?('http')
-      posts << { 'title' => title, 'url' => href }
-    end
-  ensure
-    driver.quit
+    posts << { 'title' => title, 'url' => link }
   end
 
+  puts "  [디버그] 키워드 매칭 글 수: #{posts.size}"
   posts
 end
 
-puts "[#{Time.now}] FMKorea 핫딜 스캔 시작 (키워드: #{KEYWORD})"
+puts "[#{Time.now}] FMKorea 핫딜 RSS 스캔 시작 (키워드: #{KEYWORD})"
 
-existing = load_existing_deals
+existing      = load_existing_deals
 existing_urls = existing.map { |d| d['url'] }
 
 new_posts = fetch_posts
-added = 0
+added     = 0
 
 new_posts.each do |post|
   next if existing_urls.include?(post['url'])
