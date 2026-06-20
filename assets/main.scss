@@ -4,7 +4,53 @@
 @charset "utf-8";
 @import "minima";
 
+/* ── 전체 너비 확장 ─────────────────────────────── */
+.wrapper {
+  max-width: none !important;
+  width: 100%;
+  padding-left: 2em;
+  padding-right: 2em;
+  box-sizing: border-box;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* ── 헤더 왼쪽 정렬 ─────────────────────────────── */
+.site-header {
+  text-align: left;
+}
+
+.site-title,
+.site-title:visited {
+  float: none;
+  display: inline-block;
+}
+
 .site-nav {
   float: left !important;
   margin-left: 2em;
+  position: static;
+  line-height: inherit;
+}
+
+/* 모바일 메뉴 텍스트 정렬도 왼쪽으로 */
+@media screen and (max-width: 600px) {
+  .site-nav {
+    text-align: left !important;
+  }
+  .site-nav .menu-icon {
+    text-align: left !important;
+  }
+  .site-nav .trigger {
+    text-align: left;
+  }
+}
+
+/* ── 푸터 왼쪽 정렬 ─────────────────────────────── */
+.site-footer {
+  text-align: left;
+}
+
+.footer-col-wrapper {
+  margin-left: 0;
 }
