@@ -3,7 +3,7 @@ require 'json'
 require 'yaml'
 require 'time'
 
-DATA_FILE       = File.join(__dir__, '_data', 'economy.yml')
+DATA_FILE       = File.join(__dir__, '..', '_data', 'economy.yml')
 ALERT_THRESHOLD = 3.0
 
 def kst_now

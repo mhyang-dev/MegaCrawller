@@ -24,8 +24,8 @@ baseurl: "/MegaCrawller"
 url: "https://mhyang-dev.github.io"
 
 header_pages:
-  - economy.markdown
-  - mystocks.markdown
+  - economy/economy.markdown
+  - mystocks/mystocks.markdown
 
 # Build settings
 theme: minima
