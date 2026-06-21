@@ -1142,21 +1142,32 @@ function initStaticTrash(tableId, hiddenKey) {
     });
   }
 
-  // GitHub 저장 버튼 — 새 탭(http)으로 열어 HTTPS→HTTP CORS 우회
+  // GitHub 저장 버튼 — PC 전용 (모바일은 GitHub에서 자동 로드)
   var btn = document.getElementById('github-save-btn');
+  var msg = document.getElementById('sync-msg');
   if (!btn) return;
-  btn.addEventListener('click', function() {
-    var data = {
-      kr_port:   JSON.parse(localStorage.getItem('kr_port_dynamic_v1')  || '[]'),
-      kr_watch:  JSON.parse(localStorage.getItem('kr_watchlist_v2')      || '[]'),
-      etf_port:  JSON.parse(localStorage.getItem('etf_port_dynamic_v1') || '[]'),
-      etf_watch: JSON.parse(localStorage.getItem('etf_watchlist_v1')    || '[]'),
-      us_port:   JSON.parse(localStorage.getItem('us_port_dynamic_v1')  || '[]'),
-      us_watch:  JSON.parse(localStorage.getItem('us_watchlist_v1')     || '[]')
-    };
-    var encoded = btoa(unescape(encodeURIComponent(JSON.stringify(data))));
-    window.open('http://localhost:9001/save#' + encoded, '_blank');
-  });
+  var isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+  if (isMobile) {
+    btn.disabled = true;
+    if (msg) msg.textContent = 'PC 로컬 서버 전용 — 모바일은 자동으로 동기화됩니다';
+  } else {
+    btn.addEventListener('click', function() {
+      var data = {
+        kr_port:   JSON.parse(localStorage.getItem('kr_port_dynamic_v1')  || '[]'),
+        kr_watch:  JSON.parse(localStorage.getItem('kr_watchlist_v2')      || '[]'),
+        etf_port:  JSON.parse(localStorage.getItem('etf_port_dynamic_v1') || '[]'),
+        etf_watch: JSON.parse(localStorage.getItem('etf_watchlist_v1')    || '[]'),
+        us_port:   JSON.parse(localStorage.getItem('us_port_dynamic_v1')  || '[]'),
+        us_watch:  JSON.parse(localStorage.getItem('us_watchlist_v1')     || '[]')
+      };
+      try {
+        var encoded = btoa(unescape(encodeURIComponent(JSON.stringify(data))));
+        window.open('http://localhost:9001/save#' + encoded, '_blank');
+      } catch(e) {
+        if (msg) { msg.textContent = '✗ ' + e.message; setTimeout(function() { msg.textContent = ''; }, 6000); }
+      }
+    });
+  }
 })();
 
 setupWatchSearch({type:'kr',  inputId:'kr-search-input',  dropdownId:'kr-search-dropdown',  tableId:'kr-watch-table',  emptyRowId:'kr-watch-empty',  storageKey:'kr_watchlist_v2',  cols:10});
