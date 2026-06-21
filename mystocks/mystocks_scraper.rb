@@ -510,26 +510,36 @@ rescue StandardError => e
 end
 
 def fetch_kr_stock_list
-  all_stocks = []
-  %w[KOSPI KOSDAQ].each do |market|
-    page = 1
-    loop do
-      data = get_json("https://m.stock.naver.com/api/index/#{market}/stocks?page=#{page}&pageSize=100")
-      break unless data.is_a?(Hash)
-      stocks = data['stocks'] || data['items'] || []
-      break if stocks.empty?
-      stocks.each do |s|
-        code = (s['itemCode'] || s['stockCode'] || s['code'] || '').to_s
-        name = (s['stockName'] || s['itemName'] || s['name'] || '').to_s
-        all_stocks << { 'code' => code, 'name' => name } if code.match?(/^\d{6}$/) && !name.empty?
-      end
-      break if stocks.length < 100
-      page += 1
-      sleep 0.05
+  require 'uri'
+  seen = {}
+
+  # 공통 종목명 접두사를 Naver 자동완성 API로 검색 (서버사이드 → CORS 없음)
+  prefixes = %w[
+    삼성 현대 LG SK 한국 한진 포스코 롯데 CJ 두산 신한 하나 우리 국민
+    KT 대한 금호 효성 카카오 네이버 셀트리온 크래프톤 에이치 HMM
+    기아 아모레 코스맥스 엔씨소프트 넥슨 넷마블 이마트 신세계 GS
+    현대건설 삼성물산 대우 한화 현대중공업 HD 롯데케미칼 OCI
+    동원 농심 CJ제일 오뚜기 대상 빙그레 오리온
+    삼성바이오 셀트 한미약품 유한양행 녹십자 종근당 동아
+    포스코인터 삼성SDI 에코프로 LG에너지 SK이노 현대에너지 LS
+    KODEX TIGER KINDEX KBSTAR KOSEF HANARO ACE
+    삼성증권 한국투자 미래에셋 키움 NH 대신 한양
+  ]
+
+  prefixes.each do |q|
+    encoded = URI.encode_www_form_component(q)
+    data = get_json("https://ac.stock.naver.com/ac?q=#{encoded}&target=stock")
+    next unless data.is_a?(Hash)
+    (data['items'] || []).each do |item|
+      code = item[1].to_s
+      name = item[0].to_s
+      seen[code] = name if code.match?(/^\d{6}$/) && !name.empty?
     end
+    sleep 0.05
   end
-  result = all_stocks.uniq { |s| s['code'] }
-  puts "  [주식목록] #{result.length}개 수집#{result.empty? ? ' (fallback: 보유종목)' : ''}"
+
+  result = seen.map { |c, n| { 'code' => c, 'name' => n } }
+  puts "  [주식목록] #{result.length}개 수집#{result.empty? ? ' (fallback 사용)' : ''}"
   result.empty? ? (MY_STOCKS.merge(KR_WATCHLIST)).map { |c, n| { 'code' => c, 'name' => n } } : result
 rescue StandardError => e
   puts "  [주식목록] 실패: #{e.message}"
