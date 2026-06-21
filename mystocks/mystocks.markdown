@@ -244,6 +244,9 @@ permalink: /mystocks/
 .search-item:hover, .search-item.selected { background: #f0f0f0; }
 .si-name { color: #222; }
 .si-code { color: #bbb; font-size: 0.82em; white-space: nowrap; }
+.si-market { font-size: 0.72em; padding: 1px 5px; border-radius: 3px; white-space: nowrap; font-weight: 500; margin-left: 4px; }
+.si-market.kospi  { background: #e8f0fb; color: #1a5276; }
+.si-market.kosdaq { background: #e8f8e8; color: #1a5c1a; }
 .search-no-result { padding: 10px 14px; color: #bbb; font-size: 0.84em; }
 .remove-btn {
   background: none;
@@ -820,8 +823,12 @@ function setupWatchSearch(opts) {
       return;
     }
     dropdown.innerHTML = matches.map(function(s) {
+      var mkt = s.market ? s.market.toLowerCase() : '';
+      var mktBadge = (mkt === 'kospi' || mkt === 'kosdaq')
+        ? '<span class="si-market ' + mkt + '">' + s.market.toUpperCase() + '</span>' : '';
       return '<div class="search-item" data-code="' + escHtml(s.code) + '" data-name="' + escHtml(s.name) + '">' +
-        '<span class="si-name">' + escHtml(s.name) + '</span><span class="si-code">' + escHtml(s.code) + '</span></div>';
+        '<span class="si-name">' + escHtml(s.name) + '</span>' +
+        '<span class="si-code">' + escHtml(s.code) + mktBadge + '</span></div>';
     }).join('');
     dropdown.style.display = 'block';
     dropdown.querySelectorAll('.search-item').forEach(function(el) {

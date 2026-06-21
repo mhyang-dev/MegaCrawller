@@ -511,42 +511,50 @@ end
 
 def fetch_kr_stock_list
   require 'uri'
-  seen = {}
+  seen = {}  # code => {name, market}
 
-  # 공통 종목명 접두사를 Naver 자동완성 API로 검색 (서버사이드 → CORS 없음)
+  # KOSPI/KOSDAQ 전체 커버리지: 한글 음절 + 영문 A-Z + 주요 종목/ETF 접두사
   prefixes = %w[
-    삼성 현대 LG SK 한국 한진 포스코 롯데 CJ 두산 신한 하나 우리 국민
-    KT 대한 금호 효성 카카오 네이버 셀트리온 크래프톤 에이치 HMM
-    기아 아모레 코스맥스 엔씨소프트 넥슨 넷마블 이마트 신세계 GS
-    현대건설 삼성물산 대우 한화 현대중공업 HD 롯데케미칼 OCI
-    동원 농심 CJ제일 오뚜기 대상 빙그레 오리온
-    삼성바이오 셀트 한미약품 유한양행 녹십자 종근당 동아
-    포스코인터 삼성SDI 에코프로 LG에너지 SK이노 현대에너지 LS
-    KODEX TIGER KINDEX KBSTAR KOSEF HANARO ACE
-    삼성증권 한국투자 미래에셋 키움 NH 대신 한양
+    가 각 강 개 거 건 게 경 고 공 광 교 구 국 군 굿 귀 그 글 금 기
+    나 남 내 넥 노 뉴
+    다 단 달 담 대 더 데 도 동 두 드 디 딥
+    라 란 레 로 롯 루 리
+    마 만 매 메 모 무 미 민
+    바 반 방 배 보 부 브 비 빅
+    사 산 상 새 서 선 세 소 솔 수 스 시 신 씨
+    아 안 알 애 앤 에 엔 엘 엠 여 영 오 올 온 원 위 유 은 이 인 일
+    자 장 재 전 제 조 종 주 지 진
+    차 청 체
+    케 코 크 키
+    테 토 트
+    파 판 팜 포 피 핀
+    한 항 해 현 화 효 히
+    A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+    LG SK KT GS HD CJ NH OCI HMM
+    KODEX TIGER KINDEX KBSTAR KOSEF HANARO ACE TIMEFOLIO SMART
   ]
 
   ac_headers = { 'Referer' => 'https://finance.naver.com/', 'Accept' => 'application/json, */*' }
 
-  prefixes.each do |q|
+  prefixes.uniq.each do |q|
     encoded = URI.encode_www_form_component(q)
     data = get_json("https://ac.stock.naver.com/ac?q=#{encoded}&target=stock", extra_headers: ac_headers)
     next unless data.is_a?(Hash)
     (data['items'] || []).each do |item|
-      # 응답이 [{code:, name:}] 형식
-      code = (item['code'] || item[1] || '').to_s
-      name = (item['name'] || item[0] || '').to_s
-      seen[code] = name if code.match?(/^\d{6}$/) && !name.empty?
+      code   = (item['code']     || item[1] || '').to_s
+      name   = (item['name']     || item[0] || '').to_s
+      market = (item['typeCode'] || '').to_s  # KOSPI / KOSDAQ / KONEX 등
+      seen[code] = { 'name' => name, 'market' => market } if code.match?(/^\d{6}$/) && !name.empty?
     end
     sleep 0.05
   end
 
-  result = seen.map { |c, n| { 'code' => c, 'name' => n } }
-  puts "  [주식목록] #{result.length}개 수집#{result.empty? ? ' (fallback 사용)' : ''}"
-  result.empty? ? (MY_STOCKS.merge(KR_WATCHLIST)).map { |c, n| { 'code' => c, 'name' => n } } : result
+  result = seen.map { |c, v| { 'code' => c, 'name' => v['name'], 'market' => v['market'] } }
+  puts "  [주식목록] #{result.length}개 수집 (KOSPI/KOSDAQ 포함)#{result.empty? ? ' — fallback 사용' : ''}"
+  result.empty? ? (MY_STOCKS.merge(KR_WATCHLIST)).map { |c, n| { 'code' => c, 'name' => n, 'market' => '' } } : result
 rescue StandardError => e
   puts "  [주식목록] 실패: #{e.message}"
-  (MY_STOCKS.merge(KR_WATCHLIST)).map { |c, n| { 'code' => c, 'name' => n } }
+  (MY_STOCKS.merge(KR_WATCHLIST)).map { |c, n| { 'code' => c, 'name' => n, 'market' => '' } }
 end
 
 puts "[#{kst_now}] 내 포트폴리오 수집 시작"
