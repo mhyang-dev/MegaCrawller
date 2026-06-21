@@ -352,15 +352,16 @@ rescue StandardError => e
 end
 
 def fetch_disclosure(code)
-  data = get_json("https://m.stock.naver.com/api/stock/#{code}/disclosure?pageSize=1")
-  item = data&.first
-  return nil unless item
-  {
-    'title'    => item['title'],
-    'datetime' => item['datetime']&.slice(0, 16)&.tr('T', ' '),
-    'author'   => item['author'],
-    'url'      => "https://finance.naver.com/item/news_notice_read.naver?no=#{item['disclosureId']}&code=#{code}&page_notice="
-  }
+  data = get_json("https://m.stock.naver.com/api/stock/#{code}/disclosure?pageSize=3")
+  return nil unless data&.any?
+  data.first(3).map do |item|
+    {
+      'title'    => item['title'],
+      'datetime' => item['datetime']&.slice(0, 16)&.tr('T', ' '),
+      'author'   => item['author'],
+      'url'      => "https://finance.naver.com/item/news_notice_read.naver?no=#{item['disclosureId']}&code=#{code}&page_notice="
+    }
+  end
 rescue StandardError
   nil
 end
@@ -383,24 +384,28 @@ rescue StandardError => e
   nil
 end
 
-# ── 연속 매수/매도 계산 ──────────────────────────────────
-# values: 순매매량 배열 (최신→과거 순서). 양수=매수, 음수=매도.
-# 반환값: 양수=연속 매수일, 음수=연속 매도일, 0=해당없음
-def consecutive_streak(values)
-  return 0 if values.nil? || values.empty?
-  first_nonzero = values.find { |v| v != 0 }
-  return 0 unless first_nonzero
-
-  direction = first_nonzero > 0 ? 1 : -1
-  count = 0
-  values.each do |v|
-    break if v == 0 || (v > 0 ? 1 : -1) != direction
-    count += 1
-  end
-  direction * count
+# ── 연속 매수/매도 + 누적 금액 계산 ──────────────────────────────────
+def format_investor_amount(shares, price_num)
+  return nil unless price_num && price_num > 0
+  eok = (shares.to_f * price_num / 100_000_000).round(1)
+  return nil if eok < 1
+  eok >= 10_000 ? format('%.1f조', eok / 10_000.0) : "#{eok.round}억"
 end
 
-def fetch_investor_streaks(code)
+def streak_with_amount(vals, price_num)
+  return { 'days' => 0, 'amount' => nil } if vals.nil? || vals.empty?
+  first = vals.find { |v| v != 0 }
+  return { 'days' => 0, 'amount' => nil } unless first
+  dir = first > 0 ? 1 : -1
+  count = 0; total = 0
+  vals.each do |v|
+    break if v == 0 || (v > 0 ? 1 : -1) != dir
+    count += 1; total += v.abs
+  end
+  { 'days' => dir * count, 'amount' => format_investor_amount(total, price_num) }
+end
+
+def fetch_investor_streaks(code, price: nil)
   html = http_get(
     "https://finance.naver.com/item/frgn.naver?code=#{code}",
     from_encoding: 'EUC-KR',
@@ -410,30 +415,31 @@ def fetch_investor_streaks(code)
 
   # Parse rows: find date spans (gray03) then extract 기관(w=66) and 외국인(w=80) net amounts
   # Rows are sorted most-recent-first by frgn.naver
-  dates        = []
   gigan_vals   = []
   foreign_vals = []
 
   html.scan(
     /<span[^>]*gray03[^>]*>([\d.]+)<\/span>[\s\S]{0,1800}?<td[^>]*width="66"[^>]*>[\s\S]{0,300}?<span[^>]*>([+\-]?[\d,]+)<\/span>[\s\S]{0,600}?<td[^>]*width="80"[^>]*>[\s\S]{0,300}?<span[^>]*>([+\-]?[\d,]+)<\/span>/
-  ) do |date, gigan_raw, foreign_raw|
-    dates        << date
+  ) do |_date, gigan_raw, foreign_raw|
     gigan_vals   << gigan_raw.gsub(/[+,]/, '').to_i
     foreign_vals << foreign_raw.gsub(/[+,]/, '').to_i
   end
 
   return nil if gigan_vals.empty?
 
-  indi_vals = gigan_vals.zip(foreign_vals).map { |g, f| -(g + f) }
-
-  # as_of: 마지막으로 시장이 열린 날 (frgn.naver의 가장 최신 행)
-  as_of = dates.first&.gsub('.', '-')  # "2026.06.19" → "2026-06-19"
+  indi_vals  = gigan_vals.zip(foreign_vals).map { |g, f| -(g + f) }
+  price_num  = price.to_s.gsub(',', '').to_f
+  gi  = streak_with_amount(gigan_vals,   price_num)
+  fo  = streak_with_amount(foreign_vals, price_num)
+  ind = streak_with_amount(indi_vals,    price_num)
 
   {
-    'gigan'   => consecutive_streak(gigan_vals),
-    'foreign' => consecutive_streak(foreign_vals),
-    'indi'    => consecutive_streak(indi_vals),
-    'as_of'   => as_of
+    'gigan'          => gi['days'],
+    'gigan_amount'   => gi['amount'],
+    'foreign'        => fo['days'],
+    'foreign_amount' => fo['amount'],
+    'indi'           => ind['days'],
+    'indi_amount'    => ind['amount']
   }
 rescue StandardError => e
   puts "  [수급 오류] #{e.message}"
@@ -596,7 +602,7 @@ stocks = MY_STOCKS.filter_map do |code, fallback|
     basic['opinion']          = rule_based_opinion(basic)
     basic['fics']             = consensus&.dig('fics')
     basic['indu_per']         = consensus&.dig('indu_per')
-    basic['investor_streaks'] = fetch_investor_streaks(code)
+    basic['investor_streaks'] = fetch_investor_streaks(code, price: basic['price'])
   end
 
   puts "  #{basic['name']}(#{code}): #{basic['price']} (#{basic['change_pct']}%) [#{basic['category']}]"
@@ -632,7 +638,7 @@ kr_watch_stocks = KR_WATCHLIST.filter_map do |code, fallback|
   basic['disclosure']       = fetch_disclosure(code)
   basic['fics']             = consensus&.dig('fics')
   basic['indu_per']         = consensus&.dig('indu_per')
-  basic['investor_streaks'] = fetch_investor_streaks(code)
+  basic['investor_streaks'] = fetch_investor_streaks(code, price: basic['price'])
   puts "  #{basic['name']}(#{code}): #{basic['price']} (#{basic['change_pct']}%) [stock_watch]"
   sleep 1
   basic

@@ -1,5 +1,5 @@
 ---
-fetched_at: 2026-06-21 16:16 KST
+fetched_at: 2026-06-21 16:43 KST
 stocks:
 - code: '005930'
   name: 삼성전자
@@ -18,19 +18,29 @@ stocks:
   market_cap_formatted: 2,069.6조
   upside_pct: 25.9
   disclosure:
-    title: 삼성전자(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승)
+  - title: 삼성전자(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승)
     datetime: 2026-06-12 06:50
     author: KOSCOM
     url: https://finance.naver.com/item/news_notice_read.naver?no=28360316&code=005930&page_notice=
+  - title: 삼성전자(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승)
+    datetime: 2026-06-09 06:50
+    author: KOSCOM
+    url: https://finance.naver.com/item/news_notice_read.naver?no=22652241&code=005930&page_notice=
+  - title: 삼성전자(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(하락)
+    datetime: 2026-06-08 06:50
+    author: KOSCOM
+    url: https://finance.naver.com/item/news_notice_read.naver?no=21311255&code=005930&page_notice=
   opinion: PER 8.0배로 적정 밸류에이션 수준. 소폭 하락하며 숨 고르기 국면. 애널리스트 목표가까지 25.9% 상승 여력 — 중장기
     매력적.
   fics: 반도체 및 관련장비
   indu_per: 51.91
   investor_streaks:
     gigan: -1
+    gigan_amount: 4886억
     foreign: -1
+    foreign_amount: 8740억
     indi: 1
-    as_of: '2026-06-19'
+    indi_amount: 1.4조
 - code: '000660'
   name: SK하이닉스
   price: '2,764,000'
@@ -48,18 +58,28 @@ stocks:
   market_cap_formatted: 1,969.9조
   upside_pct: -1.0
   disclosure:
-    title: 에스케이하이닉스(주) 풍문 또는 보도에 대한 해명
+  - title: 에스케이하이닉스(주) 풍문 또는 보도에 대한 해명
     datetime: 2026-06-16 06:52
     author: KOSCOM
     url: https://finance.naver.com/item/news_notice_read.naver?no=32054032&code=000660&page_notice=
+  - title: 에스케이하이닉스(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(하락)
+    datetime: 2026-06-10 06:50
+    author: KOSCOM
+    url: https://finance.naver.com/item/news_notice_read.naver?no=24271701&code=000660&page_notice=
+  - title: 에스케이하이닉스(주) 주식선물ㆍ주식옵션 3단계 가격제한폭 확대요건 도달(상승)
+    datetime: 2026-06-09 06:51
+    author: KOSCOM
+    url: https://finance.naver.com/item/news_notice_read.naver?no=22745241&code=000660&page_notice=
   opinion: PER 9.1배로 적정 밸류에이션 수준. 소폭 상승하며 긍정적 흐름 유지. 현재가가 목표가를 1.0% 상회 — 단기 과열 가능성.
   fics: 반도체 및 관련장비
   indu_per: 51.91
   investor_streaks:
     gigan: 5
+    gigan_amount: 2.9조
     foreign: -1
+    foreign_amount: 8785억
     indi: 1
-    as_of: '2026-06-19'
+    indi_amount: 1621억
 - code: '009150'
   name: 삼성전기
   price: '2,270,000'
@@ -77,19 +97,29 @@ stocks:
   market_cap_formatted: 169.6조
   upside_pct: -16.8
   disclosure:
-    title: 삼성전기(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승)
+  - title: 삼성전기(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승)
     datetime: 2026-06-19 10:22
     author: KOSCOM
     url: https://finance.naver.com/item/news_notice_read.naver?no=36940359&code=009150&page_notice=
+  - title: 삼성전기(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승)
+    datetime: 2026-06-18 06:50
+    author: KOSCOM
+    url: https://finance.naver.com/item/news_notice_read.naver?no=34957172&code=009150&page_notice=
+  - title: 삼성전기(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승)
+    datetime: 2026-06-15 06:50
+    author: KOSCOM
+    url: https://finance.naver.com/item/news_notice_read.naver?no=30338627&code=009150&page_notice=
   opinion: PER 137.2배로 고평가 구간 — 이익 성장 기대감이 선반영된 상황. 당일 3.18% 급등하며 강한 매수세 유입 중. 현재가가
     목표가를 16.8% 상회 — 단기 과열 가능성.
   fics: 전자 장비 및 기기
   indu_per: 51.91
   investor_streaks:
     gigan: 2
+    gigan_amount: 1432억
     foreign: 6
+    foreign_amount: 3.2조
     indi: -2
-    as_of: '2026-06-19'
+    indi_amount: 8516억
 - code: '005380'
   name: 현대차
   price: '613,000'
@@ -107,19 +137,29 @@ stocks:
   market_cap_formatted: 125.5조
   upside_pct: 33.7
   disclosure:
-    title: 현대자동차(주) 기업설명회(IR) 개최(안내공시)
+  - title: 현대자동차(주) 기업설명회(IR) 개최(안내공시)
     datetime: 2026-06-18 06:51
     author: KOSCOM
     url: https://finance.naver.com/item/news_notice_read.naver?no=35415758&code=005380&page_notice=
+  - title: 현대자동차(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(하락)
+    datetime: 2026-06-08 06:50
+    author: KOSCOM
+    url: https://finance.naver.com/item/news_notice_read.naver?no=21311801&code=005380&page_notice=
+  - title: 현대자동차(주) 영업(잠정)실적(공정공시)
+    datetime: 2026-06-01 06:51
+    author: KOSCOM
+    url: https://finance.naver.com/item/news_notice_read.naver?no=14956050&code=005380&page_notice=
   opinion: PER 15.5배로 다소 고평가된 상태. 소폭 상승하며 긍정적 흐름 유지. 애널리스트 목표가까지 33.7% 상승 여력 — 중장기
     매력적.
   fics: 자동차
   indu_per: 17.59
   investor_streaks:
     gigan: -6
+    gigan_amount: 6545억
     foreign: 1
+    foreign_amount: 1212억
     indi: -1
-    as_of: '2026-06-19'
+    indi_amount: 345억
 - code: '032830'
   name: 삼성생명
   price: '497,000'
@@ -137,19 +177,29 @@ stocks:
   market_cap_formatted: 99.4조
   upside_pct: -23.5
   disclosure:
-    title: 삼성생명보험(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승)
+  - title: 삼성생명보험(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승)
     datetime: 2026-06-19 09:21
     author: KOSCOM
     url: https://finance.naver.com/item/news_notice_read.naver?no=36847827&code=032830&page_notice=
+  - title: 삼성생명보험(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승)
+    datetime: 2026-06-12 06:50
+    author: KOSCOM
+    url: https://finance.naver.com/item/news_notice_read.naver?no=28364709&code=032830&page_notice=
+  - title: 삼성생명보험(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(하락)
+    datetime: 2026-06-10 06:50
+    author: KOSCOM
+    url: https://finance.naver.com/item/news_notice_read.naver?no=24275525&code=032830&page_notice=
   opinion: PER 34.9배로 고평가 구간 — 이익 성장 기대감이 선반영된 상황. 당일 5.97% 급등하며 강한 매수세 유입 중. 현재가가
     목표가를 23.5% 상회 — 단기 과열 가능성.
   fics: 보험
   indu_per: 17.64
   investor_streaks:
     gigan: 2
+    gigan_amount: 491억
     foreign: 1
+    foreign_amount: 148억
     indi: -11
-    as_of: '2026-06-19'
+    indi_amount: 1342억
 - code: '012330'
   name: 현대모비스
   price: '612,000'
@@ -167,19 +217,29 @@ stocks:
   market_cap_formatted: 55.5조
   upside_pct: 27.1
   disclosure:
-    title: 현대모비스(주) 기업설명회(IR) 개최(안내공시)
+  - title: 현대모비스(주) 기업설명회(IR) 개최(안내공시)
     datetime: 2026-06-19 15:49
     author: KOSCOM
     url: https://finance.naver.com/item/news_notice_read.naver?no=37450231&code=012330&page_notice=
+  - title: 현대모비스(주) 기업설명회(IR) 개최(안내공시)
+    datetime: 2026-06-15 06:51
+    author: KOSCOM
+    url: https://finance.naver.com/item/news_notice_read.naver?no=30706139&code=012330&page_notice=
+  - title: 현대모비스(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승)
+    datetime: 2026-06-12 06:50
+    author: KOSCOM
+    url: https://finance.naver.com/item/news_notice_read.naver?no=28407324&code=012330&page_notice=
   opinion: PER 13.5배로 적정 밸류에이션 수준. 소폭 상승하며 긍정적 흐름 유지. 애널리스트 목표가까지 27.1% 상승 여력 — 중장기
     매력적.
   fics: 자동차부품
   indu_per: 17.59
   investor_streaks:
     gigan: -3
+    gigan_amount: 752억
     foreign: 2
+    foreign_amount: 677억
     indi: -1
-    as_of: '2026-06-19'
+    indi_amount: 150억
 - code: '278470'
   name: 에이피알
   price: '385,500'
@@ -197,19 +257,29 @@ stocks:
   market_cap_formatted: 14.4조
   upside_pct: 33.9
   disclosure:
-    title: "(주)에이피알 지속가능경영보고서 등 관련사항(자율공시)"
+  - title: "(주)에이피알 지속가능경영보고서 등 관련사항(자율공시)"
     datetime: 2026-06-19 15:42
     author: KOSCOM
     url: https://finance.naver.com/item/news_notice_read.naver?no=37438991&code=278470&page_notice=
+  - title: "(주)에이피알 주식선물 2단계 가격제한폭 확대요건 도달(상승)"
+    datetime: 2026-06-09 06:50
+    author: KOSCOM
+    url: https://finance.naver.com/item/news_notice_read.naver?no=22492573&code=278470&page_notice=
+  - title: "(주)에이피알 주식선물 2단계 가격제한폭 확대요건 도달(상승)"
+    datetime: 2026-06-08 06:51
+    author: KOSCOM
+    url: https://finance.naver.com/item/news_notice_read.naver?no=21592171&code=278470&page_notice=
   opinion: PER 27.0배로 고평가 구간 — 이익 성장 기대감이 선반영된 상황. 소폭 상승하며 긍정적 흐름 유지. 애널리스트 목표가까지
     33.9% 상승 여력 — 중장기 매력적.
   fics: 개인생활용품
   indu_per:
   investor_streaks:
     gigan: 1
+    gigan_amount:
     foreign: 1
+    foreign_amount: 133억
     indi: -1
-    as_of: '2026-06-19'
+    indi_amount: 134억
 - code: '069960'
   name: 현대백화점
   price: '194,700'
@@ -227,19 +297,29 @@ stocks:
   market_cap_formatted: 4.2조
   upside_pct: -3.3
   disclosure:
-    title: "(주)현대백화점 [투자주의]15일간 상승종목의 당일 소수계좌 매수관여 과다종목"
+  - title: "(주)현대백화점 [투자주의]15일간 상승종목의 당일 소수계좌 매수관여 과다종목"
     datetime: 2026-06-19 20:00
     author: KOSCOM
     url: https://finance.naver.com/item/news_notice_read.naver?no=37882286&code=069960&page_notice=
+  - title: "(주)현대백화점 [투자주의]15일간 상승종목의 당일 소수계좌 매수관여 과다종목"
+    datetime: 2026-06-18 06:53
+    author: KOSCOM
+    url: https://finance.naver.com/item/news_notice_read.naver?no=35753366&code=069960&page_notice=
+  - title: "(주)현대백화점 [투자주의]15일간 상승종목의 당일 소수계좌 매수관여 과다종목"
+    datetime: 2026-06-17 06:53
+    author: KOSCOM
+    url: https://finance.naver.com/item/news_notice_read.naver?no=33664328&code=069960&page_notice=
   opinion: PER 15.9배로 다소 고평가된 상태. 당일 4.56% 급락 — 단기 조정 또는 매도 압력 주의. 현재가가 목표가를 3.3%
     상회 — 단기 과열 가능성.
   fics: 백화점
   indu_per: 26.02
   investor_streaks:
     gigan: -5
+    gigan_amount: 174억
     foreign: 1
+    foreign_amount: 122억
     indi: -1
-    as_of: '2026-06-19'
+    indi_amount: 50억
 - code: '020000'
   name: 한섬
   price: '21,500'
@@ -257,19 +337,29 @@ stocks:
   market_cap_formatted: 4,618억
   upside_pct: 64.3
   disclosure:
-    title: "(주)한섬 상장안내(주식소각 및 감자(주식소각))"
+  - title: "(주)한섬 상장안내(주식소각 및 감자(주식소각))"
     datetime: 2026-05-13 06:53
     author: KOSCOM
     url: https://finance.naver.com/item/news_notice_read.naver?no=1640905&code=020000&page_notice=
+  - title: "(주)한섬 기업설명회(IR) 개최(안내공시)"
+    datetime: 2026-05-13 06:50
+    author: KOSCOM
+    url: https://finance.naver.com/item/news_notice_read.naver?no=1640635&code=020000&page_notice=
+  - title: "(주)한섬 기업가치 제고 계획(자율공시)(2025년 이행현황)"
+    datetime: 2026-05-07 06:51
+    author: KOSCOM
+    url: https://finance.naver.com/item/news_notice_read.naver?no=1638656&code=020000&page_notice=
   opinion: PER 5.9배로 동종업 대비 저평가 구간에 위치. 소폭 상승하며 긍정적 흐름 유지. 애널리스트 목표가까지 64.3% 상승 여력
     — 중장기 매력적.
   fics: 섬유 및 의복
   indu_per: 9.15
   investor_streaks:
     gigan: 1
+    gigan_amount: 4억
     foreign: 6
+    foreign_amount: 51억
     indi: -3
-    as_of: '2026-06-19'
+    indi_amount: 16억
 - code: '487240'
   name: KODEX AI전력핵심설비
   price: '46,485'
@@ -325,17 +415,27 @@ stocks:
   market_cap_formatted: 27.3조
   upside_pct: 59.5
   disclosure:
-    title: 미래에셋증권(주) [ELW 투자주의]소수지점ㆍ소수계좌 거래집중 종목(미래M417카카오콜)
+  - title: 미래에셋증권(주) [ELW 투자주의]소수지점ㆍ소수계좌 거래집중 종목(미래M417카카오콜)
     datetime: 2026-06-19 20:00
     author: KOSCOM
     url: https://finance.naver.com/item/news_notice_read.naver?no=37882270&code=006800&page_notice=
+  - title: 미래에셋증권(주) 상장지수증권 기타시장안내(미래에셋 -1.5X 천연가스 선물 ETN)
+    datetime: 2026-06-19 09:19
+    author: KOSCOM
+    url: https://finance.naver.com/item/news_notice_read.naver?no=36844918&code=006800&page_notice=
+  - title: 미래에셋증권(주) 상장지수증권 기타시장안내(미래에셋 -2X 미국 AI TOP3 ETN)
+    datetime: 2026-06-19 09:19
+    author: KOSCOM
+    url: https://finance.naver.com/item/news_notice_read.naver?no=36844917&code=006800&page_notice=
   fics: 증권
   indu_per: 12.36
   investor_streaks:
     gigan: 1
+    gigan_amount: 15억
     foreign: 6
+    foreign_amount: 1243억
     indi: -1
-    as_of: '2026-06-19'
+    indi_amount: 464억
 - code: MU
   name: Micron Technology, Inc.
   price: '1,734,880'

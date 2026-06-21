@@ -142,17 +142,27 @@ rescue StandardError => e
 end
 
 # ── 연속 매수/매도 ───────────────────────────────────────────────────────
-def consecutive_streak(vals)
-  return 0 if vals.nil? || vals.empty?
-  first = vals.find { |v| v != 0 }
-  return 0 unless first
-  dir   = first > 0 ? 1 : -1
-  count = 0
-  vals.each { |v| break if v == 0 || (v > 0 ? 1 : -1) != dir; count += 1 }
-  dir * count
+def format_investor_amount(shares, price_num)
+  return nil unless price_num && price_num > 0
+  eok = (shares.to_f * price_num / 100_000_000).round(1)
+  return nil if eok < 1
+  eok >= 10_000 ? format('%.1f조', eok / 10_000.0) : "#{eok.round}억"
 end
 
-def fetch_investor_streaks(code)
+def streak_with_amount(vals, price_num)
+  return { 'days' => 0, 'amount' => nil } if vals.nil? || vals.empty?
+  first = vals.find { |v| v != 0 }
+  return { 'days' => 0, 'amount' => nil } unless first
+  dir = first > 0 ? 1 : -1
+  count = 0; total = 0
+  vals.each do |v|
+    break if v == 0 || (v > 0 ? 1 : -1) != dir
+    count += 1; total += v.abs
+  end
+  { 'days' => dir * count, 'amount' => format_investor_amount(total, price_num) }
+end
+
+def fetch_investor_streaks(code, price: nil)
   html = http_get(
     "https://finance.naver.com/item/frgn.naver?code=#{code}",
     from_encoding: 'EUC-KR',
@@ -160,22 +170,28 @@ def fetch_investor_streaks(code)
   )
   return nil unless html
 
-  dates = []; gigan_vals = []; foreign_vals = []
+  gigan_vals = []; foreign_vals = []
   html.scan(
     /<span[^>]*gray03[^>]*>([\d.]+)<\/span>[\s\S]{0,1800}?<td[^>]*width="66"[^>]*>[\s\S]{0,300}?<span[^>]*>([+\-]?[\d,]+)<\/span>[\s\S]{0,600}?<td[^>]*width="80"[^>]*>[\s\S]{0,300}?<span[^>]*>([+\-]?[\d,]+)<\/span>/
-  ) do |date, gi, fo|
-    dates << date
+  ) do |_date, gi, fo|
     gigan_vals   << gi.gsub(/[+,]/, '').to_i
     foreign_vals << fo.gsub(/[+,]/, '').to_i
   end
   return nil if gigan_vals.empty?
 
-  indi_vals = gigan_vals.zip(foreign_vals).map { |g, f| -(g + f) }
+  indi_vals  = gigan_vals.zip(foreign_vals).map { |g, f| -(g + f) }
+  price_num  = price.to_s.gsub(',', '').to_f
+  gi  = streak_with_amount(gigan_vals,   price_num)
+  fo  = streak_with_amount(foreign_vals, price_num)
+  ind = streak_with_amount(indi_vals,    price_num)
+
   {
-    'gigan'   => consecutive_streak(gigan_vals),
-    'foreign' => consecutive_streak(foreign_vals),
-    'indi'    => consecutive_streak(indi_vals),
-    'as_of'   => dates.first&.gsub('.', '-')
+    'gigan'          => gi['days'],
+    'gigan_amount'   => gi['amount'],
+    'foreign'        => fo['days'],
+    'foreign_amount' => fo['amount'],
+    'indi'           => ind['days'],
+    'indi_amount'    => ind['amount']
   }
 rescue StandardError => e
   puts "  [수급 오류] #{e.message}"
@@ -184,15 +200,16 @@ end
 
 # ── 최근 공시 ─────────────────────────────────────────────────────────────
 def fetch_disclosure(code)
-  data = get_json("https://m.stock.naver.com/api/stock/#{code}/disclosure?pageSize=1")
-  item = data&.first
-  return nil unless item
-  {
-    'title'    => item['title'],
-    'datetime' => item['datetime']&.slice(0, 16)&.tr('T', ' '),
-    'author'   => item['author'],
-    'url'      => "https://finance.naver.com/item/news_notice_read.naver?no=#{item['disclosureId']}&code=#{code}&page_notice="
-  }
+  data = get_json("https://m.stock.naver.com/api/stock/#{code}/disclosure?pageSize=3")
+  return nil unless data&.any?
+  data.first(3).map do |item|
+    {
+      'title'    => item['title'],
+      'datetime' => item['datetime']&.slice(0, 16)&.tr('T', ' '),
+      'author'   => item['author'],
+      'url'      => "https://finance.naver.com/item/news_notice_read.naver?no=#{item['disclosureId']}&code=#{code}&page_notice="
+    }
+  end
 rescue StandardError
   nil
 end
@@ -378,10 +395,11 @@ server.mount_proc '/' do |req, res|
     unless basic
       { 'error' => 'not found' }
     else
+      price_str = basic['price']
       fnguide_r = nil; investor_r = nil; disclosure_r = nil
       threads = [
-        Thread.new { fnguide_r   = fetch_fnguide(code) },
-        Thread.new { investor_r  = fetch_investor_streaks(code) },
+        Thread.new { fnguide_r    = fetch_fnguide(code) },
+        Thread.new { investor_r   = fetch_investor_streaks(code, price: price_str) },
         Thread.new { disclosure_r = fetch_disclosure(code) }
       ]
       threads.each(&:join)

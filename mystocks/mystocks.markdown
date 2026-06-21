@@ -41,11 +41,10 @@ permalink: /mystocks/
 .stock-table th {
   background: #f0f0f0;
   padding: 7px 10px;
-  text-align: right;
+  text-align: center;
   border-bottom: 2px solid #ddd;
   white-space: nowrap;
 }
-.stock-table th:first-child,
 .stock-table th.left { text-align: left; }
 .stock-table td {
   padding: 6px 10px;
@@ -101,7 +100,7 @@ permalink: /mystocks/
 /* ── 매수 주체 셀 ──────────────────────────────────── */
 .investor-cell {
   text-align: center !important;
-  min-width: 130px;
+  min-width: 160px;
   white-space: nowrap;
 }
 .investor-row {
@@ -135,6 +134,8 @@ permalink: /mystocks/
   word-break: break-all;
   overflow-wrap: break-word;
 }
+.disclosure-item { border-bottom: 1px solid #f0f0f0; padding-bottom: 3px; margin-bottom: 3px; }
+.disclosure-item:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
 .disclosure-title { display: block; }
 .disclosure-title a { word-break: break-all; }
 .disclosure-meta { color: #999; font-size: 0.82em; }
@@ -356,11 +357,11 @@ permalink: /mystocks/
   <thead><tr>
     <th class="left" data-col="fics">업종 <span class="sort-icon">⇅</span></th>
     <th data-col="name">종목 <span class="sort-icon">⇅</span></th>
-    <th data-col="cap">시총 <span class="sort-icon">⇅</span></th>
-    <th data-col="price">현재가 <span class="sort-icon">⇅</span></th>
-    <th data-col="change">전일비 / 등락률 <span class="sort-icon">⇅</span></th>
+    <th data-col="cap">시총(억) <span class="sort-icon">⇅</span></th>
+    <th data-col="price">현재가(원) <span class="sort-icon">⇅</span></th>
+    <th data-col="change">전일비 / 등락률(%) <span class="sort-icon">⇅</span></th>
     <th data-col="per">PER (업종 PER) <span class="sort-icon">⇅</span></th>
-    <th data-col="target">목표가 / 대비 <span class="sort-icon">⇅</span></th>
+    <th data-col="target">목표가(원) / 대비 <span class="sort-icon">⇅</span></th>
     <th class="left">매수 주체</th>
     <th class="left">최근 공시</th>
     <th></th>
@@ -393,35 +394,38 @@ permalink: /mystocks/
     {% if item.investor_streaks %}
       {% assign is = item.investor_streaks %}
       <div class="investor-row">
-        {% assign indi_v = is.indi | default: 0 %}
+        {% assign v = is.indi | default: 0 %}
         <div class="investor-item">
           <span class="investor-label">개인</span>
-          {% if indi_v > 0 %}<span class="investor-buy">{{ indi_v }}</span>
-          {% elsif indi_v < 0 %}<span class="investor-sell">{{ indi_v | abs }}</span>
+          {% if v > 0 %}<span class="investor-buy">{% if is.indi_amount %}{{ is.indi_amount }}({{ v }}){% else %}{{ v }}{% endif %}</span>
+          {% elsif v < 0 %}<span class="investor-sell">{% if is.indi_amount %}{{ is.indi_amount }}({{ v | abs }}){% else %}{{ v | abs }}{% endif %}</span>
           {% else %}<span class="investor-zero">—</span>{% endif %}
         </div>
-        {% assign foreign_v = is.foreign | default: 0 %}
+        {% assign v = is.foreign | default: 0 %}
         <div class="investor-item">
           <span class="investor-label">외인</span>
-          {% if foreign_v > 0 %}<span class="investor-buy">{{ foreign_v }}</span>
-          {% elsif foreign_v < 0 %}<span class="investor-sell">{{ foreign_v | abs }}</span>
+          {% if v > 0 %}<span class="investor-buy">{% if is.foreign_amount %}{{ is.foreign_amount }}({{ v }}){% else %}{{ v }}{% endif %}</span>
+          {% elsif v < 0 %}<span class="investor-sell">{% if is.foreign_amount %}{{ is.foreign_amount }}({{ v | abs }}){% else %}{{ v | abs }}{% endif %}</span>
           {% else %}<span class="investor-zero">—</span>{% endif %}
         </div>
-        {% assign gigan_v = is.gigan | default: 0 %}
+        {% assign v = is.gigan | default: 0 %}
         <div class="investor-item">
           <span class="investor-label">기관</span>
-          {% if gigan_v > 0 %}<span class="investor-buy">{{ gigan_v }}</span>
-          {% elsif gigan_v < 0 %}<span class="investor-sell">{{ gigan_v | abs }}</span>
+          {% if v > 0 %}<span class="investor-buy">{% if is.gigan_amount %}{{ is.gigan_amount }}({{ v }}){% else %}{{ v }}{% endif %}</span>
+          {% elsif v < 0 %}<span class="investor-sell">{% if is.gigan_amount %}{{ is.gigan_amount }}({{ v | abs }}){% else %}{{ v | abs }}{% endif %}</span>
           {% else %}<span class="investor-zero">—</span>{% endif %}
         </div>
       </div>
-      {% if is.as_of %}<div class="investor-as-of">{{ is.as_of }} 기준</div>{% endif %}
     {% else %}<span class="na">—</span>{% endif %}
   </td>
   <td class="disclosure-cell">
     {% if item.disclosure %}
-      <span class="disclosure-title"><a href="{{ item.disclosure.url }}" target="_blank">{{ item.disclosure.title | truncate: 38 }}</a></span>
-      <span class="disclosure-meta">{{ item.disclosure.datetime }} · {{ item.disclosure.author }}</span>
+      {% for d in item.disclosure %}
+      <div class="disclosure-item">
+        <span class="disclosure-title"><a href="{{ d.url }}" target="_blank">{{ d.title | truncate: 30 }}</a></span>
+        <span class="disclosure-meta">{{ d.datetime }} · {{ d.author }}</span>
+      </div>
+      {% endfor %}
     {% else %}<span class="na">—</span>{% endif %}
   </td>
   <td></td>
@@ -432,7 +436,7 @@ permalink: /mystocks/
 </div>
 <p class="table-note">
     * 업종: FnGuide FICS 소분류 / PER: FnGuide FY1 컨센서스, 괄호는 업종 PER<br>
-    * 목표가: FnGuide 컨센서스 단순 평균 / 매수 주체: 연속 순매수(빨강)·순매도(파랑) 일수
+    * 목표가: FnGuide 컨센서스 단순 평균 / 매수 주체: 연속 순매수·매도 누적금액(빨강=매수, 파랑=매도), 괄호는 연속일수
   </p>
   </div><!-- #panel-kr-port -->
 
@@ -446,11 +450,11 @@ permalink: /mystocks/
   <thead><tr>
     <th class="left" data-col="fics">업종 <span class="sort-icon">⇅</span></th>
     <th data-col="name">종목 <span class="sort-icon">⇅</span></th>
-    <th data-col="cap">시총 <span class="sort-icon">⇅</span></th>
-    <th data-col="price">현재가 <span class="sort-icon">⇅</span></th>
-    <th data-col="change">전일비 / 등락률 <span class="sort-icon">⇅</span></th>
+    <th data-col="cap">시총(억) <span class="sort-icon">⇅</span></th>
+    <th data-col="price">현재가(원) <span class="sort-icon">⇅</span></th>
+    <th data-col="change">전일비 / 등락률(%) <span class="sort-icon">⇅</span></th>
     <th data-col="per">PER (업종 PER) <span class="sort-icon">⇅</span></th>
-    <th data-col="target">목표가 / 대비 <span class="sort-icon">⇅</span></th>
+    <th data-col="target">목표가(원) / 대비 <span class="sort-icon">⇅</span></th>
     <th class="left">매수 주체</th>
     <th class="left">최근 공시</th>
     <th></th>
@@ -472,8 +476,8 @@ permalink: /mystocks/
     <td data-sort="{{ item.change_pct }}" class="{{ cls }}">{{ arrow }} {{ item.change | remove: "-" }} <span class="sub">({{ item.change_pct }}%)</span></td>
     <td data-sort="{{ item.per | default: 0 }}">{% if item.per %}{{ item.per }}{% if item.indu_per %}<span class="sub">({{ item.indu_per }})</span>{% endif %}{% else %}<span class="na">—</span>{% endif %}</td>
     <td data-sort="{{ item.upside_pct | default: -999 }}">{% if item.analyst_target %}{{ item.analyst_target.avg_formatted }}<span class="sub">({{ item.analyst_target.count }}건)</span>{% if item.upside_pct %}<br><span class="{{ upside_cls }}">{{ upside_sign }}{{ item.upside_pct }}%</span>{% endif %}{% else %}<span class="na">—</span>{% endif %}</td>
-    <td class="investor-cell">{% if item.investor_streaks %}{% assign is = item.investor_streaks %}<div class="investor-row">{% assign indi_v = is.indi | default: 0 %}<div class="investor-item"><span class="investor-label">개인</span>{% if indi_v > 0 %}<span class="investor-buy">{{ indi_v }}</span>{% elsif indi_v < 0 %}<span class="investor-sell">{{ indi_v | abs }}</span>{% else %}<span class="investor-zero">—</span>{% endif %}</div>{% assign foreign_v = is.foreign | default: 0 %}<div class="investor-item"><span class="investor-label">외인</span>{% if foreign_v > 0 %}<span class="investor-buy">{{ foreign_v }}</span>{% elsif foreign_v < 0 %}<span class="investor-sell">{{ foreign_v | abs }}</span>{% else %}<span class="investor-zero">—</span>{% endif %}</div>{% assign gigan_v = is.gigan | default: 0 %}<div class="investor-item"><span class="investor-label">기관</span>{% if gigan_v > 0 %}<span class="investor-buy">{{ gigan_v }}</span>{% elsif gigan_v < 0 %}<span class="investor-sell">{{ gigan_v | abs }}</span>{% else %}<span class="investor-zero">—</span>{% endif %}</div></div>{% if is.as_of %}<div class="investor-as-of">{{ is.as_of }} 기준</div>{% endif %}{% else %}<span class="na">—</span>{% endif %}</td>
-    <td class="disclosure-cell">{% if item.disclosure %}<span class="disclosure-title"><a href="{{ item.disclosure.url }}" target="_blank">{{ item.disclosure.title | truncate: 38 }}</a></span><span class="disclosure-meta">{{ item.disclosure.datetime }} · {{ item.disclosure.author }}</span>{% else %}<span class="na">—</span>{% endif %}</td>
+    <td class="investor-cell">{% if item.investor_streaks %}{% assign is = item.investor_streaks %}<div class="investor-row">{% assign v = is.indi | default: 0 %}<div class="investor-item"><span class="investor-label">개인</span>{% if v > 0 %}<span class="investor-buy">{% if is.indi_amount %}{{ is.indi_amount }}({{ v }}){% else %}{{ v }}{% endif %}</span>{% elsif v < 0 %}<span class="investor-sell">{% if is.indi_amount %}{{ is.indi_amount }}({{ v | abs }}){% else %}{{ v | abs }}{% endif %}</span>{% else %}<span class="investor-zero">—</span>{% endif %}</div>{% assign v = is.foreign | default: 0 %}<div class="investor-item"><span class="investor-label">외인</span>{% if v > 0 %}<span class="investor-buy">{% if is.foreign_amount %}{{ is.foreign_amount }}({{ v }}){% else %}{{ v }}{% endif %}</span>{% elsif v < 0 %}<span class="investor-sell">{% if is.foreign_amount %}{{ is.foreign_amount }}({{ v | abs }}){% else %}{{ v | abs }}{% endif %}</span>{% else %}<span class="investor-zero">—</span>{% endif %}</div>{% assign v = is.gigan | default: 0 %}<div class="investor-item"><span class="investor-label">기관</span>{% if v > 0 %}<span class="investor-buy">{% if is.gigan_amount %}{{ is.gigan_amount }}({{ v }}){% else %}{{ v }}{% endif %}</span>{% elsif v < 0 %}<span class="investor-sell">{% if is.gigan_amount %}{{ is.gigan_amount }}({{ v | abs }}){% else %}{{ v | abs }}{% endif %}</span>{% else %}<span class="investor-zero">—</span>{% endif %}</div></div>{% else %}<span class="na">—</span>{% endif %}</td>
+    <td class="disclosure-cell">{% if item.disclosure %}{% for d in item.disclosure %}<div class="disclosure-item"><span class="disclosure-title"><a href="{{ d.url }}" target="_blank">{{ d.title | truncate: 30 }}</a></span><span class="disclosure-meta">{{ d.datetime }} · {{ d.author }}</span></div>{% endfor %}{% else %}<span class="na">—</span>{% endif %}</td>
     <td></td>
   </tr>
   {% endfor %}
@@ -499,8 +503,8 @@ permalink: /mystocks/
   <table class="stock-table" id="etf-port-table">
   <thead><tr>
     <th data-col="name">종목 <span class="sort-icon">⇅</span></th>
-    <th data-col="price">현재가 <span class="sort-icon">⇅</span></th>
-    <th data-col="change">전일비 / 등락률 <span class="sort-icon">⇅</span></th>
+    <th data-col="price">현재가(원) <span class="sort-icon">⇅</span></th>
+    <th data-col="change">전일비 / 등락률(%) <span class="sort-icon">⇅</span></th>
     <th class="left">구성 종목 TOP5</th>
     <th></th>
   </tr></thead>
@@ -528,8 +532,8 @@ permalink: /mystocks/
   <table class="stock-table" id="etf-watch-table">
   <thead><tr>
     <th data-col="name">종목 <span class="sort-icon">⇅</span></th>
-    <th data-col="price">현재가 <span class="sort-icon">⇅</span></th>
-    <th data-col="change">전일비 / 등락률 <span class="sort-icon">⇅</span></th>
+    <th data-col="price">현재가(원) <span class="sort-icon">⇅</span></th>
+    <th data-col="change">전일비 / 등락률(%) <span class="sort-icon">⇅</span></th>
     <th class="left">구성 종목 TOP5</th>
     <th></th>
   </tr></thead>
@@ -555,11 +559,11 @@ permalink: /mystocks/
   <thead><tr>
     <th class="left" data-col="fics">업종 <span class="sort-icon">⇅</span></th>
     <th data-col="name">종목 <span class="sort-icon">⇅</span></th>
-    <th data-col="cap">시총 <span class="sort-icon">⇅</span></th>
-    <th data-col="price">현재가 <span class="sort-icon">⇅</span></th>
-    <th data-col="change">전일비 / 등락률 <span class="sort-icon">⇅</span></th>
+    <th data-col="cap">시총(억) <span class="sort-icon">⇅</span></th>
+    <th data-col="price">현재가(원) <span class="sort-icon">⇅</span></th>
+    <th data-col="change">전일비 / 등락률(%) <span class="sort-icon">⇅</span></th>
     <th data-col="per">PER <span class="sort-icon">⇅</span></th>
-    <th data-col="target">목표가 / 대비 <span class="sort-icon">⇅</span></th>
+    <th data-col="target">목표가(원) / 대비 <span class="sort-icon">⇅</span></th>
     <th></th>
   </tr></thead>
   <tbody>
@@ -598,11 +602,11 @@ permalink: /mystocks/
   <thead><tr>
     <th class="left" data-col="fics">업종 <span class="sort-icon">⇅</span></th>
     <th data-col="name">종목 <span class="sort-icon">⇅</span></th>
-    <th data-col="cap">시총 <span class="sort-icon">⇅</span></th>
-    <th data-col="price">현재가 <span class="sort-icon">⇅</span></th>
-    <th data-col="change">전일비 / 등락률 <span class="sort-icon">⇅</span></th>
+    <th data-col="cap">시총(억) <span class="sort-icon">⇅</span></th>
+    <th data-col="price">현재가(원) <span class="sort-icon">⇅</span></th>
+    <th data-col="change">전일비 / 등락률(%) <span class="sort-icon">⇅</span></th>
     <th data-col="per">PER <span class="sort-icon">⇅</span></th>
-    <th data-col="target">목표가 / 대비 <span class="sort-icon">⇅</span></th>
+    <th data-col="target">목표가(원) / 대비 <span class="sort-icon">⇅</span></th>
     <th></th>
   </tr></thead>
   <tbody>
@@ -966,24 +970,31 @@ function setupWatchSearch(opts) {
       var iH = '<td class="investor-cell"><div class="investor-row">';
       [['indi','개인'],['foreign','외인'],['gigan','기관']].forEach(function(p) {
         var v = is[p[0]] || 0;
+        var amt = is[p[0] + '_amount'];
+        var disp = amt ? escHtml(amt) + '(' + Math.abs(v) + ')' : (v !== 0 ? String(Math.abs(v)) : '');
         iH += '<div class="investor-item"><span class="investor-label">' + p[1] + '</span>';
-        iH += v > 0 ? '<span class="investor-buy">' + v + '</span>'
-            : v < 0 ? '<span class="investor-sell">' + Math.abs(v) + '</span>'
+        iH += v > 0 ? '<span class="investor-buy">' + disp + '</span>'
+            : v < 0 ? '<span class="investor-sell">' + disp + '</span>'
             : '<span class="investor-zero">—</span>';
         iH += '</div>';
       });
-      iH += '</div>' + (is.as_of ? '<div class="investor-as-of">' + escHtml(is.as_of) + ' 기준</div>' : '') + '</td>';
+      iH += '</div></td>';
       investorCell = iH;
     } else { investorCell = '<td class="investor-cell"><span class="na">—</span></td>'; }
 
     var disclosureCell;
     if (extra.disclosure) {
-      var dc = extra.disclosure, t = (dc.title || '');
-      if (t.length > 38) t = t.slice(0, 38) + '…';
-      disclosureCell = '<td class="disclosure-cell">'
-        + '<span class="disclosure-title"><a href="' + escHtml(dc.url || '#') + '" target="_blank">' + escHtml(t) + '</a></span>'
-        + '<span class="disclosure-meta">' + escHtml(dc.datetime || '') + ' · ' + escHtml(dc.author || '') + '</span>'
-        + '</td>';
+      var discArr = Array.isArray(extra.disclosure) ? extra.disclosure : [extra.disclosure];
+      disclosureCell = '<td class="disclosure-cell">';
+      discArr.forEach(function(dc) {
+        var t = (dc.title || '');
+        if (t.length > 30) t = t.slice(0, 30) + '…';
+        disclosureCell += '<div class="disclosure-item">'
+          + '<span class="disclosure-title"><a href="' + escHtml(dc.url || '#') + '" target="_blank">' + escHtml(t) + '</a></span>'
+          + '<span class="disclosure-meta">' + escHtml(dc.datetime || '') + ' · ' + escHtml(dc.author || '') + '</span>'
+          + '</div>';
+      });
+      disclosureCell += '</td>';
     } else { disclosureCell = '<td class="disclosure-cell"><span class="na">—</span></td>'; }
 
     var holdingsCell;
