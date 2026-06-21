@@ -856,55 +856,56 @@ function setupWatchSearch(opts) {
     fetchAndRender(code, name);
   }
 
-  function fmtUsdCap(mc) {
-    if (!mc || mc <= 0) return '';
-    if (mc >= 1e12) return '$' + (mc / 1e12).toFixed(2) + 'T';
-    if (mc >= 1e9)  return '$' + (mc / 1e9).toFixed(1) + 'B';
-    return '$' + (mc / 1e6).toFixed(0) + 'M';
+  function fetchAndRender(code, name) {
+    var type = opts.type;
+    fetch('http://localhost:9001/api/stock/' + encodeURIComponent(code) + '?type=' + type)
+      .then(function(r) { if (!r.ok) throw new Error('server'); return r.json(); })
+      .then(function(d) {
+        if (d.error) throw new Error(d.error);
+        var extra = {};
+        if (d.fics)                     extra.fics       = d.fics;
+        if (d.market_cap_formatted)     extra.cap        = d.market_cap_formatted;
+        if (d.market_cap_eok)           extra.capNum     = d.market_cap_eok;
+        if (d.market_cap_usd_formatted) extra.capUsd     = d.market_cap_usd_formatted;
+        if (d.per != null)              extra.per        = String(d.per);
+        if (d.indu_per != null)         extra.induPer    = String(d.indu_per);
+        if (d.analyst_target) {
+          extra.targetFmt   = d.analyst_target.avg_formatted;
+          extra.targetCount = d.analyst_target.count;
+          extra.targetUsd   = d.analyst_target.avg_usd;
+        }
+        if (d.upside_pct != null)       extra.upside     = d.upside_pct;
+        if (d.investor_streaks)         extra.investor   = d.investor_streaks;
+        if (d.disclosure)               extra.disclosure = d.disclosure;
+        if (d.holdings)                 extra.holdings   = d.holdings;
+        if (d.price_usd)                extra.priceUsd   = d.price_usd;
+        appendRow(code, d.name || name, d.price || '—', d.change || '—',
+                  d.change_pct != null ? String(d.change_pct) : '0', d.direction || 'EVEN', extra);
+      })
+      .catch(function() { fallbackFetch(code, name); });
   }
 
-  function fetchAndRender(code, name) {
+  function fallbackFetch(code, name) {
     if (opts.type === 'us') {
       fetch('https://query1.finance.yahoo.com/v8/finance/chart/' + code + '?interval=1d&range=1d')
         .then(function(r) { return r.json(); })
         .then(function(d) {
           var meta = d.chart && d.chart.result && d.chart.result[0] && d.chart.result[0].meta;
           if (!meta) throw new Error('no data');
-          var price  = meta.regularMarketPrice || 0;
-          var prev   = meta.previousClose || price;
-          var change = price - prev;
-          var pct    = prev > 0 ? ((change / prev) * 100).toFixed(2) : 0;
-          var capStr = fmtUsdCap(meta.marketCap);
-          var perStr = meta.trailingPE ? String(meta.trailingPE.toFixed(1)) : '';
-          appendRow(code, name, price.toFixed(2), Math.abs(change).toFixed(2), pct, change >= 0 ? 'RISING' : 'FALLING', {cap: capStr, capNum: meta.marketCap || 0, per: perStr});
+          var price = meta.regularMarketPrice || 0, prev = meta.previousClose || price;
+          var chg = price - prev, pct = prev > 0 ? ((chg / prev) * 100).toFixed(2) : 0;
+          var cap = meta.marketCap;
+          var capStr = cap > 0 ? (cap >= 1e12 ? '$' + (cap/1e12).toFixed(2) + 'T' : cap >= 1e9 ? '$' + (cap/1e9).toFixed(1) + 'B' : '$' + (cap/1e6).toFixed(0) + 'M') : '';
+          appendRow(code, name, price.toFixed(2), Math.abs(chg).toFixed(2), pct, chg >= 0 ? 'RISING' : 'FALLING', {cap: capStr, capNum: cap || 0});
         })
         .catch(function() { appendRow(code, name, '—', '—', '0', 'EVEN', {}); });
     } else {
-      var basicP = fetch('https://m.stock.naver.com/api/stock/' + code + '/basic').then(function(r) { return r.json(); });
-      var integP = (opts.type !== 'etf')
-        ? fetch('https://m.stock.naver.com/api/stock/' + code + '/integration').then(function(r) { return r.json(); }).catch(function() { return null; })
-        : Promise.resolve(null);
-      Promise.all([basicP, integP])
-        .then(function(res) {
-          var d = res[0]; var integ = res[1];
+      fetch('https://m.stock.naver.com/api/stock/' + code + '/basic')
+        .then(function(r) { return r.json(); })
+        .then(function(d) {
           var dir = d.compareToPreviousPrice ? d.compareToPreviousPrice.name : 'EVEN';
           var rawChg = String(d.compareToPreviousClosePrice || '');
-          var extra = {};
-          if (integ) {
-            // integration endpoint: try stockItemTotalInfos array
-            var infos = integ.stockItemTotalInfos || integ.totalInfos || [];
-            infos.forEach(function(item) {
-              var key = (item.code || item.key || '').toLowerCase();
-              var val = item.value || item.val || '';
-              if (key === 'marketvalue' || key === 'totalmktcap') extra.cap = val;
-              if (key === 'per')  extra.per  = val;
-            });
-            // flat fields fallback
-            if (!extra.cap && integ.marketValue) extra.cap = integ.marketValue;
-            if (!extra.cap && integ.totalMarketCap) extra.cap = integ.totalMarketCap;
-            if (!extra.per && integ.per) extra.per = String(integ.per);
-          }
-          appendRow(code, d.stockName || name, d.closePrice || '—', rawChg.replace(/^-/,'').trim() || '—', d.fluctuationsRatio || '0', dir, extra);
+          appendRow(code, d.stockName || name, d.closePrice || '—', rawChg.replace(/^-/, '').trim() || '—', d.fluctuationsRatio || '0', dir, {});
         })
         .catch(function() { appendRow(code, name, '—', '—', '0', 'EVEN', {}); });
     }
@@ -915,31 +916,92 @@ function setupWatchSearch(opts) {
     if (opts.emptyRowId) { var emptyEl = document.getElementById(opts.emptyRowId); if (emptyEl) emptyEl.remove(); }
     var tbody = document.querySelector('#' + opts.tableId + ' tbody');
     if (!tbody) return;
-    var cls   = dir==='RISING'?'rising':dir==='FALLING'?'falling':'even';
-    var arrow = dir==='RISING'?'▲':dir==='FALLING'?'▼':'—';
-    var pNum  = String(price).replace(/,/g,'');
-    var link  = opts.type==='us' ? 'https://finance.yahoo.com/quote/' : 'https://m.stock.naver.com/domestic/stock/';
-    var trash = '<td><button class="remove-btn" data-code="' + escHtml(code) + '" title="삭제">🗑</button></td>';
-    var na = '<td><span class="na">—</span></td>';
+    var cls   = dir === 'RISING' ? 'rising' : dir === 'FALLING' ? 'falling' : 'even';
+    var arrow = dir === 'RISING' ? '▲' : dir === 'FALLING' ? '▼' : '—';
+    var pNum  = String(price).replace(/,/g, '');
+    var link  = opts.type === 'us' ? 'https://finance.yahoo.com/quote/' : 'https://m.stock.naver.com/domestic/stock/';
+    var na    = '<td><span class="na">—</span></td>';
+
     var nameCell   = '<td data-sort="' + escHtml(name) + '"><a href="' + link + escHtml(code) + '" target="_blank">' + escHtml(name) + '</a></td>';
-    var priceCell  = '<td data-sort="' + escHtml(pNum) + '">' + escHtml(String(price)) + '</td>';
-    var changeCell = '<td data-sort="' + escHtml(String(pct)) + '" class="' + cls + '">' + arrow + ' ' + escHtml(String(change)) + ' <span class="sub">(' + escHtml(String(pct)) + '%)</span></td>';
-    var capCell = extra.cap ? '<td data-sort="' + escHtml(String(extra.capNum || 0)) + '">' + escHtml(extra.cap) + '</td>' : na;
-    var perCell = extra.per ? '<td data-sort="' + escHtml(extra.per) + '">' + escHtml(extra.per) + '</td>' : na;
+    var priceCell  = '<td data-sort="' + escHtml(pNum) + '">' + escHtml(String(price))
+      + (extra.priceUsd ? '<span class="sub-usd">(' + escHtml(extra.priceUsd) + ')</span>' : '') + '</td>';
+    var changeCell = '<td data-sort="' + escHtml(String(pct)) + '" class="' + cls + '">' + arrow + ' '
+      + escHtml(String(change)) + ' <span class="sub">(' + escHtml(String(pct)) + '%)</span></td>';
+
+    var ficsCell = extra.fics
+      ? '<td class="fics-cell" data-sort="' + escHtml(extra.fics) + '"><span class="fics-tag">' + escHtml(extra.fics) + '</span></td>'
+      : '<td class="fics-cell" data-sort=""><span class="na">—</span></td>';
+
+    var capCell = extra.cap
+      ? '<td data-sort="' + escHtml(String(extra.capNum || 0)) + '">' + escHtml(extra.cap)
+        + (extra.capUsd ? '<span class="sub-usd">(' + escHtml(extra.capUsd) + ')</span>' : '') + '</td>'
+      : na;
+
+    var perCell = extra.per
+      ? '<td data-sort="' + escHtml(extra.per) + '">' + escHtml(extra.per)
+        + (extra.induPer ? '<span class="sub">(' + escHtml(extra.induPer) + ')</span>' : '') + '</td>'
+      : na;
+
+    var targetCell;
+    if (extra.targetFmt) {
+      var up = extra.upside, upCls = up > 0 ? 'rising' : up < 0 ? 'falling' : 'even', upSign = up > 0 ? '+' : '';
+      targetCell = '<td data-sort="' + escHtml(String(up != null ? up : -999)) + '">'
+        + escHtml(extra.targetFmt)
+        + (extra.targetUsd ? '<span class="sub-usd">(' + escHtml(extra.targetUsd) + ')</span>' : '')
+        + (extra.targetCount ? ' <span class="sub">· ' + escHtml(String(extra.targetCount)) + '건</span>' : '')
+        + (up != null ? '<br><span class="' + upCls + '">' + upSign + escHtml(String(up)) + '%</span>' : '')
+        + '</td>';
+    } else { targetCell = na; }
+
+    var investorCell;
+    if (extra.investor) {
+      var is = extra.investor;
+      var iH = '<td class="investor-cell"><div class="investor-row">';
+      [['indi','개인'],['foreign','외인'],['gigan','기관']].forEach(function(p) {
+        var v = is[p[0]] || 0;
+        iH += '<div class="investor-item"><span class="investor-label">' + p[1] + '</span>';
+        iH += v > 0 ? '<span class="investor-buy">' + v + '</span>'
+            : v < 0 ? '<span class="investor-sell">' + Math.abs(v) + '</span>'
+            : '<span class="investor-zero">—</span>';
+        iH += '</div>';
+      });
+      iH += '</div>' + (is.as_of ? '<div class="investor-as-of">' + escHtml(is.as_of) + ' 기준</div>' : '') + '</td>';
+      investorCell = iH;
+    } else { investorCell = '<td class="investor-cell"><span class="na">—</span></td>'; }
+
+    var disclosureCell;
+    if (extra.disclosure) {
+      var dc = extra.disclosure, t = (dc.title || '');
+      if (t.length > 38) t = t.slice(0, 38) + '…';
+      disclosureCell = '<td class="disclosure-cell">'
+        + '<span class="disclosure-title"><a href="' + escHtml(dc.url || '#') + '" target="_blank">' + escHtml(t) + '</a></span>'
+        + '<span class="disclosure-meta">' + escHtml(dc.datetime || '') + ' · ' + escHtml(dc.author || '') + '</span>'
+        + '</td>';
+    } else { disclosureCell = '<td class="disclosure-cell"><span class="na">—</span></td>'; }
+
+    var holdingsCell;
+    if (extra.holdings && extra.holdings.length) {
+      var hH = '<ul class="holdings-list">';
+      extra.holdings.forEach(function(h) { hH += '<li>' + escHtml(h.name) + '<span class="holdings-ratio">' + escHtml(h.ratio) + '</span></li>'; });
+      holdingsCell = '<td class="holdings-cell">' + hH + '</ul></td>';
+    } else { holdingsCell = '<td class="holdings-cell"><span class="na">—</span></td>'; }
+
+    var trash = '<td><button class="remove-btn" data-code="' + escHtml(code) + '" title="삭제">🗑</button></td>';
     var inner;
     if (opts.type === 'etf') {
-      inner = nameCell + priceCell + changeCell + '<td class="holdings-cell"><span class="na">—</span></td>' + trash;
+      inner = nameCell + priceCell + changeCell + holdingsCell + trash;
     } else if (opts.type === 'us') {
-      inner = '<td class="fics-cell" data-sort=""><span class="na">—</span></td>' + nameCell + capCell + priceCell + changeCell + perCell + na + trash;
+      inner = ficsCell + nameCell + capCell + priceCell + changeCell + perCell + targetCell + trash;
     } else {
-      inner = '<td class="fics-cell" data-sort=""><span class="na">—</span></td>' + nameCell + capCell + priceCell + changeCell + perCell + na + '<td class="investor-cell"><span class="na">—</span></td>' + '<td class="disclosure-cell"><span class="na">—</span></td>' + trash;
+      inner = ficsCell + nameCell + capCell + priceCell + changeCell + perCell + targetCell + investorCell + disclosureCell + trash;
     }
+
     var tr = document.createElement('tr');
-    tr.setAttribute('data-dynamic','true'); tr.setAttribute('data-code', code);
+    tr.setAttribute('data-dynamic', 'true'); tr.setAttribute('data-code', code);
     tr.innerHTML = inner;
     tr.querySelector('.remove-btn').addEventListener('click', function() {
       var c = this.dataset.code;
-      saveList(loadList().filter(function(s){ return s.code!==c; }));
+      saveList(loadList().filter(function(s) { return s.code !== c; }));
       tr.remove(); restoreEmpty();
     });
     tbody.appendChild(tr);
