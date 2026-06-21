@@ -1,5 +1,5 @@
 ---
-fetched_at: 2026-06-21 10:50 KST
+fetched_at: 2026-06-21 11:09 KST
 stocks:
 - code: '005930'
   name: 삼성전자
@@ -376,8 +376,8 @@ kr_stocks_list:
   name: 삼성에스디에스
 - code: '032830'
   name: 삼성생명
-- code: '207940'
-  name: 삼성바이오로직스
+- code: '009155'
+  name: 삼성전기우
 - code: '005380'
   name: 현대차
 - code: '012330'
@@ -386,18 +386,18 @@ kr_stocks_list:
   name: 현대건설
 - code: '064350'
   name: 현대로템
-- code: '307950'
-  name: 현대오토에버
 - code: '086280'
   name: 현대글로비스
+- code: '004310'
+  name: 현대약품
+- code: '307950'
+  name: 현대오토에버
 - code: '005387'
   name: 현대차2우B
 - code: '005385'
   name: 현대차우
 - code: '004020'
   name: 현대제철
-- code: '069960'
-  name: 현대백화점
 - code: '003550'
   name: LG
 - code: '064400'
@@ -520,10 +520,10 @@ kr_stocks_list:
   name: 두산에너빌리티
 - code: '454910'
   name: 두산로보틱스
-- code: '336260'
-  name: 두산퓨얼셀
 - code: '241560'
   name: 두산밥캣
+- code: '336260'
+  name: 두산퓨얼셀
 - code: '000155'
   name: 두산우
 - code: '000157'
@@ -770,10 +770,10 @@ kr_stocks_list:
   name: 한화솔루션
 - code: '012450'
   name: 한화에어로스페이스
-- code: '272210'
-  name: 한화시스템
 - code: '082740'
   name: 한화엔진
+- code: '272210'
+  name: 한화시스템
 - code: '088350'
   name: 한화생명
 - code: '489790'
@@ -782,10 +782,10 @@ kr_stocks_list:
   name: 한화투자증권
 - code: '451800'
   name: 한화리츠
-- code: '329180'
-  name: HD현대중공업
 - code: '267260'
   name: HD현대일렉트릭
+- code: '329180'
+  name: HD현대중공업
 - code: '009540'
   name: HD한국조선해양
 - code: '267270'
@@ -838,6 +838,8 @@ kr_stocks_list:
   name: 오리온
 - code: '001800'
   name: 오리온홀딩스
+- code: '207940'
+  name: 삼성바이오로직스
 - code: '128940'
   name: 한미약품
 - code: '000100'
@@ -890,10 +892,10 @@ kr_stocks_list:
   name: LS에코에너지
 - code: '000680'
   name: LS네트웍스
-- code: '060370'
-  name: LS마린솔루션
 - code: '417200'
   name: LS머트리얼즈
+- code: '060370'
+  name: LS마린솔루션
 - code: '078020'
   name: LS증권
 - code: '322180'

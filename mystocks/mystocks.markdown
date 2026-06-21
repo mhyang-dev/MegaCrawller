@@ -241,7 +241,7 @@ permalink: /mystocks/
   gap: 12px;
 }
 .search-item:last-child { border-bottom: none; }
-.search-item:hover { background: #f6f6f6; }
+.search-item:hover, .search-item.selected { background: #f0f0f0; }
 .si-name { color: #222; }
 .si-code { color: #bbb; font-size: 0.82em; white-space: nowrap; }
 .search-no-result { padding: 10px 14px; color: #bbb; font-size: 0.84em; }
@@ -344,6 +344,10 @@ permalink: /mystocks/
     <button class="tab-minor" data-panel="panel-kr-watch">관심주</button>
   </div>
   <div class="minor-panel active" id="panel-kr-port">
+  <div id="kr-port-adder" class="stock-adder">
+    <input type="text" id="kr-port-search-input" class="stock-search-input" placeholder="종목명 검색 (예: 삼성)" autocomplete="off" />
+    <div id="kr-port-search-dropdown" class="search-dropdown"></div>
+  </div>
   <div class="table-scroll">
   <table class="stock-table" id="kr-port-table">
   <thead><tr>
@@ -356,6 +360,7 @@ permalink: /mystocks/
     <th data-col="target">목표가 / 대비 <span class="sort-icon">⇅</span></th>
     <th class="left">매수 주체</th>
     <th class="left">최근 공시</th>
+    <th></th>
   </tr></thead>
 <tbody>
 {% for item in individual %}
@@ -366,7 +371,7 @@ permalink: /mystocks/
 {% if upside > 0 %}{% assign upside_cls = "rising" %}{% assign upside_sign = "+" %}
 {% elsif upside < 0 %}{% assign upside_cls = "falling" %}{% assign upside_sign = "" %}
 {% else %}{% assign upside_cls = "even" %}{% assign upside_sign = "" %}{% endif %}
-<tr>
+<tr data-code="{{ item.code }}">
   <td class="fics-cell" data-sort="{{ item.fics | default: '' }}">{% if item.fics %}<span class="fics-tag">{{ item.fics }}</span>{% else %}<span class="na">—</span>{% endif %}</td>
   <td data-sort="{{ item.name }}"><a href="https://m.stock.naver.com/domestic/stock/{{ item.code }}" target="_blank">{{ item.name }}</a></td>
   <td data-sort="{{ item.market_cap_eok | default: 0 }}">{% if item.market_cap_formatted %}{{ item.market_cap_formatted }}{% else %}<span class="na">—</span>{% endif %}</td>
@@ -416,6 +421,7 @@ permalink: /mystocks/
       <span class="disclosure-meta">{{ item.disclosure.datetime }} · {{ item.disclosure.author }}</span>
     {% else %}<span class="na">—</span>{% endif %}
   </td>
+  <td></td>
 </tr>
 {% endfor %}
 </tbody>
@@ -482,6 +488,10 @@ permalink: /mystocks/
     <button class="tab-minor" data-panel="panel-etf-watch">관심주</button>
   </div>
   <div class="minor-panel active" id="panel-etf-port">
+  <div id="etf-port-adder" class="stock-adder">
+    <input type="text" id="etf-port-search-input" class="stock-search-input" placeholder="ETF명 검색 (예: KODEX)" autocomplete="off" />
+    <div id="etf-port-search-dropdown" class="search-dropdown"></div>
+  </div>
   <div class="table-scroll">
   <table class="stock-table" id="etf-port-table">
   <thead><tr>
@@ -489,17 +499,19 @@ permalink: /mystocks/
     <th data-col="price">현재가 <span class="sort-icon">⇅</span></th>
     <th data-col="change">전일비 / 등락률 <span class="sort-icon">⇅</span></th>
     <th class="left">구성 종목 TOP5</th>
+    <th></th>
   </tr></thead>
   <tbody>
   {% for item in etfs %}
   {% assign cls = "even" %}{% assign arrow = "—" %}
   {% if item.direction == "RISING" %}{% assign cls = "rising" %}{% assign arrow = "▲" %}
   {% elsif item.direction == "FALLING" %}{% assign cls = "falling" %}{% assign arrow = "▼" %}{% endif %}
-  <tr>
+  <tr data-code="{{ item.code }}">
     <td data-sort="{{ item.name }}"><a href="https://m.stock.naver.com/domestic/stock/{{ item.code }}" target="_blank">{{ item.name }}</a></td>
     <td data-sort="{{ item.price | remove: ',' }}">{{ item.price }}</td>
     <td data-sort="{{ item.change_pct }}" class="{{ cls }}">{{ arrow }} {{ item.change | remove: "-" }} <span class="sub">({{ item.change_pct }}%)</span></td>
     <td class="holdings-cell">{% if item.holdings %}<ul class="holdings-list">{% for h in item.holdings %}<li>{{ h.name }}<span class="holdings-ratio">{{ h.ratio }}</span></li>{% endfor %}</ul>{% else %}<span class="na">—</span>{% endif %}</td>
+    <td></td>
   </tr>
   {% endfor %}
   </tbody></table></div>
@@ -531,7 +543,10 @@ permalink: /mystocks/
     <button class="tab-minor" data-panel="panel-us-watch">관심주</button>
   </div>
   <div class="minor-panel active" id="panel-us-port">
-  {% if us_port.size > 0 %}
+  <div id="us-port-adder" class="stock-adder">
+    <input type="text" id="us-port-search-input" class="stock-search-input" placeholder="종목 검색 (예: Apple, AAPL)" autocomplete="off" />
+    <div id="us-port-search-dropdown" class="search-dropdown"></div>
+  </div>
   <div class="table-scroll">
   <table class="stock-table" id="us-port-table">
   <thead><tr>
@@ -542,6 +557,7 @@ permalink: /mystocks/
     <th data-col="change">전일비 / 등락률 <span class="sort-icon">⇅</span></th>
     <th data-col="per">PER <span class="sort-icon">⇅</span></th>
     <th data-col="target">목표가 / 대비 <span class="sort-icon">⇅</span></th>
+    <th></th>
   </tr></thead>
   <tbody>
   {% for item in us_port %}
@@ -552,7 +568,7 @@ permalink: /mystocks/
   {% if upside > 0 %}{% assign upside_cls = "rising" %}{% assign upside_sign = "+" %}
   {% elsif upside < 0 %}{% assign upside_cls = "falling" %}{% assign upside_sign = "" %}
   {% else %}{% assign upside_cls = "even" %}{% assign upside_sign = "" %}{% endif %}
-  <tr>
+  <tr data-code="{{ item.code }}">
     <td class="fics-cell" data-sort="{{ item.fics | default: '' }}">{% if item.fics %}<span class="fics-tag">{{ item.fics }}</span>{% else %}<span class="na">—</span>{% endif %}</td>
     <td data-sort="{{ item.name }}"><a href="https://finance.yahoo.com/quote/{{ item.code }}" target="_blank">{{ item.name }}</a></td>
     <td data-sort="{{ item.market_cap_eok | default: 0 }}">{% if item.market_cap_formatted %}{{ item.market_cap_formatted }}<span class="sub-usd">({{ item.market_cap_usd_formatted }})</span>{% else %}<span class="na">—</span>{% endif %}</td>
@@ -560,12 +576,13 @@ permalink: /mystocks/
     <td data-sort="{{ item.change_pct }}" class="{{ cls }}">{{ arrow }} {{ item.change }} <span class="sub">({{ item.change_pct }}%)</span></td>
     <td data-sort="{{ item.per | default: 0 }}">{% if item.per %}{{ item.per }}{% else %}<span class="na">—</span>{% endif %}</td>
     <td data-sort="{{ item.upside_pct | default: -999 }}">{% if item.analyst_target %}{{ item.analyst_target.avg_formatted }}<span class="sub-usd">({{ item.analyst_target.avg_usd }})</span> <span class="sub">· {{ item.analyst_target.count }}건</span>{% if item.upside_pct %}<br><span class="{{ upside_cls }}">{{ upside_sign }}{{ item.upside_pct }}%</span>{% endif %}{% else %}<span class="na">—</span>{% endif %}</td>
+    <td></td>
   </tr>
   {% endfor %}
-  </tbody></table></div>
-  {% else %}
-  <p style="padding: 1.5em 0; color: #bbb;">보유 해외 주식이 없습니다.</p>
+  {% if us_port.size == 0 %}
+  <tr id="us-port-empty"><td colspan="8" style="text-align:center;color:#ccc;padding:2em;">검색해서 해외 포트폴리오를 추가해보세요.</td></tr>
   {% endif %}
+  </tbody></table></div>
   </div><!-- #panel-us-port -->
 
   <div class="minor-panel" id="panel-us-watch">
@@ -753,23 +770,39 @@ function setupWatchSearch(opts) {
   var dropdown = document.getElementById(opts.dropdownId);
   if (!input || !dropdown) return;
 
-  var stocks = opts.type === 'us' ? US_STOCKS_LIST : KR_STOCKS;
-  var timer  = null;
-  var sk     = opts.storageKey;
+  var stocks   = opts.type === 'us' ? US_STOCKS_LIST : KR_STOCKS;
+  var timer    = null;
+  var sk       = opts.storageKey;
+  var selIdx   = -1;
 
   function loadList() { try { return JSON.parse(localStorage.getItem(sk) || '[]'); } catch(e) { return []; } }
   function saveList(list) { try { localStorage.setItem(sk, JSON.stringify(list)); } catch(e) {} }
   function hasCode(code) { return loadList().some(function(s) { return s.code === code; }); }
-  function hideDD() { dropdown.style.display = 'none'; dropdown.innerHTML = ''; }
+  function getItems() { return Array.from(dropdown.querySelectorAll('.search-item')); }
+  function hideDD() { dropdown.style.display = 'none'; dropdown.innerHTML = ''; selIdx = -1; }
+  function setSelected(idx) {
+    var items = getItems();
+    items.forEach(function(el) { el.classList.remove('selected'); });
+    selIdx = (items.length === 0) ? -1 : Math.max(0, Math.min(idx, items.length - 1));
+    if (selIdx >= 0) items[selIdx].classList.add('selected');
+  }
 
   input.addEventListener('input', function() {
     clearTimeout(timer);
+    selIdx = -1;
     var q = this.value.trim();
     if (!q) { hideDD(); return; }
     timer = setTimeout(function() { doSearch(q); }, 150);
   });
   input.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') { hideDD(); input.value = ''; }
+    var items = getItems();
+    if (e.key === 'Escape') { hideDD(); input.value = ''; return; }
+    if (e.key === 'ArrowDown') { e.preventDefault(); setSelected(selIdx + 1); return; }
+    if (e.key === 'ArrowUp')   { e.preventDefault(); setSelected(selIdx <= 0 ? 0 : selIdx - 1); return; }
+    if (e.key === 'Enter') {
+      var target = selIdx >= 0 ? items[selIdx] : items[0];
+      if (target) { addStock(target.dataset.code, target.dataset.name); hideDD(); input.value = ''; }
+    }
   });
   document.addEventListener('click', function(e) {
     var adder = input.closest('.stock-adder');
@@ -799,8 +832,25 @@ function setupWatchSearch(opts) {
   }
 
   function addStock(code, name) {
+    // If hidden static row exists, un-hide it instead of adding a new dynamic row
+    if (opts.hiddenKey) {
+      var tbody = document.querySelector('#' + opts.tableId + ' tbody');
+      if (tbody) {
+        var staticRows = tbody.querySelectorAll('tr[data-code]:not([data-dynamic])');
+        for (var i = 0; i < staticRows.length; i++) {
+          if (staticRows[i].dataset.code === code && staticRows[i].style.display === 'none') {
+            staticRows[i].style.display = '';
+            var h = JSON.parse(localStorage.getItem(opts.hiddenKey) || '[]');
+            h = h.filter(function(c) { return c !== code; });
+            localStorage.setItem(opts.hiddenKey, JSON.stringify(h));
+            initStaticTrashRow(staticRows[i], opts.hiddenKey);
+            return;
+          }
+        }
+      }
+    }
     var existing = document.querySelector('#' + opts.tableId + ' tbody tr[data-code="' + code + '"]');
-    if (existing) { alert(name + ' 은(는) 이미 목록에 있습니다.'); return; }
+    if (existing && existing.style.display !== 'none') { alert(name + ' 은(는) 이미 목록에 있습니다.'); return; }
     if (hasCode(code)) { alert(name + ' 은(는) 이미 추가되어 있습니다.'); return; }
     var list = loadList(); list.push({code:code, name:name}); saveList(list);
     fetchAndRender(code, name);
@@ -833,8 +883,7 @@ function setupWatchSearch(opts) {
   }
 
   function appendRow(code, name, price, change, pct, dir) {
-    var emptyEl = document.getElementById(opts.emptyRowId);
-    if (emptyEl) emptyEl.remove();
+    if (opts.emptyRowId) { var emptyEl = document.getElementById(opts.emptyRowId); if (emptyEl) emptyEl.remove(); }
     var tbody = document.querySelector('#' + opts.tableId + ' tbody');
     if (!tbody) return;
     var cls   = dir==='RISING'?'rising':dir==='FALLING'?'falling':'even';
@@ -866,8 +915,10 @@ function setupWatchSearch(opts) {
   }
 
   function restoreEmpty() {
+    if (!opts.emptyRowId) return;
     var tbody = document.querySelector('#' + opts.tableId + ' tbody');
-    if (!tbody || tbody.querySelectorAll('tr').length > 0) return;
+    var visible = Array.from(tbody.querySelectorAll('tr')).filter(function(r) { return r.style.display !== 'none'; });
+    if (!tbody || visible.length > 0) return;
     var tr = document.createElement('tr'); tr.id = opts.emptyRowId;
     tr.innerHTML = '<td colspan="' + opts.cols + '" style="text-align:center;color:#ccc;padding:2em;">검색해서 관심 종목을 추가해보세요.</td>';
     tbody.appendChild(tr);
@@ -876,7 +927,43 @@ function setupWatchSearch(opts) {
   loadList().forEach(function(s) { fetchAndRender(s.code, s.name); });
 }
 
+// ── 정적 행 삭제(숨기기) ─────────────────────────────
+function initStaticTrashRow(tr, hiddenKey) {
+  var lastTd = tr.cells[tr.cells.length - 1];
+  if (!lastTd || lastTd.querySelector('.remove-btn')) return;
+  var btn = document.createElement('button');
+  btn.className = 'remove-btn'; btn.title = '숨기기'; btn.textContent = '🗑';
+  btn.addEventListener('click', function() {
+    var code = tr.dataset.code;
+    var h = JSON.parse(localStorage.getItem(hiddenKey) || '[]');
+    if (h.indexOf(code) === -1) h.push(code);
+    localStorage.setItem(hiddenKey, JSON.stringify(h));
+    tr.style.display = 'none';
+  });
+  lastTd.appendChild(btn);
+}
+
+function initStaticTrash(tableId, hiddenKey) {
+  var tbody = document.querySelector('#' + tableId + ' tbody');
+  if (!tbody) return;
+  var hidden = JSON.parse(localStorage.getItem(hiddenKey) || '[]');
+  tbody.querySelectorAll('tr[data-code]:not([data-dynamic])').forEach(function(tr) {
+    if (hidden.indexOf(tr.dataset.code) !== -1) { tr.style.display = 'none'; return; }
+    initStaticTrashRow(tr, hiddenKey);
+  });
+}
+
 setupWatchSearch({type:'kr',  inputId:'kr-search-input',  dropdownId:'kr-search-dropdown',  tableId:'kr-watch-table',  emptyRowId:'kr-watch-empty',  storageKey:'kr_watchlist_v2',  cols:10});
 setupWatchSearch({type:'etf', inputId:'etf-search-input', dropdownId:'etf-search-dropdown', tableId:'etf-watch-table', emptyRowId:'etf-watch-empty', storageKey:'etf_watchlist_v1', cols:5});
 setupWatchSearch({type:'us',  inputId:'us-search-input',  dropdownId:'us-search-dropdown',  tableId:'us-watch-table',  emptyRowId:'us-watch-empty',  storageKey:'us_watchlist_v1',  cols:8});
+
+setupWatchSearch({type:'kr',  inputId:'kr-port-search-input',  dropdownId:'kr-port-search-dropdown',  tableId:'kr-port-table',  storageKey:'kr_port_dynamic_v1',  hiddenKey:'kr_port_hidden_v1',  cols:10});
+setupWatchSearch({type:'etf', inputId:'etf-port-search-input', dropdownId:'etf-port-search-dropdown', tableId:'etf-port-table', storageKey:'etf_port_dynamic_v1', hiddenKey:'etf_port_hidden_v1', cols:5});
+setupWatchSearch({type:'us',  inputId:'us-port-search-input',  dropdownId:'us-port-search-dropdown',  tableId:'us-port-table',  emptyRowId:'us-port-empty',       storageKey:'us_port_dynamic_v1',  hiddenKey:'us_port_hidden_v1',  cols:8});
+
+initStaticTrash('kr-port-table',  'kr_port_hidden_v1');
+initStaticTrash('etf-port-table', 'etf_port_hidden_v1');
+initStaticTrash('us-port-table',  'us_port_hidden_v1');
+initStaticTrash('kr-watch-table', 'kr_watch_hidden_v1');
+initStaticTrash('us-watch-table', 'us_watch_hidden_v1');
 </script>
