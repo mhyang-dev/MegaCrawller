@@ -1,5 +1,5 @@
 ---
-fetched_at: 2026-06-21 00:55 KST
+fetched_at: 2026-06-21 10:22 KST
 stocks:
 - code: '005930'
   name: 삼성전자
@@ -60,126 +60,6 @@ stocks:
     foreign: -1
     indi: 1
     as_of: '2026-06-19'
-- code: '009150'
-  name: 삼성전기
-  price: '2,270,000'
-  change: '70,000'
-  change_pct: 3.18
-  direction: RISING
-  market: KOSPI
-  category: stock
-  per: 137.2
-  analyst_target:
-    avg: 1888600
-    avg_formatted: '1,888,600'
-    count: 20
-  market_cap_eok: 1695547
-  market_cap_formatted: 169.6조
-  upside_pct: -16.8
-  disclosure:
-    title: 삼성전기(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승)
-    datetime: 2026-06-19 10:22
-    author: KOSCOM
-    url: https://finance.naver.com/item/news_notice_read.naver?no=36940359&code=009150&page_notice=
-  opinion: PER 137.2배로 고평가 구간 — 이익 성장 기대감이 선반영된 상황. 당일 3.18% 급등하며 강한 매수세 유입 중. 현재가가
-    목표가를 16.8% 상회 — 단기 과열 가능성.
-  fics: 전자 장비 및 기기
-  indu_per: 51.91
-  investor_streaks:
-    gigan: 2
-    foreign: 6
-    indi: -2
-    as_of: '2026-06-19'
-- code: '005380'
-  name: 현대차
-  price: '613,000'
-  change: '12,000'
-  change_pct: 2.0
-  direction: RISING
-  market: KOSPI
-  category: stock
-  per: 15.5
-  analyst_target:
-    avg: 819615
-    avg_formatted: '819,615'
-    count: 26
-  market_cap_eok: 1255165
-  market_cap_formatted: 125.5조
-  upside_pct: 33.7
-  disclosure:
-    title: 현대자동차(주) 기업설명회(IR) 개최(안내공시)
-    datetime: 2026-06-18 06:51
-    author: KOSCOM
-    url: https://finance.naver.com/item/news_notice_read.naver?no=35415758&code=005380&page_notice=
-  opinion: PER 15.5배로 다소 고평가된 상태. 소폭 상승하며 긍정적 흐름 유지. 애널리스트 목표가까지 33.7% 상승 여력 — 중장기
-    매력적.
-  fics: 자동차
-  indu_per: 17.59
-  investor_streaks:
-    gigan: -6
-    foreign: 1
-    indi: -1
-    as_of: '2026-06-19'
-- code: '032830'
-  name: 삼성생명
-  price: '497,000'
-  change: '28,000'
-  change_pct: 5.97
-  direction: RISING
-  market: KOSPI
-  category: stock
-  per: 34.9
-  analyst_target:
-    avg: 380321
-    avg_formatted: '380,321'
-    count: 14
-  market_cap_eok: 994000
-  market_cap_formatted: 99.4조
-  upside_pct: -23.5
-  disclosure:
-    title: 삼성생명보험(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승)
-    datetime: 2026-06-19 09:21
-    author: KOSCOM
-    url: https://finance.naver.com/item/news_notice_read.naver?no=36847827&code=032830&page_notice=
-  opinion: PER 34.9배로 고평가 구간 — 이익 성장 기대감이 선반영된 상황. 당일 5.97% 급등하며 강한 매수세 유입 중. 현재가가
-    목표가를 23.5% 상회 — 단기 과열 가능성.
-  fics: 보험
-  indu_per: 17.64
-  investor_streaks:
-    gigan: 2
-    foreign: 1
-    indi: -11
-    as_of: '2026-06-19'
-- code: '012330'
-  name: 현대모비스
-  price: '612,000'
-  change: '9,000'
-  change_pct: 1.49
-  direction: RISING
-  market: KOSPI
-  category: stock
-  per: 13.5
-  analyst_target:
-    avg: 778000
-    avg_formatted: '778,000'
-    count: 25
-  market_cap_eok: 555283
-  market_cap_formatted: 55.5조
-  upside_pct: 27.1
-  disclosure:
-    title: 현대모비스(주) 기업설명회(IR) 개최(안내공시)
-    datetime: 2026-06-19 15:49
-    author: KOSCOM
-    url: https://finance.naver.com/item/news_notice_read.naver?no=37450231&code=012330&page_notice=
-  opinion: PER 13.5배로 적정 밸류에이션 수준. 소폭 상승하며 긍정적 흐름 유지. 애널리스트 목표가까지 27.1% 상승 여력 — 중장기
-    매력적.
-  fics: 자동차부품
-  indu_per: 17.59
-  investor_streaks:
-    gigan: -3
-    foreign: 2
-    indi: -1
-    as_of: '2026-06-19'
 - code: '278470'
   name: 에이피알
   price: '385,500'
@@ -210,6 +90,110 @@ stocks:
     foreign: 1
     indi: -1
     as_of: '2026-06-19'
+- code: '009150'
+  name: 삼성전기
+  price: '2,270,000'
+  change: '70,000'
+  change_pct: 3.18
+  direction: RISING
+  market: KOSPI
+  category: stock
+  per:
+  analyst_target:
+  market_cap_eok:
+  market_cap_formatted:
+  upside_pct:
+  disclosure:
+    title: 삼성전기(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승)
+    datetime: 2026-06-19 10:22
+    author: KOSCOM
+    url: https://finance.naver.com/item/news_notice_read.naver?no=36940359&code=009150&page_notice=
+  opinion: 당일 3.18% 급등하며 강한 매수세 유입 중.
+  fics:
+  indu_per:
+  investor_streaks:
+    gigan: 2
+    foreign: 6
+    indi: -2
+    as_of: '2026-06-19'
+- code: '005380'
+  name: 현대차
+  price: '613,000'
+  change: '12,000'
+  change_pct: 2.0
+  direction: RISING
+  market: KOSPI
+  category: stock
+  per:
+  analyst_target:
+  market_cap_eok:
+  market_cap_formatted:
+  upside_pct:
+  disclosure:
+    title: 현대자동차(주) 기업설명회(IR) 개최(안내공시)
+    datetime: 2026-06-18 06:51
+    author: KOSCOM
+    url: https://finance.naver.com/item/news_notice_read.naver?no=35415758&code=005380&page_notice=
+  opinion: 소폭 상승하며 긍정적 흐름 유지.
+  fics:
+  indu_per:
+  investor_streaks:
+    gigan: -6
+    foreign: 1
+    indi: -1
+    as_of: '2026-06-19'
+- code: '012330'
+  name: 현대모비스
+  price: '612,000'
+  change: '9,000'
+  change_pct: 1.49
+  direction: RISING
+  market: KOSPI
+  category: stock
+  per:
+  analyst_target:
+  market_cap_eok:
+  market_cap_formatted:
+  upside_pct:
+  disclosure:
+    title: 현대모비스(주) 기업설명회(IR) 개최(안내공시)
+    datetime: 2026-06-19 15:49
+    author: KOSCOM
+    url: https://finance.naver.com/item/news_notice_read.naver?no=37450231&code=012330&page_notice=
+  opinion: 소폭 상승하며 긍정적 흐름 유지.
+  fics:
+  indu_per:
+  investor_streaks:
+    gigan: -3
+    foreign: 2
+    indi: -1
+    as_of: '2026-06-19'
+- code: '032830'
+  name: 삼성생명
+  price: '497,000'
+  change: '28,000'
+  change_pct: 5.97
+  direction: RISING
+  market: KOSPI
+  category: stock
+  per:
+  analyst_target:
+  market_cap_eok:
+  market_cap_formatted:
+  upside_pct:
+  disclosure:
+    title: 삼성생명보험(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승)
+    datetime: 2026-06-19 09:21
+    author: KOSCOM
+    url: https://finance.naver.com/item/news_notice_read.naver?no=36847827&code=032830&page_notice=
+  opinion: 당일 5.97% 급등하며 강한 매수세 유입 중.
+  fics:
+  indu_per:
+  investor_streaks:
+    gigan: 2
+    foreign: 1
+    indi: -11
+    as_of: '2026-06-19'
 - code: '069960'
   name: 현대백화점
   price: '194,700'
@@ -218,23 +202,19 @@ stocks:
   direction: FALLING
   market: KOSPI
   category: stock
-  per: 15.9
+  per:
   analyst_target:
-    avg: 188250
-    avg_formatted: '188,250'
-    count: 16
-  market_cap_eok: 41987
-  market_cap_formatted: 4.2조
-  upside_pct: -3.3
+  market_cap_eok:
+  market_cap_formatted:
+  upside_pct:
   disclosure:
     title: "(주)현대백화점 [투자주의]15일간 상승종목의 당일 소수계좌 매수관여 과다종목"
     datetime: 2026-06-19 20:00
     author: KOSCOM
     url: https://finance.naver.com/item/news_notice_read.naver?no=37882286&code=069960&page_notice=
-  opinion: PER 15.9배로 다소 고평가된 상태. 당일 4.56% 급락 — 단기 조정 또는 매도 압력 주의. 현재가가 목표가를 3.3%
-    상회 — 단기 과열 가능성.
-  fics: 백화점
-  indu_per: 26.02
+  opinion: 당일 4.56% 급락 — 단기 조정 또는 매도 압력 주의.
+  fics:
+  indu_per:
   investor_streaks:
     gigan: -5
     foreign: 1
@@ -248,23 +228,19 @@ stocks:
   direction: RISING
   market: KOSPI
   category: stock
-  per: 5.9
+  per:
   analyst_target:
-    avg: 35333
-    avg_formatted: '35,333'
-    count: 6
-  market_cap_eok: 4618
-  market_cap_formatted: 4,618억
-  upside_pct: 64.3
+  market_cap_eok:
+  market_cap_formatted:
+  upside_pct:
   disclosure:
     title: "(주)한섬 상장안내(주식소각 및 감자(주식소각))"
     datetime: 2026-05-13 06:53
     author: KOSCOM
     url: https://finance.naver.com/item/news_notice_read.naver?no=1640905&code=020000&page_notice=
-  opinion: PER 5.9배로 동종업 대비 저평가 구간에 위치. 소폭 상승하며 긍정적 흐름 유지. 애널리스트 목표가까지 64.3% 상승 여력
-    — 중장기 매력적.
-  fics: 섬유 및 의복
-  indu_per: 9.15
+  opinion: 소폭 상승하며 긍정적 흐름 유지.
+  fics:
+  indu_per:
   investor_streaks:
     gigan: 1
     foreign: 6
@@ -308,20 +284,52 @@ stocks:
     ratio: 15.84%
   - name: HD현대마린솔루션
     ratio: 6.64%
+- code: '006800'
+  name: 미래에셋증권
+  price: '48,750'
+  change: "-1,950"
+  change_pct: -3.85
+  direction: FALLING
+  market: KOSPI
+  category: stock_watch
+  per: 11.7
+  analyst_target:
+    avg: 77750
+    avg_formatted: '77,750'
+    count: 17
+  market_cap_eok: 272789
+  market_cap_formatted: 27.3조
+  upside_pct: 59.5
+  disclosure:
+    title: 미래에셋증권(주) [ELW 투자주의]소수지점ㆍ소수계좌 거래집중 종목(미래M417카카오콜)
+    datetime: 2026-06-19 20:00
+    author: KOSCOM
+    url: https://finance.naver.com/item/news_notice_read.naver?no=37882270&code=006800&page_notice=
+  fics: 증권
+  indu_per: 12.36
+  investor_streaks:
+    gigan: 1
+    foreign: 6
+    indi: -1
+    as_of: '2026-06-19'
 - code: MU
   name: Micron Technology, Inc.
-  price: "$1133.99"
-  change: '90.80'
+  price: '1,734,880'
+  price_usd: "$1133.99"
+  change: '138,914'
   change_pct: 0.09
   direction: RISING
   currency: USD
   market: US
-  category: us_stock
+  category: us_watch
   fics: Semiconductors
   per: 9.6
-  market_cap_formatted: "$1.3T"
+  market_cap_eok: 19564831
+  market_cap_formatted: 1,956.5조
+  market_cap_usd_formatted: "$1.3T"
   analyst_target:
-    avg: 945.6
-    avg_formatted: "$945.60"
+    avg: 1446664
+    avg_formatted: '1,446,664'
+    avg_usd: "$945.60"
     count: 40
   upside_pct: -16.6
