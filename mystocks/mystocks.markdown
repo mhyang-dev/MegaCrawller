@@ -930,7 +930,7 @@ function setupWatchSearch(opts) {
           appendRow(code, name, price.toFixed(2), Math.abs(chg).toFixed(2), pct, chg >= 0 ? 'RISING' : 'FALLING', {cap: capStr, capNum: cap || 0});
         })
         .catch(function() { appendRow(code, name, '—', '—', '0', 'EVEN', {}); });
-    } else {
+    } else if (opts.type === 'etf') {
       fetch('https://m.stock.naver.com/api/stock/' + code + '/basic')
         .then(function(r) { return r.json(); })
         .then(function(d) {
@@ -939,6 +939,36 @@ function setupWatchSearch(opts) {
           appendRow(code, d.stockName || name, d.closePrice || '—', rawChg.replace(/^-/, '').trim() || '—', d.fluctuationsRatio || '0', dir, {});
         })
         .catch(function() { appendRow(code, name, '—', '—', '0', 'EVEN', {}); });
+    } else {
+      // KR 주식: 기본가격 + 공시 병렬 로드 (서버 없이 Naver API 직접 호출)
+      var DISC_JUNK = /가격제한폭|기준가격|단기과열|투자주의|투자경고|투자위험|거래정지|매매정지|이상급등/;
+      Promise.all([
+        fetch('https://m.stock.naver.com/api/stock/' + code + '/basic').then(function(r) { return r.json(); }),
+        fetch('https://m.stock.naver.com/api/stock/' + code + '/disclosure?pageSize=20').then(function(r) { return r.json(); }).catch(function() { return null; })
+      ]).then(function(res) {
+        var d = res[0], discData = res[1];
+        var dir = d.compareToPreviousPrice ? d.compareToPreviousPrice.name : 'EVEN';
+        var rawChg = String(d.compareToPreviousClosePrice || '');
+        var extra = {};
+        // 시총 (API 응답에 있으면 사용)
+        var mv = d.marketValue || d.marketCap;
+        if (mv) {
+          var eok = Math.round(mv / 100000000);
+          extra.capNum = eok;
+          extra.cap = eok >= 10000 ? (eok / 10000).toFixed(1) + '조' : eok.toLocaleString() + '억';
+        }
+        // 공시
+        if (discData && Array.isArray(discData)) {
+          var filtered = discData.filter(function(i) { return !DISC_JUNK.test(i.title || ''); }).slice(0, 3);
+          if (filtered.length) {
+            extra.disclosure = filtered.map(function(i) {
+              return { title: i.title, datetime: (i.datetime || '').slice(0, 10),
+                url: 'https://finance.naver.com/item/news_notice_read.naver?no=' + i.disclosureId + '&code=' + code + '&page_notice=' };
+            });
+          }
+        }
+        appendRow(code, d.stockName || name, d.closePrice || '—', rawChg.replace(/^-/, '').trim() || '—', d.fluctuationsRatio || '0', dir, extra);
+      }).catch(function() { appendRow(code, name, '—', '—', '0', 'EVEN', {}); });
     }
   }
 
