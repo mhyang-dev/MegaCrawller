@@ -676,7 +676,7 @@ permalink: /mystocks/
 
 <script>
 var KR_STOCKS = {{ site.data.mystocks.kr_stocks_list | default: "[]" | jsonify }};
-var WATCHLIST = {{ site.data.watchlist | default: "{}" | jsonify }};
+var WATCHLIST = {{ site.data.watchlist | jsonify }};
 var US_STOCKS_LIST = [
   {code:'AAPL',name:'Apple Inc.'},{code:'MSFT',name:'Microsoft Corporation'},{code:'NVDA',name:'NVIDIA Corporation'},
   {code:'AMZN',name:'Amazon.com Inc.'},{code:'META',name:'Meta Platforms Inc.'},{code:'GOOGL',name:'Alphabet Inc. (Class A)'},
