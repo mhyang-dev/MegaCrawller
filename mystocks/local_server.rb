@@ -199,14 +199,17 @@ rescue StandardError => e
 end
 
 # ── 최근 공시 ─────────────────────────────────────────────────────────────
+DISCLOSURE_JUNK = /가격제한폭|기준가격|단기과열|투자주의|투자경고|투자위험|거래정지|매매정지|이상급등/
+
 def fetch_disclosure(code)
-  data = get_json("https://m.stock.naver.com/api/stock/#{code}/disclosure?pageSize=3")
+  data = get_json("https://m.stock.naver.com/api/stock/#{code}/disclosure?pageSize=20")
   return nil unless data&.any?
-  data.first(3).map do |item|
+  filtered = data.reject { |item| (item['title'] || '').match?(DISCLOSURE_JUNK) }
+  return nil if filtered.empty?
+  filtered.first(3).map do |item|
     {
       'title'    => item['title'],
-      'datetime' => item['datetime']&.slice(0, 16)&.tr('T', ' '),
-      'author'   => item['author'],
+      'datetime' => item['datetime']&.slice(0, 10),
       'url'      => "https://finance.naver.com/item/news_notice_read.naver?no=#{item['disclosureId']}&code=#{code}&page_notice="
     }
   end

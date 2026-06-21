@@ -134,11 +134,11 @@ permalink: /mystocks/
   word-break: break-all;
   overflow-wrap: break-word;
 }
-.disclosure-item { border-bottom: 1px solid #f0f0f0; padding-bottom: 3px; margin-bottom: 3px; }
-.disclosure-item:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
-.disclosure-title { display: block; }
+.disclosure-item { display: flex; align-items: baseline; gap: 6px; margin-bottom: 2px; }
+.disclosure-item:last-child { margin-bottom: 0; }
+.disclosure-title { flex: 1; min-width: 0; }
 .disclosure-title a { word-break: break-all; }
-.disclosure-meta { color: #999; font-size: 0.82em; }
+.disclosure-date { color: #bbb; font-size: 0.78em; white-space: nowrap; flex-shrink: 0; }
 
 /* ── ETF 구성 종목 셀 ────────────────────────────── */
 .holdings-cell { text-align: left !important; }
@@ -422,8 +422,8 @@ permalink: /mystocks/
     {% if item.disclosure %}
       {% for d in item.disclosure %}
       <div class="disclosure-item">
-        <span class="disclosure-title"><a href="{{ d.url }}" target="_blank">{{ d.title | truncate: 30 }}</a></span>
-        <span class="disclosure-meta">{{ d.datetime }} · {{ d.author }}</span>
+        <span class="disclosure-title"><a href="{{ d.url }}" target="_blank">{{ d.title | truncate: 40 }}</a></span>
+        <span class="disclosure-date">{{ d.datetime }}</span>
       </div>
       {% endfor %}
     {% else %}<span class="na">—</span>{% endif %}
@@ -477,7 +477,7 @@ permalink: /mystocks/
     <td data-sort="{{ item.per | default: 0 }}">{% if item.per %}{{ item.per }}{% if item.indu_per %}<span class="sub">({{ item.indu_per }})</span>{% endif %}{% else %}<span class="na">—</span>{% endif %}</td>
     <td data-sort="{{ item.upside_pct | default: -999 }}">{% if item.analyst_target %}{{ item.analyst_target.avg_formatted }}<span class="sub">({{ item.analyst_target.count }}건)</span>{% if item.upside_pct %}<br><span class="{{ upside_cls }}">{{ upside_sign }}{{ item.upside_pct }}%</span>{% endif %}{% else %}<span class="na">—</span>{% endif %}</td>
     <td class="investor-cell">{% if item.investor_streaks %}{% assign is = item.investor_streaks %}<div class="investor-row">{% assign v = is.indi | default: 0 %}<div class="investor-item"><span class="investor-label">개인</span>{% if v > 0 %}<span class="investor-buy">{% if is.indi_amount %}{{ is.indi_amount }}({{ v }}){% else %}{{ v }}{% endif %}</span>{% elsif v < 0 %}<span class="investor-sell">{% if is.indi_amount %}{{ is.indi_amount }}({{ v | abs }}){% else %}{{ v | abs }}{% endif %}</span>{% else %}<span class="investor-zero">—</span>{% endif %}</div>{% assign v = is.foreign | default: 0 %}<div class="investor-item"><span class="investor-label">외인</span>{% if v > 0 %}<span class="investor-buy">{% if is.foreign_amount %}{{ is.foreign_amount }}({{ v }}){% else %}{{ v }}{% endif %}</span>{% elsif v < 0 %}<span class="investor-sell">{% if is.foreign_amount %}{{ is.foreign_amount }}({{ v | abs }}){% else %}{{ v | abs }}{% endif %}</span>{% else %}<span class="investor-zero">—</span>{% endif %}</div>{% assign v = is.gigan | default: 0 %}<div class="investor-item"><span class="investor-label">기관</span>{% if v > 0 %}<span class="investor-buy">{% if is.gigan_amount %}{{ is.gigan_amount }}({{ v }}){% else %}{{ v }}{% endif %}</span>{% elsif v < 0 %}<span class="investor-sell">{% if is.gigan_amount %}{{ is.gigan_amount }}({{ v | abs }}){% else %}{{ v | abs }}{% endif %}</span>{% else %}<span class="investor-zero">—</span>{% endif %}</div></div>{% else %}<span class="na">—</span>{% endif %}</td>
-    <td class="disclosure-cell">{% if item.disclosure %}{% for d in item.disclosure %}<div class="disclosure-item"><span class="disclosure-title"><a href="{{ d.url }}" target="_blank">{{ d.title | truncate: 30 }}</a></span><span class="disclosure-meta">{{ d.datetime }} · {{ d.author }}</span></div>{% endfor %}{% else %}<span class="na">—</span>{% endif %}</td>
+    <td class="disclosure-cell">{% if item.disclosure %}{% for d in item.disclosure %}<div class="disclosure-item"><span class="disclosure-title"><a href="{{ d.url }}" target="_blank">{{ d.title | truncate: 40 }}</a></span><span class="disclosure-date">{{ d.datetime }}</span></div>{% endfor %}{% else %}<span class="na">—</span>{% endif %}</td>
     <td></td>
   </tr>
   {% endfor %}
@@ -988,10 +988,10 @@ function setupWatchSearch(opts) {
       disclosureCell = '<td class="disclosure-cell">';
       discArr.forEach(function(dc) {
         var t = (dc.title || '');
-        if (t.length > 30) t = t.slice(0, 30) + '…';
+        if (t.length > 40) t = t.slice(0, 40) + '…';
         disclosureCell += '<div class="disclosure-item">'
           + '<span class="disclosure-title"><a href="' + escHtml(dc.url || '#') + '" target="_blank">' + escHtml(t) + '</a></span>'
-          + '<span class="disclosure-meta">' + escHtml(dc.datetime || '') + ' · ' + escHtml(dc.author || '') + '</span>'
+          + '<span class="disclosure-date">' + escHtml(dc.datetime || '') + '</span>'
           + '</div>';
       });
       disclosureCell += '</td>';

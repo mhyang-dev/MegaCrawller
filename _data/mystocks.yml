@@ -1,5 +1,5 @@
 ---
-fetched_at: 2026-06-21 16:43 KST
+fetched_at: 2026-06-21 17:51 KST
 stocks:
 - code: '005930'
   name: 삼성전자
@@ -18,18 +18,15 @@ stocks:
   market_cap_formatted: 2,069.6조
   upside_pct: 25.9
   disclosure:
-  - title: 삼성전자(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승)
-    datetime: 2026-06-12 06:50
-    author: KOSCOM
-    url: https://finance.naver.com/item/news_notice_read.naver?no=28360316&code=005930&page_notice=
-  - title: 삼성전자(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승)
-    datetime: 2026-06-09 06:50
-    author: KOSCOM
-    url: https://finance.naver.com/item/news_notice_read.naver?no=22652241&code=005930&page_notice=
-  - title: 삼성전자(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(하락)
-    datetime: 2026-06-08 06:50
-    author: KOSCOM
-    url: https://finance.naver.com/item/news_notice_read.naver?no=21311255&code=005930&page_notice=
+  - title: 삼성전자(주) 현금ㆍ현물 배당 결정
+    datetime: '2026-04-30'
+    url: https://finance.naver.com/item/news_notice_read.naver?no=1636233&code=005930&page_notice=
+  - title: 삼성전자(주) (정정)연결재무제표기준영업(잠정)실적(공정공시)
+    datetime: '2026-04-30'
+    url: https://finance.naver.com/item/news_notice_read.naver?no=1636226&code=005930&page_notice=
+  - title: 삼성전자(주) 연결재무제표기준영업(잠정)실적(공정공시)
+    datetime: '2026-04-30'
+    url: https://finance.naver.com/item/news_notice_read.naver?no=1636214&code=005930&page_notice=
   opinion: PER 8.0배로 적정 밸류에이션 수준. 소폭 하락하며 숨 고르기 국면. 애널리스트 목표가까지 25.9% 상승 여력 — 중장기
     매력적.
   fics: 반도체 및 관련장비
@@ -59,17 +56,14 @@ stocks:
   upside_pct: -1.0
   disclosure:
   - title: 에스케이하이닉스(주) 풍문 또는 보도에 대한 해명
-    datetime: 2026-06-16 06:52
-    author: KOSCOM
+    datetime: '2026-06-16'
     url: https://finance.naver.com/item/news_notice_read.naver?no=32054032&code=000660&page_notice=
-  - title: 에스케이하이닉스(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(하락)
-    datetime: 2026-06-10 06:50
-    author: KOSCOM
-    url: https://finance.naver.com/item/news_notice_read.naver?no=24271701&code=000660&page_notice=
-  - title: 에스케이하이닉스(주) 주식선물ㆍ주식옵션 3단계 가격제한폭 확대요건 도달(상승)
-    datetime: 2026-06-09 06:51
-    author: KOSCOM
-    url: https://finance.naver.com/item/news_notice_read.naver?no=22745241&code=000660&page_notice=
+  - title: 에스케이하이닉스(주) 자기주식 처분 결정
+    datetime: '2026-05-13'
+    url: https://finance.naver.com/item/news_notice_read.naver?no=1640749&code=000660&page_notice=
+  - title: 에스케이하이닉스(주) 자기 교환사채 만기전 취득 결정
+    datetime: '2026-04-28'
+    url: https://finance.naver.com/item/news_notice_read.naver?no=1634669&code=000660&page_notice=
   opinion: PER 9.1배로 적정 밸류에이션 수준. 소폭 상승하며 긍정적 흐름 유지. 현재가가 목표가를 1.0% 상회 — 단기 과열 가능성.
   fics: 반도체 및 관련장비
   indu_per: 51.91
@@ -97,18 +91,6 @@ stocks:
   market_cap_formatted: 169.6조
   upside_pct: -16.8
   disclosure:
-  - title: 삼성전기(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승)
-    datetime: 2026-06-19 10:22
-    author: KOSCOM
-    url: https://finance.naver.com/item/news_notice_read.naver?no=36940359&code=009150&page_notice=
-  - title: 삼성전기(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승)
-    datetime: 2026-06-18 06:50
-    author: KOSCOM
-    url: https://finance.naver.com/item/news_notice_read.naver?no=34957172&code=009150&page_notice=
-  - title: 삼성전기(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승)
-    datetime: 2026-06-15 06:50
-    author: KOSCOM
-    url: https://finance.naver.com/item/news_notice_read.naver?no=30338627&code=009150&page_notice=
   opinion: PER 137.2배로 고평가 구간 — 이익 성장 기대감이 선반영된 상황. 당일 3.18% 급등하며 강한 매수세 유입 중. 현재가가
     목표가를 16.8% 상회 — 단기 과열 가능성.
   fics: 전자 장비 및 기기
@@ -138,17 +120,14 @@ stocks:
   upside_pct: 33.7
   disclosure:
   - title: 현대자동차(주) 기업설명회(IR) 개최(안내공시)
-    datetime: 2026-06-18 06:51
-    author: KOSCOM
+    datetime: '2026-06-18'
     url: https://finance.naver.com/item/news_notice_read.naver?no=35415758&code=005380&page_notice=
-  - title: 현대자동차(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(하락)
-    datetime: 2026-06-08 06:50
-    author: KOSCOM
-    url: https://finance.naver.com/item/news_notice_read.naver?no=21311801&code=005380&page_notice=
   - title: 현대자동차(주) 영업(잠정)실적(공정공시)
-    datetime: 2026-06-01 06:51
-    author: KOSCOM
+    datetime: '2026-06-01'
     url: https://finance.naver.com/item/news_notice_read.naver?no=14956050&code=005380&page_notice=
+  - title: 현대자동차(주) 기업가치 제고 계획(자율공시)(2025년 이행현황)
+    datetime: '2026-05-29'
+    url: https://finance.naver.com/item/news_notice_read.naver?no=13550702&code=005380&page_notice=
   opinion: PER 15.5배로 다소 고평가된 상태. 소폭 상승하며 긍정적 흐름 유지. 애널리스트 목표가까지 33.7% 상승 여력 — 중장기
     매력적.
   fics: 자동차
@@ -177,18 +156,15 @@ stocks:
   market_cap_formatted: 99.4조
   upside_pct: -23.5
   disclosure:
-  - title: 삼성생명보험(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승)
-    datetime: 2026-06-19 09:21
-    author: KOSCOM
-    url: https://finance.naver.com/item/news_notice_read.naver?no=36847827&code=032830&page_notice=
-  - title: 삼성생명보험(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승)
-    datetime: 2026-06-12 06:50
-    author: KOSCOM
-    url: https://finance.naver.com/item/news_notice_read.naver?no=28364709&code=032830&page_notice=
-  - title: 삼성생명보험(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(하락)
-    datetime: 2026-06-10 06:50
-    author: KOSCOM
-    url: https://finance.naver.com/item/news_notice_read.naver?no=24275525&code=032830&page_notice=
+  - title: 삼성생명보험(주) 연결재무제표기준영업(잠정)실적(공정공시)
+    datetime: '2026-05-14'
+    url: https://finance.naver.com/item/news_notice_read.naver?no=1641178&code=032830&page_notice=
+  - title: 삼성생명보험(주) 기업설명회(IR) 개최(안내공시)
+    datetime: '2026-04-24'
+    url: https://finance.naver.com/item/news_notice_read.naver?no=1633693&code=032830&page_notice=
+  - title: 삼성생명보험(주) 집합투자업자 및 투자회사등의 의결권 행사 및 불행사(일괄신고)
+    datetime: '2026-04-06'
+    url: https://finance.naver.com/item/news_notice_read.naver?no=1627210&code=032830&page_notice=
   opinion: PER 34.9배로 고평가 구간 — 이익 성장 기대감이 선반영된 상황. 당일 5.97% 급등하며 강한 매수세 유입 중. 현재가가
     목표가를 23.5% 상회 — 단기 과열 가능성.
   fics: 보험
@@ -218,17 +194,14 @@ stocks:
   upside_pct: 27.1
   disclosure:
   - title: 현대모비스(주) 기업설명회(IR) 개최(안내공시)
-    datetime: 2026-06-19 15:49
-    author: KOSCOM
+    datetime: '2026-06-19'
     url: https://finance.naver.com/item/news_notice_read.naver?no=37450231&code=012330&page_notice=
   - title: 현대모비스(주) 기업설명회(IR) 개최(안내공시)
-    datetime: 2026-06-15 06:51
-    author: KOSCOM
+    datetime: '2026-06-15'
     url: https://finance.naver.com/item/news_notice_read.naver?no=30706139&code=012330&page_notice=
-  - title: 현대모비스(주) 주식선물ㆍ주식옵션 2단계 가격제한폭 확대요건 도달(상승)
-    datetime: 2026-06-12 06:50
-    author: KOSCOM
-    url: https://finance.naver.com/item/news_notice_read.naver?no=28407324&code=012330&page_notice=
+  - title: 현대모비스(주) 기업설명회(IR) 개최(안내공시)
+    datetime: '2026-05-27'
+    url: https://finance.naver.com/item/news_notice_read.naver?no=9509497&code=012330&page_notice=
   opinion: PER 13.5배로 적정 밸류에이션 수준. 소폭 상승하며 긍정적 흐름 유지. 애널리스트 목표가까지 27.1% 상승 여력 — 중장기
     매력적.
   fics: 자동차부품
@@ -258,17 +231,14 @@ stocks:
   upside_pct: 33.9
   disclosure:
   - title: "(주)에이피알 지속가능경영보고서 등 관련사항(자율공시)"
-    datetime: 2026-06-19 15:42
-    author: KOSCOM
+    datetime: '2026-06-19'
     url: https://finance.naver.com/item/news_notice_read.naver?no=37438991&code=278470&page_notice=
-  - title: "(주)에이피알 주식선물 2단계 가격제한폭 확대요건 도달(상승)"
-    datetime: 2026-06-09 06:50
-    author: KOSCOM
-    url: https://finance.naver.com/item/news_notice_read.naver?no=22492573&code=278470&page_notice=
-  - title: "(주)에이피알 주식선물 2단계 가격제한폭 확대요건 도달(상승)"
-    datetime: 2026-06-08 06:51
-    author: KOSCOM
-    url: https://finance.naver.com/item/news_notice_read.naver?no=21592171&code=278470&page_notice=
+  - title: "(주)에이피알 기업설명회(IR) 개최(안내공시)"
+    datetime: '2026-06-01'
+    url: https://finance.naver.com/item/news_notice_read.naver?no=14942595&code=278470&page_notice=
+  - title: "(주)에이피알 연결재무제표기준영업(잠정)실적(공정공시)"
+    datetime: '2026-05-07'
+    url: https://finance.naver.com/item/news_notice_read.naver?no=1638552&code=278470&page_notice=
   opinion: PER 27.0배로 고평가 구간 — 이익 성장 기대감이 선반영된 상황. 소폭 상승하며 긍정적 흐름 유지. 애널리스트 목표가까지
     33.9% 상승 여력 — 중장기 매력적.
   fics: 개인생활용품
@@ -297,18 +267,15 @@ stocks:
   market_cap_formatted: 4.2조
   upside_pct: -3.3
   disclosure:
-  - title: "(주)현대백화점 [투자주의]15일간 상승종목의 당일 소수계좌 매수관여 과다종목"
-    datetime: 2026-06-19 20:00
-    author: KOSCOM
-    url: https://finance.naver.com/item/news_notice_read.naver?no=37882286&code=069960&page_notice=
-  - title: "(주)현대백화점 [투자주의]15일간 상승종목의 당일 소수계좌 매수관여 과다종목"
-    datetime: 2026-06-18 06:53
-    author: KOSCOM
-    url: https://finance.naver.com/item/news_notice_read.naver?no=35753366&code=069960&page_notice=
-  - title: "(주)현대백화점 [투자주의]15일간 상승종목의 당일 소수계좌 매수관여 과다종목"
-    datetime: 2026-06-17 06:53
-    author: KOSCOM
-    url: https://finance.naver.com/item/news_notice_read.naver?no=33664328&code=069960&page_notice=
+  - title: "(주)현대백화점 기업설명회(IR) 개최(안내공시)"
+    datetime: '2026-06-17'
+    url: https://finance.naver.com/item/news_notice_read.naver?no=33300565&code=069960&page_notice=
+  - title: "(주)현대백화점 기업설명회(IR) 개최(안내공시)"
+    datetime: '2026-05-22'
+    url: https://finance.naver.com/item/news_notice_read.naver?no=7153324&code=069960&page_notice=
+  - title: "(주)현대백화점 기업설명회(IR) 개최(안내공시)"
+    datetime: '2026-05-15'
+    url: https://finance.naver.com/item/news_notice_read.naver?no=1641799&code=069960&page_notice=
   opinion: PER 15.9배로 다소 고평가된 상태. 당일 4.56% 급락 — 단기 조정 또는 매도 압력 주의. 현재가가 목표가를 3.3%
     상회 — 단기 과열 가능성.
   fics: 백화점
@@ -338,16 +305,13 @@ stocks:
   upside_pct: 64.3
   disclosure:
   - title: "(주)한섬 상장안내(주식소각 및 감자(주식소각))"
-    datetime: 2026-05-13 06:53
-    author: KOSCOM
+    datetime: '2026-05-13'
     url: https://finance.naver.com/item/news_notice_read.naver?no=1640905&code=020000&page_notice=
   - title: "(주)한섬 기업설명회(IR) 개최(안내공시)"
-    datetime: 2026-05-13 06:50
-    author: KOSCOM
+    datetime: '2026-05-13'
     url: https://finance.naver.com/item/news_notice_read.naver?no=1640635&code=020000&page_notice=
   - title: "(주)한섬 기업가치 제고 계획(자율공시)(2025년 이행현황)"
-    datetime: 2026-05-07 06:51
-    author: KOSCOM
+    datetime: '2026-05-07'
     url: https://finance.naver.com/item/news_notice_read.naver?no=1638656&code=020000&page_notice=
   opinion: PER 5.9배로 동종업 대비 저평가 구간에 위치. 소폭 상승하며 긍정적 흐름 유지. 애널리스트 목표가까지 64.3% 상승 여력
     — 중장기 매력적.
@@ -415,18 +379,15 @@ stocks:
   market_cap_formatted: 27.3조
   upside_pct: 59.5
   disclosure:
-  - title: 미래에셋증권(주) [ELW 투자주의]소수지점ㆍ소수계좌 거래집중 종목(미래M417카카오콜)
-    datetime: 2026-06-19 20:00
-    author: KOSCOM
-    url: https://finance.naver.com/item/news_notice_read.naver?no=37882270&code=006800&page_notice=
   - title: 미래에셋증권(주) 상장지수증권 기타시장안내(미래에셋 -1.5X 천연가스 선물 ETN)
-    datetime: 2026-06-19 09:19
-    author: KOSCOM
+    datetime: '2026-06-19'
     url: https://finance.naver.com/item/news_notice_read.naver?no=36844918&code=006800&page_notice=
   - title: 미래에셋증권(주) 상장지수증권 기타시장안내(미래에셋 -2X 미국 AI TOP3 ETN)
-    datetime: 2026-06-19 09:19
-    author: KOSCOM
+    datetime: '2026-06-19'
     url: https://finance.naver.com/item/news_notice_read.naver?no=36844917&code=006800&page_notice=
+  - title: 미래에셋증권(주) 상장지수증권 기타시장안내(미래에셋 -2X 미국 자율주행대표기업 ETN)
+    datetime: '2026-06-19'
+    url: https://finance.naver.com/item/news_notice_read.naver?no=36843470&code=006800&page_notice=
   fics: 증권
   indu_per: 12.36
   investor_streaks:
@@ -1625,17 +1586,17 @@ kr_stocks_list:
 - code: '083650'
   name: 비에이치아이
   market: KOSDAQ
-- code: '126340'
-  name: 비나텍
-  market: KOSDAQ
 - code: '065170'
   name: 비엘팜텍
+  market: KOSDAQ
+- code: '069540'
+  name: 빛과전자
   market: KOSDAQ
 - code: '082920'
   name: 비츠로셀
   market: KOSDAQ
-- code: '069540'
-  name: 빛과전자
+- code: '126340'
+  name: 비나텍
   market: KOSDAQ
 - code: '488900'
   name: 비츠로넥스텍
@@ -2048,11 +2009,11 @@ kr_stocks_list:
 - code: '390110'
   name: 애니메디솔루션
   market: KONEX
-- code: '278470'
-  name: 에이피알
-  market: KOSPI
 - code: '066970'
   name: 엘앤에프
+  market: KOSPI
+- code: '278470'
+  name: 에이피알
   market: KOSPI
 - code: '450080'
   name: 에코프로머티
@@ -2198,11 +2159,11 @@ kr_stocks_list:
 - code: '005320'
   name: 온타이드
   market: KOSPI
-- code: '226950'
-  name: 올릭스
-  market: KOSDAQ
 - code: '019210'
   name: 와이지-원
+  market: KOSDAQ
+- code: '226950'
+  name: 올릭스
   market: KOSDAQ
 - code: '039200'
   name: 오스코텍
@@ -2633,11 +2594,11 @@ kr_stocks_list:
 - code: '066360'
   name: 체리부로
   market: KOSDAQ
-- code: '281820'
-  name: 케이씨텍
-  market: KOSPI
 - code: '279570'
   name: 케이뱅크
+  market: KOSPI
+- code: '281820'
+  name: 케이씨텍
   market: KOSPI
 - code: '381970'
   name: 케이카
@@ -2651,11 +2612,11 @@ kr_stocks_list:
 - code: '145270'
   name: 케이탑리츠
   market: KOSPI
-- code: '214370'
-  name: 케어젠
-  market: KOSDAQ
 - code: '032500'
   name: 케이엠더블유
+  market: KOSDAQ
+- code: '214370'
+  name: 케어젠
   market: KOSDAQ
 - code: '093320'
   name: 케이아이엔엑스
@@ -2954,8 +2915,8 @@ kr_stocks_list:
 - code: '018880'
   name: 한온시스템
   market: KOSPI
-- code: '086790'
-  name: 하나금융지주
+- code: '052690'
+  name: 한전기술
   market: KOSPI
 - code: '352820'
   name: 하이브
@@ -3254,20 +3215,20 @@ kr_stocks_list:
 - code: '329180'
   name: HD현대중공업
   market: KOSPI
+- code: '204320'
+  name: HL만도
+  market: KOSPI
 - code: '267260'
   name: HD현대일렉트릭
   market: KOSPI
 - code: '011200'
   name: HMM
   market: KOSPI
-- code: '204320'
-  name: HL만도
+- code: '267270'
+  name: HD건설기계
   market: KOSPI
 - code: '009540'
   name: HD한국조선해양
-  market: KOSPI
-- code: '267270'
-  name: HD건설기계
   market: KOSPI
 - code: '267250'
   name: HD현대
@@ -3329,11 +3290,11 @@ kr_stocks_list:
 - code: '069500'
   name: KODEX 200
   market: KOSPI
-- code: '395160'
-  name: KODEX AI반도체TOP2플러스
-  market: KOSPI
 - code: '105560'
   name: KB금융
+  market: KOSPI
+- code: '395160'
+  name: KODEX AI반도체TOP2플러스
   market: KOSPI
 - code: '033780'
   name: KT&G
@@ -3353,11 +3314,11 @@ kr_stocks_list:
 - code: '066570'
   name: LG전자
   market: KOSPI
-- code: '064400'
-  name: LG씨엔에스
-  market: KOSPI
 - code: '011070'
   name: LG이노텍
+  market: KOSPI
+- code: '064400'
+  name: LG씨엔에스
   market: KOSPI
 - code: '010120'
   name: LS ELECTRIC
@@ -3368,14 +3329,14 @@ kr_stocks_list:
 - code: '051910'
   name: LG화학
   market: KOSPI
+- code: '034220'
+  name: LG디스플레이
+  market: KOSPI
 - code: '003550'
   name: LG
   market: KOSPI
 - code: '079550'
   name: LIG디펜스앤에어로스페이스
-  market: KOSPI
-- code: '034220'
-  name: LG디스플레이
   market: KOSPI
 - code: '403790'
   name: MIDAS 코스피액티브
@@ -3488,11 +3449,11 @@ kr_stocks_list:
 - code: '402340'
   name: SK스퀘어
   market: KOSPI
-- code: '011790'
-  name: SKC
-  market: KOSPI
 - code: '017670'
   name: SK텔레콤
+  market: KOSPI
+- code: '011790'
+  name: SKC
   market: KOSPI
 - code: '034730'
   name: SK
@@ -3590,11 +3551,11 @@ kr_stocks_list:
 - code: '066575'
   name: LG전자우
   market: KOSPI
-- code: '100090'
-  name: SK오션플랜트
-  market: KOSPI
 - code: '326030'
   name: SK바이오팜
+  market: KOSPI
+- code: '302440'
+  name: SK바이오사이언스
   market: KOSPI
 - code: '058850'
   name: KTcs
