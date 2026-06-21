@@ -1,50 +1,50 @@
 {
-  "updated_at": "2026-06-21T22:17:34+09:00",
+  "updated_at": "2026-06-21T23:12:37+09:00",
   "kr_port": [],
   "kr_watch": [
     {
-      "code": "015760",
-      "name": "한국전력",
-      "price": "37,900",
-      "change": "1,450",
-      "change_pct": -3.68,
+      "code": "004170",
+      "name": "신세계",
+      "price": "711,000",
+      "change": "19,000",
+      "change_pct": -2.6,
       "direction": "FALLING",
-      "fics": "전력",
-      "per": 4.4,
-      "indu_per": 3.28,
-      "market_cap_eok": 243304,
-      "market_cap_formatted": "24.3조",
+      "fics": "백화점",
+      "per": 18.3,
+      "indu_per": 26.02,
+      "market_cap_eok": 67155,
+      "market_cap_formatted": "6.7조",
       "analyst_target": {
-        "avg": 57267,
-        "avg_formatted": "57,267",
-        "count": 16
+        "avg": 702059,
+        "avg_formatted": "702,059",
+        "count": 17
       },
       "investor_streaks": {
         "gigan": -2,
-        "gigan_amount": "404억",
-        "foreign": -1,
-        "foreign_amount": "164억",
-        "indi": 4,
-        "indi_amount": "768억"
+        "gigan_amount": "210억",
+        "foreign": 2,
+        "foreign_amount": "322억",
+        "indi": -2,
+        "indi_amount": "111억"
       },
       "disclosure": [
         {
-          "title": "한국전력공사(주) 임시주주총회 결과",
-          "datetime": "2026-06-17",
-          "url": "https://finance.naver.com/item/news_notice_read.naver?no=33431981&code=015760&page_notice="
+          "title": "(주)신세계 기업설명회(IR) 개최(안내공시)",
+          "datetime": "2026-06-16",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=31912006&code=004170&page_notice="
         },
         {
-          "title": "한국전력공사(주) 주주총회소집결의",
-          "datetime": "2026-06-02",
-          "url": "https://finance.naver.com/item/news_notice_read.naver?no=15969112&code=015760&page_notice="
+          "title": "(주)신세계 타법인주식및출자증권취득결정",
+          "datetime": "2026-06-11",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=26511651&code=004170&page_notice="
         },
         {
-          "title": "한국전력공사(주) (정정)소송등의제기ㆍ신청(일정금액 이상의 청구)",
-          "datetime": "2026-05-22",
-          "url": "https://finance.naver.com/item/news_notice_read.naver?no=7285706&code=015760&page_notice="
+          "title": "(주)신세계 영업(잠정)실적(공정공시)",
+          "datetime": "2026-06-09",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=22794632&code=004170&page_notice="
         }
       ],
-      "upside_pct": 51.1
+      "upside_pct": -1.3
     },
     {
       "code": "095610",
@@ -123,6 +123,94 @@
           "url": "https://finance.naver.com/item/news_notice_read.naver?no=1624012&code=317330&page_notice="
         }
       ]
+    },
+    {
+      "code": "015760",
+      "name": "한국전력",
+      "price": "37,900",
+      "change": "1,450",
+      "change_pct": -3.68,
+      "direction": "FALLING",
+      "fics": "전력",
+      "per": 4.4,
+      "indu_per": 3.28,
+      "market_cap_eok": 243304,
+      "market_cap_formatted": "24.3조",
+      "analyst_target": {
+        "avg": 57267,
+        "avg_formatted": "57,267",
+        "count": 16
+      },
+      "investor_streaks": {
+        "gigan": -2,
+        "gigan_amount": "404억",
+        "foreign": -1,
+        "foreign_amount": "164억",
+        "indi": 4,
+        "indi_amount": "768억"
+      },
+      "disclosure": [
+        {
+          "title": "한국전력공사(주) 임시주주총회 결과",
+          "datetime": "2026-06-17",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=33431981&code=015760&page_notice="
+        },
+        {
+          "title": "한국전력공사(주) 주주총회소집결의",
+          "datetime": "2026-06-02",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=15969112&code=015760&page_notice="
+        },
+        {
+          "title": "한국전력공사(주) (정정)소송등의제기ㆍ신청(일정금액 이상의 청구)",
+          "datetime": "2026-05-22",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=7285706&code=015760&page_notice="
+        }
+      ],
+      "upside_pct": 51.1
+    },
+    {
+      "code": "278470",
+      "name": "에이피알",
+      "price": "385,500",
+      "change": "7,500",
+      "change_pct": 1.98,
+      "direction": "RISING",
+      "fics": "개인생활용품",
+      "per": 27.0,
+      "indu_per": null,
+      "market_cap_eok": 144324,
+      "market_cap_formatted": "14.4조",
+      "analyst_target": {
+        "avg": 516316,
+        "avg_formatted": "516,316",
+        "count": 19
+      },
+      "investor_streaks": {
+        "gigan": 1,
+        "gigan_amount": null,
+        "foreign": 1,
+        "foreign_amount": "133억",
+        "indi": -1,
+        "indi_amount": "134억"
+      },
+      "disclosure": [
+        {
+          "title": "(주)에이피알 지속가능경영보고서 등 관련사항(자율공시)",
+          "datetime": "2026-06-19",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=37438991&code=278470&page_notice="
+        },
+        {
+          "title": "(주)에이피알 기업설명회(IR) 개최(안내공시)",
+          "datetime": "2026-06-01",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=14942595&code=278470&page_notice="
+        },
+        {
+          "title": "(주)에이피알 연결재무제표기준영업(잠정)실적(공정공시)",
+          "datetime": "2026-05-07",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=1638552&code=278470&page_notice="
+        }
+      ],
+      "upside_pct": 33.9
     }
   ],
   "etf_port": [],
