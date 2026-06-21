@@ -24,8 +24,14 @@ MY_STOCKS = {
 
 ETF_CODES = %w[487240 494670].freeze
 
-US_STOCKS = {
+US_STOCKS = {}.freeze  # 보유 해외 주식 (현재 없음)
+
+US_WATCHLIST = {
   'MU' => '마이크론 테크놀로지'
+}.freeze
+
+KR_WATCHLIST = {
+  '006800' => '미래에셋증권'
 }.freeze
 
 def kst_now
@@ -92,6 +98,21 @@ def format_market_cap(eok)
   end
 end
 
+def load_usd_krw
+  economy_file = File.join(__dir__, '..', '_data', 'economy.yml')
+  return 1380.0 unless File.exist?(economy_file)
+  data = YAML.load_file(economy_file) || {}
+  fx   = (data['fx_rates'] || []).find { |r| r['name'] == 'USD/KRW' }
+  rate = fx ? fx['price'].to_f : 0.0
+  rate > 100 ? rate : 1380.0
+rescue StandardError
+  1380.0
+end
+
+def format_krw(won)
+  won.round.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\1,').reverse
+end
+
 def format_market_cap_usd(billion_usd)
   if billion_usd >= 1000
     format('$%.1fT', billion_usd / 1000.0)
@@ -133,7 +154,7 @@ rescue StandardError => e
 end
 
 # Yahoo Finance v10 quoteSummary: price, PE, market cap, analyst target, industry
-def fetch_yahoo_data(ticker, fallback_name)
+def fetch_yahoo_data(ticker, fallback_name, usd_krw: 1380.0)
   cookie, crumb = yahoo_crumb
   ua = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
   headers = {
@@ -178,25 +199,33 @@ def fetch_yahoo_data(ticker, fallback_name)
     ana_count = financial.dig('numberOfAnalystOpinions', 'raw')&.to_i
     industry  = profile['industry']
 
-    market_cap_b = market_cap ? market_cap / 1_000_000_000.0 : nil
-    upside_pct   = (target && current_price > 0) ? ((target / current_price - 1) * 100).round(1) : nil
+    market_cap_b   = market_cap ? market_cap / 1_000_000_000.0 : nil
+    price_krw      = (current_price * usd_krw).round
+    change_krw     = (change.abs * usd_krw).round
+    market_cap_eok = market_cap ? (market_cap.to_f * usd_krw / 100_000_000).round : nil
+    target_krw     = target ? (target * usd_krw).round : nil
+    upside_pct     = (target && current_price > 0) ? ((target / current_price - 1) * 100).round(1) : nil
 
     return {
-      'code'                 => ticker,
-      'name'                 => name,
-      'price'                => format('$%.2f', current_price),
-      'change'               => format('%.2f', change.abs),
-      'change_pct'           => change_pct&.round(2),
-      'direction'            => (change || 0) >= 0 ? 'RISING' : 'FALLING',
-      'currency'             => 'USD',
-      'market'               => 'US',
-      'category'             => 'us_stock',
-      'fics'                 => industry,
-      'per'                  => per&.round(1),
-      'market_cap_formatted' => market_cap_b ? format_market_cap_usd(market_cap_b) : nil,
-      'analyst_target'       => target ? {
-        'avg'           => target.round(2),
-        'avg_formatted' => format('$%.2f', target),
+      'code'                     => ticker,
+      'name'                     => name,
+      'price'                    => format_krw(price_krw),
+      'price_usd'                => format('$%.2f', current_price),
+      'change'                   => format_krw(change_krw),
+      'change_pct'               => change_pct&.round(2),
+      'direction'                => (change || 0) >= 0 ? 'RISING' : 'FALLING',
+      'currency'                 => 'USD',
+      'market'                   => 'US',
+      'category'                 => 'us_watch',
+      'fics'                     => industry,
+      'per'                      => per&.round(1),
+      'market_cap_eok'           => market_cap_eok,
+      'market_cap_formatted'     => market_cap_eok ? format_market_cap(market_cap_eok) : nil,
+      'market_cap_usd_formatted' => market_cap_b ? format_market_cap_usd(market_cap_b) : nil,
+      'analyst_target'           => target_krw ? {
+        'avg'           => target_krw,
+        'avg_formatted' => format_krw(target_krw),
+        'avg_usd'       => format('$%.2f', target),
         'count'         => ana_count
       } : nil,
       'upside_pct' => upside_pct
@@ -216,19 +245,22 @@ def fetch_yahoo_data(ticker, fallback_name)
   prev  = meta['previousClose'] || meta['chartPreviousClose']
   return nil unless price && prev
 
-  change     = price - prev
-  change_pct = ((change / prev) * 100).round(2)
+  change      = price - prev
+  change_pct  = ((change / prev) * 100).round(2)
+  price_krw   = (price * usd_krw).round
+  change_krw  = (change.abs * usd_krw).round
 
   {
     'code'       => ticker,
     'name'       => fallback_name,
-    'price'      => format('$%.2f', price),
-    'change'     => format('%.2f', change.abs),
+    'price'      => format_krw(price_krw),
+    'price_usd'  => format('$%.2f', price),
+    'change'     => format_krw(change_krw),
     'change_pct' => change_pct,
     'direction'  => change >= 0 ? 'RISING' : 'FALLING',
     'currency'   => 'USD',
     'market'     => 'US',
-    'category'   => 'us_stock'
+    'category'   => 'us_watch'
   }
 rescue StandardError => e
   puts "  [Yahoo 오류] #{e.message}"
@@ -529,13 +561,54 @@ stocks = MY_STOCKS.filter_map do |code, fallback|
   basic
 end
 
-us_stocks = US_STOCKS.filter_map do |ticker, fallback_name|
-  data = fetch_yahoo_data(ticker, fallback_name)
+usd_krw = load_usd_krw
+puts "  [환율] USD/KRW = #{usd_krw}"
+
+# 국내 관심주
+kr_watch_stocks = KR_WATCHLIST.filter_map do |code, fallback|
+  basic = fetch_basic(code, fallback)
+  unless basic
+    puts "  #{fallback}(#{code}): 기본 데이터 실패"
+    next nil
+  end
+  basic['category'] = 'stock_watch'
+  consensus = fetch_fnguide_consensus(code)
+  basic['per']            = consensus&.dig('per')
+  basic['analyst_target'] = consensus&.dig('analyst_target')
+  cap_eok = consensus&.dig('market_cap_eok') || fetch_naver_market_cap(code)
+  basic['market_cap_eok']       = cap_eok
+  basic['market_cap_formatted'] = cap_eok ? format_market_cap(cap_eok) : nil
+  price_raw  = basic['price'].to_s.gsub(',', '').to_i
+  target_avg = basic.dig('analyst_target', 'avg')
+  basic['upside_pct'] = (target_avg && price_raw > 0) ? ((target_avg / price_raw.to_f - 1) * 100).round(1) : nil
+  basic['disclosure']       = fetch_disclosure(code)
+  basic['fics']             = consensus&.dig('fics')
+  basic['indu_per']         = consensus&.dig('indu_per')
+  basic['investor_streaks'] = fetch_investor_streaks(code)
+  puts "  #{basic['name']}(#{code}): #{basic['price']} (#{basic['change_pct']}%) [stock_watch]"
+  sleep 1
+  basic
+end
+
+# 해외 포트폴리오 (현재 없음)
+us_port_stocks = US_STOCKS.filter_map do |ticker, fallback_name|
+  data = fetch_yahoo_data(ticker, fallback_name, usd_krw: usd_krw)
+  next nil unless data
+  data['category'] = 'us_stock'
+  puts "  #{data['name']}(#{ticker}): #{data['price']} [us_stock]"
+  sleep 0.5
+  data
+end
+
+# 해외 관심주
+us_watch_stocks = US_WATCHLIST.filter_map do |ticker, fallback_name|
+  data = fetch_yahoo_data(ticker, fallback_name, usd_krw: usd_krw)
   unless data
     puts "  #{fallback_name}(#{ticker}): 데이터 실패"
     next nil
   end
-  puts "  #{data['name']}(#{ticker}): #{data['price']} (#{data['change_pct']}%) [us_stock]"
+  data['category'] = 'us_watch'
+  puts "  #{data['name']}(#{ticker}): #{data['price']} (#{data['price_usd']}) [us_watch]"
   sleep 0.5
   data
 end
@@ -543,8 +616,8 @@ end
 individual = stocks.select { |s| s['category'] == 'stock' }
                    .sort_by { |s| -(s['market_cap_eok'] || 0) }
 etfs       = stocks.select { |s| s['category'] == 'etf' }
-sorted     = individual + etfs + us_stocks
+sorted     = individual + etfs + kr_watch_stocks + us_port_stocks + us_watch_stocks
 
-total_target = MY_STOCKS.size + US_STOCKS.size
+total_target = MY_STOCKS.size + KR_WATCHLIST.size + US_WATCHLIST.size
 File.write(DATA_FILE, { 'fetched_at' => kst_now, 'stocks' => sorted }.to_yaml)
 puts "[완료] #{sorted.size}/#{total_target}개 종목 저장"
