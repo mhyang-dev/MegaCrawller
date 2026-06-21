@@ -1,5 +1,5 @@
 ---
-fetched_at: 2026-06-21 10:25 KST
+fetched_at: 2026-06-21 10:47 KST
 stocks:
 - code: '005930'
   name: 삼성전자
@@ -357,3 +357,28 @@ stocks:
     avg_usd: "$945.60"
     count: 40
   upside_pct: -16.6
+kr_stocks_list:
+- code: '005930'
+  name: 삼성전자
+- code: '000660'
+  name: SK하이닉스
+- code: '009150'
+  name: 삼성전기
+- code: '005380'
+  name: 현대차
+- code: '012330'
+  name: 현대모비스
+- code: '032830'
+  name: 삼성생명
+- code: '069960'
+  name: 현대백화점
+- code: '020000'
+  name: 한섬
+- code: '278470'
+  name: 에이피알
+- code: '487240'
+  name: KODEX AI전력핵심설비
+- code: '494670'
+  name: TIGER 조선TOP10
+- code: '006800'
+  name: 미래에셋증권

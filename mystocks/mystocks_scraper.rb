@@ -509,6 +509,33 @@ rescue StandardError => e
   puts "  [Discord 오류] #{e.message}"
 end
 
+def fetch_kr_stock_list
+  all_stocks = []
+  %w[KOSPI KOSDAQ].each do |market|
+    page = 1
+    loop do
+      data = get_json("https://m.stock.naver.com/api/index/#{market}/stocks?page=#{page}&pageSize=100")
+      break unless data.is_a?(Hash)
+      stocks = data['stocks'] || data['items'] || []
+      break if stocks.empty?
+      stocks.each do |s|
+        code = (s['itemCode'] || s['stockCode'] || s['code'] || '').to_s
+        name = (s['stockName'] || s['itemName'] || s['name'] || '').to_s
+        all_stocks << { 'code' => code, 'name' => name } if code.match?(/^\d{6}$/) && !name.empty?
+      end
+      break if stocks.length < 100
+      page += 1
+      sleep 0.05
+    end
+  end
+  result = all_stocks.uniq { |s| s['code'] }
+  puts "  [주식목록] #{result.length}개 수집#{result.empty? ? ' (fallback: 보유종목)' : ''}"
+  result.empty? ? (MY_STOCKS.merge(KR_WATCHLIST)).map { |c, n| { 'code' => c, 'name' => n } } : result
+rescue StandardError => e
+  puts "  [주식목록] 실패: #{e.message}"
+  (MY_STOCKS.merge(KR_WATCHLIST)).map { |c, n| { 'code' => c, 'name' => n } }
+end
+
 puts "[#{kst_now}] 내 포트폴리오 수집 시작"
 
 prev_stocks = if File.exist?(DATA_FILE)
@@ -618,6 +645,9 @@ individual = stocks.select { |s| s['category'] == 'stock' }
 etfs       = stocks.select { |s| s['category'] == 'etf' }
 sorted     = individual + etfs + kr_watch_stocks + us_port_stocks + us_watch_stocks
 
+puts "  [주식목록] 전체 종목 목록 수집 중..."
+kr_stocks_list = fetch_kr_stock_list
+
 total_target = MY_STOCKS.size + KR_WATCHLIST.size + US_WATCHLIST.size
-File.write(DATA_FILE, { 'fetched_at' => kst_now, 'stocks' => sorted }.to_yaml)
+File.write(DATA_FILE, { 'fetched_at' => kst_now, 'stocks' => sorted, 'kr_stocks_list' => kr_stocks_list }.to_yaml)
 puts "[완료] #{sorted.size}/#{total_target}개 종목 저장"
