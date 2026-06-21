@@ -146,6 +146,13 @@ permalink: /mystocks/
 .holdings-list li { font-size: 0.84em; line-height: 1.65; white-space: nowrap; }
 .holdings-ratio { color: #999; margin-left: 0.4em; }
 
+/* ── GitHub 저장 바 ────────────────────────────────── */
+.sync-bar { display: flex; align-items: center; gap: 8px; margin: 6px 0 10px; }
+.sync-btn { background: none; border: 1px solid #ccc; border-radius: 12px; padding: 3px 12px; cursor: pointer; color: #555; font-size: 0.8em; }
+.sync-btn:hover { background: #f0f0f0; }
+.sync-btn:disabled { opacity: 0.45; cursor: default; }
+.sync-msg { color: #888; font-size: 0.8em; }
+
 /* ── 테이블 주석 ─────────────────────────────────── */
 .table-note {
   color: #aaa;
@@ -339,6 +346,10 @@ permalink: /mystocks/
   <button class="tab-major active" data-major="kr">국내 주식</button>
   <button class="tab-major" data-major="etf">ETF / ETN</button>
   <button class="tab-major" data-major="us">해외 주식</button>
+</div>
+<div class="sync-bar">
+  <button class="sync-btn" id="github-save-btn">☁ GitHub 저장</button>
+  <span class="sync-msg" id="sync-msg"></span>
 </div>
 
 <!-- ══ 국내 주식 패널 ══ -->
@@ -665,6 +676,7 @@ permalink: /mystocks/
 
 <script>
 var KR_STOCKS = {{ site.data.mystocks.kr_stocks_list | default: "[]" | jsonify }};
+var WATCHLIST = {{ site.data.watchlist | default: "{}" | jsonify }};
 var US_STOCKS_LIST = [
   {code:'AAPL',name:'Apple Inc.'},{code:'MSFT',name:'Microsoft Corporation'},{code:'NVDA',name:'NVIDIA Corporation'},
   {code:'AMZN',name:'Amazon.com Inc.'},{code:'META',name:'Meta Platforms Inc.'},{code:'GOOGL',name:'Alphabet Inc. (Class A)'},
@@ -868,6 +880,14 @@ function setupWatchSearch(opts) {
   }
 
   function fetchAndRender(code, name) {
+    // YAML 정적 행이 이미 표시 중이면 중복 추가 않음
+    var tbody = document.querySelector('#' + opts.tableId + ' tbody');
+    if (tbody) {
+      var sRows = tbody.querySelectorAll('tr[data-code]:not([data-dynamic])');
+      for (var si = 0; si < sRows.length; si++) {
+        if (sRows[si].dataset.code === code && sRows[si].style.display !== 'none') return;
+      }
+    }
     var type = opts.type;
     fetch('http://localhost:9001/api/stock/' + encodeURIComponent(code) + '?type=' + type)
       .then(function(r) { if (!r.ok) throw new Error('server'); return r.json(); })
@@ -1063,6 +1083,69 @@ function initStaticTrash(tableId, hiddenKey) {
     initStaticTrashRow(tr, hiddenKey);
   });
 }
+
+// ── GitHub 저장 종목 → localStorage 병합 (setupWatchSearch 전 실행) ──
+(function() {
+  var cats = {
+    kr_port:   { lk: 'kr_port_dynamic_v1',  hk: 'kr_port_hidden_v1'  },
+    kr_watch:  { lk: 'kr_watchlist_v2',      hk: 'kr_watch_hidden_v1' },
+    etf_port:  { lk: 'etf_port_dynamic_v1', hk: 'etf_port_hidden_v1' },
+    etf_watch: { lk: 'etf_watchlist_v1',    hk: null                  },
+    us_port:   { lk: 'us_port_dynamic_v1',  hk: 'us_port_hidden_v1'  },
+    us_watch:  { lk: 'us_watchlist_v1',     hk: null                  }
+  };
+  if (WATCHLIST && typeof WATCHLIST === 'object') {
+    Object.keys(cats).forEach(function(cat) {
+      var wl = WATCHLIST[cat] || [];
+      if (!wl.length) return;
+      var c = cats[cat];
+      var cur    = JSON.parse(localStorage.getItem(c.lk) || '[]');
+      var hidden = c.hk ? JSON.parse(localStorage.getItem(c.hk) || '[]') : [];
+      var codes  = cur.map(function(s) { return s.code; });
+      var changed = false;
+      wl.forEach(function(s) {
+        if (codes.indexOf(s.code) === -1 && hidden.indexOf(s.code) === -1) {
+          cur.push(s); changed = true;
+        }
+      });
+      if (changed) localStorage.setItem(c.lk, JSON.stringify(cur));
+    });
+  }
+
+  // GitHub 저장 버튼
+  var btn = document.getElementById('github-save-btn');
+  if (!btn) return;
+  btn.addEventListener('click', function() {
+    var data = {
+      kr_port:   JSON.parse(localStorage.getItem('kr_port_dynamic_v1')  || '[]'),
+      kr_watch:  JSON.parse(localStorage.getItem('kr_watchlist_v2')      || '[]'),
+      etf_port:  JSON.parse(localStorage.getItem('etf_port_dynamic_v1') || '[]'),
+      etf_watch: JSON.parse(localStorage.getItem('etf_watchlist_v1')    || '[]'),
+      us_port:   JSON.parse(localStorage.getItem('us_port_dynamic_v1')  || '[]'),
+      us_watch:  JSON.parse(localStorage.getItem('us_watchlist_v1')     || '[]')
+    };
+    var msg = document.getElementById('sync-msg');
+    btn.disabled = true; msg.textContent = 'GitHub 저장 중...';
+    fetch('http://localhost:9001/api/save-watchlist', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(r) {
+      if (r.error) throw new Error(r.error);
+      msg.textContent = r.message === 'no changes'
+        ? '변경 사항 없음'
+        : '✓ 저장 완료 — GitHub Actions 빌드 후 (~1분) 모든 기기에서 보입니다';
+      setTimeout(function() { msg.textContent = ''; }, 10000);
+    })
+    .catch(function() {
+      msg.textContent = '✗ 저장 실패 (로컬 서버가 실행 중인지 확인하세요)';
+      setTimeout(function() { msg.textContent = ''; }, 6000);
+    })
+    .finally(function() { btn.disabled = false; });
+  });
+})();
 
 setupWatchSearch({type:'kr',  inputId:'kr-search-input',  dropdownId:'kr-search-dropdown',  tableId:'kr-watch-table',  emptyRowId:'kr-watch-empty',  storageKey:'kr_watchlist_v2',  cols:10});
 setupWatchSearch({type:'etf', inputId:'etf-search-input', dropdownId:'etf-search-dropdown', tableId:'etf-watch-table', emptyRowId:'etf-watch-empty', storageKey:'etf_watchlist_v1', cols:5});

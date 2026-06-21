@@ -362,9 +362,11 @@ server = WEBrick::HTTPServer.new(
   AccessLog: []
 )
 
+REPO_ROOT = File.expand_path('..', __dir__)
+
 def set_cors(res)
   res['Access-Control-Allow-Origin']  = '*'
-  res['Access-Control-Allow-Methods'] = 'GET, OPTIONS'
+  res['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS'
   res['Access-Control-Allow-Headers'] = 'Content-Type'
   res['Content-Type']                 = 'application/json; charset=utf-8'
 end
@@ -373,6 +375,34 @@ server.mount_proc '/' do |req, res|
   set_cors(res)
   if req.request_method == 'OPTIONS'
     res.status = 200; res.body = ''; next
+  end
+
+  # POST /api/save-watchlist → watchlist.json 저장 후 git push
+  if req.path == '/api/save-watchlist' && req.request_method == 'POST'
+    begin
+      data = JSON.parse(req.body)
+      File.write(File.join(REPO_ROOT, '_data', 'watchlist.json'), JSON.pretty_generate(data))
+      Dir.chdir(REPO_ROOT) do
+        system('git add _data/watchlist.json')
+        no_changes = system('git diff --cached --quiet')
+        if no_changes
+          res.body = { ok: true, message: 'no changes' }.to_json
+        else
+          system('git commit -m "종목 목록 업데이트"')
+          pushed = system('git push origin master')
+          if pushed
+            res.body = { ok: true, message: 'pushed' }.to_json
+          else
+            res.status = 500
+            res.body = { error: 'git push failed' }.to_json
+          end
+        end
+      end
+    rescue StandardError => e
+      res.status = 500
+      res.body = { error: e.message }.to_json
+    end
+    next
   end
 
   unless req.path =~ /^\/api\/stock\/([^\/]+)$/
