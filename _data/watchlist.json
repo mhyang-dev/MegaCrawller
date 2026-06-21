@@ -1,8 +1,22 @@
 {
-  "kr_port":  [],
-  "kr_watch": [],
+  "kr_port": [],
+  "kr_watch": [
+    {
+      "code": "095610",
+      "name": "테스"
+    },
+    {
+      "code": "317330",
+      "name": "덕산테코피아"
+    }
+  ],
   "etf_port": [],
   "etf_watch": [],
-  "us_port":  [],
+  "us_port": [
+    {
+      "code": "GOOGL",
+      "name": "Alphabet Inc. (Class A)"
+    }
+  ],
   "us_watch": []
 }
