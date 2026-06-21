@@ -526,13 +526,16 @@ def fetch_kr_stock_list
     삼성증권 한국투자 미래에셋 키움 NH 대신 한양
   ]
 
+  ac_headers = { 'Referer' => 'https://finance.naver.com/', 'Accept' => 'application/json, */*' }
+
   prefixes.each do |q|
     encoded = URI.encode_www_form_component(q)
-    data = get_json("https://ac.stock.naver.com/ac?q=#{encoded}&target=stock")
+    data = get_json("https://ac.stock.naver.com/ac?q=#{encoded}&target=stock", extra_headers: ac_headers)
     next unless data.is_a?(Hash)
     (data['items'] || []).each do |item|
-      code = item[1].to_s
-      name = item[0].to_s
+      # 응답이 [{code:, name:}] 형식
+      code = (item['code'] || item[1] || '').to_s
+      name = (item['name'] || item[0] || '').to_s
       seen[code] = name if code.match?(/^\d{6}$/) && !name.empty?
     end
     sleep 0.05

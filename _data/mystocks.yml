@@ -1,5 +1,5 @@
 ---
-fetched_at: 2026-06-21 10:49 KST
+fetched_at: 2026-06-21 10:50 KST
 stocks:
 - code: '005930'
   name: 삼성전자
@@ -360,25 +360,693 @@ stocks:
 kr_stocks_list:
 - code: '005930'
   name: 삼성전자
-- code: '000660'
-  name: SK하이닉스
 - code: '009150'
   name: 삼성전기
+- code: '006400'
+  name: 삼성SDI
+- code: '028260'
+  name: 삼성물산
+- code: '010140'
+  name: 삼성중공업
+- code: '028050'
+  name: 삼성E&A
+- code: '005935'
+  name: 삼성전자우
+- code: '018260'
+  name: 삼성에스디에스
+- code: '032830'
+  name: 삼성생명
+- code: '207940'
+  name: 삼성바이오로직스
 - code: '005380'
   name: 현대차
 - code: '012330'
   name: 현대모비스
-- code: '032830'
-  name: 삼성생명
+- code: '000720'
+  name: 현대건설
+- code: '064350'
+  name: 현대로템
+- code: '307950'
+  name: 현대오토에버
+- code: '086280'
+  name: 현대글로비스
+- code: '005387'
+  name: 현대차2우B
+- code: '005385'
+  name: 현대차우
+- code: '004020'
+  name: 현대제철
 - code: '069960'
   name: 현대백화점
-- code: '020000'
-  name: 한섬
-- code: '278470'
-  name: 에이피알
-- code: '487240'
-  name: KODEX AI전력핵심설비
-- code: '494670'
-  name: TIGER 조선TOP10
+- code: '003550'
+  name: LG
+- code: '064400'
+  name: LG씨엔에스
+- code: '066570'
+  name: LG전자
+- code: '011070'
+  name: LG이노텍
+- code: '373220'
+  name: LG에너지솔루션
+- code: '051910'
+  name: LG화학
+- code: '034220'
+  name: LG디스플레이
+- code: '032640'
+  name: LG유플러스
+- code: '051900'
+  name: LG생활건강
+- code: '066575'
+  name: LG전자우
+- code: '034730'
+  name: SK
+- code: '000660'
+  name: SK하이닉스
+- code: '402340'
+  name: SK스퀘어
+- code: '017670'
+  name: SK텔레콤
+- code: '011790'
+  name: SKC
+- code: '475150'
+  name: SK이터닉스
+- code: '096770'
+  name: SK이노베이션
+- code: '001740'
+  name: SK네트웍스
+- code: '326030'
+  name: SK바이오팜
+- code: '302440'
+  name: SK바이오사이언스
+- code: '015760'
+  name: 한국전력
+- code: '047810'
+  name: 한국항공우주
+- code: '071050'
+  name: 한국금융지주
+- code: '161390'
+  name: 한국타이어앤테크놀로지
+- code: '036460'
+  name: 한국가스공사
+- code: '000240'
+  name: 한국앤컴퍼니
+- code: '161890'
+  name: 한국콜마
+- code: '017960'
+  name: 한국카본
+- code: '071055'
+  name: 한국금융지주우
+- code: '025540'
+  name: 한국단자
+- code: '002320'
+  name: 한진
+- code: '180640'
+  name: 한진칼
+- code: '003480'
+  name: 한진중공업홀딩스
+- code: '005490'
+  name: POSCO홀딩스
+- code: '003670'
+  name: 포스코퓨처엠
+- code: '047050'
+  name: 포스코인터내셔널
+- code: '022100'
+  name: 포스코DX
+- code: '058430'
+  name: 포스코스틸리온
+- code: '009520'
+  name: 포스코엠텍
+- code: '023530'
+  name: 롯데쇼핑
+- code: '011170'
+  name: 롯데케미칼
+- code: '020150'
+  name: 롯데에너지머티리얼즈
+- code: '004990'
+  name: 롯데지주
+- code: '032350'
+  name: 롯데관광개발
+- code: '004000'
+  name: 롯데정밀화학
+- code: '089860'
+  name: 롯데렌탈
+- code: '330590'
+  name: 롯데리츠
+- code: '005300'
+  name: 롯데칠성
+- code: '280360'
+  name: 롯데웰푸드
+- code: '001040'
+  name: CJ
+- code: '097950'
+  name: CJ제일제당
+- code: '000120'
+  name: CJ대한통운
+- code: '079160'
+  name: CJ CGV
+- code: '001045'
+  name: CJ우
+- code: '097955'
+  name: CJ제일제당 우
+- code: '011150'
+  name: CJ씨푸드
+- code: '011155'
+  name: CJ씨푸드1우
+- code: '035760'
+  name: CJ ENM
+- code: '000150'
+  name: 두산
+- code: '034020'
+  name: 두산에너빌리티
+- code: '454910'
+  name: 두산로보틱스
+- code: '336260'
+  name: 두산퓨얼셀
+- code: '241560'
+  name: 두산밥캣
+- code: '000155'
+  name: 두산우
+- code: '000157'
+  name: 두산2우B
+- code: '131970'
+  name: 두산테스나
+- code: '055550'
+  name: 신한지주
+- code: '293940'
+  name: 신한알파리츠
+- code: '500069'
+  name: 신한 레버리지 코스피 200 선물 ETN
+- code: '404990'
+  name: 신한서부티엔디리츠
+- code: '500029'
+  name: 신한 레버리지 은 선물 ETN(H)
+- code: '500099'
+  name: 신한 WTI원유 선물 ETN
+- code: '500037'
+  name: 신한 레버리지 금 선물 ETN
+- code: '500050'
+  name: 신한 레버리지 S&P500 선물 ETN
+- code: '500071'
+  name: 신한 레버리지 코스닥 150 선물 ETN
+- code: '500094'
+  name: 신한 블룸버그 인버스2X WTI원유선물 ETN B
+- code: '086790'
+  name: 하나금융지주
+- code: '700028'
+  name: 하나 레버리지 반도체 ETN
+- code: '700026'
+  name: 하나 CD금리투자 ETN
+- code: '039130'
+  name: 하나투어
+- code: '293480'
+  name: 하나제약
+- code: '700023'
+  name: 하나 Solactive 2X US Tech Top 10 ETN(H)
+- code: '700022'
+  name: 하나 Solactive US Tech Top 10 ETN(H)
+- code: '700027'
+  name: 하나 반도체 ETN
+- code: '700017'
+  name: 하나 레버리지 코스닥150 선물 ETN
+- code: '700029'
+  name: 하나 S&P 레버리지 WTI원유 선물 ETN B
+- code: '316140'
+  name: 우리금융지주
+- code: '032820'
+  name: 우리기술
+- code: '046970'
+  name: 우리로
+- code: '041190'
+  name: 우리기술투자
+- code: '101170'
+  name: 우림피티에스
+- code: '073560'
+  name: 우리손에프앤지
+- code: '115440'
+  name: 우리넷
+- code: '215360'
+  name: 우리산업
+- code: '082850'
+  name: 우리바이오
+- code: '072470'
+  name: 우리산업홀딩스
+- code: '300077'
+  name: 국민기술
+- code: '030200'
+  name: KT
+- code: '033780'
+  name: KT&G
+- code: '058850'
+  name: KTcs
+- code: '058860'
+  name: KTis
+- code: '089600'
+  name: KT나스미디어
+- code: '418470'
+  name: KT밀리의서재
+- code: '043610'
+  name: KT지니뮤직
+- code: '001440'
+  name: 대한전선
+- code: '003490'
+  name: 대한항공
+- code: '439260'
+  name: 대한조선
+- code: '006650'
+  name: 대한유화
+- code: '005880'
+  name: 대한해운
+- code: '084010'
+  name: 대한제강
+- code: '001790'
+  name: 대한제당
+- code: '001130'
+  name: 대한제분
+- code: '003830'
+  name: 대한화섬
+- code: '001070'
+  name: 대한방직
+- code: '011780'
+  name: 금호석유화학
+- code: '073240'
+  name: 금호타이어
+- code: '011785'
+  name: 금호석유화학우
+- code: '002990'
+  name: 금호건설
+- code: '214330'
+  name: 금호에이치티
+- code: '001210'
+  name: 금호전기
+- code: '002995'
+  name: 금호건설우
+- code: '036190'
+  name: 금화피에스시
+- code: '002597'
+  name: 금화실업
+- code: '000669'
+  name: 금홍에너지
+- code: '004800'
+  name: 효성
+- code: '298040'
+  name: 효성중공업
+- code: '298020'
+  name: 효성티앤씨
+- code: '298000'
+  name: 효성화학
+- code: '094280'
+  name: 효성ITX
+- code: '097870'
+  name: 효성오앤비
+- code: '035720'
+  name: 카카오
+- code: '323410'
+  name: 카카오뱅크
+- code: '377300'
+  name: 카카오페이
+- code: '293490'
+  name: 카카오게임즈
+- code: '035420'
+  name: NAVER
+- code: '068270'
+  name: 셀트리온
+- code: '068760'
+  name: 셀트리온제약
+- code: '259960'
+  name: 크래프톤
+- code: '295310'
+  name: 에이치브이엠
+- code: '036170'
+  name: 에이치엠넥스
+- code: '044990'
+  name: 에이치엔에스하이텍
+- code: '357230'
+  name: 에이치피오
+- code: '072990'
+  name: 에이치시티
+- code: '148930'
+  name: 에이치와이티씨
+- code: '239610'
+  name: 에이치엘사이언스
+- code: '044780'
+  name: 에이치케이
+- code: '477340'
+  name: 에이치엠씨제7호스팩
+- code: '011200'
+  name: HMM
+- code: '000270'
+  name: 기아
+- code: '688561'
+  name: 기안신
+- code: '090430'
+  name: 아모레퍼시픽
+- code: '002790'
+  name: 아모레퍼시픽홀딩스
+- code: '090435'
+  name: 아모레퍼시픽우
+- code: '002795'
+  name: 아모레퍼시픽홀딩스우
+- code: '192820'
+  name: 코스맥스
+- code: '044820'
+  name: 코스맥스비티아이
+- code: '222040'
+  name: 코스맥스엔비티
+- code: '225570'
+  name: 넥슨게임즈
+- code: '251270'
+  name: 넷마블
+- code: '139480'
+  name: 이마트
+- code: '004170'
+  name: 신세계
+- code: '031430'
+  name: 신세계인터내셔날
+- code: '035510'
+  name: 신세계 I&C
+- code: '031440'
+  name: 신세계푸드
+- code: '078930'
+  name: GS
+- code: '006360'
+  name: GS건설
+- code: '007070'
+  name: GS리테일
+- code: '499790'
+  name: GS피앤엘
+- code: '001250'
+  name: GS글로벌
+- code: '078935'
+  name: GS우
+- code: '083450'
+  name: GST
+- code: '000725'
+  name: 현대건설우
+- code: '047040'
+  name: 대우건설
+- code: '006340'
+  name: 대원전선
+- code: '069620'
+  name: 대웅제약
+- code: '003090'
+  name: 대웅
+- code: '000430'
+  name: 대원강업
+- code: '003220'
+  name: 대원제약
+- code: '006345'
+  name: 대원전선우
+- code: '024890'
+  name: 대원화성
+- code: '005710'
+  name: 대원산업
+- code: '048910'
+  name: 대원미디어
+- code: '000880'
+  name: 한화
+- code: '042660'
+  name: 한화오션
+- code: '009830'
+  name: 한화솔루션
+- code: '012450'
+  name: 한화에어로스페이스
+- code: '272210'
+  name: 한화시스템
+- code: '082740'
+  name: 한화엔진
+- code: '088350'
+  name: 한화생명
+- code: '489790'
+  name: 한화비전
+- code: '003530'
+  name: 한화투자증권
+- code: '451800'
+  name: 한화리츠
+- code: '329180'
+  name: HD현대중공업
+- code: '267260'
+  name: HD현대일렉트릭
+- code: '009540'
+  name: HD한국조선해양
+- code: '267270'
+  name: HD건설기계
+- code: '267250'
+  name: HD현대
+- code: '443060'
+  name: HD현대마린솔루션
+- code: '071970'
+  name: HD현대마린엔진
+- code: '322000'
+  name: HD현대에너지솔루션
+- code: '012630'
+  name: HDC
+- code: '456040'
+  name: OCI
+- code: '010060'
+  name: OCI홀딩스
+- code: '006040'
+  name: 동원산업
+- code: '014820'
+  name: 동원시스템즈
+- code: '018500'
+  name: 동원금속
+- code: '030720'
+  name: 동원수산
+- code: '014825'
+  name: 동원시스템즈우
+- code: '013120'
+  name: 동원개발
+- code: '004370'
+  name: 농심
+- code: '072710'
+  name: 농심홀딩스
+- code: '007310'
+  name: 오뚜기
+- code: '001680'
+  name: 대상
+- code: '084690'
+  name: 대상홀딩스
+- code: '001685'
+  name: 대상우
+- code: '084695'
+  name: 대상홀딩스우
+- code: '600694'
+  name: 대상그룹
+- code: '005180'
+  name: 빙그레
+- code: '271560'
+  name: 오리온
+- code: '001800'
+  name: 오리온홀딩스
+- code: '128940'
+  name: 한미약품
+- code: '000100'
+  name: 유한양행
+- code: '000105'
+  name: 유한양행우
+- code: '006280'
+  name: 녹십자
+- code: '005250'
+  name: 녹십자홀딩스
+- code: '005257'
+  name: 녹십자홀딩스2우
+- code: '234690'
+  name: 녹십자웰빙
+- code: '142280'
+  name: 녹십자엠에스
+- code: '185750'
+  name: 종근당
+- code: '001630'
+  name: 종근당홀딩스
+- code: '063160'
+  name: 종근당바이오
+- code: '000640'
+  name: 동아쏘시오홀딩스
+- code: '170900'
+  name: 동아에스티
+- code: '028100'
+  name: 동아지질
+- code: '088130'
+  name: 동아엘텍
+- code: '000423'
+  name: 동아아교
+- code: '006405'
+  name: 삼성SDI우
+- code: '086520'
+  name: 에코프로
+- code: '450080'
+  name: 에코프로머티
+- code: '247540'
+  name: 에코프로비엠
+- code: '383310'
+  name: 에코프로에이치엔
+- code: '096775'
+  name: SK이노베이션우
+- code: '006260'
+  name: LS
+- code: '010120'
+  name: LS ELECTRIC
+- code: '229640'
+  name: LS에코에너지
+- code: '000680'
+  name: LS네트웍스
+- code: '060370'
+  name: LS마린솔루션
+- code: '417200'
+  name: LS머트리얼즈
+- code: '078020'
+  name: LS증권
+- code: '322180'
+  name: LS티라유텍
+- code: '252670'
+  name: KODEX 200선물인버스2X
+- code: '069500'
+  name: KODEX 200
+- code: '395160'
+  name: KODEX AI반도체TOP2플러스
+- code: '122630'
+  name: KODEX 레버리지
+- code: '379800'
+  name: KODEX 미국S&P500
+- code: '278530'
+  name: KODEX 200TR
+- code: '379810'
+  name: KODEX 미국나스닥100
+- code: '488770'
+  name: KODEX 머니마켓액티브
+- code: '091160'
+  name: KODEX 반도체
+- code: '396500'
+  name: TIGER 반도체TOP10
+- code: '360750'
+  name: TIGER 미국S&P500
+- code: '102110'
+  name: TIGER 200
+- code: '133690'
+  name: TIGER 미국나스닥100
+- code: '381180'
+  name: TIGER 미국필라델피아반도체나스닥
+- code: '310970'
+  name: TIGER MSCI Korea TR
+- code: '381170'
+  name: TIGER 미국테크TOP10 INDXX
+- code: '458730'
+  name: TIGER 미국배당다우존스
+- code: '357870'
+  name: TIGER CD금리투자KIS(합성)
+- code: '395270'
+  name: HANARO Fn K-반도체
+- code: '434730'
+  name: HANARO 원자력iSelect
+- code: '293180'
+  name: HANARO 200
+- code: '332930'
+  name: HANARO 200TR
+- code: '491820'
+  name: HANARO 전력설비투자
+- code: '332940'
+  name: HANARO MSCI Korea TR
+- code: '454320'
+  name: HANARO CAPEX설비투자iSelect
+- code: '304780'
+  name: HANARO 200선물레버리지
+- code: '411060'
+  name: ACE KRX금현물
+- code: '360200'
+  name: ACE 미국S&P500
+- code: '367380'
+  name: ACE 미국나스닥100
+- code: '105190'
+  name: ACE 200
+- code: '446770'
+  name: ACE 글로벌반도체TOP4 Plus
+- code: '453850'
+  name: ACE 미국30년국채액티브(H)
+- code: '469150'
+  name: ACE AI반도체TOP3+
+- code: '438080'
+  name: ACE 미국S&P500미국채혼합50액티브
+- code: '356540'
+  name: ACE 종합채권(AA-이상)액티브
+- code: '457480'
+  name: ACE 테슬라밸류체인액티브
+- code: '016360'
+  name: 삼성증권
 - code: '006800'
   name: 미래에셋증권
+- code: '085620'
+  name: 미래에셋생명
+- code: '520054'
+  name: 미래에셋 레버리지 코스피200 선물 ETN
+- code: '520098'
+  name: 미래에셋 레버리지 반도체 ETN
+- code: '006805'
+  name: 미래에셋증권우
+- code: '520094'
+  name: 미래에셋 CD금리 플러스 ETN
+- code: '520101'
+  name: 미래에셋 레버리지 SK하이닉스 단일종목ETN
+- code: '520066'
+  name: 미래에셋 KRX금현물 Auto-KO-C 2810-01 ETN
+- code: '520100'
+  name: 미래에셋 레버리지 삼성전자 단일종목 ETN
+- code: '039490'
+  name: 키움증권
+- code: '760013'
+  name: 키움 레버리지 반도체TOP10 ETN
+- code: '760009'
+  name: 키움 CD금리투자 ETN
+- code: '760011'
+  name: 키움 레버리지 2차전지산업 ETN
+- code: '760007'
+  name: 키움 코스피 200 TR ETN
+- code: '760016'
+  name: 키움 레버리지 조선TOP10 ETN
+- code: '760018'
+  name: 키움 미국달러선물 ETN B
+- code: '760026'
+  name: 키움 레버리지 전력 TOP5 ETN
+- code: '760005'
+  name: 키움 INDXX 미국테크탑10 ETN
+- code: '760012'
+  name: 키움 반도체TOP10 ETN
+- code: '005940'
+  name: NH투자증권
+- code: '181710'
+  name: NHN
+- code: '005945'
+  name: NH투자증권우
+- code: '400760'
+  name: NH올원리츠
+- code: '338100'
+  name: NH프라임리츠
+- code: '060250'
+  name: NHN KCP
+- code: '054050'
+  name: NH농우바이오
+- code: '104200'
+  name: NHN벅스
+- code: '003540'
+  name: 대신증권
+- code: '003545'
+  name: 대신증권우
+- code: '003547'
+  name: 대신증권2우B
+- code: '510044'
+  name: 대신 레버리지 미국달러 선물 ETN
+- code: '510045'
+  name: 대신 인버스 2X 미국달러 선물 ETN
+- code: '510043'
+  name: 대신 인버스 천연가스 선물 ETN(H) B
+- code: '510027'
+  name: 대신 인버스 2X 코스닥 150 선물 ETN
+- code: '020180'
+  name: 대신정보통신
+- code: '001750'
+  name: 한양증권
+- code: '001755'
+  name: 한양증권우
+- code: '045100'
+  name: 한양이엔지
+- code: '078350'
+  name: 한양디지텍
