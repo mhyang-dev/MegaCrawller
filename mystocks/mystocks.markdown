@@ -856,6 +856,13 @@ function setupWatchSearch(opts) {
     fetchAndRender(code, name);
   }
 
+  function fmtUsdCap(mc) {
+    if (!mc || mc <= 0) return '';
+    if (mc >= 1e12) return '$' + (mc / 1e12).toFixed(2) + 'T';
+    if (mc >= 1e9)  return '$' + (mc / 1e9).toFixed(1) + 'B';
+    return '$' + (mc / 1e6).toFixed(0) + 'M';
+  }
+
   function fetchAndRender(code, name) {
     if (opts.type === 'us') {
       fetch('https://query1.finance.yahoo.com/v8/finance/chart/' + code + '?interval=1d&range=1d')
@@ -867,22 +874,44 @@ function setupWatchSearch(opts) {
           var prev   = meta.previousClose || price;
           var change = price - prev;
           var pct    = prev > 0 ? ((change / prev) * 100).toFixed(2) : 0;
-          appendRow(code, name, price.toFixed(2), Math.abs(change).toFixed(2), pct, change >= 0 ? 'RISING' : 'FALLING');
+          var capStr = fmtUsdCap(meta.marketCap);
+          var perStr = meta.trailingPE ? String(meta.trailingPE.toFixed(1)) : '';
+          appendRow(code, name, price.toFixed(2), Math.abs(change).toFixed(2), pct, change >= 0 ? 'RISING' : 'FALLING', {cap: capStr, capNum: meta.marketCap || 0, per: perStr});
         })
-        .catch(function() { appendRow(code, name, '—', '—', '0', 'EVEN'); });
+        .catch(function() { appendRow(code, name, '—', '—', '0', 'EVEN', {}); });
     } else {
-      fetch('https://m.stock.naver.com/api/stock/' + code + '/basic')
-        .then(function(r) { return r.json(); })
-        .then(function(d) {
+      var basicP = fetch('https://m.stock.naver.com/api/stock/' + code + '/basic').then(function(r) { return r.json(); });
+      var integP = (opts.type !== 'etf')
+        ? fetch('https://m.stock.naver.com/api/stock/' + code + '/integration').then(function(r) { return r.json(); }).catch(function() { return null; })
+        : Promise.resolve(null);
+      Promise.all([basicP, integP])
+        .then(function(res) {
+          var d = res[0]; var integ = res[1];
           var dir = d.compareToPreviousPrice ? d.compareToPreviousPrice.name : 'EVEN';
           var rawChg = String(d.compareToPreviousClosePrice || '');
-          appendRow(code, d.stockName || name, d.closePrice || '—', rawChg.replace(/^-/,'').trim() || '—', d.fluctuationsRatio || '0', dir);
+          var extra = {};
+          if (integ) {
+            // integration endpoint: try stockItemTotalInfos array
+            var infos = integ.stockItemTotalInfos || integ.totalInfos || [];
+            infos.forEach(function(item) {
+              var key = (item.code || item.key || '').toLowerCase();
+              var val = item.value || item.val || '';
+              if (key === 'marketvalue' || key === 'totalmktcap') extra.cap = val;
+              if (key === 'per')  extra.per  = val;
+            });
+            // flat fields fallback
+            if (!extra.cap && integ.marketValue) extra.cap = integ.marketValue;
+            if (!extra.cap && integ.totalMarketCap) extra.cap = integ.totalMarketCap;
+            if (!extra.per && integ.per) extra.per = String(integ.per);
+          }
+          appendRow(code, d.stockName || name, d.closePrice || '—', rawChg.replace(/^-/,'').trim() || '—', d.fluctuationsRatio || '0', dir, extra);
         })
-        .catch(function() { appendRow(code, name, '—', '—', '0', 'EVEN'); });
+        .catch(function() { appendRow(code, name, '—', '—', '0', 'EVEN', {}); });
     }
   }
 
-  function appendRow(code, name, price, change, pct, dir) {
+  function appendRow(code, name, price, change, pct, dir, extra) {
+    extra = extra || {};
     if (opts.emptyRowId) { var emptyEl = document.getElementById(opts.emptyRowId); if (emptyEl) emptyEl.remove(); }
     var tbody = document.querySelector('#' + opts.tableId + ' tbody');
     if (!tbody) return;
@@ -895,13 +924,15 @@ function setupWatchSearch(opts) {
     var nameCell   = '<td data-sort="' + escHtml(name) + '"><a href="' + link + escHtml(code) + '" target="_blank">' + escHtml(name) + '</a></td>';
     var priceCell  = '<td data-sort="' + escHtml(pNum) + '">' + escHtml(String(price)) + '</td>';
     var changeCell = '<td data-sort="' + escHtml(String(pct)) + '" class="' + cls + '">' + arrow + ' ' + escHtml(String(change)) + ' <span class="sub">(' + escHtml(String(pct)) + '%)</span></td>';
+    var capCell = extra.cap ? '<td data-sort="' + escHtml(String(extra.capNum || 0)) + '">' + escHtml(extra.cap) + '</td>' : na;
+    var perCell = extra.per ? '<td data-sort="' + escHtml(extra.per) + '">' + escHtml(extra.per) + '</td>' : na;
     var inner;
     if (opts.type === 'etf') {
       inner = nameCell + priceCell + changeCell + '<td class="holdings-cell"><span class="na">—</span></td>' + trash;
     } else if (opts.type === 'us') {
-      inner = '<td class="fics-cell" data-sort=""><span class="na">—</span></td>' + nameCell + na + priceCell + changeCell + na + na + trash;
+      inner = '<td class="fics-cell" data-sort=""><span class="na">—</span></td>' + nameCell + capCell + priceCell + changeCell + perCell + na + trash;
     } else {
-      inner = '<td class="fics-cell" data-sort=""><span class="na">—</span></td>' + nameCell + na + priceCell + changeCell + na + na + '<td class="investor-cell"><span class="na">—</span></td>' + '<td class="disclosure-cell"><span class="na">—</span></td>' + trash;
+      inner = '<td class="fics-cell" data-sort=""><span class="na">—</span></td>' + nameCell + capCell + priceCell + changeCell + perCell + na + '<td class="investor-cell"><span class="na">—</span></td>' + '<td class="disclosure-cell"><span class="na">—</span></td>' + trash;
     }
     var tr = document.createElement('tr');
     tr.setAttribute('data-dynamic','true'); tr.setAttribute('data-code', code);
