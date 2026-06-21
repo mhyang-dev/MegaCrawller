@@ -8,6 +8,7 @@ require 'yaml'
 require 'webrick'
 require 'uri'
 require 'thread'
+require 'fileutils'
 
 PORT = 9001
 
@@ -362,7 +363,72 @@ server = WEBrick::HTTPServer.new(
   AccessLog: []
 )
 
-REPO_ROOT = File.expand_path('..', __dir__)
+REPO_ROOT    = File.expand_path('..', __dir__)
+UPDATE_MUTEX = Mutex.new
+
+def build_cache(repo_root)
+  wl_path = File.join(repo_root, '_data', 'watchlist.json')
+  return nil unless File.exist?(wl_path)
+  watchlist = JSON.parse(File.read(wl_path))
+  usd_krw   = load_usd_krw
+  now       = Time.now.strftime('%Y-%m-%dT%H:%M:%S+09:00')
+  cache     = { 'updated_at' => now }
+  mutex     = Mutex.new
+
+  %w[kr_port kr_watch etf_port etf_watch].each do |cat|
+    is_etf  = cat.start_with?('etf')
+    results = []
+    threads = (watchlist[cat] || []).map do |s|
+      Thread.new do
+        begin
+          basic = fetch_kr_basic(s['code'])
+          next unless basic
+          row = if is_etf
+            basic.merge('holdings' => fetch_etf_holdings(s['code']))
+          else
+            price_str = basic['price']
+            fn = nil; inv = nil; disc = nil
+            [Thread.new { fn   = fetch_fnguide(s['code']) },
+             Thread.new { inv  = fetch_investor_streaks(s['code'], price: price_str) },
+             Thread.new { disc = fetch_disclosure(s['code']) }].each(&:join)
+            r = basic.merge(fn || {}).merge('investor_streaks' => inv, 'disclosure' => disc)
+            if r['analyst_target'] && r['price']
+              pn  = r['price'].to_s.gsub(',', '').to_f
+              tgt = r.dig('analyst_target', 'avg')
+              r['upside_pct'] = ((tgt.to_f / pn - 1) * 100).round(1) if pn > 0 && tgt
+            end
+            r
+          end
+          mutex.synchronize { results << row }
+          puts "  [캐시] #{s['name']}(#{s['code']}) 완료"
+        rescue StandardError => e
+          puts "  [캐시] #{s['code']} 오류: #{e.message}"
+        end
+      end
+    end
+    threads.each(&:join)
+    cache[cat] = results
+  end
+
+  %w[us_port us_watch].each do |cat|
+    results = []
+    threads = (watchlist[cat] || []).map do |s|
+      Thread.new do
+        begin
+          d = fetch_us_data(s['code'].upcase, usd_krw: usd_krw)
+          mutex.synchronize { results << d } if d
+          puts "  [캐시] #{s['code']} 완료"
+        rescue StandardError => e
+          puts "  [캐시] #{s['code']} 오류: #{e.message}"
+        end
+      end
+    end
+    threads.each(&:join)
+    cache[cat] = results
+  end
+
+  cache
+end
 
 def set_cors(res)
   res['Access-Control-Allow-Origin']          = '*'
@@ -376,6 +442,77 @@ server.mount_proc '/' do |req, res|
   set_cors(res)
   if req.request_method == 'OPTIONS'
     res.status = 200; res.body = ''; next
+  end
+
+  # GET /update → 데이터 업데이트 UI 페이지
+  if req.path == '/update' && req.request_method == 'GET'
+    res['Content-Type'] = 'text/html; charset=utf-8'
+    res.body = <<~HTML
+      <!DOCTYPE html><html lang="ko">
+      <head><meta charset="utf-8"><title>데이터 업데이트</title>
+      <style>body{font-family:sans-serif;padding:40px;max-width:540px;margin:auto}
+      button{padding:10px 24px;font-size:1em;cursor:pointer;border:1px solid #ccc;border-radius:8px;background:#f5f5f5}
+      button:disabled{opacity:.45;cursor:default}#msg{margin-top:20px;line-height:1.7}</style></head>
+      <body><h2>🔄 데이터 업데이트</h2>
+      <p>watchlist 전 종목의 시세·수급·목표가·공시를 수집하여 GitHub에 push합니다.</p>
+      <button id="btn">업데이트 시작</button>
+      <div id="msg"></div>
+      <script>
+      document.getElementById('btn').addEventListener('click', function() {
+        var btn = this, msg = document.getElementById('msg');
+        btn.disabled = true; msg.textContent = '수집 중... (종목 수에 따라 30초~1분 소요)';
+        fetch('/api/update-cache').then(function(r){return r.json();})
+          .then(function(r){
+            if(r.error) throw new Error(r.error);
+            msg.innerHTML = r.message==='no changes'
+              ? '변경 사항 없음'
+              : '✓ 완료: '+r.updated_at+'<br>잠시 후(~1분) 모든 기기에서 반영됩니다';
+          })
+          .catch(function(e){msg.textContent='✗ 오류: '+e.message;})
+          .finally(function(){btn.disabled=false;});
+      });
+      </script></body></html>
+    HTML
+    next
+  end
+
+  # GET /api/update-cache → watchlist 전종목 수집 후 stocks_cache.json push
+  if req.path == '/api/update-cache' && req.request_method == 'GET'
+    begin
+      result = UPDATE_MUTEX.synchronize do
+        puts "[#{Time.now.strftime('%H:%M:%S')}] 캐시 업데이트 시작"
+        c = build_cache(REPO_ROOT)
+        raise '캐시 빌드 실패' unless c
+        cache_file = File.join(REPO_ROOT, 'data', 'stocks_cache.json')
+        FileUtils.mkdir_p(File.dirname(cache_file))
+        File.write(cache_file, JSON.pretty_generate(c))
+        r = {}
+        Dir.chdir(REPO_ROOT) do
+          system('git add data/stocks_cache.json')
+          if system('git diff --cached --quiet')
+            r = { ok: true, message: 'no changes' }
+          else
+            system("git commit --no-verify -m \"데이터 캐시 업데이트: #{c['updated_at']}\"")
+            if system('git push origin master')
+              r = { ok: true, message: 'pushed', updated_at: c['updated_at'] }
+            else
+              r = { error: 'git push failed' }
+            end
+          end
+        end
+        r
+      end
+      if result[:error] || result['error']
+        res.status = 500
+        res.body = (result[:error] ? { error: result[:error] } : result).to_json
+      else
+        res.body = result.to_json
+      end
+    rescue StandardError => e
+      res.status = 500
+      res.body = { error: e.message }.to_json
+    end
+    next
   end
 
   # GET /save → 저장 UI 페이지 (HTTPS 페이지에서 직접 fetch 불가 우회용)

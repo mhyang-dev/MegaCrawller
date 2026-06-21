@@ -349,7 +349,9 @@ permalink: /mystocks/
 </div>
 <div class="sync-bar">
   <button class="sync-btn" id="github-save-btn">☁ GitHub 저장</button>
+  <button class="sync-btn" id="cache-update-btn">🔄 데이터 업데이트</button>
   <span class="sync-msg" id="sync-msg"></span>
+  <span class="sync-msg" id="cache-updated-at"></span>
 </div>
 
 <!-- ══ 국내 주식 패널 ══ -->
@@ -677,6 +679,30 @@ permalink: /mystocks/
 <script>
 var KR_STOCKS = {{ site.data.mystocks.kr_stocks_list | default: "[]" | jsonify }};
 var WATCHLIST = {{ site.data.watchlist | jsonify }};
+
+// ── GitHub 스냅샷 캐시 ────────────────────────────────────────────────────
+var REPO_RAW = 'https://raw.githubusercontent.com/mhyang-dev/MegaCrawller/master';
+var g_cache = {};  // storageKey → code → stockData
+var g_cacheTs = null;
+var g_cacheFetch = fetch(REPO_RAW + '/data/stocks_cache.json?v=' + Math.floor(Date.now() / 60000))
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    g_cacheTs = data.updated_at;
+    var keyMap = {
+      'kr_port':  'kr_port_dynamic_v1',  'kr_watch':  'kr_watchlist_v2',
+      'etf_port': 'etf_port_dynamic_v1', 'etf_watch': 'etf_watchlist_v1',
+      'us_port':  'us_port_dynamic_v1',  'us_watch':  'us_watchlist_v1'
+    };
+    Object.keys(keyMap).forEach(function(cat) {
+      var sk = keyMap[cat];
+      g_cache[sk] = {};
+      (data[cat] || []).forEach(function(s) { if (s && s.code) g_cache[sk][s.code] = s; });
+    });
+    var el = document.getElementById('cache-updated-at');
+    if (el && data.updated_at) el.textContent = '업데이트: ' + data.updated_at.replace('T',' ').slice(0,16);
+  })
+  .catch(function() {});
+
 var US_STOCKS_LIST = [
   {code:'AAPL',name:'Apple Inc.'},{code:'MSFT',name:'Microsoft Corporation'},{code:'NVDA',name:'NVIDIA Corporation'},
   {code:'AMZN',name:'Amazon.com Inc.'},{code:'META',name:'Meta Platforms Inc.'},{code:'GOOGL',name:'Alphabet Inc. (Class A)'},
@@ -879,6 +905,27 @@ function setupWatchSearch(opts) {
     fetchAndRender(code, name);
   }
 
+  function dataToExtra(d) {
+    var extra = {};
+    if (d.fics)                     extra.fics       = d.fics;
+    if (d.market_cap_formatted)     extra.cap        = d.market_cap_formatted;
+    if (d.market_cap_eok)           extra.capNum     = d.market_cap_eok;
+    if (d.market_cap_usd_formatted) extra.capUsd     = d.market_cap_usd_formatted;
+    if (d.per != null)              extra.per        = String(d.per);
+    if (d.indu_per != null)         extra.induPer    = String(d.indu_per);
+    if (d.analyst_target) {
+      extra.targetFmt   = d.analyst_target.avg_formatted;
+      extra.targetCount = d.analyst_target.count;
+      extra.targetUsd   = d.analyst_target.avg_usd;
+    }
+    if (d.upside_pct != null)       extra.upside     = d.upside_pct;
+    if (d.investor_streaks)         extra.investor   = d.investor_streaks;
+    if (d.disclosure)               extra.disclosure = d.disclosure;
+    if (d.holdings)                 extra.holdings   = d.holdings;
+    if (d.price_usd)                extra.priceUsd   = d.price_usd;
+    return extra;
+  }
+
   function fetchAndRender(code, name) {
     // YAML 정적 행이 이미 표시 중이면 중복 추가 않음
     var tbody = document.querySelector('#' + opts.tableId + ' tbody');
@@ -893,27 +940,22 @@ function setupWatchSearch(opts) {
       .then(function(r) { if (!r.ok) throw new Error('server'); return r.json(); })
       .then(function(d) {
         if (d.error) throw new Error(d.error);
-        var extra = {};
-        if (d.fics)                     extra.fics       = d.fics;
-        if (d.market_cap_formatted)     extra.cap        = d.market_cap_formatted;
-        if (d.market_cap_eok)           extra.capNum     = d.market_cap_eok;
-        if (d.market_cap_usd_formatted) extra.capUsd     = d.market_cap_usd_formatted;
-        if (d.per != null)              extra.per        = String(d.per);
-        if (d.indu_per != null)         extra.induPer    = String(d.indu_per);
-        if (d.analyst_target) {
-          extra.targetFmt   = d.analyst_target.avg_formatted;
-          extra.targetCount = d.analyst_target.count;
-          extra.targetUsd   = d.analyst_target.avg_usd;
-        }
-        if (d.upside_pct != null)       extra.upside     = d.upside_pct;
-        if (d.investor_streaks)         extra.investor   = d.investor_streaks;
-        if (d.disclosure)               extra.disclosure = d.disclosure;
-        if (d.holdings)                 extra.holdings   = d.holdings;
-        if (d.price_usd)                extra.priceUsd   = d.price_usd;
         appendRow(code, d.name || name, d.price || '—', d.change || '—',
-                  d.change_pct != null ? String(d.change_pct) : '0', d.direction || 'EVEN', extra);
+                  d.change_pct != null ? String(d.change_pct) : '0', d.direction || 'EVEN', dataToExtra(d));
       })
-      .catch(function() { fallbackFetch(code, name); });
+      .catch(function() {
+        // 서버 실패 → 캐시 확인 → Naver fallback
+        g_cacheFetch.then(function() {
+          var cached = g_cache[opts.storageKey] && g_cache[opts.storageKey][code];
+          if (cached) {
+            appendRow(code, cached.name || name, cached.price || '—', cached.change || '—',
+                      cached.change_pct != null ? String(cached.change_pct) : '0',
+                      cached.direction || 'EVEN', dataToExtra(cached));
+          } else {
+            fallbackFetch(code, name);
+          }
+        });
+      });
   }
 
   function fallbackFetch(code, name) {
@@ -1204,6 +1246,18 @@ function initStaticTrash(tableId, hiddenKey) {
         if (msg) { msg.textContent = '✗ ' + e.message; setTimeout(function() { msg.textContent = ''; }, 6000); }
       }
     });
+  }
+
+  // 🔄 데이터 업데이트 버튼
+  var updateBtn = document.getElementById('cache-update-btn');
+  if (updateBtn) {
+    if (isMobile) {
+      updateBtn.addEventListener('click', function() { window.location.reload(); });
+    } else {
+      updateBtn.addEventListener('click', function() {
+        try { window.open('http://localhost:9001/update', '_blank'); } catch(e) {}
+      });
+    }
   }
 })();
 

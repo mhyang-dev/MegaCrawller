@@ -681,3 +681,61 @@ kr_stocks_list = fetch_kr_stock_list
 total_target = MY_STOCKS.size + KR_WATCHLIST.size + US_WATCHLIST.size
 File.write(DATA_FILE, { 'fetched_at' => kst_now, 'stocks' => sorted, 'kr_stocks_list' => kr_stocks_list }.to_yaml)
 puts "[완료] #{sorted.size}/#{total_target}개 종목 저장"
+
+# ── watchlist 캐시 업데이트 ──────────────────────────────────────────────
+require 'fileutils'
+watchlist_path = File.join(__dir__, '..', '_data', 'watchlist.json')
+if File.exist?(watchlist_path)
+  begin
+    watchlist = JSON.parse(File.read(watchlist_path))
+    now_str   = (Time.now.utc + 9 * 3600).strftime('%Y-%m-%dT%H:%M:%S+09:00')
+    wl_cache  = { 'updated_at' => now_str }
+
+    # KR/ETF
+    %w[kr_port kr_watch etf_port etf_watch].each do |cat|
+      is_etf = cat.start_with?('etf')
+      wl_cache[cat] = (watchlist[cat] || []).filter_map do |s|
+        code  = s['code']
+        basic = fetch_basic(code, s['name']) rescue nil
+        next unless basic
+        if is_etf
+          basic
+        else
+          consensus = fetch_fnguide_consensus(code) rescue nil
+          inv       = fetch_investor_streaks(code, price: basic['price']) rescue nil
+          disc      = fetch_disclosure(code) rescue nil
+          cap_eok   = consensus&.dig('market_cap_eok') || (fetch_naver_market_cap(code) rescue nil)
+          r = basic.merge(consensus || {}).merge(
+            'market_cap_eok'       => cap_eok,
+            'market_cap_formatted' => cap_eok ? format_market_cap(cap_eok) : nil,
+            'investor_streaks'     => inv,
+            'disclosure'           => disc
+          )
+          if r['analyst_target'] && r['price']
+            pn  = r['price'].to_s.gsub(',', '').to_f
+            tgt = r.dig('analyst_target', 'avg')
+            r['upside_pct'] = ((tgt.to_f / pn - 1) * 100).round(1) if pn > 0 && tgt
+          end
+          puts "  [캐시] #{r['name']}(#{code})"
+          r
+        end
+      end
+    end
+
+    # US
+    %w[us_port us_watch].each do |cat|
+      wl_cache[cat] = (watchlist[cat] || []).filter_map do |s|
+        data = fetch_yahoo_data(s['code'].upcase, s['name'], usd_krw: usd_krw) rescue nil
+        puts "  [캐시] #{s['code']}" if data
+        data
+      end
+    end
+
+    cache_path = File.join(__dir__, '..', 'data', 'stocks_cache.json')
+    FileUtils.mkdir_p(File.dirname(cache_path))
+    File.write(cache_path, JSON.pretty_generate(wl_cache))
+    puts "[캐시] #{cache_path} 저장 완료"
+  rescue StandardError => e
+    puts "[캐시 오류] #{e.message}"
+  end
+end
