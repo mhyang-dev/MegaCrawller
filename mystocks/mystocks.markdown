@@ -940,23 +940,41 @@ function setupWatchSearch(opts) {
         })
         .catch(function() { appendRow(code, name, '—', '—', '0', 'EVEN', {}); });
     } else {
-      // KR 주식: 기본가격 + 공시 병렬 로드 (서버 없이 Naver API 직접 호출)
+      // KR 주식: basic + 공시 + 수급 병렬 로드 (서버 없이 Naver API 직접 호출)
       var DISC_JUNK = /가격제한폭|기준가격|단기과열|투자주의|투자경고|투자위험|거래정지|매매정지|이상급등/;
       Promise.all([
         fetch('https://m.stock.naver.com/api/stock/' + code + '/basic').then(function(r) { return r.json(); }),
-        fetch('https://m.stock.naver.com/api/stock/' + code + '/disclosure?pageSize=20').then(function(r) { return r.json(); }).catch(function() { return null; })
+        fetch('https://m.stock.naver.com/api/stock/' + code + '/disclosure?pageSize=20').then(function(r) { return r.json(); }).catch(function() { return null; }),
+        fetch('https://m.stock.naver.com/api/stock/' + code + '/investorsStat').then(function(r) { return r.json(); }).catch(function() { return null; })
       ]).then(function(res) {
-        var d = res[0], discData = res[1];
+        var d = res[0], discData = res[1], invData = res[2];
         var dir = d.compareToPreviousPrice ? d.compareToPreviousPrice.name : 'EVEN';
         var rawChg = String(d.compareToPreviousClosePrice || '');
         var extra = {};
-        // 시총 (API 응답에 있으면 사용)
-        var mv = d.marketValue || d.marketCap;
-        if (mv) {
-          var eok = Math.round(mv / 100000000);
-          extra.capNum = eok;
-          extra.cap = eok >= 10000 ? (eok / 10000).toFixed(1) + '조' : eok.toLocaleString() + '억';
+
+        // 시총·PER: totalInfos 배열 파싱 (Naver basic 응답에 포함됨)
+        if (d.totalInfos && Array.isArray(d.totalInfos)) {
+          d.totalInfos.forEach(function(info) {
+            if (!extra.cap && (info.code === 'MARKETSUM' || info.key === '시가총액')) {
+              extra.cap = info.value;
+              var v = info.value || '';
+              var jo = v.match(/([\d,.]+)조/), eo = v.match(/([\d,.]+)억/);
+              extra.capNum = (jo ? parseFloat(jo[1].replace(/,/g,'')) * 10000 : 0)
+                           + (eo ? parseFloat(eo[1].replace(/,/g,'')) : 0);
+            }
+            if (!extra.per && (info.code === 'PER' || info.key === 'PER')) extra.per = String(info.value);
+          });
         }
+        // totalInfos 없을 때 raw 필드 시도
+        if (!extra.cap) {
+          var mv = d.marketValue || d.marketCap;
+          if (mv) {
+            var eok = Math.round(mv / 100000000);
+            extra.capNum = eok;
+            extra.cap = eok >= 10000 ? (eok/10000).toFixed(1) + '조' : eok.toLocaleString() + '억';
+          }
+        }
+
         // 공시
         if (discData && Array.isArray(discData)) {
           var filtered = discData.filter(function(i) { return !DISC_JUNK.test(i.title || ''); }).slice(0, 3);
@@ -967,7 +985,26 @@ function setupWatchSearch(opts) {
             });
           }
         }
-        appendRow(code, d.stockName || name, d.closePrice || '—', rawChg.replace(/^-/, '').trim() || '—', d.fluctuationsRatio || '0', dir, extra);
+
+        // 수급 연속 일수 (investorsStat 응답 있을 때)
+        if (invData && Array.isArray(invData) && invData.length) {
+          var calcStreak = function(vals) {
+            var first = vals.find(function(v) { return v !== 0; });
+            if (first == null) return 0;
+            var dir2 = first > 0 ? 1 : -1, cnt = 0;
+            vals.every(function(v) { if (v === 0 || (v > 0 ? 1 : -1) !== dir2) return false; cnt++; return true; });
+            return dir2 * cnt;
+          };
+          var giV  = invData.map(function(r) { return r.institution || r.institutionNetBuy || 0; });
+          var foV  = invData.map(function(r) { return r.foreigner   || r.foreignerNetBuy   || 0; });
+          var inV  = giV.map(function(g, i) { return -(g + foV[i]); });
+          var gi = calcStreak(giV), fo = calcStreak(foV), ind = calcStreak(inV);
+          if (gi !== 0 || fo !== 0 || ind !== 0) {
+            extra.investor = { gigan: gi, gigan_amount: null, foreign: fo, foreign_amount: null, indi: ind, indi_amount: null };
+          }
+        }
+
+        appendRow(code, d.stockName || name, d.closePrice || '—', rawChg.replace(/^-/,'').trim() || '—', d.fluctuationsRatio || '0', dir, extra);
       }).catch(function() { appendRow(code, name, '—', '—', '0', 'EVEN', {}); });
     }
   }
