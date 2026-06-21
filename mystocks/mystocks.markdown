@@ -146,12 +146,14 @@ permalink: /mystocks/
 .holdings-list li { font-size: 0.84em; line-height: 1.65; white-space: nowrap; }
 .holdings-ratio { color: #999; margin-left: 0.4em; }
 
-/* ── GitHub 저장 바 ────────────────────────────────── */
+/* ── 동기화 바 ────────────────────────────────────── */
 .sync-bar { display: flex; align-items: center; gap: 8px; margin: 6px 0 10px; }
 .sync-btn { background: none; border: 1px solid #ccc; border-radius: 12px; padding: 3px 12px; cursor: pointer; color: #555; font-size: 0.8em; }
 .sync-btn:hover { background: #f0f0f0; }
 .sync-btn:disabled { opacity: 0.45; cursor: default; }
 .sync-msg { color: #888; font-size: 0.8em; }
+.update-spinner { display: inline-block; width: 12px; height: 12px; border: 2px solid #ccc; border-top-color: #555; border-radius: 50%; animation: spin-anim 0.7s linear infinite; vertical-align: middle; }
+@keyframes spin-anim { to { transform: rotate(360deg); } }
 
 /* ── 테이블 주석 ─────────────────────────────────── */
 .table-note {
@@ -348,8 +350,8 @@ permalink: /mystocks/
   <button class="tab-major" data-major="us">해외 주식</button>
 </div>
 <div class="sync-bar">
-  <button class="sync-btn" id="github-save-btn">☁ GitHub 저장</button>
   <button class="sync-btn" id="cache-update-btn">🔄 데이터 업데이트</button>
+  <span id="update-spinner" class="update-spinner" style="display:none"></span>
   <span class="sync-msg" id="sync-msg"></span>
   <span class="sync-msg" id="cache-updated-at"></span>
 </div>
@@ -1193,7 +1195,7 @@ function initStaticTrash(tableId, hiddenKey) {
   });
 }
 
-// ── GitHub 저장 종목 → localStorage 병합 (setupWatchSearch 전 실행) ──
+// ── GitHub watchlist 병합 (setupWatchSearch 전 실행) ──
 (function() {
   var cats = {
     kr_port:   { lk: 'kr_port_dynamic_v1',  hk: 'kr_port_hidden_v1'  },
@@ -1221,17 +1223,20 @@ function initStaticTrash(tableId, hiddenKey) {
     });
   }
 
-  // GitHub 저장 버튼 — PC 전용 (모바일은 GitHub에서 자동 로드)
-  var btn = document.getElementById('github-save-btn');
-  var msg = document.getElementById('sync-msg');
-  if (!btn) return;
+  // 🔄 데이터 업데이트 버튼
+  var updateBtn = document.getElementById('cache-update-btn');
+  var spinner   = document.getElementById('update-spinner');
+  var msg       = document.getElementById('sync-msg');
+  if (!updateBtn) return;
   var isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
   if (isMobile) {
-    btn.disabled = true;
-    if (msg) msg.textContent = 'PC 로컬 서버 전용 — 모바일은 자동으로 동기화됩니다';
+    updateBtn.addEventListener('click', function() { window.location.reload(); });
   } else {
-    btn.addEventListener('click', function() {
-      var data = {
+    updateBtn.addEventListener('click', function() {
+      updateBtn.disabled = true;
+      if (spinner) spinner.style.display = 'inline-block';
+      if (msg) msg.textContent = '업데이트 중...';
+      var watchlist = {
         kr_port:   JSON.parse(localStorage.getItem('kr_port_dynamic_v1')  || '[]'),
         kr_watch:  JSON.parse(localStorage.getItem('kr_watchlist_v2')      || '[]'),
         etf_port:  JSON.parse(localStorage.getItem('etf_port_dynamic_v1') || '[]'),
@@ -1239,25 +1244,29 @@ function initStaticTrash(tableId, hiddenKey) {
         us_port:   JSON.parse(localStorage.getItem('us_port_dynamic_v1')  || '[]'),
         us_watch:  JSON.parse(localStorage.getItem('us_watchlist_v1')     || '[]')
       };
-      try {
-        var encoded = btoa(unescape(encodeURIComponent(JSON.stringify(data))));
-        window.open('http://localhost:9001/save#' + encoded, '_blank');
-      } catch(e) {
-        if (msg) { msg.textContent = '✗ ' + e.message; setTimeout(function() { msg.textContent = ''; }, 6000); }
-      }
-    });
-  }
-
-  // 🔄 데이터 업데이트 버튼
-  var updateBtn = document.getElementById('cache-update-btn');
-  if (updateBtn) {
-    if (isMobile) {
-      updateBtn.addEventListener('click', function() { window.location.reload(); });
-    } else {
-      updateBtn.addEventListener('click', function() {
-        try { window.open('http://localhost:9001/update', '_blank'); } catch(e) {}
+      fetch('http://localhost:9001/api/update-cache', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ watchlist: watchlist })
+      })
+      .then(function(r) { return r.json(); })
+      .then(function(r) {
+        if (spinner) spinner.style.display = 'none';
+        updateBtn.disabled = false;
+        if (r.error) {
+          if (msg) msg.textContent = '✗ ' + r.error;
+        } else if (r.message === 'no changes') {
+          if (msg) msg.textContent = '변경 없음';
+        } else {
+          if (msg) msg.textContent = '✓ 완료 (' + (r.updated_at || '').slice(0, 16).replace('T', ' ') + ')';
+        }
+      })
+      .catch(function() {
+        if (spinner) spinner.style.display = 'none';
+        updateBtn.disabled = false;
+        if (msg) msg.textContent = '서버 오프라인';
       });
-    }
+    });
   }
 })();
 

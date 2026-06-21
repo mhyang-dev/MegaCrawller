@@ -444,43 +444,18 @@ server.mount_proc '/' do |req, res|
     res.status = 200; res.body = ''; next
   end
 
-  # GET /update → 데이터 업데이트 UI 페이지
-  if req.path == '/update' && req.request_method == 'GET'
-    res['Content-Type'] = 'text/html; charset=utf-8'
-    res.body = <<~HTML
-      <!DOCTYPE html><html lang="ko">
-      <head><meta charset="utf-8"><title>데이터 업데이트</title>
-      <style>body{font-family:sans-serif;padding:40px;max-width:540px;margin:auto}
-      button{padding:10px 24px;font-size:1em;cursor:pointer;border:1px solid #ccc;border-radius:8px;background:#f5f5f5}
-      button:disabled{opacity:.45;cursor:default}#msg{margin-top:20px;line-height:1.7}</style></head>
-      <body><h2>🔄 데이터 업데이트</h2>
-      <p>watchlist 전 종목의 시세·수급·목표가·공시를 수집하여 GitHub에 push합니다.</p>
-      <button id="btn">업데이트 시작</button>
-      <div id="msg"></div>
-      <script>
-      document.getElementById('btn').addEventListener('click', function() {
-        var btn = this, msg = document.getElementById('msg');
-        btn.disabled = true; msg.textContent = '수집 중... (종목 수에 따라 30초~1분 소요)';
-        fetch('/api/update-cache').then(function(r){return r.json();})
-          .then(function(r){
-            if(r.error) throw new Error(r.error);
-            msg.innerHTML = r.message==='no changes'
-              ? '변경 사항 없음'
-              : '✓ 완료: '+r.updated_at+'<br>잠시 후(~1분) 모든 기기에서 반영됩니다';
-          })
-          .catch(function(e){msg.textContent='✗ 오류: '+e.message;})
-          .finally(function(){btn.disabled=false;});
-      });
-      </script></body></html>
-    HTML
-    next
-  end
-
-  # GET /api/update-cache → watchlist 전종목 수집 후 stocks_cache.json push
-  if req.path == '/api/update-cache' && req.request_method == 'GET'
+  # POST /api/update-cache → watchlist 저장 후 전종목 수집, stocks_cache.json push
+  if req.path == '/api/update-cache' && req.request_method == 'POST'
     begin
+      body_data = JSON.parse(req.body) rescue {}
+      watchlist_data = body_data['watchlist']
       result = UPDATE_MUTEX.synchronize do
         puts "[#{Time.now.strftime('%H:%M:%S')}] 캐시 업데이트 시작"
+        if watchlist_data
+          wl_file = File.join(REPO_ROOT, '_data', 'watchlist.json')
+          File.write(wl_file, JSON.pretty_generate(watchlist_data))
+          puts "[#{Time.now.strftime('%H:%M:%S')}] watchlist 저장 완료"
+        end
         c = build_cache(REPO_ROOT)
         raise '캐시 빌드 실패' unless c
         cache_file = File.join(REPO_ROOT, 'data', 'stocks_cache.json')
@@ -488,11 +463,11 @@ server.mount_proc '/' do |req, res|
         File.write(cache_file, JSON.pretty_generate(c))
         r = {}
         Dir.chdir(REPO_ROOT) do
-          system('git add data/stocks_cache.json')
+          system('git add _data/watchlist.json data/stocks_cache.json')
           if system('git diff --cached --quiet')
             r = { ok: true, message: 'no changes' }
           else
-            system("git commit --no-verify -m \"데이터 캐시 업데이트: #{c['updated_at']}\"")
+            system("git commit --no-verify -m \"데이터 업데이트: #{c['updated_at']}\"")
             if system('git push origin master')
               r = { ok: true, message: 'pushed', updated_at: c['updated_at'] }
             else
