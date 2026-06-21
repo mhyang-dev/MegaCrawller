@@ -938,7 +938,7 @@ function setupWatchSearch(opts) {
       }
     }
     var type = opts.type;
-    fetch('https://localhost:9001/api/stock/' + encodeURIComponent(code) + '?type=' + type)
+    fetch('http://localhost:9001/api/stock/' + encodeURIComponent(code) + '?type=' + type)
       .then(function(r) { if (!r.ok) throw new Error('server'); return r.json(); })
       .then(function(d) {
         if (d.error) throw new Error(d.error);
@@ -1244,28 +1244,43 @@ function initStaticTrash(tableId, hiddenKey) {
         us_port:   JSON.parse(localStorage.getItem('us_port_dynamic_v1')  || '[]'),
         us_watch:  JSON.parse(localStorage.getItem('us_watchlist_v1')     || '[]')
       };
-      fetch('https://localhost:9001/api/update-cache', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ watchlist: watchlist })
-      })
-      .then(function(r) { return r.json(); })
-      .then(function(r) {
+      var encoded = '';
+      try { encoded = btoa(unescape(encodeURIComponent(JSON.stringify(watchlist)))); } catch(e) {}
+      var done = false;
+      function onMsg(e) {
+        if (!e.data || e.data.type !== 'update-result') return;
+        done = true;
+        window.removeEventListener('message', onMsg);
         if (spinner) spinner.style.display = 'none';
         updateBtn.disabled = false;
-        if (r.error) {
-          if (msg) msg.textContent = '✗ ' + r.error;
-        } else if (r.message === 'no changes') {
+        var r = e.data.result;
+        if (e.data.error || (r && r.error)) {
+          if (msg) msg.textContent = '✗ ' + (e.data.error || r.error);
+        } else if (r && r.message === 'no changes') {
           if (msg) msg.textContent = '변경 없음';
         } else {
-          if (msg) msg.textContent = '✓ 완료 (' + (r.updated_at || '').slice(0, 16).replace('T', ' ') + ')';
+          if (msg) msg.textContent = '✓ 완료 (' + ((r && r.updated_at) || '').slice(0, 16).replace('T', ' ') + ')';
         }
-      })
-      .catch(function() {
+      }
+      window.addEventListener('message', onMsg);
+      var popup = window.open('http://localhost:9001/update-auto#' + encoded, '_blank',
+        'popup,width=260,height=80,left=100,top=100');
+      if (!popup) {
+        window.removeEventListener('message', onMsg);
         if (spinner) spinner.style.display = 'none';
         updateBtn.disabled = false;
-        if (msg) msg.textContent = '서버 오프라인';
-      });
+        if (msg) msg.textContent = '팝업 차단됨 — 브라우저에서 팝업 허용 필요';
+        return;
+      }
+      setTimeout(function() {
+        if (!done) {
+          done = true;
+          window.removeEventListener('message', onMsg);
+          if (spinner) spinner.style.display = 'none';
+          updateBtn.disabled = false;
+          if (msg) msg.textContent = '서버 오프라인';
+        }
+      }, 180000);
     });
   }
 })();

@@ -6,8 +6,6 @@ require 'net/http'
 require 'json'
 require 'yaml'
 require 'webrick'
-require 'webrick/https'
-require 'openssl'
 require 'uri'
 require 'thread'
 require 'fileutils'
@@ -358,42 +356,11 @@ rescue StandardError => e
   nil
 end
 
-# ── SSL 인증서 (자동 생성 후 재사용) ────────────────────────────────────────
-SSL_DIR  = File.join(Dir.home, '.mystocks-ssl')
-SSL_CERT = File.join(SSL_DIR, 'localhost.crt')
-SSL_KEY  = File.join(SSL_DIR, 'localhost.key')
-
-if File.exist?(SSL_CERT) && File.exist?(SSL_KEY)
-  ssl_cert = OpenSSL::X509::Certificate.new(File.read(SSL_CERT))
-  ssl_key  = OpenSSL::PKey::RSA.new(File.read(SSL_KEY))
-else
-  FileUtils.mkdir_p(SSL_DIR)
-  ssl_key  = OpenSSL::PKey::RSA.new(2048)
-  ssl_cert = OpenSSL::X509::Certificate.new
-  ssl_cert.version    = 2
-  ssl_cert.serial     = 1
-  ssl_cert.subject    = ssl_cert.issuer = OpenSSL::X509::Name.parse('/CN=localhost')
-  ssl_cert.public_key = ssl_key.public_key
-  ssl_cert.not_before = Time.now
-  ssl_cert.not_after  = Time.now + 86400 * 3650
-  ef = OpenSSL::X509::ExtensionFactory.new(ssl_cert, ssl_cert)
-  ssl_cert.add_extension(ef.create_extension('subjectAltName', 'IP:127.0.0.1,DNS:localhost'))
-  ssl_cert.add_extension(ef.create_extension('basicConstraints', 'CA:FALSE'))
-  ssl_cert.sign(ssl_key, OpenSSL::Digest::SHA256.new)
-  File.write(SSL_CERT, ssl_cert.to_pem)
-  File.write(SSL_KEY,  ssl_key.to_pem)
-  puts "SSL 인증서 생성 완료: #{SSL_CERT}"
-end
-
 # ── WEBrick 서버 ─────────────────────────────────────────────────────────
 server = WEBrick::HTTPServer.new(
-  Port:             PORT,
-  SSLEnable:        true,
-  SSLCertificate:   ssl_cert,
-  SSLPrivateKey:    ssl_key,
-  SSLVerifyClient:  OpenSSL::SSL::VERIFY_NONE,
-  Logger:           WEBrick::Log.new($stderr, WEBrick::Log::ERROR),
-  AccessLog:        []
+  Port:      PORT,
+  Logger:    WEBrick::Log.new($stderr, WEBrick::Log::ERROR),
+  AccessLog: []
 )
 
 REPO_ROOT    = File.expand_path('..', __dir__)
@@ -475,6 +442,35 @@ server.mount_proc '/' do |req, res|
   set_cors(res)
   if req.request_method == 'OPTIONS'
     res.status = 200; res.body = ''; next
+  end
+
+  # GET /update-auto → 팝업용: watchlist(해시)로 캐시 업데이트 후 postMessage
+  if req.path == '/update-auto' && req.request_method == 'GET'
+    res['Content-Type'] = 'text/html; charset=utf-8'
+    res.body = <<~HTML
+      <!DOCTYPE html><html lang="ko">
+      <head><meta charset="utf-8"><title>업데이트 중...</title>
+      <style>body{font-family:sans-serif;padding:16px;font-size:0.85em;color:#555;margin:0}</style></head>
+      <body><p id="msg">⏳ 데이터 수집 중... (30초~1분)</p>
+      <script>
+      (function(){
+        var hash=location.hash.slice(1), wl={};
+        if(hash){try{wl=JSON.parse(decodeURIComponent(escape(atob(hash))));}catch(e){}}
+        fetch('/api/update-cache',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({watchlist:wl})})
+          .then(function(r){return r.json();})
+          .then(function(r){
+            if(window.opener){try{window.opener.postMessage({type:'update-result',result:r},'*');}catch(e){}}
+            window.close();
+          })
+          .catch(function(e){
+            if(window.opener){try{window.opener.postMessage({type:'update-result',error:e.message},'*');}catch(e2){}}
+            document.getElementById('msg').textContent='✗ 오류: '+e.message;
+            setTimeout(function(){window.close();},3000);
+          });
+      })();
+      </script></body></html>
+    HTML
+    next
   end
 
   # POST /api/update-cache → watchlist 저장 후 전종목 수집, stocks_cache.json push
@@ -640,11 +636,10 @@ end
 
 trap('INT') { server.shutdown }
 
-puts '=' * 56
-puts "  주식 데이터 로컬 서버  https://localhost:#{PORT}"
-puts "  ※ 첫 실행 시: https://localhost:#{PORT} 에 접속해"
-puts "     '고급' → '안전하지 않음으로 이동' 클릭 (1회만)"
+puts '=' * 52
+puts "  주식 데이터 로컬 서버  http://localhost:#{PORT}"
+puts "  종목 추가 시 전체 데이터 자동 조회"
 puts "  종료: Ctrl+C"
-puts '=' * 56
+puts '=' * 52
 
 server.start
