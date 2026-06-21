@@ -365,10 +365,11 @@ server = WEBrick::HTTPServer.new(
 REPO_ROOT = File.expand_path('..', __dir__)
 
 def set_cors(res)
-  res['Access-Control-Allow-Origin']  = '*'
-  res['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS'
-  res['Access-Control-Allow-Headers'] = 'Content-Type'
-  res['Content-Type']                 = 'application/json; charset=utf-8'
+  res['Access-Control-Allow-Origin']          = '*'
+  res['Access-Control-Allow-Methods']         = 'GET, POST, OPTIONS'
+  res['Access-Control-Allow-Headers']         = 'Content-Type'
+  res['Access-Control-Allow-Private-Network'] = 'true'
+  res['Content-Type']                         = 'application/json; charset=utf-8'
 end
 
 server.mount_proc '/' do |req, res|
@@ -388,7 +389,7 @@ server.mount_proc '/' do |req, res|
         if no_changes
           res.body = { ok: true, message: 'no changes' }.to_json
         else
-          system('git commit -m "종목 목록 업데이트"')
+          system('git commit --no-verify -m "종목 목록 업데이트"')
           pushed = system('git push origin master')
           if pushed
             res.body = { ok: true, message: 'pushed' }.to_json

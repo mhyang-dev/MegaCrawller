@@ -1131,7 +1131,10 @@ function initStaticTrash(tableId, hiddenKey) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
     })
-    .then(function(r) { return r.json(); })
+    .then(function(r) {
+      if (!r.ok) return r.text().then(function(t) { throw new Error('HTTP ' + r.status + ': ' + t); });
+      return r.json();
+    })
     .then(function(r) {
       if (r.error) throw new Error(r.error);
       msg.textContent = r.message === 'no changes'
@@ -1139,9 +1142,11 @@ function initStaticTrash(tableId, hiddenKey) {
         : '✓ 저장 완료 — GitHub Actions 빌드 후 (~1분) 모든 기기에서 보입니다';
       setTimeout(function() { msg.textContent = ''; }, 10000);
     })
-    .catch(function() {
-      msg.textContent = '✗ 저장 실패 (로컬 서버가 실행 중인지 확인하세요)';
-      setTimeout(function() { msg.textContent = ''; }, 6000);
+    .catch(function(e) {
+      var detail = e && e.message ? e.message : String(e);
+      console.error('[save-watchlist]', detail);
+      msg.textContent = '✗ ' + detail;
+      setTimeout(function() { msg.textContent = ''; }, 15000);
     })
     .finally(function() { btn.disabled = false; });
   });
