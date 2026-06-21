@@ -6,6 +6,8 @@ require 'net/http'
 require 'json'
 require 'yaml'
 require 'webrick'
+require 'webrick/https'
+require 'openssl'
 require 'uri'
 require 'thread'
 require 'fileutils'
@@ -356,11 +358,42 @@ rescue StandardError => e
   nil
 end
 
+# ── SSL 인증서 (자동 생성 후 재사용) ────────────────────────────────────────
+SSL_DIR  = File.join(Dir.home, '.mystocks-ssl')
+SSL_CERT = File.join(SSL_DIR, 'localhost.crt')
+SSL_KEY  = File.join(SSL_DIR, 'localhost.key')
+
+if File.exist?(SSL_CERT) && File.exist?(SSL_KEY)
+  ssl_cert = OpenSSL::X509::Certificate.new(File.read(SSL_CERT))
+  ssl_key  = OpenSSL::PKey::RSA.new(File.read(SSL_KEY))
+else
+  FileUtils.mkdir_p(SSL_DIR)
+  ssl_key  = OpenSSL::PKey::RSA.new(2048)
+  ssl_cert = OpenSSL::X509::Certificate.new
+  ssl_cert.version    = 2
+  ssl_cert.serial     = 1
+  ssl_cert.subject    = ssl_cert.issuer = OpenSSL::X509::Name.parse('/CN=localhost')
+  ssl_cert.public_key = ssl_key.public_key
+  ssl_cert.not_before = Time.now
+  ssl_cert.not_after  = Time.now + 86400 * 3650
+  ef = OpenSSL::X509::ExtensionFactory.new(ssl_cert, ssl_cert)
+  ssl_cert.add_extension(ef.create_extension('subjectAltName', 'IP:127.0.0.1,DNS:localhost'))
+  ssl_cert.add_extension(ef.create_extension('basicConstraints', 'CA:FALSE'))
+  ssl_cert.sign(ssl_key, OpenSSL::Digest::SHA256.new)
+  File.write(SSL_CERT, ssl_cert.to_pem)
+  File.write(SSL_KEY,  ssl_key.to_pem)
+  puts "SSL 인증서 생성 완료: #{SSL_CERT}"
+end
+
 # ── WEBrick 서버 ─────────────────────────────────────────────────────────
 server = WEBrick::HTTPServer.new(
-  Port:      PORT,
-  Logger:    WEBrick::Log.new($stderr, WEBrick::Log::ERROR),
-  AccessLog: []
+  Port:             PORT,
+  SSLEnable:        true,
+  SSLCertificate:   ssl_cert,
+  SSLPrivateKey:    ssl_key,
+  SSLVerifyClient:  OpenSSL::SSL::VERIFY_NONE,
+  Logger:           WEBrick::Log.new($stderr, WEBrick::Log::ERROR),
+  AccessLog:        []
 )
 
 REPO_ROOT    = File.expand_path('..', __dir__)
@@ -607,10 +640,11 @@ end
 
 trap('INT') { server.shutdown }
 
-puts '=' * 52
-puts "  주식 데이터 로컬 서버  (포트 #{PORT})"
-puts "  종목 추가 시 전체 데이터 자동 조회"
+puts '=' * 56
+puts "  주식 데이터 로컬 서버  https://localhost:#{PORT}"
+puts "  ※ 첫 실행 시: https://localhost:#{PORT} 에 접속해"
+puts "     '고급' → '안전하지 않음으로 이동' 클릭 (1회만)"
 puts "  종료: Ctrl+C"
-puts '=' * 52
+puts '=' * 56
 
 server.start

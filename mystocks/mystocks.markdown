@@ -938,7 +938,7 @@ function setupWatchSearch(opts) {
       }
     }
     var type = opts.type;
-    fetch('http://localhost:9001/api/stock/' + encodeURIComponent(code) + '?type=' + type)
+    fetch('https://localhost:9001/api/stock/' + encodeURIComponent(code) + '?type=' + type)
       .then(function(r) { if (!r.ok) throw new Error('server'); return r.json(); })
       .then(function(d) {
         if (d.error) throw new Error(d.error);
@@ -1244,7 +1244,7 @@ function initStaticTrash(tableId, hiddenKey) {
         us_port:   JSON.parse(localStorage.getItem('us_port_dynamic_v1')  || '[]'),
         us_watch:  JSON.parse(localStorage.getItem('us_watchlist_v1')     || '[]')
       };
-      fetch('http://localhost:9001/api/update-cache', {
+      fetch('https://localhost:9001/api/update-cache', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ watchlist: watchlist })
