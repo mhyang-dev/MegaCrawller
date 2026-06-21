@@ -199,6 +199,65 @@ permalink: /mystocks/
 /* ── 해외 주식 이중 표시 ─────────────────────────── */
 .sub-usd { color: #bbb; font-size: 0.8em; margin-left: 3px; }
 
+/* ── 종목 검색/추가 UI ────────────────────────────── */
+.stock-adder {
+  position: relative;
+  margin-bottom: 0.8em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.stock-search-input {
+  width: 220px;
+  padding: 6px 14px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  font-size: 0.84em;
+  outline: none;
+  box-sizing: border-box;
+}
+.stock-search-input:focus { border-color: #888; }
+.search-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  min-width: 220px;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.10);
+  z-index: 200;
+  overflow: hidden;
+}
+.search-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-size: 0.84em;
+  border-bottom: 1px solid #f2f2f2;
+  gap: 12px;
+}
+.search-item:last-child { border-bottom: none; }
+.search-item:hover { background: #f6f6f6; }
+.si-name { color: #222; }
+.si-code { color: #bbb; font-size: 0.82em; white-space: nowrap; }
+.search-no-result { padding: 10px 14px; color: #bbb; font-size: 0.84em; }
+.remove-btn {
+  background: none;
+  border: none;
+  color: #ccc;
+  cursor: pointer;
+  font-size: 0.78em;
+  padding: 1px 5px;
+  border-radius: 3px;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+.remove-btn:hover { color: #e74c3c; background: #fff2f0; }
+
 /* ── 우측 AI 사이드바 ────────────────────────────── */
 .ai-sidebar {
   position: sticky;
@@ -256,6 +315,7 @@ permalink: /mystocks/
   .disclosure-cell { min-width: 320px; width: 320px; }
   .fics-cell { min-width: 80px; }
   .investor-cell { min-width: 110px; }
+  #etf-port-table { min-width: 0; }
 }
 </style>
 
@@ -370,7 +430,10 @@ permalink: /mystocks/
   </div><!-- #panel-kr-port -->
 
   <div class="minor-panel" id="panel-kr-watch">
-  {% if kr_watch.size > 0 %}
+  <div id="kr-adder" class="stock-adder">
+    <input type="text" id="kr-search-input" class="stock-search-input" placeholder="종목명 검색 (예: 삼성)" autocomplete="off" />
+    <div id="kr-search-dropdown" class="search-dropdown"></div>
+  </div>
   <div class="table-scroll">
   <table class="stock-table" id="kr-watch-table">
   <thead><tr>
@@ -393,7 +456,7 @@ permalink: /mystocks/
   {% if upside > 0 %}{% assign upside_cls = "rising" %}{% assign upside_sign = "+" %}
   {% elsif upside < 0 %}{% assign upside_cls = "falling" %}{% assign upside_sign = "" %}
   {% else %}{% assign upside_cls = "even" %}{% assign upside_sign = "" %}{% endif %}
-  <tr>
+  <tr data-code="{{ item.code }}">
     <td class="fics-cell" data-sort="{{ item.fics | default: '' }}">{% if item.fics %}<span class="fics-tag">{{ item.fics }}</span>{% else %}<span class="na">—</span>{% endif %}</td>
     <td data-sort="{{ item.name }}"><a href="https://m.stock.naver.com/domestic/stock/{{ item.code }}" target="_blank">{{ item.name }}</a></td>
     <td data-sort="{{ item.market_cap_eok | default: 0 }}">{% if item.market_cap_formatted %}{{ item.market_cap_formatted }}{% else %}<span class="na">—</span>{% endif %}</td>
@@ -405,10 +468,10 @@ permalink: /mystocks/
     <td class="disclosure-cell">{% if item.disclosure %}<span class="disclosure-title"><a href="{{ item.disclosure.url }}" target="_blank">{{ item.disclosure.title | truncate: 38 }}</a></span><span class="disclosure-meta">{{ item.disclosure.datetime }} · {{ item.disclosure.author }}</span>{% else %}<span class="na">—</span>{% endif %}</td>
   </tr>
   {% endfor %}
-  </tbody></table></div>
-  {% else %}
-  <p style="padding: 1.5em 0; color: #bbb;">관심 종목이 없습니다.</p>
+  {% if kr_watch.size == 0 %}
+  <tr id="kr-watch-empty"><td colspan="9" style="text-align:center;color:#ccc;padding:2em;">검색해서 관심 종목을 추가해보세요.</td></tr>
   {% endif %}
+  </tbody></table></div>
   </div><!-- #panel-kr-watch -->
 </div><!-- #panel-kr -->
 
@@ -582,7 +645,7 @@ permalink: /mystocks/
     });
   });
 
-  // 열 정렬
+  // 열 정렬 (빈 행 고정)
   var state = {};
   document.querySelectorAll('.stock-table th[data-col]').forEach(function (th) {
     th.addEventListener('click', function () {
@@ -603,7 +666,8 @@ permalink: /mystocks/
       th.classList.add(asc ? 'sort-asc' : 'sort-desc');
 
       var tbody = table.querySelector('tbody');
-      var rows = Array.from(tbody.querySelectorAll('tr'));
+      var emptyRow = tbody.querySelector('#kr-watch-empty');
+      var rows = Array.from(tbody.querySelectorAll('tr')).filter(function (r) { return r.id !== 'kr-watch-empty'; });
       rows.sort(function (a, b) {
         var ac = a.cells[ci], bc = b.cells[ci];
         var av = ac ? (ac.dataset.sort !== undefined ? ac.dataset.sort : ac.textContent.trim()) : '';
@@ -613,7 +677,145 @@ permalink: /mystocks/
         return asc ? av.localeCompare(bv, 'ko') : bv.localeCompare(av, 'ko');
       });
       rows.forEach(function (r) { tbody.appendChild(r); });
+      if (emptyRow) tbody.appendChild(emptyRow);
     });
   });
+})();
+
+// ── 국내 관심주 동적 추가 ──────────────────────────
+(function () {
+  var STORAGE_KEY = 'kr_watchlist_v1';
+
+  function loadList() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch (e) { return []; }
+  }
+  function saveList(list) {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(list)); } catch (e) {}
+  }
+  function hasCode(code) { return loadList().some(function (s) { return s.code === code; }); }
+
+  function escHtml(str) {
+    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  var searchTimer = null;
+  var input = document.getElementById('kr-search-input');
+  var dropdown = document.getElementById('kr-search-dropdown');
+  if (!input || !dropdown) return;
+
+  function hideDropdown() { dropdown.style.display = 'none'; dropdown.innerHTML = ''; }
+
+  input.addEventListener('input', function () {
+    clearTimeout(searchTimer);
+    var q = this.value.trim();
+    if (!q) { hideDropdown(); return; }
+    searchTimer = setTimeout(function () { doSearch(q); }, 250);
+  });
+
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { hideDropdown(); input.value = ''; }
+  });
+
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('#kr-adder')) hideDropdown();
+  });
+
+  function doSearch(q) {
+    fetch('https://ac.stock.naver.com/ac?q=' + encodeURIComponent(q) + '&target=stock')
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        var items = (data.items || []).slice(0, 8);
+        if (!items.length) {
+          dropdown.innerHTML = '<div class="search-no-result">검색 결과 없음</div>';
+          dropdown.style.display = 'block';
+          return;
+        }
+        dropdown.innerHTML = items.map(function (item) {
+          return '<div class="search-item" data-code="' + escHtml(item[1]) + '" data-name="' + escHtml(item[0]) + '">' +
+            '<span class="si-name">' + escHtml(item[0]) + '</span>' +
+            '<span class="si-code">' + escHtml(item[1]) + '</span></div>';
+        }).join('');
+        dropdown.style.display = 'block';
+        dropdown.querySelectorAll('.search-item').forEach(function (el) {
+          el.addEventListener('click', function () {
+            addStock(this.dataset.code, this.dataset.name);
+            hideDropdown();
+            input.value = '';
+          });
+        });
+      })
+      .catch(function () {
+        dropdown.innerHTML = '<div class="search-no-result">검색 실패 (네트워크 또는 CORS 문제)</div>';
+        dropdown.style.display = 'block';
+      });
+  }
+
+  function addStock(code, name) {
+    var existing = document.querySelector('#kr-watch-table tbody tr[data-code="' + code + '"]');
+    if (existing) { alert(name + ' 은(는) 이미 목록에 있습니다.'); return; }
+    if (hasCode(code)) { alert(name + ' 은(는) 이미 추가되어 있습니다.'); return; }
+    var list = loadList();
+    list.push({ code: code, name: name });
+    saveList(list);
+    fetchAndRender(code, name);
+  }
+
+  function fetchAndRender(code, name) {
+    fetch('https://m.stock.naver.com/api/stock/' + code + '/basic')
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        var dir = d.compareToPreviousPrice ? d.compareToPreviousPrice.name : 'EVEN';
+        var cls = dir === 'RISING' ? 'rising' : dir === 'FALLING' ? 'falling' : 'even';
+        var arrow = dir === 'RISING' ? '▲' : dir === 'FALLING' ? '▼' : '—';
+        var rawChange = String(d.compareToPreviousClosePrice || '');
+        var absChange = rawChange.replace(/^-/, '').trim() || '—';
+        var pct = d.fluctuationsRatio || '0';
+        appendRow(code, d.stockName || name, d.closePrice || '—', absChange, pct, cls, arrow);
+      })
+      .catch(function () {
+        appendRow(code, name, '—', '—', '0', 'even', '—');
+      });
+  }
+
+  function appendRow(code, name, price, change, pct, cls, arrow) {
+    var emptyEl = document.getElementById('kr-watch-empty');
+    if (emptyEl) emptyEl.remove();
+    var tbody = document.querySelector('#kr-watch-table tbody');
+    if (!tbody) return;
+    var priceNum = String(price).replace(/,/g, '');
+    var tr = document.createElement('tr');
+    tr.setAttribute('data-dynamic', 'true');
+    tr.setAttribute('data-code', code);
+    tr.innerHTML =
+      '<td class="fics-cell" data-sort=""><span class="na">—</span></td>' +
+      '<td data-sort="' + escHtml(name) + '"><a href="https://m.stock.naver.com/domestic/stock/' + escHtml(code) + '" target="_blank">' + escHtml(name) + '</a>' +
+        '<button class="remove-btn" data-code="' + escHtml(code) + '" title="관심주 삭제">✕</button></td>' +
+      '<td data-sort="0"><span class="na">—</span></td>' +
+      '<td data-sort="' + escHtml(priceNum) + '">' + escHtml(String(price)) + '</td>' +
+      '<td data-sort="' + escHtml(String(pct)) + '" class="' + cls + '">' + arrow + ' ' + escHtml(String(change)) + ' <span class="sub">(' + escHtml(String(pct)) + '%)</span></td>' +
+      '<td data-sort="0"><span class="na">—</span></td>' +
+      '<td data-sort="-999"><span class="na">—</span></td>' +
+      '<td class="investor-cell"><span class="na">—</span></td>' +
+      '<td class="disclosure-cell"><span class="na">—</span></td>';
+    tr.querySelector('.remove-btn').addEventListener('click', function () {
+      var c = this.dataset.code;
+      saveList(loadList().filter(function (s) { return s.code !== c; }));
+      tr.remove();
+      restoreEmptyIfNeeded();
+    });
+    tbody.appendChild(tr);
+  }
+
+  function restoreEmptyIfNeeded() {
+    var tbody = document.querySelector('#kr-watch-table tbody');
+    if (!tbody || tbody.querySelectorAll('tr').length > 0) return;
+    var tr = document.createElement('tr');
+    tr.id = 'kr-watch-empty';
+    tr.innerHTML = '<td colspan="9" style="text-align:center;color:#ccc;padding:2em;">검색해서 관심 종목을 추가해보세요.</td>';
+    tbody.appendChild(tr);
+  }
+
+  // 저장된 관심주 로드
+  loadList().forEach(function (s) { fetchAndRender(s.code, s.name); });
 })();
 </script>
