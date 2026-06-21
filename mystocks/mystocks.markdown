@@ -1112,7 +1112,7 @@ function initStaticTrash(tableId, hiddenKey) {
     });
   }
 
-  // GitHub 저장 버튼
+  // GitHub 저장 버튼 — 새 탭(http)으로 열어 HTTPS→HTTP CORS 우회
   var btn = document.getElementById('github-save-btn');
   if (!btn) return;
   btn.addEventListener('click', function() {
@@ -1124,31 +1124,8 @@ function initStaticTrash(tableId, hiddenKey) {
       us_port:   JSON.parse(localStorage.getItem('us_port_dynamic_v1')  || '[]'),
       us_watch:  JSON.parse(localStorage.getItem('us_watchlist_v1')     || '[]')
     };
-    var msg = document.getElementById('sync-msg');
-    btn.disabled = true; msg.textContent = 'GitHub 저장 중...';
-    fetch('http://localhost:9001/api/save-watchlist', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    })
-    .then(function(r) {
-      if (!r.ok) return r.text().then(function(t) { throw new Error('HTTP ' + r.status + ': ' + t); });
-      return r.json();
-    })
-    .then(function(r) {
-      if (r.error) throw new Error(r.error);
-      msg.textContent = r.message === 'no changes'
-        ? '변경 사항 없음'
-        : '✓ 저장 완료 — GitHub Actions 빌드 후 (~1분) 모든 기기에서 보입니다';
-      setTimeout(function() { msg.textContent = ''; }, 10000);
-    })
-    .catch(function(e) {
-      var detail = e && e.message ? e.message : String(e);
-      console.error('[save-watchlist]', detail);
-      msg.textContent = '✗ ' + detail;
-      setTimeout(function() { msg.textContent = ''; }, 15000);
-    })
-    .finally(function() { btn.disabled = false; });
+    var encoded = btoa(unescape(encodeURIComponent(JSON.stringify(data))));
+    window.open('http://localhost:9001/save#' + encoded, '_blank');
   });
 })();
 

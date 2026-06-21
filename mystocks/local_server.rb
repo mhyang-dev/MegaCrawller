@@ -378,6 +378,43 @@ server.mount_proc '/' do |req, res|
     res.status = 200; res.body = ''; next
   end
 
+  # GET /save → 저장 UI 페이지 (HTTPS 페이지에서 직접 fetch 불가 우회용)
+  if req.path == '/save' && req.request_method == 'GET'
+    res['Content-Type'] = 'text/html; charset=utf-8'
+    res.body = <<~HTML
+      <!DOCTYPE html>
+      <html lang="ko">
+      <head><meta charset="utf-8"><title>종목 저장</title>
+      <style>body{font-family:sans-serif;padding:40px;max-width:500px;margin:auto}
+      #msg{margin-top:20px;font-size:1.1em}</style></head>
+      <body>
+      <h2>☁ GitHub 저장</h2>
+      <div id="msg">저장 중...</div>
+      <script>
+      (function() {
+        var hash = location.hash.slice(1);
+        if (!hash) { document.getElementById('msg').textContent = '데이터 없음 (버튼을 다시 눌러주세요)'; return; }
+        var data;
+        try { data = JSON.parse(decodeURIComponent(escape(atob(hash)))); }
+        catch(e) { document.getElementById('msg').textContent = '데이터 파싱 오류: ' + e.message; return; }
+        fetch('/api/save-watchlist', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data) })
+          .then(function(r) { return r.json(); })
+          .then(function(r) {
+            if (r.error) throw new Error(r.error);
+            document.getElementById('msg').textContent = r.message === 'no changes'
+              ? '✓ 변경 사항 없음'
+              : '✓ 저장 완료 — GitHub Actions 빌드 후 (~1분) 모든 기기에서 반영됩니다';
+          })
+          .catch(function(e) {
+            document.getElementById('msg').textContent = '✗ 오류: ' + e.message;
+          });
+      })();
+      </script>
+      </body></html>
+    HTML
+    next
+  end
+
   # POST /api/save-watchlist → watchlist.json 저장 후 git push
   if req.path == '/api/save-watchlist' && req.request_method == 'POST'
     begin
