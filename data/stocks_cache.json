@@ -1,9 +1,154 @@
 {
-  "updated_at": null,
+  "updated_at": "2026-06-21T22:17:34+09:00",
   "kr_port": [],
-  "kr_watch": [],
+  "kr_watch": [
+    {
+      "code": "015760",
+      "name": "한국전력",
+      "price": "37,900",
+      "change": "1,450",
+      "change_pct": -3.68,
+      "direction": "FALLING",
+      "fics": "전력",
+      "per": 4.4,
+      "indu_per": 3.28,
+      "market_cap_eok": 243304,
+      "market_cap_formatted": "24.3조",
+      "analyst_target": {
+        "avg": 57267,
+        "avg_formatted": "57,267",
+        "count": 16
+      },
+      "investor_streaks": {
+        "gigan": -2,
+        "gigan_amount": "404억",
+        "foreign": -1,
+        "foreign_amount": "164억",
+        "indi": 4,
+        "indi_amount": "768억"
+      },
+      "disclosure": [
+        {
+          "title": "한국전력공사(주) 임시주주총회 결과",
+          "datetime": "2026-06-17",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=33431981&code=015760&page_notice="
+        },
+        {
+          "title": "한국전력공사(주) 주주총회소집결의",
+          "datetime": "2026-06-02",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=15969112&code=015760&page_notice="
+        },
+        {
+          "title": "한국전력공사(주) (정정)소송등의제기ㆍ신청(일정금액 이상의 청구)",
+          "datetime": "2026-05-22",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=7285706&code=015760&page_notice="
+        }
+      ],
+      "upside_pct": 51.1
+    },
+    {
+      "code": "095610",
+      "name": "테스",
+      "price": "166,200",
+      "change": "9,900",
+      "change_pct": -5.62,
+      "direction": "FALLING",
+      "fics": "반도체 및 관련장비",
+      "per": 35.4,
+      "indu_per": 108.87,
+      "market_cap_eok": 32176,
+      "market_cap_formatted": "3.2조",
+      "analyst_target": {
+        "avg": 166000,
+        "avg_formatted": "166,000",
+        "count": 7
+      },
+      "investor_streaks": {
+        "gigan": -5,
+        "gigan_amount": "475억",
+        "foreign": 5,
+        "foreign_amount": "630억",
+        "indi": -1,
+        "indi_amount": "41억"
+      },
+      "disclosure": [
+        {
+          "title": "(주)테스 단일판매ㆍ공급계약체결(자율공시)",
+          "datetime": "2026-06-05",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=20173397&code=095610&page_notice="
+        },
+        {
+          "title": "(주)테스 단일판매ㆍ공급계약체결(자율공시)",
+          "datetime": "2026-05-21",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=4760618&code=095610&page_notice="
+        },
+        {
+          "title": "(주)테스 기업설명회(IR) 개최",
+          "datetime": "2026-05-18",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=1642643&code=095610&page_notice="
+        }
+      ],
+      "upside_pct": -0.1
+    },
+    {
+      "code": "317330",
+      "name": "덕산테코피아",
+      "price": "14,660",
+      "change": "560",
+      "change_pct": -3.68,
+      "direction": "FALLING",
+      "fics": "반도체 및 관련장비",
+      "investor_streaks": {
+        "gigan": -3,
+        "gigan_amount": "2억",
+        "foreign": 2,
+        "foreign_amount": "3억",
+        "indi": -2,
+        "indi_amount": "1억"
+      },
+      "disclosure": [
+        {
+          "title": "(주)덕산테코피아 주주총회소집결의(임시주주총회)",
+          "datetime": "2026-05-15",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=1641976&code=317330&page_notice="
+        },
+        {
+          "title": "(주)덕산테코피아 주주명부폐쇄기간 또는 기준일 설정",
+          "datetime": "2026-05-15",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=1641964&code=317330&page_notice="
+        },
+        {
+          "title": "(주)덕산테코피아 정기주주총회결과",
+          "datetime": "2026-03-31",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=1624012&code=317330&page_notice="
+        }
+      ]
+    }
+  ],
   "etf_port": [],
   "etf_watch": [],
-  "us_port": [],
+  "us_port": [
+    {
+      "code": "GOOGL",
+      "name": "Alphabet Inc.",
+      "price": "563,045",
+      "price_usd": "$368.03",
+      "change": "6,487",
+      "change_pct": 0.01,
+      "direction": "RISING",
+      "fics": "Internet Content & Information",
+      "per": 25.4,
+      "market_cap_eok": 68706023,
+      "market_cap_formatted": "6,870.6조",
+      "market_cap_usd_formatted": "$4.5T",
+      "analyst_target": {
+        "avg": 662189,
+        "avg_formatted": "662,189",
+        "avg_usd": "$432.83",
+        "count": 53
+      },
+      "upside_pct": 17.6
+    }
+  ],
   "us_watch": []
 }
