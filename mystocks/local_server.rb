@@ -356,6 +356,42 @@ rescue StandardError => e
   nil
 end
 
+def fetch_hotdeal(min_vote: 10)
+  html = http_get(
+    'https://www.fmkorea.com/hotdeal',
+    extra_headers: { 'Referer' => 'https://www.fmkorea.com/', 'Accept-Language' => 'ko-KR,ko;q=0.9,en;q=0.8' }
+  )
+  return nil unless html
+
+  deals = []
+  html.scan(/<li[^>]*class="[^"]*li_bd[^"]*"[^>]*>(.*?)<\/li>/mi) do |m|
+    item = m[0]
+    vote_m = item.match(/class="[^"]*voted_count[^"]*"[^>]*>\s*([0-9,]+)/)
+    next unless vote_m
+    vote = vote_m[1].gsub(',', '').to_i
+    next if vote < min_vote
+
+    link_m  = item.match(/href="(\/[0-9]+)"[^>]*class="[^"]*(?:hx|tit)[^"]*"[^>]*>(.*?)<\/a>/mi)
+    link_m ||= item.match(/class="[^"]*(?:hx|tit)[^"]*"[^>]*href="(\/[0-9]+)"[^>]*>(.*?)<\/a>/mi)
+    next unless link_m
+
+    link  = "https://www.fmkorea.com#{link_m[1]}"
+    title = link_m[2].gsub(/<[^>]+>/, '').gsub(/&amp;/, '&').gsub(/&lt;/, '<').gsub(/&gt;/, '>').gsub(/&nbsp;|&#160;/, ' ').strip
+
+    cat_m  = item.match(/class="[^"]*category_c[^"]*"[^>]*>.*?<a[^>]*>([^<]+)<\/a>/mi)
+    cat_m ||= item.match(/class="[^"]*category[^"]*"[^>]*>([^<]+)</mi)
+    cat    = cat_m ? cat_m[1].strip : ''
+
+    deals << { 'title' => title, 'link' => link, 'vote' => vote, 'category' => cat }
+  end
+
+  puts "  [핫딜] #{deals.length}개 수집 (추천 #{min_vote}개 이상)"
+  { 'updated_at' => Time.now.strftime('%Y-%m-%dT%H:%M:%S+09:00'), 'items' => deals.sort_by { |d| -d['vote'] } }
+rescue => e
+  puts "  [핫딜] #{e.message}"
+  nil
+end
+
 # ── WEBrick 서버 ─────────────────────────────────────────────────────────
 server = WEBrick::HTTPServer.new(
   Port:      PORT,
@@ -490,9 +526,14 @@ server.mount_proc '/' do |req, res|
         cache_file = File.join(REPO_ROOT, 'data', 'stocks_cache.json')
         FileUtils.mkdir_p(File.dirname(cache_file))
         File.write(cache_file, JSON.pretty_generate(c))
+        hotdeal = fetch_hotdeal
+        if hotdeal
+          hd_file = File.join(REPO_ROOT, 'data', 'hotdeal.json')
+          File.write(hd_file, JSON.pretty_generate(hotdeal))
+        end
         r = {}
         Dir.chdir(REPO_ROOT) do
-          system('git add _data/watchlist.json data/stocks_cache.json')
+          system('git add _data/watchlist.json data/stocks_cache.json data/hotdeal.json')
           if system('git diff --cached --quiet')
             r = { ok: true, message: 'no changes' }
           else

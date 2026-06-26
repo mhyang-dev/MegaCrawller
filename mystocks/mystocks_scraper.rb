@@ -739,3 +739,43 @@ if File.exist?(watchlist_path)
     puts "[캐시 오류] #{e.message}"
   end
 end
+
+# ── 핫딜 수집 ──────────────────────────────────────────────────────────────
+begin
+  puts "[핫딜] fmkorea 핫딜 수집 시작"
+  html = http_get(
+    'https://www.fmkorea.com/hotdeal',
+    extra_headers: { 'Referer' => 'https://www.fmkorea.com/', 'Accept-Language' => 'ko-KR,ko;q=0.9,en;q=0.8' }
+  )
+  if html
+    deals = []
+    html.scan(/<li[^>]*class="[^"]*li_bd[^"]*"[^>]*>(.*?)<\/li>/mi) do |m|
+      item   = m[0]
+      vote_m = item.match(/class="[^"]*voted_count[^"]*"[^>]*>\s*([0-9,]+)/)
+      next unless vote_m
+      vote = vote_m[1].gsub(',', '').to_i
+      next if vote < 10
+
+      link_m  = item.match(/href="(\/[0-9]+)"[^>]*class="[^"]*(?:hx|tit)[^"]*"[^>]*>(.*?)<\/a>/mi)
+      link_m ||= item.match(/class="[^"]*(?:hx|tit)[^"]*"[^>]*href="(\/[0-9]+)"[^>]*>(.*?)<\/a>/mi)
+      next unless link_m
+
+      link  = "https://www.fmkorea.com#{link_m[1]}"
+      title = link_m[2].gsub(/<[^>]+>/, '').gsub(/&amp;/, '&').gsub(/&lt;/, '<').gsub(/&gt;/, '>').gsub(/&nbsp;|&#160;/, ' ').strip
+
+      cat_m  = item.match(/class="[^"]*category_c[^"]*"[^>]*>.*?<a[^>]*>([^<]+)<\/a>/mi)
+      cat_m ||= item.match(/class="[^"]*category[^"]*"[^>]*>([^<]+)</mi)
+      cat    = cat_m ? cat_m[1].strip : ''
+
+      deals << { 'title' => title, 'link' => link, 'vote' => vote, 'category' => cat }
+    end
+    deals.sort_by! { |d| -d['vote'] }
+    hotdeal_data = { 'updated_at' => Time.now.strftime('%Y-%m-%dT%H:%M:%S+09:00'), 'items' => deals }
+    hd_path = File.join(__dir__, '..', 'data', 'hotdeal.json')
+    FileUtils.mkdir_p(File.dirname(hd_path))
+    File.write(hd_path, JSON.pretty_generate(hotdeal_data))
+    puts "[핫딜] #{deals.length}개 저장 (추천 10개 이상)"
+  end
+rescue StandardError => e
+  puts "[핫딜 오류] #{e.message}"
+end

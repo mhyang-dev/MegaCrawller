@@ -146,6 +146,16 @@ permalink: /mystocks/
 .holdings-list li { font-size: 0.84em; line-height: 1.65; white-space: nowrap; }
 .holdings-ratio { color: #999; margin-left: 0.4em; }
 
+/* ── 핫딜 탭 ──────────────────────────────────────── */
+.hotdeal-list { padding: 4px 0; }
+.hotdeal-item { display: flex; align-items: baseline; gap: 8px; padding: 7px 2px; border-bottom: 1px solid #f0f0f0; }
+.hotdeal-item:last-child { border-bottom: none; }
+.hotdeal-cat  { flex-shrink: 0; font-size: 0.72em; color: #888; background: #f3f3f3; border-radius: 3px; padding: 1px 6px; white-space: nowrap; }
+.hotdeal-title { flex: 1; font-size: 0.88em; color: #333; text-decoration: none; line-height: 1.4; word-break: break-all; }
+.hotdeal-title:hover { text-decoration: underline; color: #000; }
+.hotdeal-vote { flex-shrink: 0; font-size: 0.75em; color: #e44; font-weight: bold; white-space: nowrap; }
+.hotdeal-empty { color: #aaa; font-size: 0.88em; padding: 20px 0; }
+
 /* ── 동기화 바 ────────────────────────────────────── */
 .sync-bar { display: flex; align-items: center; gap: 8px; margin: 6px 0 10px; }
 .sync-btn { background: none; border: 1px solid #ccc; border-radius: 12px; padding: 3px 12px; cursor: pointer; color: #555; font-size: 0.8em; }
@@ -348,6 +358,7 @@ permalink: /mystocks/
   <button class="tab-major active" data-major="kr">국내 주식</button>
   <button class="tab-major" data-major="etf">ETF / ETN</button>
   <button class="tab-major" data-major="us">해외 주식</button>
+  <button class="tab-major" data-major="hotdeal">🔥 핫딜</button>
 </div>
 <div class="sync-bar">
   <button class="sync-btn" id="cache-update-btn">🔄 데이터 업데이트</button>
@@ -655,6 +666,14 @@ permalink: /mystocks/
   </div><!-- #panel-us-watch -->
 </div><!-- #panel-us -->
 
+<!-- ══ 핫딜 패널 ══ -->
+<div class="major-panel" id="panel-hotdeal">
+  <div id="hotdeal-meta" style="font-size:0.78em;color:#aaa;padding:4px 0 8px"></div>
+  <div id="hotdeal-list" class="hotdeal-list">
+    <p class="hotdeal-empty">탭을 클릭하면 로드됩니다.</p>
+  </div>
+</div>
+
 </div><!-- .tables-col -->
 
 <aside class="ai-sidebar">
@@ -686,6 +705,38 @@ var WATCHLIST = {{ site.data.watchlist | jsonify }};
 var REPO_RAW = 'https://raw.githubusercontent.com/mhyang-dev/MegaCrawller/master';
 var g_cache = {};  // storageKey → code → stockData
 var g_cacheTs = null;
+var g_hotdealFetch = null;
+function loadHotdeal() {
+  var listEl = document.getElementById('hotdeal-list');
+  var metaEl = document.getElementById('hotdeal-meta');
+  if (!listEl) return;
+  if (!g_hotdealFetch) {
+    listEl.innerHTML = '<p class="hotdeal-empty">로딩 중...</p>';
+    g_hotdealFetch = fetch(REPO_RAW + '/data/hotdeal.json?v=' + Math.floor(Date.now() / 60000))
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        if (metaEl && data.updated_at) {
+          metaEl.textContent = '추천 10개 이상 · fmkorea 핫딜 · ' + data.updated_at.replace('T',' ').slice(0,16);
+        }
+        var items = data.items || [];
+        if (!items.length) {
+          listEl.innerHTML = '<p class="hotdeal-empty">해당 조건의 핫딜이 없습니다.</p>';
+          return;
+        }
+        listEl.innerHTML = items.map(function(d) {
+          var cat  = d.category ? '<span class="hotdeal-cat">' + d.category + '</span>' : '';
+          var vote = '<span class="hotdeal-vote">👍 ' + d.vote + '</span>';
+          return '<div class="hotdeal-item">' + cat +
+            '<a class="hotdeal-title" href="' + d.link + '" target="_blank" rel="noopener">' + d.title + '</a>' +
+            vote + '</div>';
+        }).join('');
+      })
+      .catch(function() {
+        listEl.innerHTML = '<p class="hotdeal-empty">데이터 없음 — 🔄 데이터 업데이트 후 이용하세요.</p>';
+      });
+  }
+}
+
 var g_cacheFetch = fetch(REPO_RAW + '/data/stocks_cache.json?v=' + Math.floor(Date.now() / 60000))
   .then(function(r) { return r.json(); })
   .then(function(data) {
@@ -755,6 +806,7 @@ var US_STOCKS_LIST = [
       btn.classList.add('active');
       var panel = document.getElementById('panel-' + btn.dataset.major);
       if (panel) panel.classList.add('active');
+      if (btn.dataset.major === 'hotdeal') loadHotdeal();
     });
   });
 
