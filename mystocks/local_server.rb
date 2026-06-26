@@ -356,6 +356,10 @@ rescue StandardError => e
   nil
 end
 
+def strip_html(s)
+  s.gsub(/<[^>]+>/, '').gsub(/&amp;/, '&').gsub(/&lt;/, '<').gsub(/&gt;/, '>').gsub(/&quot;/, '"').gsub(/&#?[a-z0-9]+;/, ' ').gsub(/\s+/, ' ').strip
+end
+
 def fetch_hotdeal(min_vote: 10)
   html = http_get(
     'https://www.fmkorea.com/hotdeal',
@@ -364,29 +368,35 @@ def fetch_hotdeal(min_vote: 10)
   return nil unless html
 
   deals = []
-  html.scan(/<li[^>]*class="[^"]*li_bd[^"]*"[^>]*>(.*?)<\/li>/mi) do |m|
+  html.scan(/<li[^>]*class="[^"]*li_best2_hotdeal\d[^"]*"[^>]*>(.*?)<\/li>/mi) do |m|
     item = m[0]
-    vote_m = item.match(/class="[^"]*voted_count[^"]*"[^>]*>\s*([0-9,]+)/)
+
+    # 추천수: <a class="pc_voted_count..."><span class="count">N</span></a>
+    vote_m = item.match(/class="[^"]*pc_voted_count[^"]*"[^>]*>.*?<span[^>]*class="[^"]*\bcount\b[^"]*"[^>]*>([-0-9,]+)<\/span>/mi)
     next unless vote_m
     vote = vote_m[1].gsub(',', '').to_i
     next if vote < min_vote
 
-    link_m  = item.match(/href="(\/[0-9]+)"[^>]*class="[^"]*(?:hx|tit)[^"]*"[^>]*>(.*?)<\/a>/mi)
-    link_m ||= item.match(/class="[^"]*(?:hx|tit)[^"]*"[^>]*href="(\/[0-9]+)"[^>]*>(.*?)<\/a>/mi)
-    next unless link_m
+    # href: 첫 번째 /숫자 링크
+    href_m = item.match(/href="(\/\d+)"/)
+    next unless href_m
+    link = "https://www.fmkorea.com#{href_m[1]}"
 
-    link  = "https://www.fmkorea.com#{link_m[1]}"
-    title = link_m[2].gsub(/<[^>]+>/, '').gsub(/&amp;/, '&').gsub(/&lt;/, '<').gsub(/&gt;/, '>').gsub(/&nbsp;|&#160;/, ' ').strip
+    # 제목: <span class="ellipsis-target">제목</span>
+    title_m = item.match(/<span[^>]*class="[^"]*ellipsis-target[^"]*"[^>]*>(.*?)<\/span>/mi)
+    next unless title_m
+    title = strip_html(title_m[1])
+    next if title.empty?
 
-    cat_m  = item.match(/class="[^"]*category_c[^"]*"[^>]*>.*?<a[^>]*>([^<]+)<\/a>/mi)
-    cat_m ||= item.match(/class="[^"]*category[^"]*"[^>]*>([^<]+)</mi)
-    cat    = cat_m ? cat_m[1].strip : ''
+    # 쇼핑몰명: hotdeal_info 안의 첫 번째 strong 링크
+    shop_m = item.match(/<div[^>]*class="[^"]*hotdeal_info[^"]*"[^>]*>.*?<a[^>]*class="[^"]*\bstrong\b[^"]*"[^>]*>([^<]+)<\/a>/mi)
+    cat = shop_m ? shop_m[1].strip : ''
 
     deals << { 'title' => title, 'link' => link, 'vote' => vote, 'category' => cat }
   end
 
   puts "  [핫딜] #{deals.length}개 수집 (추천 #{min_vote}개 이상)"
-  { 'updated_at' => Time.now.strftime('%Y-%m-%dT%H:%M:%S+09:00'), 'items' => deals.sort_by { |d| -d['vote'] } }
+  { 'updated_at' => Time.now.strftime('%Y-%m-%dT%H:%M:%S+09:00'), 'items' => deals.uniq { |d| d['link'] }.sort_by { |d| -d['vote'] } }
 rescue => e
   puts "  [핫딜] #{e.message}"
   nil
@@ -479,6 +489,7 @@ server.mount_proc '/' do |req, res|
   if req.request_method == 'OPTIONS'
     res.status = 200; res.body = ''; next
   end
+
 
   # GET /update-auto → 팝업용: watchlist(해시)로 캐시 업데이트 후 postMessage
   if req.path == '/update-auto' && req.request_method == 'GET'

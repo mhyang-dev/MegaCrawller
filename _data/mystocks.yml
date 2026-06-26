@@ -1,5 +1,5 @@
 ---
-fetched_at: 2026-06-26 23:10 KST
+fetched_at: 2026-06-26 23:40 KST
 stocks:
 - code: '005930'
   name: 삼성전자
@@ -402,25 +402,25 @@ stocks:
     indi_amount: 1731억
 - code: MU
   name: Micron Technology, Inc.
-  price: '1,823,694'
-  price_usd: "$1188.90"
-  change: '37,835'
-  change_pct: -0.02
+  price: '1,786,500'
+  price_usd: "$1163.95"
+  change: '76,145'
+  change_pct: -0.04
   direction: FALLING
   currency: USD
   market: US
   category: us_watch
   fics: Semiconductors
-  per: 8.0
-  market_cap_eok: 20596671
-  market_cap_formatted: 2,059.7조
+  per: 7.9
+  market_cap_eok: 20176612
+  market_cap_formatted: 2,017.7조
   market_cap_usd_formatted: "$1.3T"
   analyst_target:
-    avg: 2093943
-    avg_formatted: '2,093,943'
+    avg: 2095199
+    avg_formatted: '2,095,199'
     avg_usd: "$1365.08"
     count: 40
-  upside_pct: 14.8
+  upside_pct: 17.3
 kr_stocks_list:
 - code: '000500'
   name: 가온전선

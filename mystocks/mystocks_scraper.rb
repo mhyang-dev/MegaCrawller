@@ -748,28 +748,28 @@ begin
     extra_headers: { 'Referer' => 'https://www.fmkorea.com/', 'Accept-Language' => 'ko-KR,ko;q=0.9,en;q=0.8' }
   )
   if html
+    strip = ->(s) { s.gsub(/<[^>]+>/, '').gsub(/&amp;/, '&').gsub(/&lt;/, '<').gsub(/&gt;/, '>').gsub(/&quot;/, '"').gsub(/&#?[a-z0-9]+;/, ' ').gsub(/\s+/, ' ').strip }
+
     deals = []
-    html.scan(/<li[^>]*class="[^"]*li_bd[^"]*"[^>]*>(.*?)<\/li>/mi) do |m|
-      item   = m[0]
-      vote_m = item.match(/class="[^"]*voted_count[^"]*"[^>]*>\s*([0-9,]+)/)
+    html.scan(/<li[^>]*class="[^"]*li_best2_hotdeal\d[^"]*"[^>]*>(.*?)<\/li>/mi) do |m|
+      item = m[0]
+      vote_m = item.match(/class="[^"]*pc_voted_count[^"]*"[^>]*>.*?<span[^>]*class="[^"]*\bcount\b[^"]*"[^>]*>([-0-9,]+)<\/span>/mi)
       next unless vote_m
       vote = vote_m[1].gsub(',', '').to_i
       next if vote < 10
-
-      link_m  = item.match(/href="(\/[0-9]+)"[^>]*class="[^"]*(?:hx|tit)[^"]*"[^>]*>(.*?)<\/a>/mi)
-      link_m ||= item.match(/class="[^"]*(?:hx|tit)[^"]*"[^>]*href="(\/[0-9]+)"[^>]*>(.*?)<\/a>/mi)
-      next unless link_m
-
-      link  = "https://www.fmkorea.com#{link_m[1]}"
-      title = link_m[2].gsub(/<[^>]+>/, '').gsub(/&amp;/, '&').gsub(/&lt;/, '<').gsub(/&gt;/, '>').gsub(/&nbsp;|&#160;/, ' ').strip
-
-      cat_m  = item.match(/class="[^"]*category_c[^"]*"[^>]*>.*?<a[^>]*>([^<]+)<\/a>/mi)
-      cat_m ||= item.match(/class="[^"]*category[^"]*"[^>]*>([^<]+)</mi)
-      cat    = cat_m ? cat_m[1].strip : ''
-
+      href_m = item.match(/href="(\/\d+)"/)
+      next unless href_m
+      link = "https://www.fmkorea.com#{href_m[1]}"
+      title_m = item.match(/<span[^>]*class="[^"]*ellipsis-target[^"]*"[^>]*>(.*?)<\/span>/mi)
+      next unless title_m
+      title = strip.call(title_m[1])
+      next if title.empty?
+      shop_m = item.match(/<div[^>]*class="[^"]*hotdeal_info[^"]*"[^>]*>.*?<a[^>]*class="[^"]*\bstrong\b[^"]*"[^>]*>([^<]+)<\/a>/mi)
+      cat = shop_m ? shop_m[1].strip : ''
       deals << { 'title' => title, 'link' => link, 'vote' => vote, 'category' => cat }
     end
-    deals.sort_by! { |d| -d['vote'] }
+
+    deals = deals.uniq { |d| d['link'] }.sort_by { |d| -d['vote'] }
     hotdeal_data = { 'updated_at' => Time.now.strftime('%Y-%m-%dT%H:%M:%S+09:00'), 'items' => deals }
     hd_path = File.join(__dir__, '..', 'data', 'hotdeal.json')
     FileUtils.mkdir_p(File.dirname(hd_path))

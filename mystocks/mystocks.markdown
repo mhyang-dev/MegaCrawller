@@ -215,6 +215,7 @@ permalink: /mystocks/
 .major-panel.active { display: block; }
 .minor-panel { display: none; }
 .minor-panel.active { display: block; }
+.sub-section { display: block; }
 
 /* ── 해외 주식 이중 표시 ─────────────────────────── */
 .sub-usd { color: #bbb; font-size: 0.8em; margin-left: 3px; }
@@ -355,9 +356,7 @@ permalink: /mystocks/
 
 <!-- 대분류탭 -->
 <div class="tabs-major">
-  <button class="tab-major active" data-major="kr">국내 주식</button>
-  <button class="tab-major" data-major="etf">ETF / ETN</button>
-  <button class="tab-major" data-major="us">해외 주식</button>
+  <button class="tab-major active" data-major="portfolio">내 포트폴리오</button>
   <button class="tab-major" data-major="hotdeal">🔥 핫딜</button>
 </div>
 <div class="sync-bar">
@@ -367,13 +366,17 @@ permalink: /mystocks/
   <span class="sync-msg" id="cache-updated-at"></span>
 </div>
 
-<!-- ══ 국내 주식 패널 ══ -->
-<div class="major-panel active" id="panel-kr">
-  <div class="tabs-minor">
-    <button class="tab-minor active" data-panel="panel-kr-port">내 포트폴리오</button>
-    <button class="tab-minor" data-panel="panel-kr-watch">관심주</button>
-  </div>
-  <div class="minor-panel active" id="panel-kr-port">
+<!-- ══ 내 포트폴리오 패널 ══ -->
+<div class="major-panel active" id="panel-portfolio">
+<div class="tabs-minor">
+  <button class="tab-minor active" data-panel="panel-kr">국내 주식</button>
+  <button class="tab-minor" data-panel="panel-etf">ETF / ETN</button>
+  <button class="tab-minor" data-panel="panel-us">해외 주식</button>
+</div>
+
+<!-- ── 국내 주식 중분류 패널 ── -->
+<div class="minor-panel active" id="panel-kr">
+  <div class="sub-section" id="panel-kr-port">
   <div id="kr-port-adder" class="stock-adder">
     <input type="text" id="kr-port-search-input" class="stock-search-input" placeholder="종목명 검색 (예: 삼성)" autocomplete="off" />
     <div id="kr-port-search-dropdown" class="search-dropdown"></div>
@@ -466,7 +469,7 @@ permalink: /mystocks/
   </p>
   </div><!-- #panel-kr-port -->
 
-  <div class="minor-panel" id="panel-kr-watch">
+  <div class="sub-section" id="panel-kr-watch">
   <div id="kr-adder" class="stock-adder">
     <input type="text" id="kr-search-input" class="stock-search-input" placeholder="종목명 검색 (예: 삼성)" autocomplete="off" />
     <div id="kr-search-dropdown" class="search-dropdown"></div>
@@ -514,13 +517,9 @@ permalink: /mystocks/
   </div><!-- #panel-kr-watch -->
 </div><!-- #panel-kr -->
 
-<!-- ══ ETF / ETN 패널 ══ -->
-<div class="major-panel" id="panel-etf">
-  <div class="tabs-minor">
-    <button class="tab-minor active" data-panel="panel-etf-port">내 포트폴리오</button>
-    <button class="tab-minor" data-panel="panel-etf-watch">관심주</button>
-  </div>
-  <div class="minor-panel active" id="panel-etf-port">
+<!-- ── ETF / ETN 중분류 패널 ── -->
+<div class="minor-panel" id="panel-etf">
+  <div class="sub-section" id="panel-etf-port">
   <div id="etf-port-adder" class="stock-adder">
     <input type="text" id="etf-port-search-input" class="stock-search-input" placeholder="ETF명 검색 (예: KODEX)" autocomplete="off" />
     <div id="etf-port-search-dropdown" class="search-dropdown"></div>
@@ -549,7 +548,7 @@ permalink: /mystocks/
   {% endfor %}
   </tbody></table></div>
   </div><!-- #panel-etf-port -->
-  <div class="minor-panel" id="panel-etf-watch">
+  <div class="sub-section" id="panel-etf-watch">
   <div id="etf-adder" class="stock-adder">
     <input type="text" id="etf-search-input" class="stock-search-input" placeholder="ETF명 검색 (예: KODEX)" autocomplete="off" />
     <div id="etf-search-dropdown" class="search-dropdown"></div>
@@ -569,13 +568,9 @@ permalink: /mystocks/
   </div><!-- #panel-etf-watch -->
 </div><!-- #panel-etf -->
 
-<!-- ══ 해외 주식 패널 ══ -->
-<div class="major-panel" id="panel-us">
-  <div class="tabs-minor">
-    <button class="tab-minor active" data-panel="panel-us-port">내 포트폴리오</button>
-    <button class="tab-minor" data-panel="panel-us-watch">관심주</button>
-  </div>
-  <div class="minor-panel active" id="panel-us-port">
+<!-- ── 해외 주식 중분류 패널 ── -->
+<div class="minor-panel" id="panel-us">
+  <div class="sub-section" id="panel-us-port">
   <div id="us-port-adder" class="stock-adder">
     <input type="text" id="us-port-search-input" class="stock-search-input" placeholder="종목 검색 (예: Apple, AAPL)" autocomplete="off" />
     <div id="us-port-search-dropdown" class="search-dropdown"></div>
@@ -618,7 +613,7 @@ permalink: /mystocks/
   </tbody></table></div>
   </div><!-- #panel-us-port -->
 
-  <div class="minor-panel" id="panel-us-watch">
+  <div class="sub-section" id="panel-us-watch">
   <div id="us-adder" class="stock-adder">
     <input type="text" id="us-search-input" class="stock-search-input" placeholder="종목 검색 (예: Apple, AAPL)" autocomplete="off" />
     <div id="us-search-dropdown" class="search-dropdown"></div>
@@ -665,6 +660,8 @@ permalink: /mystocks/
   </p>
   </div><!-- #panel-us-watch -->
 </div><!-- #panel-us -->
+
+</div><!-- #panel-portfolio -->
 
 <!-- ══ 핫딜 패널 ══ -->
 <div class="major-panel" id="panel-hotdeal">
