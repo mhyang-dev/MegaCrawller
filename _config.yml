@@ -26,6 +26,7 @@ url: "https://mhyang-dev.github.io"
 header_pages:
   - economy/economy.markdown
   - mystocks/mystocks.markdown
+  - hotdeal/hotdeal.markdown
 
 # Build settings
 theme: minima

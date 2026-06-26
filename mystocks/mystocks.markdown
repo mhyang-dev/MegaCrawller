@@ -367,12 +367,6 @@ permalink: /mystocks/
 <div class="page-grid">
 <div class="tables-col">
 
-<!-- 대분류탭 -->
-<div class="tabs-major">
-  <button class="tab-major active" data-major="economy">경제 지표</button>
-  <button class="tab-major" data-major="portfolio">내 포트폴리오</button>
-  <button class="tab-major" data-major="hotdeal">🔥 핫딜</button>
-</div>
 <div class="sync-bar">
   <button class="sync-btn" id="cache-update-btn">🔄 데이터 업데이트</button>
   <span id="update-spinner" class="update-spinner" style="display:none"></span>
@@ -380,54 +374,7 @@ permalink: /mystocks/
   <span class="sync-msg" id="cache-updated-at"></span>
 </div>
 
-<!-- ══ 경제 지표 패널 ══ -->
-<div class="major-panel active" id="panel-economy">
-  <p class="economy-updated">{{ site.data.economy.fetched_at }}</p>
-  <div class="economy-grid">
-    <div class="economy-section">
-      <h3 class="economy-section-title">국내 지수</h3>
-      {% for idx in site.data.economy.kr_indices %}
-      {% assign cls = "even" %}{% assign arrow = "—" %}
-      {% if idx.direction == "RISING" %}{% assign cls = "rising" %}{% assign arrow = "▲" %}
-      {% elsif idx.direction == "FALLING" %}{% assign cls = "falling" %}{% assign arrow = "▼" %}{% endif %}
-      <div class="economy-row">
-        <span class="economy-name">{{ idx.name }}</span>
-        <span class="economy-price">{{ idx.price }}</span>
-        <span class="economy-change {{ cls }}">{{ arrow }} {{ idx.change | remove: "-" }} <span class="sub">({{ idx.change_pct }}%)</span></span>
-      </div>
-      {% endfor %}
-    </div>
-    <div class="economy-section">
-      <h3 class="economy-section-title">해외 지수</h3>
-      {% for idx in site.data.economy.us_indices %}
-      {% assign cls = "even" %}{% assign arrow = "—" %}
-      {% if idx.direction == "RISING" %}{% assign cls = "rising" %}{% assign arrow = "▲" %}
-      {% elsif idx.direction == "FALLING" %}{% assign cls = "falling" %}{% assign arrow = "▼" %}{% endif %}
-      <div class="economy-row">
-        <span class="economy-name">{{ idx.name }}</span>
-        <span class="economy-price">{{ idx.price }}</span>
-        <span class="economy-change {{ cls }}">{{ arrow }} {{ idx.change | remove: "-" }} <span class="sub">({{ idx.change_pct }}%)</span></span>
-      </div>
-      {% endfor %}
-    </div>
-    <div class="economy-section">
-      <h3 class="economy-section-title">환율</h3>
-      {% for fx in site.data.economy.fx_rates %}
-      <div class="economy-row">
-        <span class="economy-name">{{ fx.name }}</span>
-        <span class="economy-price">{{ fx.price }}</span>
-        {% assign cls = "even" %}{% assign arrow = "—" %}
-        {% if fx.direction == "RISING" %}{% assign cls = "rising" %}{% assign arrow = "▲" %}
-        {% elsif fx.direction == "FALLING" %}{% assign cls = "falling" %}{% assign arrow = "▼" %}{% endif %}
-        <span class="economy-change {{ cls }}">{{ arrow }} {{ fx.change | remove: "-" }} <span class="sub">({{ fx.change_pct }}%)</span></span>
-      </div>
-      {% endfor %}
-    </div>
-  </div>
-</div><!-- #panel-economy -->
-
-<!-- ══ 내 포트폴리오 패널 ══ -->
-<div class="major-panel" id="panel-portfolio">
+<!-- 중분류탭 -->
 <div class="tabs-minor">
   <button class="tab-minor active" data-panel="panel-kr">국내 주식</button>
   <button class="tab-minor" data-panel="panel-etf">ETF / ETN</button>
@@ -721,16 +668,6 @@ permalink: /mystocks/
   </div><!-- #panel-us-watch -->
 </div><!-- #panel-us -->
 
-</div><!-- #panel-portfolio -->
-
-<!-- ══ 핫딜 패널 ══ -->
-<div class="major-panel" id="panel-hotdeal">
-  <div id="hotdeal-meta" style="font-size:0.78em;color:#aaa;padding:4px 0 8px"></div>
-  <div id="hotdeal-list" class="hotdeal-list">
-    <p class="hotdeal-empty">탭을 클릭하면 로드됩니다.</p>
-  </div>
-</div>
-
 </div><!-- .tables-col -->
 
 <aside class="ai-sidebar">
@@ -762,38 +699,6 @@ var WATCHLIST = {{ site.data.watchlist | jsonify }};
 var REPO_RAW = 'https://raw.githubusercontent.com/mhyang-dev/MegaCrawller/master';
 var g_cache = {};  // storageKey → code → stockData
 var g_cacheTs = null;
-var g_hotdealFetch = null;
-function loadHotdeal() {
-  var listEl = document.getElementById('hotdeal-list');
-  var metaEl = document.getElementById('hotdeal-meta');
-  if (!listEl) return;
-  if (!g_hotdealFetch) {
-    listEl.innerHTML = '<p class="hotdeal-empty">로딩 중...</p>';
-    g_hotdealFetch = fetch(REPO_RAW + '/data/hotdeal.json?v=' + Math.floor(Date.now() / 60000))
-      .then(function(r) { return r.json(); })
-      .then(function(data) {
-        if (metaEl && data.updated_at) {
-          metaEl.textContent = '추천 10개 이상 · fmkorea 핫딜 · ' + data.updated_at.replace('T',' ').slice(0,16);
-        }
-        var items = data.items || [];
-        if (!items.length) {
-          listEl.innerHTML = '<p class="hotdeal-empty">해당 조건의 핫딜이 없습니다.</p>';
-          return;
-        }
-        listEl.innerHTML = items.map(function(d) {
-          var cat  = d.category ? '<span class="hotdeal-cat">' + d.category + '</span>' : '';
-          var vote = '<span class="hotdeal-vote">👍 ' + d.vote + '</span>';
-          return '<div class="hotdeal-item">' + cat +
-            '<a class="hotdeal-title" href="' + d.link + '" target="_blank" rel="noopener">' + d.title + '</a>' +
-            vote + '</div>';
-        }).join('');
-      })
-      .catch(function() {
-        listEl.innerHTML = '<p class="hotdeal-empty">데이터 없음 — 🔄 데이터 업데이트 후 이용하세요.</p>';
-      });
-  }
-}
-
 var g_cacheFetch = fetch(REPO_RAW + '/data/stocks_cache.json?v=' + Math.floor(Date.now() / 60000))
   .then(function(r) { return r.json(); })
   .then(function(data) {
@@ -854,25 +759,12 @@ var US_STOCKS_LIST = [
 ];
 
 (function () {
-  // 대분류탭 전환
-  var majorBtns = document.querySelectorAll('.tab-major');
-  majorBtns.forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      majorBtns.forEach(function (b) { b.classList.remove('active'); });
-      document.querySelectorAll('.major-panel').forEach(function (p) { p.classList.remove('active'); });
-      btn.classList.add('active');
-      var panel = document.getElementById('panel-' + btn.dataset.major);
-      if (panel) panel.classList.add('active');
-      if (btn.dataset.major === 'hotdeal') loadHotdeal();
-    });
-  });
-
   // 중분류탭 전환
-  document.querySelectorAll('.tab-minor').forEach(function (btn) {
+  var minorBtns = document.querySelectorAll('.tab-minor');
+  minorBtns.forEach(function (btn) {
     btn.addEventListener('click', function () {
-      var parent = btn.closest('.major-panel');
-      parent.querySelectorAll('.tab-minor').forEach(function (b) { b.classList.remove('active'); });
-      parent.querySelectorAll('.minor-panel').forEach(function (p) { p.classList.remove('active'); });
+      minorBtns.forEach(function (b) { b.classList.remove('active'); });
+      document.querySelectorAll('.minor-panel').forEach(function (p) { p.classList.remove('active'); });
       btn.classList.add('active');
       var panel = document.getElementById(btn.dataset.panel);
       if (panel) panel.classList.add('active');
