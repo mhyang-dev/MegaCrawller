@@ -211,11 +211,30 @@ permalink: /mystocks/
 .tab-minor.active { background: #444; color: #fff; border-color: #444; font-weight: bold; }
 
 /* ── 패널 표시 제어 ──────────────────────────────── */
-.major-panel { display: none; }
-.major-panel.active { display: block; }
 .minor-panel { display: none; }
 .minor-panel.active { display: block; }
-.sub-section { display: block; }
+.sub-panel { display: none; }
+.sub-panel.active { display: block; }
+
+/* ── 소분류탭 ─────────────────────────────────────── */
+.tabs-sub { display: flex; align-items: center; border-bottom: 1px solid #e8e8e8; margin: 8px 0 12px; gap: 0; flex-wrap: wrap; }
+.tab-sub {
+  padding: 5px 14px; border: none; background: none; cursor: pointer;
+  font-size: 0.82em; color: #aaa; border-bottom: 2px solid transparent; margin-bottom: -1px;
+  white-space: nowrap;
+}
+.tab-sub:hover { color: #555; }
+.tab-sub.active { color: #222; font-weight: bold; border-bottom-color: #444; }
+.tab-sub-close {
+  display: inline-block; margin-left: 4px; color: #ccc; font-size: 0.85em;
+  line-height: 1; vertical-align: middle; cursor: pointer;
+}
+.tab-sub-close:hover { color: #e44; }
+.tab-sub-add {
+  padding: 4px 10px; border: none; background: none; cursor: pointer;
+  font-size: 0.88em; color: #bbb; margin-left: 2px;
+}
+.tab-sub-add:hover { color: #2a7ae2; }
 
 /* ── 경제 지표 패널 ──────────────────────────────── */
 .economy-updated { font-size: 0.78em; color: #aaa; margin: 0 0 12px; }
@@ -383,7 +402,12 @@ permalink: /mystocks/
 
 <!-- ── 국내 주식 중분류 패널 ── -->
 <div class="minor-panel active" id="panel-kr">
-  <div class="sub-section" id="panel-kr-port">
+  <div class="tabs-sub" id="tabs-sub-kr">
+    <button class="tab-sub active" data-sub="panel-kr-port">보유 중</button>
+    <button class="tab-sub" data-sub="panel-kr-watch">관심주</button>
+    <button class="tab-sub-add" onclick="addSubTab('kr')">+</button>
+  </div>
+  <div class="sub-panel active" id="panel-kr-port">
   <div id="kr-port-adder" class="stock-adder">
     <input type="text" id="kr-port-search-input" class="stock-search-input" placeholder="종목명 검색 (예: 삼성)" autocomplete="off" />
     <div id="kr-port-search-dropdown" class="search-dropdown"></div>
@@ -476,7 +500,7 @@ permalink: /mystocks/
   </p>
   </div><!-- #panel-kr-port -->
 
-  <div class="sub-section" id="panel-kr-watch">
+  <div class="sub-panel" id="panel-kr-watch">
   <div id="kr-adder" class="stock-adder">
     <input type="text" id="kr-search-input" class="stock-search-input" placeholder="종목명 검색 (예: 삼성)" autocomplete="off" />
     <div id="kr-search-dropdown" class="search-dropdown"></div>
@@ -526,7 +550,12 @@ permalink: /mystocks/
 
 <!-- ── ETF / ETN 중분류 패널 ── -->
 <div class="minor-panel" id="panel-etf">
-  <div class="sub-section" id="panel-etf-port">
+  <div class="tabs-sub" id="tabs-sub-etf">
+    <button class="tab-sub active" data-sub="panel-etf-port">보유 중</button>
+    <button class="tab-sub" data-sub="panel-etf-watch">관심주</button>
+    <button class="tab-sub-add" onclick="addSubTab('etf')">+</button>
+  </div>
+  <div class="sub-panel active" id="panel-etf-port">
   <div id="etf-port-adder" class="stock-adder">
     <input type="text" id="etf-port-search-input" class="stock-search-input" placeholder="ETF명 검색 (예: KODEX)" autocomplete="off" />
     <div id="etf-port-search-dropdown" class="search-dropdown"></div>
@@ -555,7 +584,7 @@ permalink: /mystocks/
   {% endfor %}
   </tbody></table></div>
   </div><!-- #panel-etf-port -->
-  <div class="sub-section" id="panel-etf-watch">
+  <div class="sub-panel" id="panel-etf-watch">
   <div id="etf-adder" class="stock-adder">
     <input type="text" id="etf-search-input" class="stock-search-input" placeholder="ETF명 검색 (예: KODEX)" autocomplete="off" />
     <div id="etf-search-dropdown" class="search-dropdown"></div>
@@ -577,7 +606,12 @@ permalink: /mystocks/
 
 <!-- ── 해외 주식 중분류 패널 ── -->
 <div class="minor-panel" id="panel-us">
-  <div class="sub-section" id="panel-us-port">
+  <div class="tabs-sub" id="tabs-sub-us">
+    <button class="tab-sub active" data-sub="panel-us-port">보유 중</button>
+    <button class="tab-sub" data-sub="panel-us-watch">관심주</button>
+    <button class="tab-sub-add" onclick="addSubTab('us')">+</button>
+  </div>
+  <div class="sub-panel active" id="panel-us-port">
   <div id="us-port-adder" class="stock-adder">
     <input type="text" id="us-port-search-input" class="stock-search-input" placeholder="종목 검색 (예: Apple, AAPL)" autocomplete="off" />
     <div id="us-port-search-dropdown" class="search-dropdown"></div>
@@ -620,7 +654,7 @@ permalink: /mystocks/
   </tbody></table></div>
   </div><!-- #panel-us-port -->
 
-  <div class="sub-section" id="panel-us-watch">
+  <div class="sub-panel" id="panel-us-watch">
   <div id="us-adder" class="stock-adder">
     <input type="text" id="us-search-input" class="stock-search-input" placeholder="종목 검색 (예: Apple, AAPL)" autocomplete="off" />
     <div id="us-search-dropdown" class="search-dropdown"></div>
@@ -715,8 +749,9 @@ var g_cacheFetch = fetch(REPO_RAW + '/data/stocks_cache.json?v=' + Math.floor(Da
     });
     var el = document.getElementById('cache-updated-at');
     if (el && data.updated_at) el.textContent = '업데이트: ' + data.updated_at.replace('T',' ').slice(0,16);
+    loadTabsConfig();
   })
-  .catch(function() {});
+  .catch(function() { loadTabsConfig(); });
 
 var US_STOCKS_LIST = [
   {code:'AAPL',name:'Apple Inc.'},{code:'MSFT',name:'Microsoft Corporation'},{code:'NVDA',name:'NVIDIA Corporation'},
@@ -758,6 +793,215 @@ var US_STOCKS_LIST = [
   {code:'ROKU',name:'Roku Inc.'},{code:'SOFI',name:'SoFi Technologies Inc.'},{code:'SNAP',name:'Snap Inc.'}
 ];
 
+// ── 탭 설정 (커스텀 소분류 탭, 크로스 디바이스 sync) ─────────────────────
+var g_tabsConfig = { kr: [], etf: [], us: [] };
+
+function switchSubTab(btn) {
+  var panel = btn.closest('.minor-panel');
+  panel.querySelectorAll('.tab-sub').forEach(function(b) { b.classList.remove('active'); });
+  panel.querySelectorAll('.sub-panel').forEach(function(p) { p.classList.remove('active'); });
+  btn.classList.add('active');
+  var sp = document.getElementById(btn.dataset.sub);
+  if (sp) sp.classList.add('active');
+}
+
+function initSubTabs(container) {
+  container.querySelectorAll('.tab-sub').forEach(function(btn) {
+    btn.addEventListener('click', function() { switchSubTab(btn); });
+  });
+}
+
+function renderCustomTab(market, tabId, label, activate) {
+  var tabsEl = document.getElementById('tabs-sub-' + market);
+  var panelEl = document.getElementById('panel-' + market);
+  if (!tabsEl || !panelEl || document.getElementById(tabId)) return;
+
+  var addBtn = tabsEl.querySelector('.tab-sub-add');
+  var btn = document.createElement('button');
+  btn.className = 'tab-sub';
+  btn.dataset.sub = tabId;
+  btn.innerHTML = label +
+    ' <span class="tab-sub-close" title="탭 삭제" onclick="event.stopPropagation();delSubTab(\'' + market + '\',\'' + tabId + '\')">×</span>';
+  tabsEl.insertBefore(btn, addBtn);
+  btn.addEventListener('click', function() { switchSubTab(btn); });
+
+  var sp = document.createElement('div');
+  sp.className = 'sub-panel';
+  sp.id = tabId;
+  var isKr = (market === 'kr');
+  var isUs = (market === 'us');
+  var inputId = tabId + '-input';
+  var dropId  = tabId + '-drop';
+  var tableId = tabId + '-table';
+  var ph = isUs ? '종목 검색 (예: Apple, AAPL)' : (market === 'etf' ? 'ETF명 검색 (예: KODEX)' : '종목명 검색 (예: 삼성)');
+  sp.innerHTML =
+    '<div class="stock-adder"><input type="text" id="' + inputId + '" class="stock-search-input" placeholder="' + ph + '" autocomplete="off"/>' +
+    '<div id="' + dropId + '" class="search-dropdown"></div></div>' +
+    '<div class="table-scroll"><table class="stock-table" id="' + tableId + '"><thead><tr>' +
+    (isUs ? '<th class="left" data-col="fics">업종</th><th data-col="name">종목</th><th data-col="price">현재가</th><th data-col="change">등락</th><th></th>'
+          : '<th class="left" data-col="fics">업종</th><th data-col="name">종목</th><th data-col="price">현재가</th><th data-col="change">등락</th><th></th>') +
+    '</tr></thead><tbody>' +
+    '<tr id="' + tabId + '-empty"><td colspan="5" style="text-align:center;color:#ccc;padding:2em;">종목을 추가해보세요.</td></tr>' +
+    '</tbody></table></div>';
+  panelEl.appendChild(sp);
+
+  initCustomSearch(tabId, market);
+  loadCustomTabStocks(tabId, market);
+  if (activate) switchSubTab(btn);
+}
+
+function initCustomSearch(tabId, market) {
+  var inputEl = document.getElementById(tabId + '-input');
+  var dropEl  = document.getElementById(tabId + '-drop');
+  if (!inputEl || !dropEl) return;
+  inputEl.addEventListener('input', function() {
+    var q = inputEl.value.trim().toLowerCase();
+    dropEl.innerHTML = '';
+    if (q.length < 1) { dropEl.style.display = 'none'; return; }
+    var list = market === 'us' ? US_STOCKS_LIST : (market === 'etf' ? [] : KR_STOCKS_LIST);
+    var matches = list.filter(function(s) {
+      return s.code.toLowerCase().includes(q) || s.name.toLowerCase().includes(q);
+    }).slice(0, 8);
+    if (!matches.length) { dropEl.style.display = 'none'; return; }
+    matches.forEach(function(s) {
+      var div = document.createElement('div');
+      div.className = 'search-item';
+      div.textContent = s.name + ' (' + s.code + ')';
+      div.addEventListener('click', function() {
+        dropEl.style.display = 'none';
+        inputEl.value = '';
+        addToCustomTab(tabId, market, s.code);
+      });
+      dropEl.appendChild(div);
+    });
+    dropEl.style.display = 'block';
+  });
+  document.addEventListener('click', function(e) {
+    if (!inputEl.contains(e.target) && !dropEl.contains(e.target)) dropEl.style.display = 'none';
+  });
+}
+
+function loadCustomTabStocks(tabId, market) {
+  var tab = (g_tabsConfig[market] || []).find(function(t) { return t.id === tabId; });
+  if (!tab || !tab.codes || !tab.codes.length) return;
+  tab.codes.forEach(function(code) {
+    var d = findInCache(code, market);
+    appendCustomRow(tabId, market, code, d);
+  });
+}
+
+function findInCache(code, market) {
+  var keys = market === 'kr'  ? ['kr_port_dynamic_v1','kr_watchlist_v2']
+           : market === 'etf' ? ['etf_port_dynamic_v1','etf_watchlist_v1']
+           :                    ['us_port_dynamic_v1','us_watchlist_v1'];
+  for (var i = 0; i < keys.length; i++) {
+    if (g_cache[keys[i]] && g_cache[keys[i]][code]) return g_cache[keys[i]][code];
+  }
+  return null;
+}
+
+function addToCustomTab(tabId, market, code) {
+  var tab = (g_tabsConfig[market] || []).find(function(t) { return t.id === tabId; });
+  if (!tab) return;
+  if (tab.codes.indexOf(code) !== -1) return;
+  tab.codes.push(code);
+  saveTabsConfig();
+  var d = findInCache(code, market);
+  appendCustomRow(tabId, market, code, d);
+}
+
+function appendCustomRow(tabId, market, code, d) {
+  var tbody = document.querySelector('#' + tabId + '-table tbody');
+  if (!tbody) return;
+  var emptyRow = document.getElementById(tabId + '-empty');
+  var name  = (d && d.name)  || code;
+  var price = (d && d.price) || '—';
+  var chg   = (d && d.change_pct != null) ? d.change_pct : null;
+  var arrow = '—'; var cls = 'even';
+  if (chg !== null && chg > 0) { arrow = '▲'; cls = 'rising'; }
+  else if (chg !== null && chg < 0) { arrow = '▼'; cls = 'falling'; }
+  var chgStr = chg !== null ? (arrow + ' ' + Math.abs(chg) + '%') : '—';
+  var fics = (d && d.fics) ? '<span class="fics-tag">' + d.fics + '</span>' : '<span class="na">—</span>';
+  var tr = document.createElement('tr');
+  tr.dataset.code = code;
+  tr.innerHTML = '<td>' + fics + '</td>' +
+    '<td><a href="' + (market === 'us' ? 'https://finance.yahoo.com/quote/' + code : 'https://m.stock.naver.com/domestic/stock/' + code) + '" target="_blank">' + name + '</a></td>' +
+    '<td>' + price + '</td>' +
+    '<td class="' + cls + '">' + chgStr + '</td>' +
+    '<td><button class="del-btn" onclick="removeFromCustomTab(\'' + tabId + '\',\'' + market + '\',\'' + code + '\',this)">✕</button></td>';
+  if (emptyRow) emptyRow.remove();
+  tbody.appendChild(tr);
+}
+
+function removeFromCustomTab(tabId, market, code, btn) {
+  var tab = (g_tabsConfig[market] || []).find(function(t) { return t.id === tabId; });
+  if (tab) tab.codes = tab.codes.filter(function(c) { return c !== code; });
+  var tr = btn.closest('tr');
+  if (tr) tr.remove();
+  var tbody = document.querySelector('#' + tabId + '-table tbody');
+  if (tbody && !tbody.querySelector('tr:not([id$="-empty"])')) {
+    var emp = document.createElement('tr');
+    emp.id = tabId + '-empty';
+    emp.innerHTML = '<td colspan="5" style="text-align:center;color:#ccc;padding:2em;">종목을 추가해보세요.</td>';
+    tbody.appendChild(emp);
+  }
+  saveTabsConfig();
+}
+
+function addSubTab(market) {
+  var label = prompt('새 탭 이름을 입력하세요');
+  if (!label || !label.trim()) return;
+  label = label.trim();
+  var tabId = market + '-ct-' + Date.now();
+  if (!g_tabsConfig[market]) g_tabsConfig[market] = [];
+  g_tabsConfig[market].push({ id: tabId, label: label, codes: [] });
+  renderCustomTab(market, tabId, label, true);
+  saveTabsConfig();
+}
+
+function delSubTab(market, tabId) {
+  if (!confirm('탭을 삭제하시겠습니까?')) return;
+  g_tabsConfig[market] = (g_tabsConfig[market] || []).filter(function(t) { return t.id !== tabId; });
+  var btn = document.querySelector('[data-sub="' + tabId + '"]');
+  var sp  = document.getElementById(tabId);
+  if (btn) {
+    var panel = btn.closest('.minor-panel');
+    if (btn.classList.contains('active')) {
+      var first = panel.querySelector('.tab-sub[data-sub]');
+      if (first) switchSubTab(first);
+    }
+    btn.remove();
+  }
+  if (sp) sp.remove();
+  saveTabsConfig();
+}
+
+// ── 탭 설정 저장/로드 (GitHub sync) ────────────────────────────────────────
+function saveTabsConfig() {
+  var encoded = btoa(unescape(encodeURIComponent(JSON.stringify(g_tabsConfig))));
+  fetch('http://localhost:9001/api/save-tabs', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ tabs: g_tabsConfig })
+  }).catch(function() {
+    localStorage.setItem('tabs_config_pending', encoded);
+  });
+}
+
+function loadTabsConfig() {
+  fetch(REPO_RAW + '/data/tabs_config.json?v=' + Math.floor(Date.now() / 60000))
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      g_tabsConfig = { kr: data.kr || [], etf: data.etf || [], us: data.us || [] };
+      ['kr','etf','us'].forEach(function(m) {
+        (g_tabsConfig[m] || []).forEach(function(tab) {
+          renderCustomTab(m, tab.id, tab.label, false);
+        });
+      });
+    })
+    .catch(function() {});
+}
+
 (function () {
   // 중분류탭 전환
   var minorBtns = document.querySelectorAll('.tab-minor');
@@ -770,6 +1014,9 @@ var US_STOCKS_LIST = [
       if (panel) panel.classList.add('active');
     });
   });
+
+  // 소분류탭 전환 초기화
+  document.querySelectorAll('.minor-panel').forEach(initSubTabs);
 
   // 열 정렬 (빈 행 고정)
   var state = {};

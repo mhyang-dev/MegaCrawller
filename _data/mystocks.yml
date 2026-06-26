@@ -1,5 +1,5 @@
 ---
-fetched_at: 2026-06-27 00:01 KST
+fetched_at: 2026-06-27 00:15 KST
 stocks:
 - code: '005930'
   name: 삼성전자
@@ -402,25 +402,25 @@ stocks:
     indi_amount: 1731억
 - code: MU
   name: Micron Technology, Inc.
-  price: '1,783,580'
-  price_usd: "$1161.82"
-  change: '79,429'
-  change_pct: -0.04
+  price: '1,764,342'
+  price_usd: "$1150.27"
+  change: '97,077'
+  change_pct: -0.05
   direction: FALLING
   currency: USD
   market: US
   category: us_watch
   fics: Semiconductors
   per: 7.8
-  market_cap_eok: 20143624
-  market_cap_formatted: 2,014.4조
+  market_cap_eok: 19926353
+  market_cap_formatted: 1,992.6조
   market_cap_usd_formatted: "$1.3T"
   analyst_target:
-    avg: 2095609
-    avg_formatted: '2,095,609'
+    avg: 2093820
+    avg_formatted: '2,093,820'
     avg_usd: "$1365.08"
     count: 40
-  upside_pct: 17.5
+  upside_pct: 18.7
 kr_stocks_list:
 - code: '000500'
   name: 가온전선
@@ -875,11 +875,11 @@ kr_stocks_list:
 - code: '486990'
   name: 노타
   market: KOSDAQ
-- code: '348340'
-  name: 뉴로메카
-  market: KOSDAQ
 - code: '012340'
   name: 뉴인텍
+  market: KOSDAQ
+- code: '348340'
+  name: 뉴로메카
   market: KOSDAQ
 - code: '144960'
   name: 뉴파워프라즈마
@@ -1064,14 +1064,14 @@ kr_stocks_list:
 - code: '454910'
   name: 두산로보틱스
   market: KOSPI
-- code: '336260'
-  name: 두산퓨얼셀
-  market: KOSPI
 - code: '000150'
   name: 두산
   market: KOSPI
 - code: '241560'
   name: 두산밥캣
+  market: KOSPI
+- code: '336260'
+  name: 두산퓨얼셀
   market: KOSPI
 - code: '000155'
   name: 두산우
@@ -1442,6 +1442,9 @@ kr_stocks_list:
 - code: '003610'
   name: 방림
   market: KOSPI
+- code: '308080'
+  name: 바이젠셀
+  market: KOSDAQ
 - code: '314930'
   name: 바이오다인
   market: KOSDAQ
@@ -1462,9 +1465,6 @@ kr_stocks_list:
   market: KOSDAQ
 - code: '086820'
   name: 바이오솔루션
-  market: KOSDAQ
-- code: '308080'
-  name: 바이젠셀
   market: KOSDAQ
 - code: '600228'
   name: 반리과기
@@ -1586,11 +1586,11 @@ kr_stocks_list:
 - code: '002070'
   name: 비비안
   market: KOSPI
-- code: '065170'
-  name: 비엘팜텍
-  market: KOSDAQ
 - code: '083650'
   name: 비에이치아이
+  market: KOSDAQ
+- code: '065170'
+  name: 비엘팜텍
   market: KOSDAQ
 - code: '069540'
   name: 빛과전자
@@ -1625,11 +1625,11 @@ kr_stocks_list:
 - code: '010140'
   name: 삼성중공업
   market: KOSPI
-- code: '028260'
-  name: 삼성물산
-  market: KOSPI
 - code: '018260'
   name: 삼성에스디에스
+  market: KOSPI
+- code: '028260'
+  name: 삼성물산
   market: KOSPI
 - code: '028050'
   name: 삼성E&A
@@ -2171,11 +2171,11 @@ kr_stocks_list:
 - code: '226950'
   name: 올릭스
   market: KOSDAQ
-- code: '067170'
-  name: 오텍
-  market: KOSDAQ
 - code: '476060'
   name: 온코닉테라퓨틱스
+  market: KOSDAQ
+- code: '067170'
+  name: 오텍
   market: KOSDAQ
 - code: '039200'
   name: 오스코텍
@@ -2924,8 +2924,8 @@ kr_stocks_list:
 - code: '009420'
   name: 한올바이오파마
   market: KOSPI
-- code: '082740'
-  name: 한화엔진
+- code: '086790'
+  name: 하나금융지주
   market: KOSPI
 - code: '352820'
   name: 하이브
@@ -3131,14 +3131,14 @@ kr_stocks_list:
 - code: '000590'
   name: CS홀딩스
   market: KOSPI
+- code: '375500'
+  name: DL이앤씨
+  market: KOSPI
 - code: '005830'
   name: DB손해보험
   market: KOSPI
 - code: '000990'
   name: DB하이텍
-  market: KOSPI
-- code: '375500'
-  name: DL이앤씨
   market: KOSPI
 - code: '007340'
   name: DN오토모티브
@@ -3227,17 +3227,14 @@ kr_stocks_list:
 - code: '267260'
   name: HD현대일렉트릭
   market: KOSPI
-- code: '204320'
-  name: HL만도
-  market: KOSPI
 - code: '011200'
   name: HMM
   market: KOSPI
+- code: '204320'
+  name: HL만도
+  market: KOSPI
 - code: '009540'
   name: HD한국조선해양
-  market: KOSPI
-- code: '267270'
-  name: HD건설기계
   market: KOSPI
 - code: '267250'
   name: HD현대
@@ -3247,6 +3244,9 @@ kr_stocks_list:
   market: KOSPI
 - code: '395270'
   name: HANARO Fn K-반도체
+  market: KOSPI
+- code: '267270'
+  name: HD건설기계
   market: KOSPI
 - code: '139130'
   name: iM금융지주
@@ -3464,11 +3464,11 @@ kr_stocks_list:
 - code: '475150'
   name: SK이터닉스
   market: KOSPI
-- code: '011790'
-  name: SKC
-  market: KOSPI
 - code: '096770'
   name: SK이노베이션
+  market: KOSPI
+- code: '011790'
+  name: SKC
   market: KOSPI
 - code: '001740'
   name: SK네트웍스
@@ -3493,6 +3493,9 @@ kr_stocks_list:
   market: KOSPI
 - code: '458730'
   name: TIGER 미국배당다우존스
+  market: KOSPI
+- code: '381170'
+  name: TIGER 미국테크TOP10 INDXX
   market: KOSPI
 - code: '494220'
   name: UNICORN SK하이닉스밸류체인액티브
@@ -3551,11 +3554,11 @@ kr_stocks_list:
 - code: '066575'
   name: LG전자우
   market: KOSPI
-- code: '100090'
-  name: SK오션플랜트
-  market: KOSPI
 - code: '326030'
   name: SK바이오팜
+  market: KOSPI
+- code: '302440'
+  name: SK바이오사이언스
   market: KOSPI
 - code: '058850'
   name: KTcs
@@ -3611,8 +3614,8 @@ kr_stocks_list:
 - code: '459580'
   name: KODEX CD금리액티브(합성)
   market: KOSPI
-- code: '381170'
-  name: TIGER 미국테크TOP10 INDXX
+- code: '357870'
+  name: TIGER CD금리투자KIS(합성)
   market: KOSPI
 - code: '434730'
   name: HANARO 원자력iSelect

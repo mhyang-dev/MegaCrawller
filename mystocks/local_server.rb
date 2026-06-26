@@ -636,6 +636,32 @@ server.mount_proc '/' do |req, res|
     next
   end
 
+  # POST /api/save-tabs → tabs_config.json 저장 후 git push
+  if req.path == '/api/save-tabs' && req.request_method == 'POST'
+    begin
+      data = JSON.parse(req.body)
+      tabs = data['tabs'] || data
+      tc_path = File.join(REPO_ROOT, 'data', 'tabs_config.json')
+      FileUtils.mkdir_p(File.dirname(tc_path))
+      File.write(tc_path, JSON.pretty_generate(tabs))
+      Dir.chdir(REPO_ROOT) do
+        system('git add data/tabs_config.json')
+        no_changes = system('git diff --cached --quiet')
+        if no_changes
+          res.body = { ok: true, message: 'no changes' }.to_json
+        else
+          system('git commit --no-verify -m "탭 설정 업데이트"')
+          pushed = system('git push origin master')
+          res.body = pushed ? { ok: true, message: 'pushed' }.to_json : { error: 'git push failed' }.to_json
+        end
+      end
+    rescue StandardError => e
+      res.status = 500
+      res.body = { error: e.message }.to_json
+    end
+    next
+  end
+
   unless req.path =~ /^\/api\/stock\/([^\/]+)$/
     res.status = 404; res.body = '{"error":"not found"}'; next
   end
