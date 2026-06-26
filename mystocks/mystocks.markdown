@@ -217,6 +217,19 @@ permalink: /mystocks/
 .minor-panel.active { display: block; }
 .sub-section { display: block; }
 
+/* ── 경제 지표 패널 ──────────────────────────────── */
+.economy-updated { font-size: 0.78em; color: #aaa; margin: 0 0 12px; }
+.economy-grid { display: flex; gap: 32px; flex-wrap: wrap; }
+.economy-section { min-width: 180px; }
+.economy-section-title { font-size: 0.8em; color: #888; font-weight: 600; margin: 0 0 8px; text-transform: uppercase; letter-spacing: 0.04em; }
+.economy-row { display: flex; align-items: baseline; gap: 10px; padding: 5px 0; border-bottom: 1px solid #f0f0f0; font-size: 0.92em; }
+.economy-name { color: #555; min-width: 90px; }
+.economy-price { font-weight: 600; color: #222; min-width: 70px; text-align: right; }
+.economy-change { font-size: 0.88em; }
+.economy-change.rising { color: #e03030; }
+.economy-change.falling { color: #1a6fd4; }
+.economy-change.even { color: #888; }
+
 /* ── 해외 주식 이중 표시 ─────────────────────────── */
 .sub-usd { color: #bbb; font-size: 0.8em; margin-left: 3px; }
 
@@ -356,7 +369,8 @@ permalink: /mystocks/
 
 <!-- 대분류탭 -->
 <div class="tabs-major">
-  <button class="tab-major active" data-major="portfolio">내 포트폴리오</button>
+  <button class="tab-major active" data-major="economy">경제 지표</button>
+  <button class="tab-major" data-major="portfolio">내 포트폴리오</button>
   <button class="tab-major" data-major="hotdeal">🔥 핫딜</button>
 </div>
 <div class="sync-bar">
@@ -366,8 +380,54 @@ permalink: /mystocks/
   <span class="sync-msg" id="cache-updated-at"></span>
 </div>
 
+<!-- ══ 경제 지표 패널 ══ -->
+<div class="major-panel active" id="panel-economy">
+  <p class="economy-updated">{{ site.data.economy.fetched_at }}</p>
+  <div class="economy-grid">
+    <div class="economy-section">
+      <h3 class="economy-section-title">국내 지수</h3>
+      {% for idx in site.data.economy.kr_indices %}
+      {% assign cls = "even" %}{% assign arrow = "—" %}
+      {% if idx.direction == "RISING" %}{% assign cls = "rising" %}{% assign arrow = "▲" %}
+      {% elsif idx.direction == "FALLING" %}{% assign cls = "falling" %}{% assign arrow = "▼" %}{% endif %}
+      <div class="economy-row">
+        <span class="economy-name">{{ idx.name }}</span>
+        <span class="economy-price">{{ idx.price }}</span>
+        <span class="economy-change {{ cls }}">{{ arrow }} {{ idx.change | remove: "-" }} <span class="sub">({{ idx.change_pct }}%)</span></span>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="economy-section">
+      <h3 class="economy-section-title">해외 지수</h3>
+      {% for idx in site.data.economy.us_indices %}
+      {% assign cls = "even" %}{% assign arrow = "—" %}
+      {% if idx.direction == "RISING" %}{% assign cls = "rising" %}{% assign arrow = "▲" %}
+      {% elsif idx.direction == "FALLING" %}{% assign cls = "falling" %}{% assign arrow = "▼" %}{% endif %}
+      <div class="economy-row">
+        <span class="economy-name">{{ idx.name }}</span>
+        <span class="economy-price">{{ idx.price }}</span>
+        <span class="economy-change {{ cls }}">{{ arrow }} {{ idx.change | remove: "-" }} <span class="sub">({{ idx.change_pct }}%)</span></span>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="economy-section">
+      <h3 class="economy-section-title">환율</h3>
+      {% for fx in site.data.economy.fx_rates %}
+      <div class="economy-row">
+        <span class="economy-name">{{ fx.name }}</span>
+        <span class="economy-price">{{ fx.price }}</span>
+        {% assign cls = "even" %}{% assign arrow = "—" %}
+        {% if fx.direction == "RISING" %}{% assign cls = "rising" %}{% assign arrow = "▲" %}
+        {% elsif fx.direction == "FALLING" %}{% assign cls = "falling" %}{% assign arrow = "▼" %}{% endif %}
+        <span class="economy-change {{ cls }}">{{ arrow }} {{ fx.change | remove: "-" }} <span class="sub">({{ fx.change_pct }}%)</span></span>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div><!-- #panel-economy -->
+
 <!-- ══ 내 포트폴리오 패널 ══ -->
-<div class="major-panel active" id="panel-portfolio">
+<div class="major-panel" id="panel-portfolio">
 <div class="tabs-minor">
   <button class="tab-minor active" data-panel="panel-kr">국내 주식</button>
   <button class="tab-minor" data-panel="panel-etf">ETF / ETN</button>
