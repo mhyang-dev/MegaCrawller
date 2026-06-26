@@ -1,65 +1,15 @@
 {
-  "updated_at": "2026-06-26T19:43:56+09:00",
-  "kr_port": [
-
-  ],
+  "updated_at": "2026-06-26T23:38:04+09:00",
+  "kr_port": [],
   "kr_watch": [
-    {
-      "code": "095610",
-      "name": "테스",
-      "price": "183,300",
-      "change": "17,200",
-      "change_pct": 10.36,
-      "direction": "RISING",
-      "market": "KOSDAQ",
-      "analyst_target": {
-        "avg": 177143,
-        "avg_formatted": "177,143",
-        "count": 7
-      },
-      "per": 32.6,
-      "indu_per": 100.19,
-      "market_cap_eok": 32157,
-      "market_cap_formatted": "3.2조",
-      "fics": "반도체 및 관련장비",
-      "investor_streaks": {
-        "gigan": 5,
-        "gigan_amount": "645억",
-        "foreign": -5,
-        "foreign_amount": "389억",
-        "indi": -1,
-        "indi_amount": "162억"
-      },
-      "disclosure": [
-        {
-          "title": "(주)테스 단일판매ㆍ공급계약체결(자율공시)",
-          "datetime": "2026-06-05",
-          "url": "https://finance.naver.com/item/news_notice_read.naver?no=20173397&code=095610&page_notice="
-        },
-        {
-          "title": "(주)테스 단일판매ㆍ공급계약체결(자율공시)",
-          "datetime": "2026-05-21",
-          "url": "https://finance.naver.com/item/news_notice_read.naver?no=4760618&code=095610&page_notice="
-        },
-        {
-          "title": "(주)테스 기업설명회(IR) 개최",
-          "datetime": "2026-05-18",
-          "url": "https://finance.naver.com/item/news_notice_read.naver?no=1642643&code=095610&page_notice="
-        }
-      ],
-      "upside_pct": -3.4
-    },
     {
       "code": "317330",
       "name": "덕산테코피아",
       "price": "11,060",
-      "change": "-840",
+      "change": "840",
       "change_pct": -7.06,
       "direction": "FALLING",
-      "market": "KOSDAQ",
       "fics": "반도체 및 관련장비",
-      "market_cap_eok": null,
-      "market_cap_formatted": null,
       "investor_streaks": {
         "gigan": -4,
         "gigan_amount": "11억",
@@ -90,20 +40,19 @@
       "code": "015760",
       "name": "한국전력",
       "price": "37,100",
-      "change": "-1,700",
+      "change": "1,700",
       "change_pct": -4.38,
       "direction": "FALLING",
-      "market": "KOSPI",
+      "fics": "전력",
+      "per": 4.5,
+      "indu_per": 3.3,
+      "market_cap_eok": 249082,
+      "market_cap_formatted": "24.9조",
       "analyst_target": {
         "avg": 56667,
         "avg_formatted": "56,667",
         "count": 16
       },
-      "per": 4.5,
-      "indu_per": 3.3,
-      "market_cap_eok": 249082,
-      "market_cap_formatted": "24.9조",
-      "fics": "전력",
       "investor_streaks": {
         "gigan": -1,
         "gigan_amount": "28억",
@@ -132,68 +81,66 @@
       "upside_pct": 52.7
     },
     {
-      "code": "004170",
-      "name": "신세계",
-      "price": "740,000",
-      "change": "-1,000",
-      "change_pct": -0.13,
-      "direction": "FALLING",
-      "market": "KOSPI",
+      "code": "095610",
+      "name": "테스",
+      "price": "183,300",
+      "change": "17,200",
+      "change_pct": 10.36,
+      "direction": "RISING",
+      "fics": "반도체 및 관련장비",
+      "per": 32.6,
+      "indu_per": 100.19,
+      "market_cap_eok": 32157,
+      "market_cap_formatted": "3.2조",
       "analyst_target": {
-        "avg": 727941,
-        "avg_formatted": "727,941",
-        "count": 17
+        "avg": 177143,
+        "avg_formatted": "177,143",
+        "count": 7
       },
-      "per": 18.8,
-      "indu_per": 26.39,
-      "market_cap_eok": 69989,
-      "market_cap_formatted": "7.0조",
-      "fics": "백화점",
       "investor_streaks": {
-        "gigan": -1,
-        "gigan_amount": "50억",
-        "foreign": -1,
-        "foreign_amount": "95억",
-        "indi": 1,
-        "indi_amount": "145억"
+        "gigan": 5,
+        "gigan_amount": "645억",
+        "foreign": -5,
+        "foreign_amount": "389억",
+        "indi": -1,
+        "indi_amount": "162억"
       },
       "disclosure": [
         {
-          "title": "(주)신세계 기업설명회(IR) 개최(안내공시)",
-          "datetime": "2026-06-16",
-          "url": "https://finance.naver.com/item/news_notice_read.naver?no=31912006&code=004170&page_notice="
+          "title": "(주)테스 단일판매ㆍ공급계약체결(자율공시)",
+          "datetime": "2026-06-05",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=20173397&code=095610&page_notice="
         },
         {
-          "title": "(주)신세계 타법인주식및출자증권취득결정",
-          "datetime": "2026-06-11",
-          "url": "https://finance.naver.com/item/news_notice_read.naver?no=26511651&code=004170&page_notice="
+          "title": "(주)테스 단일판매ㆍ공급계약체결(자율공시)",
+          "datetime": "2026-05-21",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=4760618&code=095610&page_notice="
         },
         {
-          "title": "(주)신세계 영업(잠정)실적(공정공시)",
-          "datetime": "2026-06-09",
-          "url": "https://finance.naver.com/item/news_notice_read.naver?no=22794632&code=004170&page_notice="
+          "title": "(주)테스 기업설명회(IR) 개최",
+          "datetime": "2026-05-18",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=1642643&code=095610&page_notice="
         }
       ],
-      "upside_pct": -1.6
+      "upside_pct": -3.4
     },
     {
       "code": "278470",
       "name": "에이피알",
       "price": "363,000",
-      "change": "-18,000",
+      "change": "18,000",
       "change_pct": -4.72,
       "direction": "FALLING",
-      "market": "KOSPI",
+      "fics": "개인생활용품",
+      "per": 26.7,
+      "indu_per": null,
+      "market_cap_eok": 142639,
+      "market_cap_formatted": "14.3조",
       "analyst_target": {
         "avg": 516842,
         "avg_formatted": "516,842",
         "count": 19
       },
-      "per": 26.7,
-      "indu_per": null,
-      "market_cap_eok": 142639,
-      "market_cap_formatted": "14.3조",
-      "fics": "개인생활용품",
       "investor_streaks": {
         "gigan": 4,
         "gigan_amount": "205억",
@@ -220,41 +167,76 @@
         }
       ],
       "upside_pct": 42.4
+    },
+    {
+      "code": "004170",
+      "name": "신세계",
+      "price": "740,000",
+      "change": "1,000",
+      "change_pct": -0.13,
+      "direction": "FALLING",
+      "fics": "백화점",
+      "per": 18.8,
+      "indu_per": 26.39,
+      "market_cap_eok": 69989,
+      "market_cap_formatted": "7.0조",
+      "analyst_target": {
+        "avg": 727941,
+        "avg_formatted": "727,941",
+        "count": 17
+      },
+      "investor_streaks": {
+        "gigan": -1,
+        "gigan_amount": "50억",
+        "foreign": -1,
+        "foreign_amount": "95억",
+        "indi": 1,
+        "indi_amount": "145억"
+      },
+      "disclosure": [
+        {
+          "title": "(주)신세계 기업설명회(IR) 개최(안내공시)",
+          "datetime": "2026-06-16",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=31912006&code=004170&page_notice="
+        },
+        {
+          "title": "(주)신세계 타법인주식및출자증권취득결정",
+          "datetime": "2026-06-11",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=26511651&code=004170&page_notice="
+        },
+        {
+          "title": "(주)신세계 영업(잠정)실적(공정공시)",
+          "datetime": "2026-06-09",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=22794632&code=004170&page_notice="
+        }
+      ],
+      "upside_pct": -1.6
     }
   ],
-  "etf_port": [
-
-  ],
-  "etf_watch": [
-
-  ],
+  "etf_port": [],
+  "etf_watch": [],
   "us_port": [
     {
       "code": "GOOGL",
       "name": "Alphabet Inc.",
-      "price": "528,595",
-      "price_usd": "$343.71",
-      "change": "2,415",
-      "change_pct": -0.0,
+      "price": "520,711",
+      "price_usd": "$339.46",
+      "change": "6,519",
+      "change_pct": -0.01,
       "direction": "FALLING",
-      "currency": "USD",
-      "market": "US",
-      "category": "us_watch",
       "fics": "Internet Content & Information",
-      "per": 23.6,
-      "market_cap_eok": 64502194,
-      "market_cap_formatted": "6,450.2조",
-      "market_cap_usd_formatted": "$4.2T",
+      "per": 23.3,
+      "market_cap_eok": 63540169,
+      "market_cap_formatted": "6,354.0조",
+      "market_cap_usd_formatted": "$4.1T",
       "analyst_target": {
-        "avg": 665661,
-        "avg_formatted": "665,661",
+        "avg": 663942,
+        "avg_formatted": "663,942",
         "avg_usd": "$432.83",
         "count": 53
       },
-      "upside_pct": 25.9
+      "upside_pct": 27.5
     }
   ],
-  "us_watch": [
-
-  ]
+  "us_watch": []
 }
