@@ -1,22 +1,62 @@
 {
-  "updated_at": "2026-06-26T23:38:04+09:00",
-  "kr_port": [],
+  "updated_at": "2026-06-29T23:41:59+09:00",
+  "kr_port": [
+
+  ],
   "kr_watch": [
+    {
+      "code": "095610",
+      "name": "테스",
+      "price": "179,700",
+      "change": "-3,600",
+      "change_pct": -1.96,
+      "direction": "FALLING",
+      "market": "KOSDAQ",
+      "market_cap_eok": null,
+      "market_cap_formatted": null,
+      "investor_streaks": {
+        "gigan": 6,
+        "gigan_amount": "737억",
+        "foreign": -6,
+        "foreign_amount": "583억",
+        "indi": 1,
+        "indi_amount": "96억"
+      },
+      "disclosure": [
+        {
+          "title": "(주)테스 단일판매ㆍ공급계약체결(자율공시)",
+          "datetime": "2026-06-05",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=20173397&code=095610&page_notice="
+        },
+        {
+          "title": "(주)테스 단일판매ㆍ공급계약체결(자율공시)",
+          "datetime": "2026-05-21",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=4760618&code=095610&page_notice="
+        },
+        {
+          "title": "(주)테스 기업설명회(IR) 개최",
+          "datetime": "2026-05-18",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=1642643&code=095610&page_notice="
+        }
+      ]
+    },
     {
       "code": "317330",
       "name": "덕산테코피아",
-      "price": "11,060",
-      "change": "840",
-      "change_pct": -7.06,
-      "direction": "FALLING",
-      "fics": "반도체 및 관련장비",
+      "price": "12,840",
+      "change": "1,780",
+      "change_pct": 16.09,
+      "direction": "RISING",
+      "market": "KOSDAQ",
+      "market_cap_eok": null,
+      "market_cap_formatted": null,
       "investor_streaks": {
-        "gigan": -4,
-        "gigan_amount": "11억",
-        "foreign": 3,
-        "foreign_amount": "4억",
-        "indi": -1,
-        "indi_amount": "3억"
+        "gigan": -5,
+        "gigan_amount": "14억",
+        "foreign": 4,
+        "foreign_amount": "7억",
+        "indi": -2,
+        "indi_amount": "6억"
       },
       "disclosure": [
         {
@@ -39,29 +79,27 @@
     {
       "code": "015760",
       "name": "한국전력",
-      "price": "37,100",
-      "change": "1,700",
-      "change_pct": -4.38,
-      "direction": "FALLING",
-      "fics": "전력",
-      "per": 4.5,
-      "indu_per": 3.3,
-      "market_cap_eok": 249082,
-      "market_cap_formatted": "24.9조",
-      "analyst_target": {
-        "avg": 56667,
-        "avg_formatted": "56,667",
-        "count": 16
-      },
+      "price": "38,250",
+      "change": "1,150",
+      "change_pct": 3.1,
+      "direction": "RISING",
+      "market": "KOSPI",
+      "market_cap_eok": null,
+      "market_cap_formatted": null,
       "investor_streaks": {
-        "gigan": -1,
-        "gigan_amount": "28억",
-        "foreign": 1,
-        "foreign_amount": "74억",
-        "indi": -5,
-        "indi_amount": "472억"
+        "gigan": 1,
+        "gigan_amount": "269억",
+        "foreign": -1,
+        "foreign_amount": "232억",
+        "indi": -6,
+        "indi_amount": "524억"
       },
       "disclosure": [
+        {
+          "title": "한국전력공사(주) 기타 경영사항(자율공시)(종속회사의 주요경영사항)",
+          "datetime": "2026-06-29",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=48196560&code=015760&page_notice="
+        },
         {
           "title": "한국전력공사(주) 중대재해 발생(종속회사의 주요경영사항)",
           "datetime": "2026-06-24",
@@ -71,127 +109,26 @@
           "title": "한국전력공사(주) 소송등의판결ㆍ결정(일정금액 이상의 청구)",
           "datetime": "2026-06-23",
           "url": "https://finance.naver.com/item/news_notice_read.naver?no=39755112&code=015760&page_notice="
-        },
-        {
-          "title": "한국전력공사(주) 임시주주총회 결과",
-          "datetime": "2026-06-17",
-          "url": "https://finance.naver.com/item/news_notice_read.naver?no=33431981&code=015760&page_notice="
         }
-      ],
-      "upside_pct": 52.7
-    },
-    {
-      "code": "095610",
-      "name": "테스",
-      "price": "183,300",
-      "change": "17,200",
-      "change_pct": 10.36,
-      "direction": "RISING",
-      "fics": "반도체 및 관련장비",
-      "per": 32.6,
-      "indu_per": 100.19,
-      "market_cap_eok": 32157,
-      "market_cap_formatted": "3.2조",
-      "analyst_target": {
-        "avg": 177143,
-        "avg_formatted": "177,143",
-        "count": 7
-      },
-      "investor_streaks": {
-        "gigan": 5,
-        "gigan_amount": "645억",
-        "foreign": -5,
-        "foreign_amount": "389억",
-        "indi": -1,
-        "indi_amount": "162억"
-      },
-      "disclosure": [
-        {
-          "title": "(주)테스 단일판매ㆍ공급계약체결(자율공시)",
-          "datetime": "2026-06-05",
-          "url": "https://finance.naver.com/item/news_notice_read.naver?no=20173397&code=095610&page_notice="
-        },
-        {
-          "title": "(주)테스 단일판매ㆍ공급계약체결(자율공시)",
-          "datetime": "2026-05-21",
-          "url": "https://finance.naver.com/item/news_notice_read.naver?no=4760618&code=095610&page_notice="
-        },
-        {
-          "title": "(주)테스 기업설명회(IR) 개최",
-          "datetime": "2026-05-18",
-          "url": "https://finance.naver.com/item/news_notice_read.naver?no=1642643&code=095610&page_notice="
-        }
-      ],
-      "upside_pct": -3.4
-    },
-    {
-      "code": "278470",
-      "name": "에이피알",
-      "price": "363,000",
-      "change": "18,000",
-      "change_pct": -4.72,
-      "direction": "FALLING",
-      "fics": "개인생활용품",
-      "per": 26.7,
-      "indu_per": null,
-      "market_cap_eok": 142639,
-      "market_cap_formatted": "14.3조",
-      "analyst_target": {
-        "avg": 516842,
-        "avg_formatted": "516,842",
-        "count": 19
-      },
-      "investor_streaks": {
-        "gigan": 4,
-        "gigan_amount": "205억",
-        "foreign": -4,
-        "foreign_amount": "110억",
-        "indi": 1,
-        "indi_amount": "63억"
-      },
-      "disclosure": [
-        {
-          "title": "(주)에이피알 지속가능경영보고서 등 관련사항(자율공시)",
-          "datetime": "2026-06-19",
-          "url": "https://finance.naver.com/item/news_notice_read.naver?no=37438991&code=278470&page_notice="
-        },
-        {
-          "title": "(주)에이피알 기업설명회(IR) 개최(안내공시)",
-          "datetime": "2026-06-01",
-          "url": "https://finance.naver.com/item/news_notice_read.naver?no=14942595&code=278470&page_notice="
-        },
-        {
-          "title": "(주)에이피알 연결재무제표기준영업(잠정)실적(공정공시)",
-          "datetime": "2026-05-07",
-          "url": "https://finance.naver.com/item/news_notice_read.naver?no=1638552&code=278470&page_notice="
-        }
-      ],
-      "upside_pct": 42.4
+      ]
     },
     {
       "code": "004170",
       "name": "신세계",
-      "price": "740,000",
-      "change": "1,000",
-      "change_pct": -0.13,
+      "price": "729,000",
+      "change": "-11,000",
+      "change_pct": -1.49,
       "direction": "FALLING",
-      "fics": "백화점",
-      "per": 18.8,
-      "indu_per": 26.39,
-      "market_cap_eok": 69989,
-      "market_cap_formatted": "7.0조",
-      "analyst_target": {
-        "avg": 727941,
-        "avg_formatted": "727,941",
-        "count": 17
-      },
+      "market": "KOSPI",
+      "market_cap_eok": null,
+      "market_cap_formatted": null,
       "investor_streaks": {
-        "gigan": -1,
-        "gigan_amount": "50억",
-        "foreign": -1,
-        "foreign_amount": "95억",
-        "indi": 1,
-        "indi_amount": "145억"
+        "gigan": -2,
+        "gigan_amount": "55억",
+        "foreign": -2,
+        "foreign_amount": "102억",
+        "indi": 2,
+        "indi_amount": "156억"
       },
       "disclosure": [
         {
@@ -209,34 +146,78 @@
           "datetime": "2026-06-09",
           "url": "https://finance.naver.com/item/news_notice_read.naver?no=22794632&code=004170&page_notice="
         }
-      ],
-      "upside_pct": -1.6
+      ]
+    },
+    {
+      "code": "278470",
+      "name": "에이피알",
+      "price": "386,000",
+      "change": "23,000",
+      "change_pct": 6.34,
+      "direction": "RISING",
+      "market": "KOSPI",
+      "market_cap_eok": null,
+      "market_cap_formatted": null,
+      "investor_streaks": {
+        "gigan": 5,
+        "gigan_amount": "353억",
+        "foreign": -5,
+        "foreign_amount": "204억",
+        "indi": -1,
+        "indi_amount": "48억"
+      },
+      "disclosure": [
+        {
+          "title": "(주)에이피알 지속가능경영보고서 등 관련사항(자율공시)",
+          "datetime": "2026-06-19",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=37438991&code=278470&page_notice="
+        },
+        {
+          "title": "(주)에이피알 기업설명회(IR) 개최(안내공시)",
+          "datetime": "2026-06-01",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=14942595&code=278470&page_notice="
+        },
+        {
+          "title": "(주)에이피알 연결재무제표기준영업(잠정)실적(공정공시)",
+          "datetime": "2026-05-07",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=1638552&code=278470&page_notice="
+        }
+      ]
     }
   ],
-  "etf_port": [],
-  "etf_watch": [],
+  "etf_port": [
+
+  ],
+  "etf_watch": [
+
+  ],
   "us_port": [
     {
       "code": "GOOGL",
       "name": "Alphabet Inc.",
-      "price": "520,711",
-      "price_usd": "$339.46",
-      "change": "6,519",
-      "change_pct": -0.01,
-      "direction": "FALLING",
+      "price": "543,029",
+      "price_usd": "$351.88",
+      "change": "22,369",
+      "change_pct": 0.04,
+      "direction": "RISING",
+      "currency": "USD",
+      "market": "US",
+      "category": "us_watch",
       "fics": "Internet Content & Information",
-      "per": 23.3,
-      "market_cap_eok": 63540169,
-      "market_cap_formatted": "6,354.0조",
-      "market_cap_usd_formatted": "$4.1T",
+      "per": 24.2,
+      "market_cap_eok": 66263503,
+      "market_cap_formatted": "6,626.4조",
+      "market_cap_usd_formatted": "$4.3T",
       "analyst_target": {
-        "avg": 663942,
-        "avg_formatted": "663,942",
+        "avg": 667950,
+        "avg_formatted": "667,950",
         "avg_usd": "$432.83",
         "count": 53
       },
-      "upside_pct": 27.5
+      "upside_pct": 23.0
     }
   ],
-  "us_watch": []
+  "us_watch": [
+
+  ]
 }
