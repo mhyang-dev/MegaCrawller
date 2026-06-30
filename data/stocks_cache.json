@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-29T23:41:59+09:00",
+  "updated_at": "2026-06-30T20:29:18+09:00",
   "kr_port": [
 
   ],
@@ -7,20 +7,20 @@
     {
       "code": "095610",
       "name": "테스",
-      "price": "179,700",
-      "change": "-3,600",
-      "change_pct": -1.96,
-      "direction": "FALLING",
+      "price": "208,000",
+      "change": "28,300",
+      "change_pct": 15.75,
+      "direction": "RISING",
       "market": "KOSDAQ",
       "market_cap_eok": null,
       "market_cap_formatted": null,
       "investor_streaks": {
-        "gigan": 6,
-        "gigan_amount": "737억",
-        "foreign": -6,
-        "foreign_amount": "583억",
-        "indi": 1,
-        "indi_amount": "96억"
+        "gigan": 7,
+        "gigan_amount": "924억",
+        "foreign": 1,
+        "foreign_amount": "9억",
+        "indi": -1,
+        "indi_amount": "81억"
       },
       "disclosure": [
         {
@@ -43,22 +43,27 @@
     {
       "code": "317330",
       "name": "덕산테코피아",
-      "price": "12,840",
-      "change": "1,780",
-      "change_pct": 16.09,
-      "direction": "RISING",
+      "price": "12,590",
+      "change": "-250",
+      "change_pct": -1.95,
+      "direction": "FALLING",
       "market": "KOSDAQ",
       "market_cap_eok": null,
       "market_cap_formatted": null,
       "investor_streaks": {
-        "gigan": -5,
-        "gigan_amount": "14억",
-        "foreign": 4,
-        "foreign_amount": "7억",
-        "indi": -2,
-        "indi_amount": "6억"
+        "gigan": 1,
+        "gigan_amount": null,
+        "foreign": -1,
+        "foreign_amount": "1억",
+        "indi": 1,
+        "indi_amount": "1억"
       },
       "disclosure": [
+        {
+          "title": "(주)덕산테코피아 임시주주총회결과",
+          "datetime": "2026-06-30",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=49644907&code=317330&page_notice="
+        },
         {
           "title": "(주)덕산테코피아 주주총회소집결의(임시주주총회)",
           "datetime": "2026-05-15",
@@ -68,31 +73,26 @@
           "title": "(주)덕산테코피아 주주명부폐쇄기간 또는 기준일 설정",
           "datetime": "2026-05-15",
           "url": "https://finance.naver.com/item/news_notice_read.naver?no=1641964&code=317330&page_notice="
-        },
-        {
-          "title": "(주)덕산테코피아 정기주주총회결과",
-          "datetime": "2026-03-31",
-          "url": "https://finance.naver.com/item/news_notice_read.naver?no=1624012&code=317330&page_notice="
         }
       ]
     },
     {
       "code": "015760",
       "name": "한국전력",
-      "price": "38,250",
-      "change": "1,150",
-      "change_pct": 3.1,
-      "direction": "RISING",
+      "price": "37,000",
+      "change": "-1,250",
+      "change_pct": -3.27,
+      "direction": "FALLING",
       "market": "KOSPI",
       "market_cap_eok": null,
       "market_cap_formatted": null,
       "investor_streaks": {
-        "gigan": 1,
-        "gigan_amount": "269억",
-        "foreign": -1,
-        "foreign_amount": "232억",
-        "indi": -6,
-        "indi_amount": "524억"
+        "gigan": -1,
+        "gigan_amount": "38억",
+        "foreign": -2,
+        "foreign_amount": "299억",
+        "indi": 1,
+        "indi_amount": "113억"
       },
       "disclosure": [
         {
@@ -115,20 +115,20 @@
     {
       "code": "004170",
       "name": "신세계",
-      "price": "729,000",
-      "change": "-11,000",
-      "change_pct": -1.49,
-      "direction": "FALLING",
+      "price": "755,000",
+      "change": "26,000",
+      "change_pct": 3.57,
+      "direction": "RISING",
       "market": "KOSPI",
       "market_cap_eok": null,
       "market_cap_formatted": null,
       "investor_streaks": {
-        "gigan": -2,
-        "gigan_amount": "55억",
-        "foreign": -2,
-        "foreign_amount": "102억",
-        "indi": 2,
-        "indi_amount": "156억"
+        "gigan": -3,
+        "gigan_amount": "100억",
+        "foreign": 1,
+        "foreign_amount": "58억",
+        "indi": -1,
+        "indi_amount": "15억"
       },
       "disclosure": [
         {
@@ -151,20 +151,20 @@
     {
       "code": "278470",
       "name": "에이피알",
-      "price": "386,000",
-      "change": "23,000",
-      "change_pct": 6.34,
-      "direction": "RISING",
+      "price": "385,500",
+      "change": "-500",
+      "change_pct": -0.13,
+      "direction": "FALLING",
       "market": "KOSPI",
       "market_cap_eok": null,
       "market_cap_formatted": null,
       "investor_streaks": {
-        "gigan": 5,
-        "gigan_amount": "353억",
-        "foreign": -5,
-        "foreign_amount": "204억",
-        "indi": -1,
-        "indi_amount": "48억"
+        "gigan": 6,
+        "gigan_amount": "540억",
+        "foreign": -6,
+        "foreign_amount": "335억",
+        "indi": -2,
+        "indi_amount": "104억"
       },
       "disclosure": [
         {
@@ -195,26 +195,26 @@
     {
       "code": "GOOGL",
       "name": "Alphabet Inc.",
-      "price": "543,029",
-      "price_usd": "$351.88",
-      "change": "22,369",
-      "change_pct": 0.04,
+      "price": "548,511",
+      "price_usd": "$353.65",
+      "change": "25,219",
+      "change_pct": 0.05,
       "direction": "RISING",
       "currency": "USD",
       "market": "US",
       "category": "us_watch",
       "fics": "Internet Content & Information",
-      "per": 24.2,
-      "market_cap_eok": 66263503,
-      "market_cap_formatted": "6,626.4조",
+      "per": 24.3,
+      "market_cap_eok": 66932470,
+      "market_cap_formatted": "6,693.2조",
       "market_cap_usd_formatted": "$4.3T",
       "analyst_target": {
-        "avg": 667950,
-        "avg_formatted": "667,950",
+        "avg": 671326,
+        "avg_formatted": "671,326",
         "avg_usd": "$432.83",
         "count": 53
       },
-      "upside_pct": 23.0
+      "upside_pct": 22.4
     }
   ],
   "us_watch": [
