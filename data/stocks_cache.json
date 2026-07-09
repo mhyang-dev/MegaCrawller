@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-09T14:58:56+09:00",
+  "updated_at": "2026-07-09T18:01:50+09:00",
   "kr_port": [
 
   ],
@@ -7,18 +7,18 @@
     {
       "code": "095610",
       "name": "테스",
-      "price": "145,200",
-      "change": "9,500",
-      "change_pct": 7.0,
+      "price": "145,000",
+      "change": "9,300",
+      "change_pct": 6.85,
       "direction": "RISING",
       "market": "KOSDAQ",
       "market_cap_eok": null,
       "market_cap_formatted": null,
       "investor_streaks": {
         "gigan": -5,
-        "gigan_amount": "925억",
+        "gigan_amount": "923억",
         "foreign": 3,
-        "foreign_amount": "813억",
+        "foreign_amount": "812억",
         "indi": -2,
         "indi_amount": "143억"
       },
@@ -43,9 +43,9 @@
     {
       "code": "317330",
       "name": "덕산테코피아",
-      "price": "10,000",
-      "change": "-50",
-      "change_pct": -0.5,
+      "price": "9,920",
+      "change": "-130",
+      "change_pct": -1.29,
       "direction": "FALLING",
       "market": "KOSDAQ",
       "market_cap_eok": null,
@@ -79,18 +79,18 @@
     {
       "code": "015760",
       "name": "한국전력",
-      "price": "35,750",
-      "change": "-1,000",
-      "change_pct": -2.72,
+      "price": "35,200",
+      "change": "-1,550",
+      "change_pct": -4.22,
       "direction": "FALLING",
       "market": "KOSPI",
       "market_cap_eok": null,
       "market_cap_formatted": null,
       "investor_streaks": {
         "gigan": 6,
-        "gigan_amount": "855억",
+        "gigan_amount": "842억",
         "foreign": -8,
-        "foreign_amount": "797억",
+        "foreign_amount": "785억",
         "indi": 1,
         "indi_amount": "2억"
       },
@@ -115,22 +115,27 @@
     {
       "code": "004170",
       "name": "신세계",
-      "price": "603,000",
-      "change": "-22,000",
-      "change_pct": -3.52,
+      "price": "606,000",
+      "change": "-19,000",
+      "change_pct": -3.04,
       "direction": "FALLING",
       "market": "KOSPI",
       "market_cap_eok": null,
       "market_cap_formatted": null,
       "investor_streaks": {
         "gigan": -9,
-        "gigan_amount": "747억",
+        "gigan_amount": "751억",
         "foreign": 7,
-        "foreign_amount": "806억",
+        "foreign_amount": "810억",
         "indi": 1,
         "indi_amount": "41억"
       },
       "disclosure": [
+        {
+          "title": "(주)신세계 영업(잠정)실적(공정공시)",
+          "datetime": "2026-07-09",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=62655894&code=004170&page_notice="
+        },
         {
           "title": "(주)신세계 기업설명회(IR) 개최(안내공시)",
           "datetime": "2026-06-16",
@@ -140,31 +145,26 @@
           "title": "(주)신세계 타법인주식및출자증권취득결정",
           "datetime": "2026-06-11",
           "url": "https://finance.naver.com/item/news_notice_read.naver?no=26511651&code=004170&page_notice="
-        },
-        {
-          "title": "(주)신세계 영업(잠정)실적(공정공시)",
-          "datetime": "2026-06-09",
-          "url": "https://finance.naver.com/item/news_notice_read.naver?no=22794632&code=004170&page_notice="
         }
       ]
     },
     {
       "code": "278470",
       "name": "에이피알",
-      "price": "364,500",
-      "change": "-21,000",
-      "change_pct": -5.45,
+      "price": "365,500",
+      "change": "-20,000",
+      "change_pct": -5.19,
       "direction": "FALLING",
       "market": "KOSPI",
       "market_cap_eok": null,
       "market_cap_formatted": null,
       "investor_streaks": {
         "gigan": 2,
-        "gigan_amount": "378억",
+        "gigan_amount": "379억",
         "foreign": -5,
-        "foreign_amount": "993억",
+        "foreign_amount": "995억",
         "indi": 1,
-        "indi_amount": "203억"
+        "indi_amount": "204억"
       },
       "disclosure": [
         {
@@ -195,9 +195,9 @@
     {
       "code": "GOOGL",
       "name": "Alphabet Inc.",
-      "price": "544,501",
+      "price": "547,270",
       "price_usd": "$361.92",
-      "change": "7,688",
+      "change": "7,727",
       "change_pct": -0.01,
       "direction": "FALLING",
       "currency": "USD",
@@ -205,12 +205,12 @@
       "category": "us_watch",
       "fics": "Internet Content & Information",
       "per": 24.9,
-      "market_cap_eok": 66443180,
-      "market_cap_formatted": "6,644.3조",
+      "market_cap_eok": 66781031,
+      "market_cap_formatted": "6,678.1조",
       "market_cap_usd_formatted": "$4.4T",
       "analyst_target": {
-        "avg": 650368,
-        "avg_formatted": "650,368",
+        "avg": 653675,
+        "avg_formatted": "653,675",
         "avg_usd": "$432.29",
         "count": 53
       },
