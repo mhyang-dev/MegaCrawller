@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-16T13:49:45+09:00",
+  "updated_at": "2026-07-16T16:14:45+09:00",
   "kr_port": [
 
   ],
@@ -7,20 +7,20 @@
     {
       "code": "095610",
       "name": "테스",
-      "price": "197,300",
-      "change": "-16,700",
-      "change_pct": -7.8,
+      "price": "194,300",
+      "change": "-19,700",
+      "change_pct": -9.21,
       "direction": "FALLING",
       "market": "KOSDAQ",
       "market_cap_eok": null,
       "market_cap_formatted": null,
       "investor_streaks": {
         "gigan": 5,
-        "gigan_amount": "2025억",
+        "gigan_amount": "1995억",
         "foreign": -5,
-        "foreign_amount": "1778억",
+        "foreign_amount": "1751억",
         "indi": 1,
-        "indi_amount": "169억"
+        "indi_amount": "166억"
       },
       "disclosure": [
         {
@@ -43,9 +43,9 @@
     {
       "code": "317330",
       "name": "덕산테코피아",
-      "price": "10,160",
-      "change": "-540",
-      "change_pct": -5.05,
+      "price": "10,140",
+      "change": "-560",
+      "change_pct": -5.23,
       "direction": "FALLING",
       "market": "KOSDAQ",
       "market_cap_eok": null,
@@ -79,20 +79,20 @@
     {
       "code": "015760",
       "name": "한국전력",
-      "price": "33,850",
-      "change": "-50",
-      "change_pct": -0.15,
-      "direction": "FALLING",
+      "price": "34,050",
+      "change": "150",
+      "change_pct": 0.44,
+      "direction": "RISING",
       "market": "KOSPI",
       "market_cap_eok": null,
       "market_cap_formatted": null,
       "investor_streaks": {
         "gigan": -3,
-        "gigan_amount": "327억",
+        "gigan_amount": "329억",
         "foreign": 2,
         "foreign_amount": "88억",
         "indi": 3,
-        "indi_amount": "310억"
+        "indi_amount": "312억"
       },
       "disclosure": [
         {
@@ -115,18 +115,18 @@
     {
       "code": "004170",
       "name": "신세계",
-      "price": "586,000",
-      "change": "-24,000",
-      "change_pct": -3.93,
+      "price": "589,000",
+      "change": "-21,000",
+      "change_pct": -3.44,
       "direction": "FALLING",
       "market": "KOSPI",
       "market_cap_eok": null,
       "market_cap_formatted": null,
       "investor_streaks": {
         "gigan": -14,
-        "gigan_amount": "1098억",
+        "gigan_amount": "1103억",
         "foreign": 12,
-        "foreign_amount": "1233억",
+        "foreign_amount": "1239억",
         "indi": 1,
         "indi_amount": "7억"
       },
@@ -151,36 +151,36 @@
     {
       "code": "278470",
       "name": "에이피알",
-      "price": "382,500",
-      "change": "-3,000",
-      "change_pct": -0.78,
-      "direction": "FALLING",
+      "price": "393,000",
+      "change": "7,500",
+      "change_pct": 1.95,
+      "direction": "RISING",
       "market": "KOSPI",
       "market_cap_eok": null,
       "market_cap_formatted": null,
       "investor_streaks": {
         "gigan": -2,
-        "gigan_amount": "244억",
+        "gigan_amount": "251억",
         "foreign": 4,
-        "foreign_amount": "603억",
+        "foreign_amount": "619억",
         "indi": -4,
-        "indi_amount": "260억"
+        "indi_amount": "267억"
       },
       "disclosure": [
+        {
+          "title": "(주)에이피알 현금ㆍ현물배당을 위한 주주명부폐쇄(기준일) 결정",
+          "datetime": "2026-07-16",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=69881649&code=278470&page_notice="
+        },
+        {
+          "title": "(주)에이피알 현금ㆍ현물 배당 결정",
+          "datetime": "2026-07-16",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=69873003&code=278470&page_notice="
+        },
         {
           "title": "(주)에이피알 지속가능경영보고서 등 관련사항(자율공시)",
           "datetime": "2026-06-19",
           "url": "https://finance.naver.com/item/news_notice_read.naver?no=37438991&code=278470&page_notice="
-        },
-        {
-          "title": "(주)에이피알 기업설명회(IR) 개최(안내공시)",
-          "datetime": "2026-06-01",
-          "url": "https://finance.naver.com/item/news_notice_read.naver?no=14942595&code=278470&page_notice="
-        },
-        {
-          "title": "(주)에이피알 연결재무제표기준영업(잠정)실적(공정공시)",
-          "datetime": "2026-05-07",
-          "url": "https://finance.naver.com/item/news_notice_read.naver?no=1638552&code=278470&page_notice="
         }
       ]
     }
@@ -195,22 +195,22 @@
     {
       "code": "GOOGL",
       "name": "Alphabet Inc.",
-      "price": "550,067",
+      "price": "548,027",
       "price_usd": "$370.92",
-      "change": "16,921",
+      "change": "16,858",
       "change_pct": 0.03,
       "direction": "RISING",
       "currency": "USD",
       "market": "US",
       "category": "us_watch",
       "fics": "Internet Content & Information",
-      "per": 25.3,
-      "market_cap_eok": 67122319,
-      "market_cap_formatted": "6,712.2조",
+      "per": 25.4,
+      "market_cap_eok": 66873379,
+      "market_cap_formatted": "6,687.3조",
       "market_cap_usd_formatted": "$4.5T",
       "analyst_target": {
-        "avg": 640234,
-        "avg_formatted": "640,234",
+        "avg": 637860,
+        "avg_formatted": "637,860",
         "avg_usd": "$431.72",
         "count": 53
       },
