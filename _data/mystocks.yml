@@ -1,5 +1,5 @@
 ---
-fetched_at: 2026-07-17 13:56 KST
+fetched_at: 2026-07-17 16:10 KST
 stocks:
 - code: '005930'
   name: 삼성전자
@@ -370,9 +370,9 @@ stocks:
     indi_amount: 73억
 - code: MU
   name: Micron Technology, Inc.
-  price: '1,262,770'
+  price: '1,261,866'
   price_usd: "$853.20"
-  change: '75,600'
+  change: '75,546'
   change_pct: -0.06
   direction: FALLING
   currency: USD
@@ -380,12 +380,12 @@ stocks:
   category: us_watch
   fics: Semiconductors
   per: 5.7
-  market_cap_eok: 14261639
-  market_cap_formatted: 1,426.2조
+  market_cap_eok: 14251425
+  market_cap_formatted: 1,425.1조
   market_cap_usd_formatted: "$964B"
   analyst_target:
-    avg: 2204625
-    avg_formatted: '2,204,625'
+    avg: 2203046
+    avg_formatted: '2,203,046'
     avg_usd: "$1489.57"
     count: 42
   upside_pct: 74.6
@@ -399,11 +399,11 @@ kr_stocks_list:
 - code: '000860'
   name: 강남제비스코
   market: KOSPI
-- code: '217730'
-  name: 강스템바이오텍
-  market: KOSDAQ
 - code: '399720'
   name: 가온칩스
+  market: KOSDAQ
+- code: '217730'
+  name: 강스템바이오텍
   market: KOSDAQ
 - code: '079940'
   name: 가비아
@@ -462,9 +462,9 @@ kr_stocks_list:
 - code: '002444'
   name: 거성과기
   market: SHENZHEN
-- code: '688025'
-  name: 걸보특
-  market: SHANGHAI
+- code: '002340'
+  name: 거린메이
+  market: SHENZHEN
 - code: '000688'
   name: 건신광업
   market: SHENZHEN
@@ -924,14 +924,14 @@ kr_stocks_list:
 - code: '001440'
   name: 대한전선
   market: KOSPI
-- code: '006340'
-  name: 대원전선
-  market: KOSPI
 - code: '003490'
   name: 대한항공
   market: KOSPI
 - code: '353200'
   name: 대덕전자
+  market: KOSPI
+- code: '006340'
+  name: 대원전선
   market: KOSPI
 - code: '439260'
   name: 대한조선
@@ -975,11 +975,11 @@ kr_stocks_list:
 - code: '145720'
   name: 덴티움
   market: KOSPI
-- code: '194480'
-  name: 데브시스터즈
-  market: KOSDAQ
 - code: '263800'
   name: 데이타솔루션
+  market: KOSDAQ
+- code: '194480'
+  name: 데브시스터즈
   market: KOSDAQ
 - code: '373160'
   name: 데이원컴퍼니
@@ -1272,9 +1272,6 @@ kr_stocks_list:
 - code: '357430'
   name: 마스턴프리미어리츠
   market: KOSPI
-- code: '477850'
-  name: 마키나락스
-  market: KOSDAQ
 - code: '439090'
   name: 마녀공장
   market: KOSDAQ
@@ -1554,11 +1551,11 @@ kr_stocks_list:
 - code: '100220'
   name: 비상교육
   market: KOSPI
-- code: '069540'
-  name: 빛과전자
-  market: KOSDAQ
 - code: '065170'
   name: 비엘팜텍
+  market: KOSDAQ
+- code: '069540'
+  name: 빛과전자
   market: KOSDAQ
 - code: '083650'
   name: 비에이치아이
@@ -1584,11 +1581,11 @@ kr_stocks_list:
 - code: '009150'
   name: 삼성전기
   market: KOSPI
-- code: '010140'
-  name: 삼성중공업
-  market: KOSPI
 - code: '006400'
   name: 삼성SDI
+  market: KOSPI
+- code: '010140'
+  name: 삼성중공업
   market: KOSPI
 - code: '005935'
   name: 삼성전자우
@@ -1857,11 +1854,11 @@ kr_stocks_list:
 - code: '308170'
   name: 씨티알모빌리티
   market: KOSPI
-- code: '096530'
-  name: 씨젠
-  market: KOSDAQ
 - code: '413630'
   name: 씨피시스템
+  market: KOSDAQ
+- code: '096530'
+  name: 씨젠
   market: KOSDAQ
 - code: '458870'
   name: 씨어스
@@ -2145,8 +2142,8 @@ kr_stocks_list:
 - code: '019210'
   name: 와이지-원
   market: KOSDAQ
-- code: '039200'
-  name: 오스코텍
+- code: '122870'
+  name: 와이지엔터테인먼트
   market: KOSDAQ
 - code: '475830'
   name: 오름테라퓨틱
@@ -2292,11 +2289,11 @@ kr_stocks_list:
 - code: '002786'
   name: 은본산신과기
   market: SHENZHEN
-- code: '007660'
-  name: 이수페타시스
-  market: KOSPI
 - code: '103590'
   name: 일진전기
+  market: KOSPI
+- code: '007660'
+  name: 이수페타시스
   market: KOSPI
 - code: '139480'
   name: 이마트
@@ -2871,14 +2868,14 @@ kr_stocks_list:
 - code: '009830'
   name: 한화솔루션
   market: KOSPI
-- code: '047810'
-  name: 한국항공우주
+- code: '012450'
+  name: 한화에어로스페이스
   market: KOSPI
 - code: '015760'
   name: 한국전력
   market: KOSPI
-- code: '012450'
-  name: 한화에어로스페이스
+- code: '047810'
+  name: 한국항공우주
   market: KOSPI
 - code: '272210'
   name: 한화시스템
@@ -2886,11 +2883,11 @@ kr_stocks_list:
 - code: '003680'
   name: 한성기업
   market: KOSPI
+- code: '086790'
+  name: 하나금융지주
+  market: KOSPI
 - code: '082740'
   name: 한화엔진
-  market: KOSPI
-- code: '161890'
-  name: 한국콜마
   market: KOSPI
 - code: '352820'
   name: 하이브
@@ -3189,23 +3186,23 @@ kr_stocks_list:
 - code: '329180'
   name: HD현대중공업
   market: KOSPI
+- code: '011200'
+  name: HMM
+  market: KOSPI
 - code: '009540'
   name: HD한국조선해양
   market: KOSPI
 - code: '267260'
   name: HD현대일렉트릭
   market: KOSPI
-- code: '011200'
-  name: HMM
-  market: KOSPI
-- code: '267270'
-  name: HD건설기계
-  market: KOSPI
 - code: '267250'
   name: HD현대
   market: KOSPI
 - code: '443060'
   name: HD현대마린솔루션
+  market: KOSPI
+- code: '267270'
+  name: HD건설기계
   market: KOSPI
 - code: '395270'
   name: HANARO Fn K-반도체
@@ -3246,11 +3243,11 @@ kr_stocks_list:
 - code: '001065'
   name: JW중외제약우
   market: KOSPI
-- code: '067290'
-  name: JW신약
-  market: KOSDAQ
 - code: '035900'
   name: JYP Ent.
+  market: KOSDAQ
+- code: '067290'
+  name: JW신약
   market: KOSDAQ
 - code: '950170'
   name: JTC
@@ -3288,11 +3285,11 @@ kr_stocks_list:
 - code: '011070'
   name: LG이노텍
   market: KOSPI
-- code: '064400'
-  name: LG씨엔에스
-  market: KOSPI
 - code: '373220'
   name: LG에너지솔루션
+  market: KOSPI
+- code: '064400'
+  name: LG씨엔에스
   market: KOSPI
 - code: '051910'
   name: LG화학
@@ -3300,11 +3297,11 @@ kr_stocks_list:
 - code: '032640'
   name: LG유플러스
   market: KOSPI
-- code: '034220'
-  name: LG디스플레이
-  market: KOSPI
 - code: '003550'
   name: LG
+  market: KOSPI
+- code: '034220'
+  name: LG디스플레이
   market: KOSPI
 - code: '403790'
   name: MIDAS 코스피액티브
@@ -3429,11 +3426,11 @@ kr_stocks_list:
 - code: '010950'
   name: S-Oil
   market: KOSPI
-- code: '034730'
-  name: SK
-  market: KOSPI
 - code: '011790'
   name: SKC
+  market: KOSPI
+- code: '034730'
+  name: SK
   market: KOSPI
 - code: '360750'
   name: TIGER 미국S&P500
@@ -3455,6 +3452,9 @@ kr_stocks_list:
   market: KOSPI
 - code: '381170'
   name: TIGER 미국테크TOP10 INDXX
+  market: KOSPI
+- code: '458730'
+  name: TIGER 미국배당다우존스
   market: KOSPI
 - code: '494220'
   name: UNICORN SK하이닉스밸류체인액티브
@@ -3570,8 +3570,8 @@ kr_stocks_list:
 - code: '379810'
   name: KODEX 미국나스닥100
   market: KOSPI
-- code: '458730'
-  name: TIGER 미국배당다우존스
+- code: '357870'
+  name: TIGER CD금리투자KIS(합성)
   market: KOSPI
 - code: '434730'
   name: HANARO 원자력iSelect
