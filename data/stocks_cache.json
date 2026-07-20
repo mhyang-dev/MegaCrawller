@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-17T16:10:33+09:00",
+  "updated_at": "2026-07-20T12:10:32+09:00",
   "kr_port": [
 
   ],
@@ -7,9 +7,9 @@
     {
       "code": "095610",
       "name": "테스",
-      "price": "194,300",
-      "change": "-19,700",
-      "change_pct": -9.21,
+      "price": "167,100",
+      "change": "-27,200",
+      "change_pct": -14.0,
       "direction": "FALLING",
       "market": "KOSDAQ",
       "market_cap_eok": null,
@@ -18,9 +18,9 @@
         "gigan": -1,
         "gigan_amount": "4억",
         "foreign": -6,
-        "foreign_amount": "1927억",
+        "foreign_amount": "1657억",
         "indi": 2,
-        "indi_amount": "346억"
+        "indi_amount": "298억"
       },
       "disclosure": [
         {
@@ -43,9 +43,9 @@
     {
       "code": "317330",
       "name": "덕산테코피아",
-      "price": "10,140",
-      "change": "-560",
-      "change_pct": -5.23,
+      "price": "9,720",
+      "change": "-420",
+      "change_pct": -4.14,
       "direction": "FALLING",
       "market": "KOSDAQ",
       "market_cap_eok": null,
@@ -79,20 +79,20 @@
     {
       "code": "015760",
       "name": "한국전력",
-      "price": "34,050",
-      "change": "150",
-      "change_pct": 0.44,
-      "direction": "RISING",
+      "price": "33,050",
+      "change": "-1,000",
+      "change_pct": -2.94,
+      "direction": "FALLING",
       "market": "KOSPI",
       "market_cap_eok": null,
       "market_cap_formatted": null,
       "investor_streaks": {
         "gigan": -4,
-        "gigan_amount": "385억",
+        "gigan_amount": "374억",
         "foreign": 3,
-        "foreign_amount": "249억",
+        "foreign_amount": "242억",
         "indi": -1,
-        "indi_amount": "104억"
+        "indi_amount": "101억"
       },
       "disclosure": [
         {
@@ -115,16 +115,16 @@
     {
       "code": "004170",
       "name": "신세계",
-      "price": "589,000",
-      "change": "-21,000",
-      "change_pct": -3.44,
+      "price": "531,000",
+      "change": "-58,000",
+      "change_pct": -9.85,
       "direction": "FALLING",
       "market": "KOSPI",
       "market_cap_eok": null,
       "market_cap_formatted": null,
       "investor_streaks": {
         "gigan": 1,
-        "gigan_amount": "17억",
+        "gigan_amount": "15억",
         "foreign": -1,
         "foreign_amount": "7억",
         "indi": -1,
@@ -151,20 +151,20 @@
     {
       "code": "278470",
       "name": "에이피알",
-      "price": "393,000",
-      "change": "7,500",
-      "change_pct": 1.95,
-      "direction": "RISING",
+      "price": "366,000",
+      "change": "-27,000",
+      "change_pct": -6.87,
+      "direction": "FALLING",
       "market": "KOSPI",
       "market_cap_eok": null,
       "market_cap_formatted": null,
       "investor_streaks": {
         "gigan": -3,
-        "gigan_amount": "259억",
+        "gigan_amount": "241억",
         "foreign": 5,
-        "foreign_amount": "732억",
+        "foreign_amount": "682억",
         "indi": -5,
-        "indi_amount": "372억"
+        "indi_amount": "347억"
       },
       "disclosure": [
         {
@@ -195,26 +195,26 @@
     {
       "code": "GOOGL",
       "name": "Alphabet Inc.",
-      "price": "524,239",
-      "price_usd": "$354.46",
-      "change": "24,344",
-      "change_pct": -0.04,
+      "price": "513,906",
+      "price_usd": "$346.77",
+      "change": "11,396",
+      "change_pct": -0.02,
       "direction": "FALLING",
       "currency": "USD",
       "market": "US",
       "category": "us_watch",
       "fics": "Internet Content & Information",
-      "per": 24.3,
-      "market_cap_eok": 63970674,
-      "market_cap_formatted": "6,397.1조",
-      "market_cap_usd_formatted": "$4.3T",
+      "per": 23.7,
+      "market_cap_eok": 62709776,
+      "market_cap_formatted": "6,271.0조",
+      "market_cap_usd_formatted": "$4.2T",
       "analyst_target": {
-        "avg": 638507,
-        "avg_formatted": "638,507",
-        "avg_usd": "$431.72",
+        "avg": 642459,
+        "avg_formatted": "642,459",
+        "avg_usd": "$433.51",
         "count": 53
       },
-      "upside_pct": 21.8
+      "upside_pct": 25.0
     }
   ],
   "us_watch": [
