@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-27T14:41:23+09:00",
+  "updated_at": "2026-07-27T18:23:36+09:00",
   "kr_port": [
 
   ],
@@ -43,9 +43,9 @@
     {
       "code": "317330",
       "name": "덕산테코피아",
-      "price": "9,940",
-      "change": "240",
-      "change_pct": 2.47,
+      "price": "9,950",
+      "change": "250",
+      "change_pct": 2.58,
       "direction": "RISING",
       "market": "KOSDAQ",
       "market_cap_eok": null,
@@ -79,20 +79,20 @@
     {
       "code": "015760",
       "name": "한국전력",
-      "price": "36,100",
-      "change": "700",
-      "change_pct": 1.98,
+      "price": "36,200",
+      "change": "800",
+      "change_pct": 2.26,
       "direction": "RISING",
       "market": "KOSPI",
       "market_cap_eok": null,
       "market_cap_formatted": null,
       "investor_streaks": {
-        "gigan": -9,
-        "gigan_amount": "684억",
-        "foreign": 8,
-        "foreign_amount": "950억",
-        "indi": -6,
-        "indi_amount": "521억"
+        "gigan": -10,
+        "gigan_amount": "713억",
+        "foreign": 9,
+        "foreign_amount": "993억",
+        "indi": -7,
+        "indi_amount": "535억"
       },
       "disclosure": [
         {
@@ -115,20 +115,20 @@
     {
       "code": "004170",
       "name": "신세계",
-      "price": "521,000",
-      "change": "17,000",
-      "change_pct": 3.37,
+      "price": "517,000",
+      "change": "13,000",
+      "change_pct": 2.58,
       "direction": "RISING",
       "market": "KOSPI",
       "market_cap_eok": null,
       "market_cap_formatted": null,
       "investor_streaks": {
-        "gigan": -3,
-        "gigan_amount": "210억",
-        "foreign": 4,
-        "foreign_amount": "327억",
-        "indi": -1,
-        "indi_amount": "111억"
+        "gigan": 1,
+        "gigan_amount": "51억",
+        "foreign": 5,
+        "foreign_amount": "350억",
+        "indi": -2,
+        "indi_amount": "188억"
       },
       "disclosure": [
         {
@@ -151,36 +151,36 @@
     {
       "code": "278470",
       "name": "에이피알",
-      "price": "360,500",
-      "change": "6,500",
-      "change_pct": 1.84,
+      "price": "354,500",
+      "change": "500",
+      "change_pct": 0.14,
       "direction": "RISING",
       "market": "KOSPI",
       "market_cap_eok": null,
       "market_cap_formatted": null,
       "investor_streaks": {
-        "gigan": -8,
-        "gigan_amount": "825억",
-        "foreign": -1,
-        "foreign_amount": "39억",
-        "indi": 1,
-        "indi_amount": "48억"
+        "gigan": 1,
+        "gigan_amount": "27억",
+        "foreign": -2,
+        "foreign_amount": "79억",
+        "indi": 2,
+        "indi_amount": "62억"
       },
       "disclosure": [
         {
-          "title": "(주)에이피알 현금ㆍ현물배당을 위한 주주명부폐쇄(기준일) 결정",
-          "datetime": "2026-07-16",
-          "url": "https://finance.naver.com/item/news_notice_read.naver?no=69881649&code=278470&page_notice="
+          "title": "(주)에이피알 기업설명회(IR) 개최(안내공시)",
+          "datetime": "2026-07-27",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=80197631&code=278470&page_notice="
         },
         {
-          "title": "(주)에이피알 현금ㆍ현물 배당 결정",
-          "datetime": "2026-07-16",
-          "url": "https://finance.naver.com/item/news_notice_read.naver?no=69873003&code=278470&page_notice="
+          "title": "(주)에이피알 기업설명회(IR) 개최(안내공시)",
+          "datetime": "2026-07-27",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=80194462&code=278470&page_notice="
         },
         {
-          "title": "(주)에이피알 지속가능경영보고서 등 관련사항(자율공시)",
-          "datetime": "2026-06-19",
-          "url": "https://finance.naver.com/item/news_notice_read.naver?no=37438991&code=278470&page_notice="
+          "title": "(주)에이피알 결산실적공시 예고(안내공시)",
+          "datetime": "2026-07-27",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=80194461&code=278470&page_notice="
         }
       ]
     }
@@ -195,9 +195,9 @@
     {
       "code": "GOOGL",
       "name": "Alphabet Inc.",
-      "price": "468,489",
+      "price": "469,634",
       "price_usd": "$319.74",
-      "change": "3,004",
+      "change": "3,011",
       "change_pct": 0.01,
       "direction": "RISING",
       "currency": "USD",
@@ -205,12 +205,12 @@
       "category": "us_watch",
       "fics": "Internet Content & Information",
       "per": 21.6,
-      "market_cap_eok": 57295954,
-      "market_cap_formatted": "5,729.6조",
+      "market_cap_eok": 57435947,
+      "market_cap_formatted": "5,743.6조",
       "market_cap_usd_formatted": "$3.9T",
       "analyst_target": {
-        "avg": 627283,
-        "avg_formatted": "627,283",
+        "avg": 628816,
+        "avg_formatted": "628,816",
         "avg_usd": "$428.12",
         "count": 54
       },
