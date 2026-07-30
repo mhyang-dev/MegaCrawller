@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-30T10:14:13+09:00",
+  "updated_at": "2026-07-30T13:46:15+09:00",
   "kr_port": [
 
   ],
@@ -7,20 +7,20 @@
     {
       "code": "095610",
       "name": "테스",
-      "price": "109,300",
-      "change": "-5,000",
-      "change_pct": -4.37,
+      "price": "100,200",
+      "change": "-14,100",
+      "change_pct": -12.34,
       "direction": "FALLING",
       "market": "KOSDAQ",
       "market_cap_eok": null,
       "market_cap_formatted": null,
       "investor_streaks": {
         "gigan": -9,
-        "gigan_amount": "877억",
+        "gigan_amount": "804억",
         "foreign": 5,
-        "foreign_amount": "601억",
+        "foreign_amount": "551억",
         "indi": -1,
-        "indi_amount": "95억"
+        "indi_amount": "87억"
       },
       "disclosure": [
         {
@@ -43,10 +43,10 @@
     {
       "code": "317330",
       "name": "덕산테코피아",
-      "price": "8,590",
-      "change": "-20",
-      "change_pct": -0.23,
-      "direction": "FALLING",
+      "price": "8,640",
+      "change": "30",
+      "change_pct": 0.35,
+      "direction": "RISING",
       "market": "KOSDAQ",
       "market_cap_eok": null,
       "market_cap_formatted": null,
@@ -79,10 +79,10 @@
     {
       "code": "015760",
       "name": "한국전력",
-      "price": "33,350",
-      "change": "250",
-      "change_pct": 0.76,
-      "direction": "RISING",
+      "price": "33,100",
+      "change": "0",
+      "change_pct": 0.0,
+      "direction": "UNCHANGED",
       "market": "KOSPI",
       "market_cap_eok": null,
       "market_cap_formatted": null,
@@ -90,9 +90,9 @@
         "gigan": -1,
         "gigan_amount": "12억",
         "foreign": 1,
-        "foreign_amount": "104억",
+        "foreign_amount": "103억",
         "indi": -1,
-        "indi_amount": "92억"
+        "indi_amount": "91억"
       },
       "disclosure": [
         {
@@ -115,20 +115,20 @@
     {
       "code": "004170",
       "name": "신세계",
-      "price": "417,000",
-      "change": "-27,500",
-      "change_pct": -6.19,
+      "price": "403,500",
+      "change": "-41,000",
+      "change_pct": -9.22,
       "direction": "FALLING",
       "market": "KOSPI",
       "market_cap_eok": null,
       "market_cap_formatted": null,
       "investor_streaks": {
         "gigan": 1,
-        "gigan_amount": "63억",
+        "gigan_amount": "61억",
         "foreign": -1,
-        "foreign_amount": "20억",
+        "foreign_amount": "19억",
         "indi": -4,
-        "indi_amount": "196억"
+        "indi_amount": "190억"
       },
       "disclosure": [
         {
@@ -151,20 +151,20 @@
     {
       "code": "278470",
       "name": "에이피알",
-      "price": "330,500",
-      "change": "5,500",
-      "change_pct": 1.69,
-      "direction": "RISING",
+      "price": "315,000",
+      "change": "-10,000",
+      "change_pct": -3.08,
+      "direction": "FALLING",
       "market": "KOSPI",
       "market_cap_eok": null,
       "market_cap_formatted": null,
       "investor_streaks": {
         "gigan": 3,
-        "gigan_amount": "128억",
+        "gigan_amount": "122억",
         "foreign": 2,
-        "foreign_amount": "154억",
+        "foreign_amount": "146억",
         "indi": -2,
-        "indi_amount": "256억"
+        "indi_amount": "244억"
       },
       "disclosure": [
         {
@@ -195,9 +195,9 @@
     {
       "code": "GOOGL",
       "name": "Alphabet Inc.",
-      "price": "485,495",
+      "price": "484,327",
       "price_usd": "$336.71",
-      "change": "4,326",
+      "change": "4,315",
       "change_pct": 0.01,
       "direction": "RISING",
       "currency": "USD",
@@ -205,12 +205,12 @@
       "category": "us_watch",
       "fics": "Internet Content & Information",
       "per": 22.9,
-      "market_cap_eok": 59375774,
-      "market_cap_formatted": "5,937.6조",
+      "market_cap_eok": 59232882,
+      "market_cap_formatted": "5,923.3조",
       "market_cap_usd_formatted": "$4.1T",
       "analyst_target": {
-        "avg": 616528,
-        "avg_formatted": "616,528",
+        "avg": 615044,
+        "avg_formatted": "615,044",
         "avg_usd": "$427.59",
         "count": 55
       },
