@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-07T13:23:10+09:00",
+  "updated_at": "2026-08-07T15:04:39+09:00",
   "kr_port": [
 
   ],
@@ -7,9 +7,9 @@
     {
       "code": "095610",
       "name": "테스",
-      "price": "123,900",
-      "change": "-6,200",
-      "change_pct": -4.77,
+      "price": "123,500",
+      "change": "-6,600",
+      "change_pct": -5.07,
       "direction": "FALLING",
       "market": "KOSDAQ",
       "market_cap_eok": null,
@@ -18,9 +18,9 @@
         "gigan": -1,
         "gigan_amount": "16억",
         "foreign": -5,
-        "foreign_amount": "776억",
+        "foreign_amount": "773억",
         "indi": 4,
-        "indi_amount": "402억"
+        "indi_amount": "401억"
       },
       "disclosure": [
         {
@@ -43,9 +43,9 @@
     {
       "code": "317330",
       "name": "덕산테코피아",
-      "price": "10,820",
-      "change": "570",
-      "change_pct": 5.56,
+      "price": "11,060",
+      "change": "810",
+      "change_pct": 7.9,
       "direction": "RISING",
       "market": "KOSDAQ",
       "market_cap_eok": null,
@@ -79,36 +79,36 @@
     {
       "code": "015760",
       "name": "한국전력",
-      "price": "35,150",
-      "change": "-800",
-      "change_pct": -2.23,
+      "price": "35,500",
+      "change": "-450",
+      "change_pct": -1.25,
       "direction": "FALLING",
       "market": "KOSPI",
       "market_cap_eok": null,
       "market_cap_formatted": null,
       "investor_streaks": {
         "gigan": 1,
-        "gigan_amount": "44억",
+        "gigan_amount": "45억",
         "foreign": -1,
         "foreign_amount": "7억",
         "indi": -7,
-        "indi_amount": "387억"
+        "indi_amount": "391억"
       },
       "disclosure": [
+        {
+          "title": "한국전력공사(주) 기업설명회(IR) 개최(안내공시)",
+          "datetime": "2026-08-07",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=97707776&code=015760&page_notice="
+        },
+        {
+          "title": "한국전력공사(주) 결산실적공시 예고(안내공시)",
+          "datetime": "2026-08-07",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=97706218&code=015760&page_notice="
+        },
         {
           "title": "한국전력공사(주) 기타 경영사항(자율공시)(종속회사의 주요경영사항)",
           "datetime": "2026-06-29",
           "url": "https://finance.naver.com/item/news_notice_read.naver?no=48196560&code=015760&page_notice="
-        },
-        {
-          "title": "한국전력공사(주) 중대재해 발생(종속회사의 주요경영사항)",
-          "datetime": "2026-06-24",
-          "url": "https://finance.naver.com/item/news_notice_read.naver?no=41381728&code=015760&page_notice="
-        },
-        {
-          "title": "한국전력공사(주) 소송등의판결ㆍ결정(일정금액 이상의 청구)",
-          "datetime": "2026-06-23",
-          "url": "https://finance.naver.com/item/news_notice_read.naver?no=39755112&code=015760&page_notice="
         }
       ]
     },
@@ -151,20 +151,20 @@
     {
       "code": "278470",
       "name": "에이피알",
-      "price": "372,500",
-      "change": "-5,500",
-      "change_pct": -1.46,
-      "direction": "FALLING",
+      "price": "383,500",
+      "change": "5,500",
+      "change_pct": 1.46,
+      "direction": "RISING",
       "market": "KOSPI",
       "market_cap_eok": null,
       "market_cap_formatted": null,
       "investor_streaks": {
         "gigan": 4,
-        "gigan_amount": "1018억",
+        "gigan_amount": "1048억",
         "foreign": -4,
-        "foreign_amount": "1096억",
+        "foreign_amount": "1129억",
         "indi": -1,
-        "indi_amount": "257억"
+        "indi_amount": "265억"
       },
       "disclosure": [
         {
@@ -195,9 +195,9 @@
     {
       "code": "GOOGL",
       "name": "Alphabet Inc.",
-      "price": "507,704",
+      "price": "508,094",
       "price_usd": "$357.75",
-      "change": "6,642",
+      "change": "6,647",
       "change_pct": -0.01,
       "direction": "FALLING",
       "currency": "USD",
@@ -205,12 +205,12 @@
       "category": "us_watch",
       "fics": "Internet Content & Information",
       "per": 24.3,
-      "market_cap_eok": 62091931,
-      "market_cap_formatted": "6,209.2조",
+      "market_cap_eok": 62139621,
+      "market_cap_formatted": "6,214.0조",
       "market_cap_usd_formatted": "$4.4T",
       "analyst_target": {
-        "avg": 607458,
-        "avg_formatted": "607,458",
+        "avg": 607925,
+        "avg_formatted": "607,925",
         "avg_usd": "$428.04",
         "count": 55
       },
