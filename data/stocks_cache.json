@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-11T13:15:58+09:00",
+  "updated_at": "2026-08-11T14:46:52+09:00",
   "kr_port": [
 
   ],
@@ -7,18 +7,18 @@
     {
       "code": "095610",
       "name": "테스",
-      "price": "146,000",
-      "change": "3,400",
-      "change_pct": 2.38,
+      "price": "146,200",
+      "change": "3,600",
+      "change_pct": 2.52,
       "direction": "RISING",
       "market": "KOSDAQ",
       "market_cap_eok": null,
       "market_cap_formatted": null,
       "investor_streaks": {
         "gigan": 1,
-        "gigan_amount": "160억",
+        "gigan_amount": "161억",
         "foreign": -7,
-        "foreign_amount": "955억",
+        "foreign_amount": "956억",
         "indi": -1,
         "indi_amount": "148억"
       },
@@ -43,9 +43,9 @@
     {
       "code": "317330",
       "name": "덕산테코피아",
-      "price": "11,270",
-      "change": "-210",
-      "change_pct": -1.83,
+      "price": "11,330",
+      "change": "-150",
+      "change_pct": -1.31,
       "direction": "FALLING",
       "market": "KOSDAQ",
       "market_cap_eok": null,
@@ -79,9 +79,9 @@
     {
       "code": "015760",
       "name": "한국전력",
-      "price": "35,400",
-      "change": "-300",
-      "change_pct": -0.84,
+      "price": "35,250",
+      "change": "-450",
+      "change_pct": -1.26,
       "direction": "FALLING",
       "market": "KOSPI",
       "market_cap_eok": null,
@@ -115,45 +115,45 @@
     {
       "code": "004170",
       "name": "신세계",
-      "price": "435,000",
-      "change": "3,000",
-      "change_pct": 0.69,
+      "price": "432,500",
+      "change": "500",
+      "change_pct": 0.12,
       "direction": "RISING",
       "market": "KOSPI",
       "market_cap_eok": null,
       "market_cap_formatted": null,
       "investor_streaks": {
         "gigan": -8,
-        "gigan_amount": "681억",
+        "gigan_amount": "677억",
         "foreign": 8,
-        "foreign_amount": "667억",
+        "foreign_amount": "664억",
         "indi": 4,
         "indi_amount": "63억"
       },
       "disclosure": [
         {
-          "title": "(주)신세계 결산실적공시 예고(안내공시)",
-          "datetime": "2026-08-04",
-          "url": "https://finance.naver.com/item/news_notice_read.naver?no=91666415&code=004170&page_notice="
-        },
-        {
-          "title": "(주)신세계 지속가능경영보고서 등 관련사항(자율공시)",
-          "datetime": "2026-07-21",
-          "url": "https://finance.naver.com/item/news_notice_read.naver?no=73501246&code=004170&page_notice="
-        },
-        {
           "title": "(주)신세계 영업(잠정)실적(공정공시)",
-          "datetime": "2026-07-09",
-          "url": "https://finance.naver.com/item/news_notice_read.naver?no=62655894&code=004170&page_notice="
+          "datetime": "2026-08-11",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=99979315&code=004170&page_notice="
+        },
+        {
+          "title": "(주)신세계 연결재무제표기준영업(잠정)실적(공정공시)",
+          "datetime": "2026-08-11",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=99978843&code=004170&page_notice="
+        },
+        {
+          "title": "(주)신세계 현금ㆍ현물 배당 결정",
+          "datetime": "2026-08-11",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=99970407&code=004170&page_notice="
         }
       ]
     },
     {
       "code": "278470",
       "name": "에이피알",
-      "price": "380,500",
-      "change": "-6,500",
-      "change_pct": -1.68,
+      "price": "382,000",
+      "change": "-5,000",
+      "change_pct": -1.29,
       "direction": "FALLING",
       "market": "KOSPI",
       "market_cap_eok": null,
@@ -164,7 +164,7 @@
         "foreign": 2,
         "foreign_amount": "174억",
         "indi": -3,
-        "indi_amount": "416억"
+        "indi_amount": "418억"
       },
       "disclosure": [
         {
@@ -195,7 +195,7 @@
     {
       "code": "GOOGL",
       "name": "Alphabet Inc.",
-      "price": "505,705",
+      "price": "505,755",
       "price_usd": "$357.52",
       "change": "4,555",
       "change_pct": 0.01,
@@ -205,12 +205,12 @@
       "category": "us_watch",
       "fics": "Internet Content & Information",
       "per": 24.3,
-      "market_cap_eok": 61847379,
-      "market_cap_formatted": "6,184.7조",
+      "market_cap_eok": 61853500,
+      "market_cap_formatted": "6,185.4조",
       "market_cap_usd_formatted": "$4.4T",
       "analyst_target": {
-        "avg": 605455,
-        "avg_formatted": "605,455",
+        "avg": 605515,
+        "avg_formatted": "605,515",
         "avg_usd": "$428.04",
         "count": 55
       },
