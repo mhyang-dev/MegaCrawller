@@ -1,17 +1,17 @@
 ---
-fetched_at: 2026-08-13 12:20 KST
+fetched_at: 2026-08-13 14:24 KST
 kr_indices:
 - code: KOSPI
   name: KOSPI
-  price: '6,849.40'
-  change: '270.36'
-  change_pct: 4.11
+  price: '6,822.90'
+  change: '243.86'
+  change_pct: 3.71
   direction: RISING
 - code: KOSDAQ
   name: KOSDAQ
-  price: '867.22'
-  change: '8.31'
-  change_pct: 0.97
+  price: '864.39'
+  change: '5.48'
+  change_pct: 0.64
   direction: RISING
 us_indices:
 - code: "^IXIC"
@@ -28,22 +28,22 @@ us_indices:
   direction: FALLING
 - code: "^DJI"
   name: Dow Jones
-  price: '53770.3'
-  change: "-205.68"
+  price: '53770.27'
+  change: "-205.71"
   change_pct: -0.38
   direction: FALLING
 fx_rates:
 - code: USDKRW=X
   name: USD/KRW
-  price: '1415.96'
-  change: '3.78'
-  change_pct: 0.27
+  price: '1414.76'
+  change: '2.58'
+  change_pct: 0.18
   direction: RISING
 - code: EURKRW=X
   name: EUR/KRW
-  price: '1630.7'
-  change: '2.08'
-  change_pct: 0.13
+  price: '1629.9'
+  change: '1.28'
+  change_pct: 0.08
   direction: RISING
 - code: JPYKRW=X
   name: 100JPY/KRW
@@ -53,7 +53,7 @@ fx_rates:
   direction: FALLING
 - code: CNYKRW=X
   name: CNY/KRW
-  price: '210.03'
-  change: '0.07'
-  change_pct: 0.03
-  direction: RISING
+  price: '209.84'
+  change: "-0.12"
+  change_pct: -0.06
+  direction: FALLING
