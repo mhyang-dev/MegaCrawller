@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-14T16:05:20+09:00",
+  "updated_at": "2026-08-17T09:31:48+09:00",
   "kr_port": [
 
   ],
@@ -15,12 +15,12 @@
       "market_cap_eok": null,
       "market_cap_formatted": null,
       "investor_streaks": {
-        "gigan": -2,
-        "gigan_amount": "66억",
-        "foreign": -10,
-        "foreign_amount": "1288억",
-        "indi": 3,
-        "indi_amount": "310억"
+        "gigan": -3,
+        "gigan_amount": "85억",
+        "foreign": -11,
+        "foreign_amount": "1302억",
+        "indi": 4,
+        "indi_amount": "343억"
       },
       "disclosure": [
         {
@@ -51,12 +51,12 @@
       "market_cap_eok": null,
       "market_cap_formatted": null,
       "investor_streaks": {
-        "gigan": 1,
+        "gigan": -1,
         "gigan_amount": null,
-        "foreign": -3,
-        "foreign_amount": "2억",
-        "indi": 3,
-        "indi_amount": "2억"
+        "foreign": 1,
+        "foreign_amount": null,
+        "indi": -1,
+        "indi_amount": null
       },
       "disclosure": [
         {
@@ -87,12 +87,12 @@
       "market_cap_eok": null,
       "market_cap_formatted": null,
       "investor_streaks": {
-        "gigan": -5,
-        "gigan_amount": "1152억",
-        "foreign": -1,
-        "foreign_amount": "475억",
-        "indi": 3,
-        "indi_amount": "1489억"
+        "gigan": -6,
+        "gigan_amount": "1376억",
+        "foreign": 1,
+        "foreign_amount": "94억",
+        "indi": 4,
+        "indi_amount": "1618억"
       },
       "disclosure": [
         {
@@ -123,12 +123,12 @@
       "market_cap_eok": null,
       "market_cap_formatted": null,
       "investor_streaks": {
-        "gigan": -11,
-        "gigan_amount": "813억",
-        "foreign": 1,
-        "foreign_amount": "181억",
-        "indi": -1,
-        "indi_amount": "121억"
+        "gigan": -12,
+        "gigan_amount": "818억",
+        "foreign": 2,
+        "foreign_amount": "211억",
+        "indi": -2,
+        "indi_amount": "145억"
       },
       "disclosure": [
         {
@@ -159,12 +159,12 @@
       "market_cap_eok": null,
       "market_cap_formatted": null,
       "investor_streaks": {
-        "gigan": -5,
-        "gigan_amount": "345억",
-        "foreign": 5,
-        "foreign_amount": "671억",
-        "indi": -2,
-        "indi_amount": "181억"
+        "gigan": -6,
+        "gigan_amount": "597억",
+        "foreign": 6,
+        "foreign_amount": "919억",
+        "indi": 1,
+        "indi_amount": "4억"
       },
       "disclosure": [
         {
@@ -195,23 +195,23 @@
     {
       "code": "GOOGL",
       "name": "Alphabet Inc.",
-      "price": "490,657",
-      "price_usd": "$346.36",
-      "change": "3,995",
-      "change_pct": 0.01,
-      "direction": "RISING",
+      "price": "489,960",
+      "price_usd": "$345.90",
+      "change": "652",
+      "change_pct": -0.0,
+      "direction": "FALLING",
       "currency": "USD",
       "market": "US",
       "category": "us_watch",
       "fics": "Internet Content & Information",
       "per": 23.5,
-      "market_cap_eok": 60007037,
-      "market_cap_formatted": "6,000.7조",
+      "market_cap_eok": 59921840,
+      "market_cap_formatted": "5,992.2조",
       "market_cap_usd_formatted": "$4.2T",
       "analyst_target": {
-        "avg": 606367,
-        "avg_formatted": "606,367",
-        "avg_usd": "$428.04",
+        "avg": 605574,
+        "avg_formatted": "605,574",
+        "avg_usd": "$427.52",
         "count": 55
       },
       "upside_pct": 23.6
