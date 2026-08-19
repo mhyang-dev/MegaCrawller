@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-19T11:12:00+09:00",
+  "updated_at": "2026-08-19T12:38:24+09:00",
   "kr_port": [
 
   ],
@@ -7,20 +7,20 @@
     {
       "code": "095610",
       "name": "테스",
-      "price": "143,500",
-      "change": "500",
-      "change_pct": 0.35,
+      "price": "146,500",
+      "change": "3,500",
+      "change_pct": 2.45,
       "direction": "RISING",
       "market": "KOSDAQ",
       "market_cap_eok": null,
       "market_cap_formatted": null,
       "investor_streaks": {
         "gigan": -4,
-        "gigan_amount": "151억",
+        "gigan_amount": "154억",
         "foreign": 1,
-        "foreign_amount": "120억",
+        "foreign_amount": "122억",
         "indi": -1,
-        "indi_amount": "51억"
+        "indi_amount": "52억"
       },
       "disclosure": [
         {
@@ -43,9 +43,9 @@
     {
       "code": "317330",
       "name": "덕산테코피아",
-      "price": "10,230",
-      "change": "-410",
-      "change_pct": -3.85,
+      "price": "10,390",
+      "change": "-250",
+      "change_pct": -2.35,
       "direction": "FALLING",
       "market": "KOSDAQ",
       "market_cap_eok": null,
@@ -79,20 +79,20 @@
     {
       "code": "015760",
       "name": "한국전력",
-      "price": "31,000",
-      "change": "-1,600",
-      "change_pct": -4.91,
+      "price": "30,550",
+      "change": "-2,050",
+      "change_pct": -6.29,
       "direction": "FALLING",
       "market": "KOSPI",
       "market_cap_eok": null,
       "market_cap_formatted": null,
       "investor_streaks": {
         "gigan": -7,
-        "gigan_amount": "1420억",
+        "gigan_amount": "1400억",
         "foreign": -1,
-        "foreign_amount": "35억",
+        "foreign_amount": "34억",
         "indi": 5,
-        "indi_amount": "1681억"
+        "indi_amount": "1657억"
       },
       "disclosure": [
         {
@@ -115,18 +115,18 @@
     {
       "code": "004170",
       "name": "신세계",
-      "price": "400,000",
-      "change": "-24,500",
-      "change_pct": -5.77,
+      "price": "403,000",
+      "change": "-21,500",
+      "change_pct": -5.06,
       "direction": "FALLING",
       "market": "KOSPI",
       "market_cap_eok": null,
       "market_cap_formatted": null,
       "investor_streaks": {
         "gigan": -13,
-        "gigan_amount": "781억",
+        "gigan_amount": "787억",
         "foreign": 3,
-        "foreign_amount": "204억",
+        "foreign_amount": "205억",
         "indi": 1,
         "indi_amount": "9억"
       },
@@ -151,20 +151,20 @@
     {
       "code": "278470",
       "name": "에이피알",
-      "price": "385,500",
-      "change": "-11,000",
-      "change_pct": -2.77,
+      "price": "389,500",
+      "change": "-7,000",
+      "change_pct": -1.77,
       "direction": "FALLING",
       "market": "KOSPI",
       "market_cap_eok": null,
       "market_cap_formatted": null,
       "investor_streaks": {
         "gigan": -7,
-        "gigan_amount": "695억",
+        "gigan_amount": "702억",
         "foreign": 7,
-        "foreign_amount": "1179억",
+        "foreign_amount": "1191억",
         "indi": -1,
-        "indi_amount": "166억"
+        "indi_amount": "168억"
       },
       "disclosure": [
         {
@@ -195,9 +195,9 @@
     {
       "code": "GOOGL",
       "name": "Alphabet Inc.",
-      "price": "483,629",
+      "price": "481,839",
       "price_usd": "$344.20",
-      "change": "281",
+      "change": "280",
       "change_pct": 0.0,
       "direction": "RISING",
       "currency": "USD",
@@ -205,12 +205,12 @@
       "category": "us_watch",
       "fics": "Internet Content & Information",
       "per": 23.3,
-      "market_cap_eok": 59147457,
-      "market_cap_formatted": "5,914.7조",
+      "market_cap_eok": 58928561,
+      "market_cap_formatted": "5,892.9조",
       "market_cap_usd_formatted": "$4.2T",
       "analyst_target": {
-        "avg": 600700,
-        "avg_formatted": "600,700",
+        "avg": 598477,
+        "avg_formatted": "598,477",
         "avg_usd": "$427.52",
         "count": 55
       },
