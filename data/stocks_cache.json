@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-31T10:54:31+09:00",
+  "updated_at": "2026-08-31T16:48:58+09:00",
   "kr_port": [
 
   ],
@@ -7,20 +7,20 @@
     {
       "code": "095610",
       "name": "테스",
-      "price": "132,200",
-      "change": "-10,500",
-      "change_pct": -7.36,
+      "price": "142,500",
+      "change": "-200",
+      "change_pct": -0.14,
       "direction": "FALLING",
       "market": "KOSDAQ",
       "market_cap_eok": null,
       "market_cap_formatted": null,
       "investor_streaks": {
         "gigan": -1,
-        "gigan_amount": "78억",
+        "gigan_amount": "84억",
         "foreign": 6,
-        "foreign_amount": "445억",
+        "foreign_amount": "479억",
         "indi": -5,
-        "indi_amount": "245억"
+        "indi_amount": "264억"
       },
       "disclosure": [
         {
@@ -43,9 +43,9 @@
     {
       "code": "317330",
       "name": "덕산테코피아",
-      "price": "12,640",
-      "change": "1,670",
-      "change_pct": 15.22,
+      "price": "13,530",
+      "change": "2,560",
+      "change_pct": 23.34,
       "direction": "RISING",
       "market": "KOSDAQ",
       "market_cap_eok": null,
@@ -79,20 +79,20 @@
     {
       "code": "015760",
       "name": "한국전력",
-      "price": "31,650",
-      "change": "-900",
-      "change_pct": -2.76,
+      "price": "31,900",
+      "change": "-650",
+      "change_pct": -2.0,
       "direction": "FALLING",
       "market": "KOSPI",
       "market_cap_eok": null,
       "market_cap_formatted": null,
       "investor_streaks": {
         "gigan": -2,
-        "gigan_amount": "210억",
+        "gigan_amount": "211억",
         "foreign": -2,
-        "foreign_amount": "234억",
+        "foreign_amount": "236억",
         "indi": 2,
-        "indi_amount": "444억"
+        "indi_amount": "447억"
       },
       "disclosure": [
         {
@@ -115,20 +115,20 @@
     {
       "code": "004170",
       "name": "신세계",
-      "price": "408,000",
-      "change": "2,500",
-      "change_pct": 0.62,
+      "price": "414,000",
+      "change": "8,500",
+      "change_pct": 2.1,
       "direction": "RISING",
       "market": "KOSPI",
       "market_cap_eok": null,
       "market_cap_formatted": null,
       "investor_streaks": {
         "gigan": -1,
-        "gigan_amount": "81억",
+        "gigan_amount": "83억",
         "foreign": -3,
-        "foreign_amount": "105억",
+        "foreign_amount": "107억",
         "indi": 2,
-        "indi_amount": "113억"
+        "indi_amount": "115억"
       },
       "disclosure": [
         {
@@ -151,20 +151,20 @@
     {
       "code": "278470",
       "name": "에이피알",
-      "price": "457,000",
-      "change": "-4,500",
-      "change_pct": -0.98,
-      "direction": "FALLING",
+      "price": "464,500",
+      "change": "3,000",
+      "change_pct": 0.65,
+      "direction": "RISING",
       "market": "KOSPI",
       "market_cap_eok": null,
       "market_cap_formatted": null,
       "investor_streaks": {
         "gigan": 1,
-        "gigan_amount": "271억",
+        "gigan_amount": "276억",
         "foreign": -1,
-        "foreign_amount": "87억",
+        "foreign_amount": "88억",
         "indi": -6,
-        "indi_amount": "1484억"
+        "indi_amount": "1508억"
       },
       "disclosure": [
         {
@@ -195,9 +195,9 @@
     {
       "code": "GOOGL",
       "name": "Alphabet Inc.",
-      "price": "476,551",
+      "price": "474,762",
       "price_usd": "$346.59",
-      "change": "8,167",
+      "change": "8,137",
       "change_pct": 0.02,
       "direction": "RISING",
       "currency": "USD",
@@ -205,12 +205,12 @@
       "category": "us_watch",
       "fics": "Internet Content & Information",
       "per": 23.4,
-      "market_cap_eok": 58281858,
-      "market_cap_formatted": "5,828.2조",
+      "market_cap_eok": 58063137,
+      "market_cap_formatted": "5,806.3조",
       "market_cap_usd_formatted": "$4.2T",
       "analyst_target": {
-        "avg": 588579,
-        "avg_formatted": "588,579",
+        "avg": 586370,
+        "avg_formatted": "586,370",
         "avg_usd": "$428.07",
         "count": 54
       },
