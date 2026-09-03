@@ -1,12 +1,12 @@
 ---
-fetched_at: 2026-09-02 15:33 KST
+fetched_at: 2026-09-03 10:43 KST
 stocks:
 - code: '005930'
   name: 삼성전자
-  price: '250,500'
-  change: "-10,500"
-  change_pct: -4.02
-  direction: FALLING
+  price: '253,500'
+  change: '3,000'
+  change_pct: 1.2
+  direction: RISING
   market: KOSPI
   category: stock
   per:
@@ -24,22 +24,22 @@ stocks:
   - title: 삼성전자(주) 수시공시의무관련사항(공정공시)
     datetime: '2026-08-21'
     url: https://finance.naver.com/item/news_notice_read.naver?no=110965760&code=005930&page_notice=
-  opinion: 당일 4.02% 급락 — 단기 조정 또는 매도 압력 주의.
+  opinion: 소폭 상승하며 긍정적 흐름 유지.
   fics:
   indu_per:
   investor_streaks:
-    gigan: -4
-    gigan_amount: 1.1조
-    foreign: -3
-    foreign_amount: 6606억
-    indi: 3
-    indi_amount: 1.7조
+    gigan: -5
+    gigan_amount: 1.9조
+    foreign: -4
+    foreign_amount: 1.0조
+    indi: 4
+    indi_amount: 2.9조
 - code: '000660'
   name: SK하이닉스
-  price: '1,614,000'
-  change: "-79,000"
-  change_pct: -4.67
-  direction: FALLING
+  price: '1,632,000'
+  change: '19,000'
+  change_pct: 1.18
+  direction: RISING
   market: KOSPI
   category: stock
   per:
@@ -57,21 +57,21 @@ stocks:
   - title: 에스케이하이닉스(주) 주식 소각 결정
     datetime: '2026-08-19'
     url: https://finance.naver.com/item/news_notice_read.naver?no=108115696&code=000660&page_notice=
-  opinion: 당일 4.67% 급락 — 단기 조정 또는 매도 압력 주의.
+  opinion: 소폭 상승하며 긍정적 흐름 유지.
   fics:
   indu_per:
   investor_streaks:
-    gigan: -4
-    gigan_amount: 2.2조
-    foreign: 1
-    foreign_amount: 1482억
-    indi: 7
-    indi_amount: 6.8조
+    gigan: -5
+    gigan_amount: 2.8조
+    foreign: -1
+    foreign_amount: 1.1조
+    indi: 8
+    indi_amount: 8.4조
 - code: '009150'
   name: 삼성전기
-  price: '1,402,000'
-  change: "-28,000"
-  change_pct: -1.96
+  price: '1,388,000'
+  change: "-12,000"
+  change_pct: -0.86
   direction: FALLING
   market: KOSPI
   category: stock
@@ -94,18 +94,18 @@ stocks:
   fics:
   indu_per:
   investor_streaks:
-    gigan: -1
-    gigan_amount: 727억
-    foreign: -1
-    foreign_amount: 587억
-    indi: 1
-    indi_amount: 1315억
+    gigan: 1
+    gigan_amount: 203억
+    foreign: -2
+    foreign_amount: 596억
+    indi: -1
+    indi_amount: 189억
 - code: '005380'
   name: 현대차
-  price: '378,000'
-  change: "-22,500"
-  change_pct: -5.62
-  direction: FALLING
+  price: '384,000'
+  change: '6,000'
+  change_pct: 1.59
+  direction: RISING
   market: KOSPI
   category: stock
   per:
@@ -114,31 +114,31 @@ stocks:
   market_cap_formatted:
   upside_pct:
   disclosure:
+  - title: 현대자동차(주) 공매도 과열종목 지정(공매도 거래 금지 적용)
+    datetime: '2026-09-02'
+    url: https://finance.naver.com/item/news_notice_read.naver?no=120915257&code=005380&page_notice=
+  - title: 현대자동차(주) 생산재개(자율공시)
+    datetime: '2026-09-02'
+    url: https://finance.naver.com/item/news_notice_read.naver?no=120683609&code=005380&page_notice=
   - title: 현대자동차(주) 영업(잠정)실적(공정공시)
     datetime: '2026-09-01'
     url: https://finance.naver.com/item/news_notice_read.naver?no=119423103&code=005380&page_notice=
-  - title: 현대자동차(주) 기업설명회(IR) 개최(안내공시)
-    datetime: '2026-08-28'
-    url: https://finance.naver.com/item/news_notice_read.naver?no=117159088&code=005380&page_notice=
-  - title: 현대자동차(주) 기업설명회(IR) 개최(안내공시)
-    datetime: '2026-08-28'
-    url: https://finance.naver.com/item/news_notice_read.naver?no=117153860&code=005380&page_notice=
-  opinion: 당일 5.62% 급락 — 단기 조정 또는 매도 압력 주의.
+  opinion: 소폭 상승하며 긍정적 흐름 유지.
   fics:
   indu_per:
   investor_streaks:
-    gigan: -7
-    gigan_amount: 2587억
-    foreign: -1
-    foreign_amount: 19억
-    indi: 1
-    indi_amount: 396억
+    gigan: -8
+    gigan_amount: 3875억
+    foreign: -2
+    foreign_amount: 554억
+    indi: 2
+    indi_amount: 2184억
 - code: '012330'
   name: 현대모비스
-  price: '414,500'
-  change: "-29,000"
-  change_pct: -6.54
-  direction: FALLING
+  price: '423,500'
+  change: '8,000'
+  change_pct: 1.93
+  direction: RISING
   market: KOSPI
   category: stock
   per:
@@ -156,22 +156,22 @@ stocks:
   - title: 현대모비스(주) 기업설명회(IR) 개최(안내공시)
     datetime: '2026-08-27'
     url: https://finance.naver.com/item/news_notice_read.naver?no=115425312&code=012330&page_notice=
-  opinion: 당일 6.54% 급락 — 단기 조정 또는 매도 압력 주의.
+  opinion: 소폭 상승하며 긍정적 흐름 유지.
   fics:
   indu_per:
   investor_streaks:
-    gigan: -1
-    gigan_amount: 296억
-    foreign: -1
-    foreign_amount: 132억
-    indi: 1
-    indi_amount: 429억
+    gigan: -2
+    gigan_amount: 983억
+    foreign: 1
+    foreign_amount: 50억
+    indi: 2
+    indi_amount: 1068억
 - code: '032830'
   name: 삼성생명
-  price: '292,500'
-  change: "-17,000"
-  change_pct: -5.49
-  direction: FALLING
+  price: '303,500'
+  change: '9,500'
+  change_pct: 3.23
+  direction: RISING
   market: KOSPI
   category: stock
   per:
@@ -180,31 +180,31 @@ stocks:
   market_cap_formatted:
   upside_pct:
   disclosure:
+  - title: 삼성생명보험(주) 풍문 또는 보도에 대한 해명(미확정)
+    datetime: '2026-09-03'
+    url: https://finance.naver.com/item/news_notice_read.naver?no=121865318&code=032830&page_notice=
   - title: 삼성생명보험(주) 연결재무제표기준영업(잠정)실적(공정공시)
     datetime: '2026-08-13'
     url: https://finance.naver.com/item/news_notice_read.naver?no=102885754&code=032830&page_notice=
   - title: 삼성생명보험(주) 기업설명회(IR) 개최(안내공시)
     datetime: '2026-07-27'
     url: https://finance.naver.com/item/news_notice_read.naver?no=80234732&code=032830&page_notice=
-  - title: 삼성생명보험(주) 지속가능경영보고서 등 관련사항(자율공시)
-    datetime: '2026-06-30'
-    url: https://finance.naver.com/item/news_notice_read.naver?no=49671523&code=032830&page_notice=
-  opinion: 당일 5.49% 급락 — 단기 조정 또는 매도 압력 주의.
+  opinion: 당일 3.23% 급등하며 강한 매수세 유입 중.
   fics:
   indu_per:
   investor_streaks:
-    gigan: 3
-    gigan_amount: 376억
-    foreign: -4
-    foreign_amount: 255억
-    indi: -3
-    indi_amount: 140억
+    gigan: -1
+    gigan_amount: 53억
+    foreign: -5
+    foreign_amount: 296억
+    indi: 1
+    indi_amount: 84억
 - code: '069960'
   name: 현대백화점
-  price: '93,100'
-  change: "-4,700"
-  change_pct: -4.81
-  direction: FALLING
+  price: '93,900'
+  change: '1,200'
+  change_pct: 1.29
+  direction: RISING
   market: KOSPI
   category: stock
   per:
@@ -222,22 +222,22 @@ stocks:
   - title: "(주)현대백화점 기업설명회(IR) 개최(안내공시)"
     datetime: '2026-08-20'
     url: https://finance.naver.com/item/news_notice_read.naver?no=109265652&code=069960&page_notice=
-  opinion: 당일 4.81% 급락 — 단기 조정 또는 매도 압력 주의.
+  opinion: 소폭 상승하며 긍정적 흐름 유지.
   fics:
   indu_per:
   investor_streaks:
-    gigan: -1
-    gigan_amount: 19억
-    foreign: -1
-    foreign_amount: 19억
-    indi: 1
-    indi_amount: 38억
+    gigan: -2
+    gigan_amount: 32억
+    foreign: -2
+    foreign_amount: 104억
+    indi: 2
+    indi_amount: 137억
 - code: '020000'
   name: 한섬
-  price: '15,400'
-  change: "-500"
-  change_pct: -3.14
-  direction: FALLING
+  price: '15,590'
+  change: '190'
+  change_pct: 1.23
+  direction: RISING
   market: KOSPI
   category: stock
   per:
@@ -255,21 +255,21 @@ stocks:
   - title: "(주)한섬 연결재무제표기준영업(잠정)실적(공정공시)"
     datetime: '2026-08-03'
     url: https://finance.naver.com/item/news_notice_read.naver?no=90500814&code=020000&page_notice=
-  opinion: 당일 3.14% 급락 — 단기 조정 또는 매도 압력 주의.
+  opinion: 소폭 상승하며 긍정적 흐름 유지.
   fics:
   indu_per:
   investor_streaks:
-    gigan: 1
-    gigan_amount: 3억
-    foreign: -2
-    foreign_amount: 3억
-    indi: -1
-    indi_amount: 2억
+    gigan: -1
+    gigan_amount:
+    foreign: -3
+    foreign_amount: 9억
+    indi: 1
+    indi_amount: 7억
 - code: '278470'
   name: 에이피알
-  price: '419,000'
-  change: "-13,500"
-  change_pct: -3.12
+  price: '415,000'
+  change: "-4,000"
+  change_pct: -0.95
   direction: FALLING
   market: KOSPI
   category: stock
@@ -288,59 +288,59 @@ stocks:
   - title: "(주)에이피알 기업설명회(IR) 개최(안내공시)"
     datetime: '2026-07-27'
     url: https://finance.naver.com/item/news_notice_read.naver?no=80197631&code=278470&page_notice=
-  opinion: 당일 3.12% 급락 — 단기 조정 또는 매도 압력 주의.
+  opinion: 소폭 하락하며 숨 고르기 국면.
   fics:
   indu_per:
   investor_streaks:
-    gigan: -1
-    gigan_amount: 53억
-    foreign: 1
-    foreign_amount: 22억
-    indi: 1
-    indi_amount: 31억
+    gigan: -2
+    gigan_amount: 70억
+    foreign: 2
+    foreign_amount: 44억
+    indi: -1
+    indi_amount: 5억
 - code: '487240'
   name: KODEX AI전력핵심설비
-  price: '34,385'
-  change: "-1,920"
-  change_pct: -5.29
+  price: '34,145'
+  change: "-225"
+  change_pct: -0.65
   direction: FALLING
   market: KOSPI
   category: etf
   holdings:
-  - name: 효성중공업
-    ratio: 20.84%
   - name: LS ELECTRIC
-    ratio: 20.67%
+    ratio: 20.85%
+  - name: 효성중공업
+    ratio: 20.83%
   - name: HD현대일렉트릭
-    ratio: 17.27%
+    ratio: 16.84%
   - name: LS
-    ratio: 13.20%
+    ratio: 13.31%
   - name: 대한전선
-    ratio: 8.23%
+    ratio: 8.34%
 - code: '494670'
   name: TIGER 조선TOP10
-  price: '20,700'
-  change: "-1,350"
-  change_pct: -6.12
-  direction: FALLING
+  price: '21,595'
+  change: '895'
+  change_pct: 4.32
+  direction: RISING
   market: KOSPI
   category: etf
   holdings:
   - name: 한화오션
-    ratio: 23.33%
+    ratio: 23.15%
   - name: HD한국조선해양
-    ratio: 21.66%
+    ratio: 21.48%
   - name: HD현대중공업
-    ratio: 21.50%
+    ratio: 21.31%
   - name: 삼성중공업
-    ratio: 16.01%
+    ratio: 16.17%
   - name: HD현대마린솔루션
-    ratio: 7.94%
+    ratio: 8.28%
 - code: '006800'
   name: 미래에셋증권
-  price: '33,000'
-  change: "-1,900"
-  change_pct: -5.44
+  price: '32,900'
+  change: "-100"
+  change_pct: -0.3
   direction: FALLING
   market: KOSPI
   category: stock_watch
@@ -351,44 +351,44 @@ stocks:
   upside_pct:
   disclosure:
   - title: 미래에셋증권(주) 상장지수증권 투자유의 안내(미래에셋 인버스 2X 코스닥150 선물 ETN)
+    datetime: '2026-09-03'
+    url: https://finance.naver.com/item/news_notice_read.naver?no=121789106&code=006800&page_notice=
+  - title: 미래에셋증권(주) 상장지수증권 괴리율 초과 발생(미래에셋 코스닥150 선물 ETN)
+    datetime: '2026-09-03'
+    url: https://finance.naver.com/item/news_notice_read.naver?no=121787946&code=006800&page_notice=
+  - title: 미래에셋증권(주) 주식워런트증권의발행조건에관한 변경(확정)
     datetime: '2026-09-02'
-    url: https://finance.naver.com/item/news_notice_read.naver?no=120274610&code=006800&page_notice=
-  - title: 미래에셋증권(주) 상장지수증권 투자유의 안내(미래에셋 인버스 2X 은 선물 ETN B)
-    datetime: '2026-09-02'
-    url: https://finance.naver.com/item/news_notice_read.naver?no=120273724&code=006800&page_notice=
-  - title: 미래에셋증권(주) 주식워런트증권추가상장예정종목안내
-    datetime: '2026-09-01'
-    url: https://finance.naver.com/item/news_notice_read.naver?no=119478257&code=006800&page_notice=
+    url: https://finance.naver.com/item/news_notice_read.naver?no=120773183&code=006800&page_notice=
   fics:
   indu_per:
   investor_streaks:
-    gigan: -2
-    gigan_amount: 121억
-    foreign: 1
-    foreign_amount: 84억
-    indi: -1
-    indi_amount: 10억
+    gigan: -3
+    gigan_amount: 296억
+    foreign: 2
+    foreign_amount: 119억
+    indi: 1
+    indi_amount: 140억
 - code: MU
   name: Micron Technology, Inc.
-  price: '1,276,806'
-  price_usd: "$933.44"
-  change: '34,593'
-  change_pct: -0.03
-  direction: FALLING
+  price: '1,297,286'
+  price_usd: "$956.08"
+  change: '30,720'
+  change_pct: 0.02
+  direction: RISING
   currency: USD
   market: US
   category: us_watch
   fics: Semiconductors
-  per: 6.0
-  market_cap_eok: 14420158
-  market_cap_formatted: 1,442.0조
+  per: 6.2
+  market_cap_eok: 14651457
+  market_cap_formatted: 1,465.1조
   market_cap_usd_formatted: "$1.1T"
   analyst_target:
-    avg: 2070117
-    avg_formatted: '2,070,117'
-    avg_usd: "$1513.41"
-    count: 44
-  upside_pct: 62.1
+    avg: 2053110
+    avg_formatted: '2,053,110'
+    avg_usd: "$1513.11"
+    count: 45
+  upside_pct: 58.3
 kr_stocks_list:
 - code: '000500'
   name: 가온전선
@@ -420,14 +420,14 @@ kr_stocks_list:
 - code: '078890'
   name: 가온그룹
   market: KOSDAQ
-- code: '603931'
-  name: 각림달
-  market: SHANGHAI
 - code: '002650'
   name: 가가식품
   market: SHENZHEN
 - code: '603708'
   name: 가가열
+  market: SHANGHAI
+- code: '603931'
+  name: 각림달
   market: SHANGHAI
 - code: '296520'
   name: 가이아코퍼레이션
@@ -438,62 +438,53 @@ kr_stocks_list:
 - code: '094480'
   name: 갤럭시아머니트리
   market: KOSDAQ
+- code: '002659'
+  name: 개문교육
+  market: SHENZHEN
 - code: '002821'
   name: 개래영의약집단 (천진)
   market: SHENZHEN
-- code: '688065'
-  name: 개새생물
-  market: SHANGHAI
-- code: '300257'
-  name: 개산그룹
+- code: '300039'
+  name: 개보제약
   market: SHENZHEN
-- code: '600552'
-  name: 개성과기
-  market: SHANGHAI
-- code: '601939'
-  name: 건설은행
-  market: SHANGHAI
-- code: '688141'
-  name: 걸화특미전자
-  market: SHANGHAI
-- code: '002558'
-  name: 거인네트워크
-  market: SHENZHEN
-- code: '603083'
-  name: 검교과기
-  market: SHANGHAI
-- code: '688025'
-  name: 걸보특
-  market: SHANGHAI
-- code: '688167'
-  name: 거광과기
-  market: SHANGHAI
-- code: '002444'
-  name: 거성과기
-  market: SHENZHEN
-- code: '000688'
-  name: 건신광업
-  market: SHENZHEN
-- code: '002265'
-  name: 건설공업
-  market: SHENZHEN
-- code: '600380'
-  name: 건강원제약그룹
-  market: SHANGHAI
-- code: '300102'
-  name: 건조광전
+- code: '300127'
+  name: 갤럭시마그네틱
   market: SHENZHEN
 - code: '000600'
   name: 건투에너지투자
   market: SHENZHEN
-- code: '300529'
-  name: 건범바이오
+- code: '000688'
+  name: 건신광업
+  market: SHENZHEN
+- code: '000785'
+  name: 거연지가
   market: SHENZHEN
 - code: '000950'
   name: 전방
   market: KOSPI
+- code: '002031'
+  name: 거륜지능
+  market: SHENZHEN
+- code: '002265'
+  name: 건설공업
+  market: SHENZHEN
+- code: '002340'
+  name: 거린메이
+  market: SHENZHEN
+- code: '300102'
+  name: 건조광전
+  market: SHENZHEN
+- code: '300107'
+  name: 건식화학공업
+  market: SHENZHEN
+- code: '300529'
+  name: 건범바이오
+  market: SHENZHEN
 - code: '600266'
   name: 건성발전
+  market: SHANGHAI
+- code: '600380'
+  name: 건강원제약그룹
   market: SHANGHAI
 - code: '600976'
   name: 건민제약
@@ -525,8 +516,8 @@ kr_stocks_list:
 - code: '011040'
   name: 경동제약
   market: KOSDAQ
-- code: '053950'
-  name: 경남제약
+- code: '024910'
+  name: 경창산업
   market: KOSDAQ
 - code: '010130'
   name: 고려아연
@@ -555,15 +546,15 @@ kr_stocks_list:
 - code: '121440'
   name: 골프존홀딩스
   market: KOSDAQ
-- code: '600039'
-  name: 공로교량건설
-  market: SHANGHAI
-- code: '603195'
-  name: 공우집단
-  market: SHANGHAI
-- code: '603118'
-  name: 공진장비
-  market: SHANGHAI
+- code: '002655'
+  name: 공달전자음향
+  market: SHENZHEN
+- code: '300465'
+  name: 고위달소프트
+  market: SHENZHEN
+- code: '300551'
+  name: 고오과기
+  market: SHENZHEN
 - code: '029480'
   name: 광무
   market: KOSDAQ
@@ -573,14 +564,14 @@ kr_stocks_list:
 - code: '086220'
   name: 광동헬스바이오
   market: KONEX
-- code: '002281'
-  name: 광신과기
+- code: '000096'
+  name: 광취에너지
   market: SHENZHEN
-- code: '601818'
-  name: 광대은행
-  market: SHANGHAI
-- code: '000776'
-  name: 광발증권
+- code: '000429'
+  name: 광동고속도로
+  market: SHENZHEN
+- code: '000533'
+  name: 광동 순나 전기
   market: SHENZHEN
 - code: '030610'
   name: 교보증권
@@ -624,50 +615,50 @@ kr_stocks_list:
 - code: '060480'
   name: 국일신동
   market: KOSDAQ
-- code: '601211'
-  name: 국태해통증권
-  market: SHANGHAI
+- code: '000028'
+  name: 국약일치
+  market: SHENZHEN
 - code: '300223'
   name: 군정반도체
   market: SHENZHEN
-- code: '601216'
-  name: 군정에너지화학
-  market: SHANGHAI
+- code: '301073'
+  name: 군정주점
+  market: SHENZHEN
 - code: '301109'
   name: 군신고분
-  market: SHENZHEN
-- code: '301458'
-  name: 군외전자
   market: SHENZHEN
 - code: '301172'
   name: 군일수마
   market: SHENZHEN
-- code: '600519'
-  name: 귀주모태주
-  market: SHANGHAI
-- code: '600395'
-  name: 귀주반강석탄
-  market: SHANGHAI
-- code: '600996'
-  name: 귀엄망락
-  market: SHANGHAI
-- code: '600903'
-  name: 귀주가스그룹
-  market: SHANGHAI
+- code: '301458'
+  name: 군외전자
+  market: SHENZHEN
 - code: '000589'
   name: 귀주윤태
   market: SHENZHEN
+- code: '600395'
+  name: 귀주반강석탄
+  market: SHANGHAI
+- code: '600519'
+  name: 귀주모태주
+  market: SHANGHAI
 - code: '600523'
   name: 귀주귀항자동차부품
-  market: SHANGHAI
-- code: '603439'
-  name: 귀주삼력
   market: SHANGHAI
 - code: '600594'
   name: 귀주익백제약
   market: SHANGHAI
+- code: '600903'
+  name: 귀주가스그룹
+  market: SHANGHAI
 - code: '600992'
   name: 귀승고분
+  market: SHANGHAI
+- code: '600996'
+  name: 귀엄망락
+  market: SHANGHAI
+- code: '603439'
+  name: 귀주삼력
   market: SHANGHAI
 - code: '002990'
   name: 금호건설
@@ -879,9 +870,6 @@ kr_stocks_list:
 - code: '012340'
   name: 뉴인텍
   market: KOSDAQ
-- code: '058730'
-  name: 다스코
-  market: KOSPI
 - code: '483650'
   name: 달바글로벌
   market: KOSPI
@@ -890,6 +878,9 @@ kr_stocks_list:
   market: KOSPI
 - code: '030210'
   name: 다올투자증권
+  market: KOSPI
+- code: '058730'
+  name: 다스코
   market: KOSPI
 - code: '145210'
   name: 다이나믹디자인
@@ -909,18 +900,18 @@ kr_stocks_list:
 - code: '290660'
   name: 다이나믹솔루션
   market: KOSDAQ
-- code: '600329'
-  name: 달인당
-  market: SHANGHAI
+- code: '001311'
+  name: 다리과기
+  market: SHENZHEN
 - code: '002030'
   name: 아세아
   market: KOSPI
 - code: '002421'
   name: 달실지능
   market: SHENZHEN
-- code: '001311'
-  name: 다리과기
-  market: SHENZHEN
+- code: '600329'
+  name: 달인당
+  market: SHANGHAI
 - code: '603528'
   name: 다륜과기
   market: SHANGHAI
@@ -966,6 +957,9 @@ kr_stocks_list:
 - code: '004835'
   name: 덕성우
   market: KOSPI
+- code: '403850'
+  name: 더핑크퐁컴퍼니
+  market: KOSDAQ
 - code: '213420'
   name: 덕산네오룩스
   market: KOSDAQ
@@ -1119,11 +1113,11 @@ kr_stocks_list:
 - code: '418420'
   name: 라온텍
   market: KOSDAQ
-- code: '388790'
-  name: 라이콤
-  market: KOSDAQ
 - code: '232680'
   name: 라온로보틱스
+  market: KOSDAQ
+- code: '388790'
+  name: 라이콤
   market: KOSDAQ
 - code: '042510'
   name: 라온시큐어
@@ -1149,17 +1143,17 @@ kr_stocks_list:
 - code: '001227'
   name: 란주은행
   market: SHENZHEN
-- code: '600123'
-  name: 란화과창
-  market: SHANGHAI
 - code: '301060'
   name: 란위예학
   market: SHENZHEN
-- code: '387690'
-  name: 레메디
-  market: KOSDAQ
+- code: '600123'
+  name: 란화과창
+  market: SHANGHAI
 - code: '277810'
   name: 레인보우로보틱스
+  market: KOSDAQ
+- code: '387690'
+  name: 레메디
   market: KOSDAQ
 - code: '281740'
   name: 레이크머티리얼즈
@@ -1176,11 +1170,11 @@ kr_stocks_list:
 - code: '412350'
   name: 레이저쎌
   market: KOSDAQ
-- code: '365660'
-  name: 레몬헬스케어
-  market: KOSDAQ
 - code: '443250'
   name: 레뷰코퍼레이션
+  market: KOSDAQ
+- code: '365660'
+  name: 레몬헬스케어
   market: KOSDAQ
 - code: '294140'
   name: 레몬
@@ -1323,14 +1317,14 @@ kr_stocks_list:
 - code: '610061'
   name: 메리츠 3X 레버리지 국채30년 ETN
   market: KOSPI
-- code: '610101'
-  name: 메리츠 인버스 2X 은 선물 ETN(H)
-  market: KOSPI
 - code: '610078'
   name: 메리츠 3X 레버리지 미국채30년 ETN
   market: KOSPI
 - code: '610038'
   name: 메리츠 레버리지 미국채30년 ETN(H)
+  market: KOSPI
+- code: '610101'
+  name: 메리츠 인버스 2X 은 선물 ETN(H)
   market: KOSPI
 - code: '009680'
   name: 모토닉
@@ -1419,38 +1413,35 @@ kr_stocks_list:
 - code: '064550'
   name: 바이오니아
   market: KOSDAQ
-- code: '323990'
-  name: 박셀바이오
-  market: KOSDAQ
-- code: '308080'
-  name: 바이젠셀
-  market: KOSDAQ
 - code: '043150'
   name: 바텍
   market: KOSDAQ
 - code: '053030'
   name: 바이넥스
   market: KOSDAQ
-- code: '206640'
-  name: 바디텍메드
-  market: KOSDAQ
 - code: '314930'
   name: 바이오다인
+  market: KOSDAQ
+- code: '206640'
+  name: 바디텍메드
   market: KOSDAQ
 - code: '099430'
   name: 바이오플러스
   market: KOSDAQ
-- code: '600228'
-  name: 반리과기
-  market: SHANGHAI
-- code: '301456'
-  name: 반고지능
-  market: SHENZHEN
 - code: '489460'
   name: 바이오비쥬
   market: KOSDAQ
 - code: '086820'
   name: 바이오솔루션
+  market: KOSDAQ
+- code: '301456'
+  name: 반고지능
+  market: SHENZHEN
+- code: '600228'
+  name: 반리과기
+  market: SHANGHAI
+- code: '308080'
+  name: 바이젠셀
   market: KOSDAQ
 - code: '251120'
   name: 바이오에프디엔씨
@@ -1479,14 +1470,14 @@ kr_stocks_list:
 - code: '000890'
   name: 보해양조
   market: KOSPI
-- code: '226340'
-  name: 본느
-  market: KOSDAQ
 - code: '310210'
   name: 보로노이
   market: KOSDAQ
 - code: '006910'
   name: 보성파워텍
+  market: KOSDAQ
+- code: '226340'
+  name: 본느
   market: KOSDAQ
 - code: '250000'
   name: 보라티알
@@ -1509,11 +1500,11 @@ kr_stocks_list:
 - code: '011390'
   name: 부산산업
   market: KOSPI
-- code: '005030'
-  name: 부산주공
-  market: KOSPI
 - code: '026940'
   name: 부국철강
+  market: KOSPI
+- code: '005030'
+  name: 부산주공
   market: KOSPI
 - code: '014470'
   name: 부방
@@ -1596,26 +1587,26 @@ kr_stocks_list:
 - code: '006400'
   name: 삼성SDI
   market: KOSPI
-- code: '005935'
-  name: 삼성전자우
-  market: KOSPI
 - code: '010140'
   name: 삼성중공업
   market: KOSPI
-- code: '001820'
-  name: 삼화콘덴서
-  market: KOSPI
-- code: '028050'
-  name: 삼성E&A
-  market: KOSPI
 - code: '062040'
   name: 산일전기
+  market: KOSPI
+- code: '005935'
+  name: 삼성전자우
   market: KOSPI
 - code: '028260'
   name: 삼성물산
   market: KOSPI
 - code: '018260'
   name: 삼성에스디에스
+  market: KOSPI
+- code: '207940'
+  name: 삼성바이오로직스
+  market: KOSPI
+- code: '032830'
+  name: 삼성생명
   market: KOSPI
 - code: '419120'
   name: 산돌
@@ -1689,11 +1680,11 @@ kr_stocks_list:
 - code: '007860'
   name: 서연
   market: KOSPI
-- code: '007610'
-  name: 선도전기
-  market: KOSPI
 - code: '000180'
   name: 성창기업지주
+  market: KOSPI
+- code: '007610'
+  name: 선도전기
   market: KOSPI
 - code: '021050'
   name: 서원
@@ -1767,11 +1758,11 @@ kr_stocks_list:
 - code: '950200'
   name: 소마젠
   market: KOSDAQ
-- code: '328380'
-  name: 솔트웨어
-  market: KOSDAQ
 - code: '215090'
   name: 솔디펜스
+  market: KOSDAQ
+- code: '328380'
+  name: 솔트웨어
   market: KOSDAQ
 - code: '126720'
   name: 수산인더스트리
@@ -1935,9 +1926,6 @@ kr_stocks_list:
 - code: '196170'
   name: 알테오젠
   market: KOSDAQ
-- code: '096610'
-  name: 알에프세미
-  market: KOSDAQ
 - code: '476830'
   name: 알지노믹스
   market: KOSDAQ
@@ -1955,6 +1943,9 @@ kr_stocks_list:
   market: KOSDAQ
 - code: '261780'
   name: 아리바이오랩
+  market: KOSDAQ
+- code: '061040'
+  name: 알에프텍
   market: KOSDAQ
 - code: '161000'
   name: 애경케미칼
@@ -2145,11 +2136,11 @@ kr_stocks_list:
 - code: '005320'
   name: 온타이드
   market: KOSPI
-- code: '232140'
-  name: 와이씨
-  market: KOSDAQ
 - code: '476060'
   name: 온코닉테라퓨틱스
+  market: KOSDAQ
+- code: '232140'
+  name: 와이씨
   market: KOSDAQ
 - code: '226950'
   name: 올릭스
@@ -2271,50 +2262,50 @@ kr_stocks_list:
 - code: '000105'
   name: 유한양행우
   market: KOSPI
+- code: '000862'
+  name: 은성능원
+  market: SHENZHEN
 - code: '002126'
   name: 은륜기계
   market: SHENZHEN
 - code: '002262'
   name: 은화제약
   market: SHENZHEN
-- code: '300085'
-  name: 은지걸
-  market: SHENZHEN
-- code: '300337'
-  name: 은방금속복합재료
-  market: SHENZHEN
-- code: '603277'
-  name: 은도고분
-  market: SHANGHAI
 - code: '002519'
   name: 은하전자
-  market: SHENZHEN
-- code: '300221'
-  name: 은희과기
-  market: SHENZHEN
-- code: '000862'
-  name: 은성능원
   market: SHENZHEN
 - code: '002786'
   name: 은본산신과기
   market: SHENZHEN
-- code: '600785'
-  name: 은천신화백화점
-  market: SHANGHAI
-- code: '249420'
-  name: 일동제약
-  market: KOSPI
+- code: '300020'
+  name: 은강기술
+  market: SHENZHEN
+- code: '300085'
+  name: 은지걸
+  market: SHENZHEN
+- code: '300221'
+  name: 은희과기
+  market: SHENZHEN
+- code: '300231'
+  name: 은신과기
+  market: SHENZHEN
+- code: '300337'
+  name: 은방금속복합재료
+  market: SHENZHEN
 - code: '007660'
   name: 이수페타시스
+  market: KOSPI
+- code: '249420'
+  name: 일동제약
   market: KOSPI
 - code: '103590'
   name: 일진전기
   market: KOSPI
-- code: '139480'
-  name: 이마트
-  market: KOSPI
 - code: '457190'
   name: 이수스페셜티케미컬
+  market: KOSPI
+- code: '139480'
+  name: 이마트
   market: KOSPI
 - code: '214320'
   name: 이노션
@@ -2406,20 +2397,20 @@ kr_stocks_list:
 - code: '110020'
   name: 전진바이오팜
   market: KOSDAQ
-- code: '002128'
-  name: 전투능원
+- code: '000917'
+  name: 전광미디어
   market: SHENZHEN
-- code: '300458'
-  name: 전지과기
+- code: '001322'
+  name: 전패가거
   market: SHENZHEN
 - code: '030000'
   name: 제일기획
   market: KOSPI
-- code: '194370'
-  name: 제이에스코퍼레이션
-  market: KOSPI
 - code: '006220'
   name: 제주은행
+  market: KOSPI
+- code: '194370'
+  name: 제이에스코퍼레이션
   market: KOSPI
 - code: '089590'
   name: 제주항공
@@ -2439,8 +2430,8 @@ kr_stocks_list:
 - code: '080220'
   name: 제주반도체
   market: KOSDAQ
-- code: '026040'
-  name: 제이에스티나
+- code: '127120'
+  name: 제이에스링크
   market: KOSDAQ
 - code: '185750'
   name: 종근당
@@ -2559,24 +2550,24 @@ kr_stocks_list:
 - code: '000792'
   name: 청해염화공업
   market: SHENZHEN
-- code: '601838'
-  name: 청두은행
-  market: SHANGHAI
-- code: '601298'
-  name: 청도항국제
-  market: SHANGHAI
-- code: '600100'
-  name: 청화동방
-  market: SHANGHAI
+- code: '002573'
+  name: 청신환경기술
+  market: SHENZHEN
+- code: '002646'
+  name: 청해호조천우덕청과주
+  market: SHENZHEN
 - code: '002948'
   name: 청도은행
   market: SHENZHEN
 - code: '002958'
   name: 청도농상은행
   market: SHENZHEN
-- code: '688709'
-  name: 청두 화미전자기술
-  market: SHANGHAI
+- code: '002960'
+  name: 청조소방
+  market: SHENZHEN
+- code: '002977'
+  name: 청두천건과기
+  market: SHENZHEN
 - code: '033250'
   name: 체시스
   market: KOSPI
@@ -2601,6 +2592,9 @@ kr_stocks_list:
 - code: '145270'
   name: 케이탑리츠
   market: KOSPI
+- code: '199430'
+  name: 케이엔알시스템
+  market: KOSDAQ
 - code: '214370'
   name: 케어젠
   market: KOSDAQ
@@ -2609,9 +2603,6 @@ kr_stocks_list:
   market: KOSDAQ
 - code: '032500'
   name: 케이엠더블유
-  market: KOSDAQ
-- code: '089010'
-  name: 켐트로닉스
   market: KOSDAQ
 - code: '021240'
   name: 코웨이
@@ -2625,17 +2616,17 @@ kr_stocks_list:
 - code: '120110'
   name: 코오롱인더
   market: KOSPI
-- code: '007810'
-  name: 코리아써키트
-  market: KOSPI
 - code: '005070'
   name: 코스모신소재
   market: KOSPI
-- code: '005420'
-  name: 코스모화학
+- code: '007810'
+  name: 코리아써키트
   market: KOSPI
 - code: '357120'
   name: 코람코라이프인프라리츠
+  market: KOSPI
+- code: '005420'
+  name: 코스모화학
   market: KOSPI
 - code: '024720'
   name: 콜마홀딩스
@@ -2655,11 +2646,11 @@ kr_stocks_list:
 - code: '005745'
   name: 크라운해태홀딩스우
   market: KOSPI
-- code: '214150'
-  name: 클래시스
-  market: KOSDAQ
 - code: '466100'
   name: 클로봇
+  market: KOSDAQ
+- code: '214150'
+  name: 클래시스
   market: KOSDAQ
 - code: '237880'
   name: 클리오
@@ -2706,11 +2697,11 @@ kr_stocks_list:
 - code: '055490'
   name: 테이팩스
   market: KOSPI
-- code: '089030'
-  name: 테크윙
-  market: KOSDAQ
 - code: '095610'
   name: 테스
+  market: KOSDAQ
+- code: '089030'
+  name: 테크윙
   market: KOSDAQ
 - code: '054450'
   name: 텔레칩스
@@ -2790,8 +2781,8 @@ kr_stocks_list:
 - code: '491510'
   name: 파워 K-주주가치액티브
   market: KOSPI
-- code: '214450'
-  name: 파마리서치
+- code: '441270'
+  name: 파인엠텍
   market: KOSDAQ
 - code: '032800'
   name: 판타지오
@@ -2802,6 +2793,9 @@ kr_stocks_list:
 - code: '688063'
   name: 파능원 원과기
   market: SHANGHAI
+- code: '214450'
+  name: 파마리서치
+  market: KOSDAQ
 - code: '027710'
   name: 팜스토리
   market: KOSDAQ
@@ -2841,8 +2835,8 @@ kr_stocks_list:
 - code: '389140'
   name: 포바이포
   market: KOSDAQ
-- code: '033790'
-  name: 피노
+- code: '378340'
+  name: 필에너지
   market: KOSDAQ
 - code: '319660'
   name: 피에스케이
@@ -2850,14 +2844,14 @@ kr_stocks_list:
 - code: '031980'
   name: 피에스케이홀딩스
   market: KOSDAQ
+- code: '033790'
+  name: 피노
+  market: KOSDAQ
 - code: '137400'
   name: 피엔티
   market: KOSDAQ
 - code: '161580'
   name: 필옵틱스
-  market: KOSDAQ
-- code: '378340'
-  name: 필에너지
   market: KOSDAQ
 - code: '043370'
   name: 피에이치에이
@@ -2877,9 +2871,6 @@ kr_stocks_list:
 - code: '042660'
   name: 한화오션
   market: KOSPI
-- code: '009830'
-  name: 한화솔루션
-  market: KOSPI
 - code: '042700'
   name: 한미반도체
   market: KOSPI
@@ -2892,17 +2883,20 @@ kr_stocks_list:
 - code: '128940'
   name: 한미약품
   market: KOSPI
-- code: '047810'
-  name: 한국항공우주
-  market: KOSPI
-- code: '161890'
-  name: 한국콜마
-  market: KOSPI
-- code: '008930'
-  name: 한미사이언스
+- code: '009830'
+  name: 한화솔루션
   market: KOSPI
 - code: '272210'
   name: 한화시스템
+  market: KOSPI
+- code: '047810'
+  name: 한국항공우주
+  market: KOSPI
+- code: '052690'
+  name: 한전기술
+  market: KOSPI
+- code: '082740'
+  name: 한화엔진
   market: KOSPI
 - code: '352820'
   name: 하이브
@@ -2955,32 +2949,32 @@ kr_stocks_list:
 - code: '005380'
   name: 현대차
   market: KOSPI
-- code: '012330'
-  name: 현대모비스
-  market: KOSPI
 - code: '000720'
   name: 현대건설
+  market: KOSPI
+- code: '012330'
+  name: 현대모비스
   market: KOSPI
 - code: '064350'
   name: 현대로템
   market: KOSPI
-- code: '004310'
-  name: 현대약품
-  market: KOSPI
-- code: '005387'
-  name: 현대차2우B
-  market: KOSPI
-- code: '086280'
-  name: 현대글로비스
+- code: '004020'
+  name: 현대제철
   market: KOSPI
 - code: '307950'
   name: 현대오토에버
   market: KOSPI
+- code: '004310'
+  name: 현대약품
+  market: KOSPI
+- code: '086280'
+  name: 현대글로비스
+  market: KOSPI
+- code: '005387'
+  name: 현대차2우B
+  market: KOSPI
 - code: '001450'
   name: 현대해상
-  market: KOSPI
-- code: '005385'
-  name: 현대차우
   market: KOSPI
 - code: '010690'
   name: 화신
@@ -3201,20 +3195,20 @@ kr_stocks_list:
 - code: '267260'
   name: HD현대일렉트릭
   market: KOSPI
+- code: '011200'
+  name: HMM
+  market: KOSPI
 - code: '009540'
   name: HD한국조선해양
   market: KOSPI
-- code: '011200'
-  name: HMM
+- code: '267270'
+  name: HD건설기계
   market: KOSPI
 - code: '267250'
   name: HD현대
   market: KOSPI
 - code: '443060'
   name: HD현대마린솔루션
-  market: KOSPI
-- code: '267270'
-  name: HD건설기계
   market: KOSPI
 - code: '395270'
   name: HANARO Fn K-반도체
@@ -3261,26 +3255,11 @@ kr_stocks_list:
 - code: '950170'
   name: JTC
   market: KOSDAQ
-- code: '122630'
-  name: KODEX 레버리지
-  market: KOSPI
-- code: '069500'
-  name: KODEX 200
-  market: KOSPI
-- code: '252670'
-  name: KODEX 200선물인버스2X
-  market: KOSPI
 - code: '105560'
   name: KB금융
   market: KOSPI
-- code: '233740'
-  name: KODEX 코스닥150레버리지
-  market: KOSPI
-- code: '498400'
-  name: KODEX 200타겟위클리커버드콜
-  market: KOSPI
-- code: '379810'
-  name: KODEX 미국나스닥100
+- code: '069500'
+  name: KODEX 200
   market: KOSPI
 - code: '033780'
   name: KT&G
@@ -3291,17 +3270,35 @@ kr_stocks_list:
 - code: '379800'
   name: KODEX 미국S&P500
   market: KOSPI
+- code: '379810'
+  name: KODEX 미국나스닥100
+  market: KOSPI
+- code: '488770'
+  name: KODEX 머니마켓액티브
+  market: KOSPI
+- code: '278530'
+  name: KODEX 200TR
+  market: KOSPI
+- code: '459580'
+  name: KODEX CD금리액티브(합성)
+  market: KOSPI
+- code: '498400'
+  name: KODEX 200타겟위클리커버드콜
+  market: KOSPI
 - code: '066570'
   name: LG전자
-  market: KOSPI
-- code: '373220'
-  name: LG에너지솔루션
   market: KOSPI
 - code: '010120'
   name: LS ELECTRIC
   market: KOSPI
+- code: '373220'
+  name: LG에너지솔루션
+  market: KOSPI
 - code: '011070'
   name: LG이노텍
+  market: KOSPI
+- code: '051910'
+  name: LG화학
   market: KOSPI
 - code: '064400'
   name: LG씨엔에스
@@ -3309,14 +3306,11 @@ kr_stocks_list:
 - code: '079550'
   name: LIG디펜스앤에어로스페이스
   market: KOSPI
+- code: '006260'
+  name: LS
+  market: KOSPI
 - code: '034220'
   name: LG디스플레이
-  market: KOSPI
-- code: '051910'
-  name: LG화학
-  market: KOSPI
-- code: '003550'
-  name: LG
   market: KOSPI
 - code: '403790'
   name: MIDAS 코스피액티브
@@ -3435,20 +3429,23 @@ kr_stocks_list:
 - code: '017670'
   name: SK텔레콤
   market: KOSPI
+- code: '100840'
+  name: SNT에너지
+  market: KOSPI
 - code: '475150'
   name: SK이터닉스
-  market: KOSPI
-- code: '010950'
-  name: S-Oil
   market: KOSPI
 - code: '034730'
   name: SK
   market: KOSPI
-- code: '465770'
-  name: STX그린로지스
+- code: '010950'
+  name: S-Oil
   market: KOSPI
-- code: '100840'
-  name: SNT에너지
+- code: '011790'
+  name: SKC
+  market: KOSPI
+- code: '002710'
+  name: TCC스틸
   market: KOSPI
 - code: '360750'
   name: TIGER 미국S&P500
@@ -3473,9 +3470,6 @@ kr_stocks_list:
   market: KOSPI
 - code: '381170'
   name: TIGER 미국테크TOP10 INDXX
-  market: KOSPI
-- code: '357870'
-  name: TIGER CD금리투자KIS(합성)
   market: KOSPI
 - code: '494220'
   name: UNICORN SK하이닉스밸류체인액티브
@@ -3525,6 +3519,9 @@ kr_stocks_list:
 - code: '057030'
   name: YBM넷
   market: KOSDAQ
+- code: '003550'
+  name: LG
+  market: KOSPI
 - code: '032640'
   name: LG유플러스
   market: KOSPI
@@ -3534,14 +3531,11 @@ kr_stocks_list:
 - code: '066575'
   name: LG전자우
   market: KOSPI
-- code: '210980'
-  name: SK디앤디
-  market: KOSPI
-- code: '011790'
-  name: SKC
-  market: KOSPI
 - code: '326030'
   name: SK바이오팜
+  market: KOSPI
+- code: '302440'
+  name: SK바이오사이언스
   market: KOSPI
 - code: '058850'
   name: KTcs
@@ -3588,14 +3582,17 @@ kr_stocks_list:
 - code: '104200'
   name: NHN벅스
   market: KOSDAQ
-- code: '488770'
-  name: KODEX 머니마켓액티브
+- code: '122630'
+  name: KODEX 레버리지
   market: KOSPI
-- code: '278530'
-  name: KODEX 200TR
+- code: '091160'
+  name: KODEX 반도체
   market: KOSPI
-- code: '459580'
-  name: KODEX CD금리액티브(합성)
+- code: '229200'
+  name: KODEX 코스닥150
+  market: KOSPI
+- code: '357870'
+  name: TIGER CD금리투자KIS(합성)
   market: KOSPI
 - code: '434730'
   name: HANARO 원자력iSelect
