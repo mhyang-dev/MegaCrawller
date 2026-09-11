@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-10T15:45:50+09:00",
+  "updated_at": "2026-09-11T10:42:54+09:00",
   "kr_port": [
 
   ],
@@ -7,21 +7,14 @@
     {
       "code": "095610",
       "name": "테스",
-      "price": "154,900",
-      "change": "600",
-      "change_pct": 0.39,
-      "direction": "RISING",
+      "price": "146,800",
+      "change": "-8,100",
+      "change_pct": -5.23,
+      "direction": "FALLING",
       "market": "KOSDAQ",
       "market_cap_eok": null,
       "market_cap_formatted": null,
-      "investor_streaks": {
-        "gigan": 1,
-        "gigan_amount": "27억",
-        "foreign": 2,
-        "foreign_amount": "100억",
-        "indi": -1,
-        "indi_amount": "67억"
-      },
+      "investor_streaks": null,
       "disclosure": [
         {
           "title": "(주)테스 기업설명회(IR) 개최",
@@ -43,21 +36,14 @@
     {
       "code": "317330",
       "name": "덕산테코피아",
-      "price": "13,470",
-      "change": "-250",
-      "change_pct": -1.82,
+      "price": "13,040",
+      "change": "-430",
+      "change_pct": -3.19,
       "direction": "FALLING",
       "market": "KOSDAQ",
       "market_cap_eok": null,
       "market_cap_formatted": null,
-      "investor_streaks": {
-        "gigan": 5,
-        "gigan_amount": "14억",
-        "foreign": -4,
-        "foreign_amount": "14억",
-        "indi": -1,
-        "indi_amount": "4억"
-      },
+      "investor_streaks": null,
       "disclosure": [
         {
           "title": "(주)덕산테코피아 기업설명회(IR) 개최",
@@ -79,21 +65,14 @@
     {
       "code": "015760",
       "name": "한국전력",
-      "price": "32,750",
-      "change": "-1,000",
-      "change_pct": -2.96,
-      "direction": "FALLING",
+      "price": "33,550",
+      "change": "800",
+      "change_pct": 2.44,
+      "direction": "RISING",
       "market": "KOSPI",
       "market_cap_eok": null,
       "market_cap_formatted": null,
-      "investor_streaks": {
-        "gigan": 5,
-        "gigan_amount": "601억",
-        "foreign": -1,
-        "foreign_amount": "168억",
-        "indi": 1,
-        "indi_amount": "62억"
-      },
+      "investor_streaks": null,
       "disclosure": [
         {
           "title": "한국전력공사(주) 풍문 또는 보도에 대한 해명(미확정)",
@@ -115,21 +94,14 @@
     {
       "code": "004170",
       "name": "신세계",
-      "price": "385,500",
-      "change": "-6,000",
-      "change_pct": -1.53,
+      "price": "383,000",
+      "change": "-2,500",
+      "change_pct": -0.65,
       "direction": "FALLING",
       "market": "KOSPI",
       "market_cap_eok": null,
       "market_cap_formatted": null,
-      "investor_streaks": {
-        "gigan": -1,
-        "gigan_amount": "65억",
-        "foreign": -1,
-        "foreign_amount": "34억",
-        "indi": 1,
-        "indi_amount": "99억"
-      },
+      "investor_streaks": null,
       "disclosure": [
         {
           "title": "(주)신세계 영업(잠정)실적(공정공시)",
@@ -152,20 +124,13 @@
       "code": "278470",
       "name": "에이피알",
       "price": "361,000",
-      "change": "-7,500",
-      "change_pct": -2.04,
-      "direction": "FALLING",
+      "change": "0",
+      "change_pct": 0.0,
+      "direction": "UNCHANGED",
       "market": "KOSPI",
       "market_cap_eok": null,
       "market_cap_formatted": null,
-      "investor_streaks": {
-        "gigan": -7,
-        "gigan_amount": "1403억",
-        "foreign": 1,
-        "foreign_amount": "11억",
-        "indi": 5,
-        "indi_amount": "1192억"
-      },
+      "investor_streaks": null,
       "disclosure": [
         {
           "title": "(주)에이피알 주주명부폐쇄기간 또는 기준일 설정",
@@ -195,26 +160,26 @@
     {
       "code": "GOOGL",
       "name": "Alphabet Inc.",
-      "price": "442,734",
-      "price_usd": "$330.65",
-      "change": "10,324",
-      "change_pct": -0.02,
-      "direction": "FALLING",
+      "price": "448,338",
+      "price_usd": "$332.60",
+      "change": "2,629",
+      "change_pct": 0.01,
+      "direction": "RISING",
       "currency": "USD",
       "market": "US",
       "category": "us_watch",
       "fics": "Internet Content & Information",
-      "per": 22.3,
-      "market_cap_eok": 54146046,
-      "market_cap_formatted": "5,414.6조",
-      "market_cap_usd_formatted": "$4.0T",
+      "per": 22.4,
+      "market_cap_eok": 54831464,
+      "market_cap_formatted": "5,483.1조",
+      "market_cap_usd_formatted": "$4.1T",
       "analyst_target": {
-        "avg": 573173,
-        "avg_formatted": "573,173",
+        "avg": 577025,
+        "avg_formatted": "577,025",
         "avg_usd": "$428.07",
         "count": 54
       },
-      "upside_pct": 29.5
+      "upside_pct": 28.7
     }
   ],
   "us_watch": [
