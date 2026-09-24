@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-23T17:02:40+09:00",
+  "updated_at": "2026-09-24T10:52:14+09:00",
   "kr_port": [
 
   ],
@@ -36,9 +36,9 @@
     {
       "code": "317330",
       "name": "덕산테코피아",
-      "price": "12,750",
-      "change": "130",
-      "change_pct": 1.03,
+      "price": "12,760",
+      "change": "140",
+      "change_pct": 1.11,
       "direction": "RISING",
       "market": "KOSDAQ",
       "market_cap_eok": null,
@@ -65,9 +65,9 @@
     {
       "code": "015760",
       "name": "한국전력",
-      "price": "30,350",
-      "change": "-500",
-      "change_pct": -1.62,
+      "price": "30,450",
+      "change": "-400",
+      "change_pct": -1.3,
       "direction": "FALLING",
       "market": "KOSPI",
       "market_cap_eok": null,
@@ -94,9 +94,9 @@
     {
       "code": "004170",
       "name": "신세계",
-      "price": "348,000",
-      "change": "-9,500",
-      "change_pct": -2.66,
+      "price": "349,000",
+      "change": "-8,500",
+      "change_pct": -2.38,
       "direction": "FALLING",
       "market": "KOSPI",
       "market_cap_eok": null,
@@ -123,9 +123,9 @@
     {
       "code": "278470",
       "name": "에이피알",
-      "price": "368,000",
-      "change": "6,500",
-      "change_pct": 1.8,
+      "price": "369,000",
+      "change": "7,500",
+      "change_pct": 2.07,
       "direction": "RISING",
       "market": "KOSPI",
       "market_cap_eok": null,
@@ -160,26 +160,26 @@
     {
       "code": "GOOGL",
       "name": "Alphabet Inc.",
-      "price": "479,498",
-      "price_usd": "$351.16",
-      "change": "5,202",
-      "change_pct": -0.01,
+      "price": "462,631",
+      "price_usd": "$337.83",
+      "change": "18,254",
+      "change_pct": -0.04,
       "direction": "FALLING",
       "currency": "USD",
       "market": "US",
       "category": "us_watch",
       "fics": "Internet Content & Information",
-      "per": 23.6,
-      "market_cap_eok": 58642348,
-      "market_cap_formatted": "5,864.2조",
-      "market_cap_usd_formatted": "$4.3T",
+      "per": 22.7,
+      "market_cap_eok": 56579487,
+      "market_cap_formatted": "5,657.9조",
+      "market_cap_usd_formatted": "$4.1T",
       "analyst_target": {
-        "avg": 586409,
-        "avg_formatted": "586,409",
+        "avg": 588105,
+        "avg_formatted": "588,105",
         "avg_usd": "$429.46",
         "count": 54
       },
-      "upside_pct": 22.3
+      "upside_pct": 27.1
     }
   ],
   "us_watch": [
