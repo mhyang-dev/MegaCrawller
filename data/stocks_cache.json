@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-01T18:32:36+09:00",
+  "updated_at": "2026-10-02T11:47:54+09:00",
   "kr_port": [
 
   ],
@@ -7,10 +7,10 @@
     {
       "code": "095610",
       "name": "테스",
-      "price": "180,900",
-      "change": "13,200",
-      "change_pct": 7.87,
-      "direction": "RISING",
+      "price": "181,250",
+      "change": "-2,650",
+      "change_pct": -1.44,
+      "direction": "FALLING",
       "market": "KOSDAQ",
       "market_cap_eok": null,
       "market_cap_formatted": null,
@@ -36,9 +36,9 @@
     {
       "code": "317330",
       "name": "덕산테코피아",
-      "price": "12,870",
-      "change": "500",
-      "change_pct": 4.04,
+      "price": "13,020",
+      "change": "160",
+      "change_pct": 1.24,
       "direction": "RISING",
       "market": "KOSDAQ",
       "market_cap_eok": null,
@@ -65,15 +65,20 @@
     {
       "code": "015760",
       "name": "한국전력",
-      "price": "30,050",
-      "change": "100",
-      "change_pct": 0.33,
-      "direction": "RISING",
+      "price": "29,900",
+      "change": "-250",
+      "change_pct": -0.83,
+      "direction": "FALLING",
       "market": "KOSPI",
       "market_cap_eok": null,
       "market_cap_formatted": null,
       "investor_streaks": null,
       "disclosure": [
+        {
+          "title": "한국전력공사(주) 풍문 또는 보도에 대한 해명(미확정)",
+          "datetime": "2026-10-02",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=147761921&code=015760&page_notice="
+        },
         {
           "title": "한국전력공사(주) 풍문 또는 보도에 대한 해명(미확정)",
           "datetime": "2026-09-03",
@@ -83,20 +88,15 @@
           "title": "한국전력공사(주) 주주명부폐쇄기간 또는 기준일 설정",
           "datetime": "2026-08-27",
           "url": "https://finance.naver.com/item/news_notice_read.naver?no=115490716&code=015760&page_notice="
-        },
-        {
-          "title": "한국전력공사(주) 공매도 과열종목 지정(공매도 거래 금지 적용)",
-          "datetime": "2026-08-19",
-          "url": "https://finance.naver.com/item/news_notice_read.naver?no=108276267&code=015760&page_notice="
         }
       ]
     },
     {
       "code": "004170",
       "name": "신세계",
-      "price": "332,500",
-      "change": "-4,000",
-      "change_pct": -1.19,
+      "price": "330,000",
+      "change": "-3,500",
+      "change_pct": -1.05,
       "direction": "FALLING",
       "market": "KOSPI",
       "market_cap_eok": null,
@@ -123,10 +123,10 @@
     {
       "code": "278470",
       "name": "에이피알",
-      "price": "365,500",
-      "change": "-500",
-      "change_pct": -0.14,
-      "direction": "FALLING",
+      "price": "369,500",
+      "change": "3,500",
+      "change_pct": 0.96,
+      "direction": "RISING",
       "market": "KOSPI",
       "market_cap_eok": null,
       "market_cap_formatted": null,
@@ -160,26 +160,26 @@
     {
       "code": "GOOGL",
       "name": "Alphabet Inc.",
-      "price": "468,228",
-      "price_usd": "$344.08",
-      "change": "4,300",
-      "change_pct": 0.01,
-      "direction": "RISING",
+      "price": "459,668",
+      "price_usd": "$338.24",
+      "change": "7,937",
+      "change_pct": -0.02,
+      "direction": "FALLING",
       "currency": "USD",
       "market": "US",
       "category": "us_watch",
       "fics": "Internet Content & Information",
-      "per": 22.8,
-      "market_cap_eok": 57263919,
-      "market_cap_formatted": "5,726.4조",
-      "market_cap_usd_formatted": "$4.2T",
+      "per": 22.4,
+      "market_cap_eok": 56217115,
+      "market_cap_formatted": "5,621.7조",
+      "market_cap_usd_formatted": "$4.1T",
       "analyst_target": {
-        "avg": 584281,
-        "avg_formatted": "584,281",
+        "avg": 583504,
+        "avg_formatted": "583,504",
         "avg_usd": "$429.36",
         "count": 54
       },
-      "upside_pct": 24.8
+      "upside_pct": 26.9
     }
   ],
   "us_watch": [
