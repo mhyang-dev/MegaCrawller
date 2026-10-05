@@ -1,5 +1,5 @@
 ---
-fetched_at: 2026-10-05 11:35 KST
+fetched_at: 2026-10-05 18:40 KST
 kr_indices:
 - code: KOSPI
   name: KOSPI
@@ -35,25 +35,25 @@ us_indices:
 fx_rates:
 - code: USDKRW=X
   name: USD/KRW
-  price: '1344.09'
-  change: "-16.5"
-  change_pct: -1.21
+  price: '1343.72'
+  change: "-16.87"
+  change_pct: -1.24
   direction: FALLING
 - code: EURKRW=X
   name: EUR/KRW
-  price: '1505.9'
-  change: "-22.31"
-  change_pct: -1.46
+  price: '1506.4'
+  change: "-21.81"
+  change_pct: -1.43
   direction: FALLING
 - code: JPYKRW=X
   name: 100JPY/KRW
-  price: '850.0'
-  change: "-12.0"
-  change_pct: -1.38
+  price: '849.0'
+  change: "-13.0"
+  change_pct: -1.47
   direction: FALLING
 - code: CNYKRW=X
   name: CNY/KRW
-  price: '200.35'
-  change: '0.28'
-  change_pct: 0.14
+  price: '200.44'
+  change: '0.38'
+  change_pct: 0.19
   direction: RISING
