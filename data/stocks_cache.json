@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-07T11:57:05+09:00",
+  "updated_at": "2026-10-07T18:28:41+09:00",
   "kr_port": [
 
   ],
@@ -7,9 +7,9 @@
     {
       "code": "095610",
       "name": "테스",
-      "price": "165,700",
-      "change": "-10,700",
-      "change_pct": -6.07,
+      "price": "163,200",
+      "change": "-13,200",
+      "change_pct": -7.48,
       "direction": "FALLING",
       "market": "KOSDAQ",
       "market_cap_eok": null,
@@ -36,9 +36,9 @@
     {
       "code": "317330",
       "name": "덕산테코피아",
-      "price": "13,800",
-      "change": "170",
-      "change_pct": 1.25,
+      "price": "13,660",
+      "change": "30",
+      "change_pct": 0.22,
       "direction": "RISING",
       "market": "KOSDAQ",
       "market_cap_eok": null,
@@ -94,9 +94,9 @@
     {
       "code": "004170",
       "name": "신세계",
-      "price": "319,000",
-      "change": "-7,500",
-      "change_pct": -2.3,
+      "price": "318,500",
+      "change": "-8,000",
+      "change_pct": -2.45,
       "direction": "FALLING",
       "market": "KOSPI",
       "market_cap_eok": null,
@@ -123,9 +123,9 @@
     {
       "code": "278470",
       "name": "에이피알",
-      "price": "383,000",
-      "change": "22,000",
-      "change_pct": 6.09,
+      "price": "378,500",
+      "change": "17,500",
+      "change_pct": 4.85,
       "direction": "RISING",
       "market": "KOSPI",
       "market_cap_eok": null,
@@ -160,9 +160,9 @@
     {
       "code": "GOOGL",
       "name": "Alphabet Inc.",
-      "price": "465,509",
+      "price": "465,338",
       "price_usd": "$347.68",
-      "change": "1,620",
+      "change": "1,619",
       "change_pct": 0.0,
       "direction": "RISING",
       "currency": "USD",
@@ -170,12 +170,12 @@
       "category": "us_watch",
       "fics": "Internet Content & Information",
       "per": 22.9,
-      "market_cap_eok": 56931419,
-      "market_cap_formatted": "5,693.1조",
+      "market_cap_eok": 56910583,
+      "market_cap_formatted": "5,691.1조",
       "market_cap_usd_formatted": "$4.3T",
       "analyst_target": {
-        "avg": 575023,
-        "avg_formatted": "575,023",
+        "avg": 574812,
+        "avg_formatted": "574,812",
         "avg_usd": "$429.47",
         "count": 54
       },
