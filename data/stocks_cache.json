@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-08T20:01:32+09:00",
+  "updated_at": "2026-10-09T12:19:46+09:00",
   "kr_port": [
 
   ],
@@ -160,26 +160,26 @@
     {
       "code": "GOOGL",
       "name": "Alphabet Inc.",
-      "price": "471,293",
-      "price_usd": "$350.50",
-      "change": "3,792",
-      "change_pct": 0.01,
-      "direction": "RISING",
+      "price": "467,496",
+      "price_usd": "$348.29",
+      "change": "2,966",
+      "change_pct": -0.01,
+      "direction": "FALLING",
       "currency": "USD",
       "market": "US",
       "category": "us_watch",
       "fics": "Internet Content & Information",
-      "per": 23.1,
-      "market_cap_eok": 57638806,
-      "market_cap_formatted": "5,763.9조",
+      "per": 22.9,
+      "market_cap_eok": 57174427,
+      "market_cap_formatted": "5,717.4조",
       "market_cap_usd_formatted": "$4.3T",
       "analyst_target": {
-        "avg": 577484,
-        "avg_formatted": "577,484",
+        "avg": 576466,
+        "avg_formatted": "576,466",
         "avg_usd": "$429.47",
         "count": 54
       },
-      "upside_pct": 22.5
+      "upside_pct": 23.3
     }
   ],
   "us_watch": [
