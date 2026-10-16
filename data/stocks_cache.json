@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-15T16:48:46+09:00",
+  "updated_at": "2026-10-16T10:53:52+09:00",
   "kr_port": [
 
   ],
@@ -7,10 +7,10 @@
     {
       "code": "095610",
       "name": "테스",
-      "price": "122,200",
-      "change": "-25,200",
-      "change_pct": -17.1,
-      "direction": "FALLING",
+      "price": "125,100",
+      "change": "1,800",
+      "change_pct": 1.46,
+      "direction": "RISING",
       "market": "KOSDAQ",
       "market_cap_eok": null,
       "market_cap_formatted": null,
@@ -37,9 +37,9 @@
       "code": "317330",
       "name": "덕산테코피아",
       "price": "10,850",
-      "change": "-1,450",
-      "change_pct": -11.79,
-      "direction": "FALLING",
+      "change": "100",
+      "change_pct": 0.93,
+      "direction": "RISING",
       "market": "KOSDAQ",
       "market_cap_eok": null,
       "market_cap_formatted": null,
@@ -65,10 +65,10 @@
     {
       "code": "015760",
       "name": "한국전력",
-      "price": "28,150",
-      "change": "-1,000",
-      "change_pct": -3.43,
-      "direction": "FALLING",
+      "price": "28,800",
+      "change": "350",
+      "change_pct": 1.23,
+      "direction": "RISING",
       "market": "KOSPI",
       "market_cap_eok": null,
       "market_cap_formatted": null,
@@ -94,10 +94,10 @@
     {
       "code": "004170",
       "name": "신세계",
-      "price": "262,500",
-      "change": "-25,500",
-      "change_pct": -8.85,
-      "direction": "FALLING",
+      "price": "276,500",
+      "change": "11,500",
+      "change_pct": 4.34,
+      "direction": "RISING",
       "market": "KOSPI",
       "market_cap_eok": null,
       "market_cap_formatted": null,
@@ -123,29 +123,29 @@
     {
       "code": "278470",
       "name": "에이피알",
-      "price": "294,500",
-      "change": "0",
-      "change_pct": 0.0,
-      "direction": "UNCHANGED",
+      "price": "324,000",
+      "change": "26,000",
+      "change_pct": 8.72,
+      "direction": "RISING",
       "market": "KOSPI",
       "market_cap_eok": null,
       "market_cap_formatted": null,
       "investor_streaks": null,
       "disclosure": [
         {
+          "title": "(주)에이피알 기업설명회(IR) 개최(안내공시)",
+          "datetime": "2026-10-16",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=158608306&code=278470&page_notice="
+        },
+        {
+          "title": "(주)에이피알 결산실적공시 예고(안내공시)",
+          "datetime": "2026-10-16",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=158608305&code=278470&page_notice="
+        },
+        {
           "title": "(주)에이피알 주주명부폐쇄기간 또는 기준일 설정",
           "datetime": "2026-09-09",
           "url": "https://finance.naver.com/item/news_notice_read.naver?no=126276728&code=278470&page_notice="
-        },
-        {
-          "title": "(주)에이피알 회사합병 결정(종속회사의 주요경영사항)",
-          "datetime": "2026-09-09",
-          "url": "https://finance.naver.com/item/news_notice_read.naver?no=126275975&code=278470&page_notice="
-        },
-        {
-          "title": "(주)에이피알 회사합병 결정",
-          "datetime": "2026-09-09",
-          "url": "https://finance.naver.com/item/news_notice_read.naver?no=126266988&code=278470&page_notice="
         }
       ]
     }
@@ -160,26 +160,26 @@
     {
       "code": "GOOGL",
       "name": "Alphabet Inc.",
-      "price": "466,721",
-      "price_usd": "$347.64",
-      "change": "8,243",
-      "change_pct": -0.02,
-      "direction": "FALLING",
+      "price": "470,148",
+      "price_usd": "$349.22",
+      "change": "2,127",
+      "change_pct": 0.0,
+      "direction": "RISING",
       "currency": "USD",
       "market": "US",
       "category": "us_watch",
       "fics": "Internet Content & Information",
-      "per": 22.7,
-      "market_cap_eok": 57079628,
-      "market_cap_formatted": "5,708.0조",
+      "per": 22.9,
+      "market_cap_eok": 57498782,
+      "market_cap_formatted": "5,749.9조",
       "market_cap_usd_formatted": "$4.3T",
       "analyst_target": {
-        "avg": 577854,
-        "avg_formatted": "577,854",
-        "avg_usd": "$430.42",
+        "avg": 579588,
+        "avg_formatted": "579,588",
+        "avg_usd": "$430.51",
         "count": 54
       },
-      "upside_pct": 23.8
+      "upside_pct": 23.3
     }
   ],
   "us_watch": [
