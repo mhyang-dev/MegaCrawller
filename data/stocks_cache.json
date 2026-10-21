@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-21T11:13:40+09:00",
+  "updated_at": "2026-10-21T17:05:09+09:00",
   "kr_port": [
 
   ],
@@ -7,9 +7,9 @@
     {
       "code": "095610",
       "name": "테스",
-      "price": "122,300",
-      "change": "5,000",
-      "change_pct": 4.26,
+      "price": "120,700",
+      "change": "3,400",
+      "change_pct": 2.9,
       "direction": "RISING",
       "market": "KOSDAQ",
       "market_cap_eok": null,
@@ -36,9 +36,9 @@
     {
       "code": "317330",
       "name": "덕산테코피아",
-      "price": "11,150",
-      "change": "-70",
-      "change_pct": -0.62,
+      "price": "11,090",
+      "change": "-130",
+      "change_pct": -1.16,
       "direction": "FALLING",
       "market": "KOSDAQ",
       "market_cap_eok": null,
@@ -65,9 +65,9 @@
     {
       "code": "015760",
       "name": "한국전력",
-      "price": "29,250",
-      "change": "1,050",
-      "change_pct": 3.72,
+      "price": "28,750",
+      "change": "550",
+      "change_pct": 1.95,
       "direction": "RISING",
       "market": "KOSPI",
       "market_cap_eok": null,
@@ -94,9 +94,9 @@
     {
       "code": "004170",
       "name": "신세계",
-      "price": "273,000",
-      "change": "2,500",
-      "change_pct": 0.92,
+      "price": "271,500",
+      "change": "1,000",
+      "change_pct": 0.37,
       "direction": "RISING",
       "market": "KOSPI",
       "market_cap_eok": null,
@@ -123,9 +123,9 @@
     {
       "code": "278470",
       "name": "에이피알",
-      "price": "323,000",
-      "change": "13,000",
-      "change_pct": 4.19,
+      "price": "317,000",
+      "change": "7,000",
+      "change_pct": 2.26,
       "direction": "RISING",
       "market": "KOSPI",
       "market_cap_eok": null,
@@ -160,9 +160,9 @@
     {
       "code": "GOOGL",
       "name": "Alphabet Inc.",
-      "price": "451,300",
+      "price": "450,473",
       "price_usd": "$340.28",
-      "change": "5,179",
+      "change": "5,170",
       "change_pct": -0.01,
       "direction": "FALLING",
       "currency": "USD",
@@ -170,16 +170,16 @@
       "category": "us_watch",
       "fics": "Internet Content & Information",
       "per": 22.2,
-      "market_cap_eok": 55193686,
-      "market_cap_formatted": "5,519.4조",
+      "market_cap_eok": 55092560,
+      "market_cap_formatted": "5,509.3조",
       "market_cap_usd_formatted": "$4.2T",
       "analyst_target": {
-        "avg": 570364,
-        "avg_formatted": "570,364",
-        "avg_usd": "$430.05",
+        "avg": 569695,
+        "avg_formatted": "569,695",
+        "avg_usd": "$430.33",
         "count": 54
       },
-      "upside_pct": 26.4
+      "upside_pct": 26.5
     }
   ],
   "us_watch": [
