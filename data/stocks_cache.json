@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-29T19:31:58+09:00",
+  "updated_at": "2026-10-30T12:11:29+09:00",
   "kr_port": [
 
   ],
@@ -7,9 +7,9 @@
     {
       "code": "095610",
       "name": "테스",
-      "price": "117,300",
-      "change": "-1,600",
-      "change_pct": -1.35,
+      "price": "105,700",
+      "change": "-12,100",
+      "change_pct": -10.27,
       "direction": "FALLING",
       "market": "KOSDAQ",
       "market_cap_eok": null,
@@ -36,9 +36,9 @@
     {
       "code": "317330",
       "name": "덕산테코피아",
-      "price": "9,960",
-      "change": "-360",
-      "change_pct": -3.49,
+      "price": "9,570",
+      "change": "-330",
+      "change_pct": -3.33,
       "direction": "FALLING",
       "market": "KOSDAQ",
       "market_cap_eok": null,
@@ -65,15 +65,20 @@
     {
       "code": "015760",
       "name": "한국전력",
-      "price": "28,250",
-      "change": "-400",
-      "change_pct": -1.4,
+      "price": "28,100",
+      "change": "-200",
+      "change_pct": -0.71,
       "direction": "FALLING",
       "market": "KOSPI",
       "market_cap_eok": null,
       "market_cap_formatted": null,
       "investor_streaks": null,
       "disclosure": [
+        {
+          "title": "한국전력공사(주) 주주명부폐쇄기간 또는 기준일 설정",
+          "datetime": "2026-10-30",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=173871491&code=015760&page_notice="
+        },
         {
           "title": "한국전력공사(주) 풍문 또는 보도에 대한 해명(미확정)",
           "datetime": "2026-10-02",
@@ -83,20 +88,15 @@
           "title": "한국전력공사(주) 풍문 또는 보도에 대한 해명(미확정)",
           "datetime": "2026-09-03",
           "url": "https://finance.naver.com/item/news_notice_read.naver?no=122391253&code=015760&page_notice="
-        },
-        {
-          "title": "한국전력공사(주) 주주명부폐쇄기간 또는 기준일 설정",
-          "datetime": "2026-08-27",
-          "url": "https://finance.naver.com/item/news_notice_read.naver?no=115490716&code=015760&page_notice="
         }
       ]
     },
     {
       "code": "004170",
       "name": "신세계",
-      "price": "248,000",
-      "change": "-9,500",
-      "change_pct": -3.69,
+      "price": "239,500",
+      "change": "-8,500",
+      "change_pct": -3.43,
       "direction": "FALLING",
       "market": "KOSPI",
       "market_cap_eok": null,
@@ -123,15 +123,20 @@
     {
       "code": "278470",
       "name": "에이피알",
-      "price": "281,000",
-      "change": "-8,000",
-      "change_pct": -2.77,
+      "price": "233,000",
+      "change": "-49,500",
+      "change_pct": -17.52,
       "direction": "FALLING",
       "market": "KOSPI",
       "market_cap_eok": null,
       "market_cap_formatted": null,
       "investor_streaks": null,
       "disclosure": [
+        {
+          "title": "(주)에이피알 연결재무제표기준영업(잠정)실적(공정공시)",
+          "datetime": "2026-10-30",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=173702861&code=278470&page_notice="
+        },
         {
           "title": "(주)에이피알 불성실공시법인지정예고",
           "datetime": "2026-10-20",
@@ -141,11 +146,6 @@
           "title": "(주)에이피알 기업설명회(IR) 개최(안내공시)",
           "datetime": "2026-10-16",
           "url": "https://finance.naver.com/item/news_notice_read.naver?no=158608306&code=278470&page_notice="
-        },
-        {
-          "title": "(주)에이피알 결산실적공시 예고(안내공시)",
-          "datetime": "2026-10-16",
-          "url": "https://finance.naver.com/item/news_notice_read.naver?no=158608305&code=278470&page_notice="
         }
       ]
     }
@@ -160,26 +160,26 @@
     {
       "code": "GOOGL",
       "name": "Alphabet Inc.",
-      "price": "434,739",
-      "price_usd": "$324.89",
-      "change": "5,767",
-      "change_pct": 0.01,
-      "direction": "RISING",
+      "price": "379,377",
+      "price_usd": "$283.82",
+      "change": "54,897",
+      "change_pct": -0.13,
+      "direction": "FALLING",
       "currency": "USD",
       "market": "US",
       "category": "us_watch",
       "fics": "Internet Content & Information",
-      "per": 21.4,
-      "market_cap_eok": 53168245,
-      "market_cap_formatted": "5,316.8조",
-      "market_cap_usd_formatted": "$4.0T",
+      "per": 18.5,
+      "market_cap_eok": 46397504,
+      "market_cap_formatted": "4,639.8조",
+      "market_cap_usd_formatted": "$3.5T",
       "analyst_target": {
-        "avg": 574956,
-        "avg_formatted": "574,956",
-        "avg_usd": "$429.68",
-        "count": 54
+        "avg": 561292,
+        "avg_formatted": "561,292",
+        "avg_usd": "$419.92",
+        "count": 52
       },
-      "upside_pct": 32.3
+      "upside_pct": 48.0
     }
   ],
   "us_watch": [
