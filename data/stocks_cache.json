@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-04T12:34:01+09:00",
+  "updated_at": "2026-11-04T20:42:02+09:00",
   "kr_port": [
 
   ],
@@ -7,9 +7,9 @@
     {
       "code": "095610",
       "name": "테스",
-      "price": "103,800",
-      "change": "400",
-      "change_pct": 0.39,
+      "price": "107,400",
+      "change": "4,000",
+      "change_pct": 3.87,
       "direction": "RISING",
       "market": "KOSDAQ",
       "market_cap_eok": null,
@@ -36,38 +36,38 @@
     {
       "code": "317330",
       "name": "덕산테코피아",
-      "price": "9,170",
-      "change": "-160",
-      "change_pct": -1.71,
-      "direction": "FALLING",
+      "price": "10,020",
+      "change": "690",
+      "change_pct": 7.4,
+      "direction": "RISING",
       "market": "KOSDAQ",
       "market_cap_eok": null,
       "market_cap_formatted": null,
       "investor_streaks": null,
       "disclosure": [
         {
+          "title": "(주)덕산테코피아 종속회사등 상장에 관한 찬성 여부",
+          "datetime": "2026-11-04",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=178634139&code=317330&page_notice="
+        },
+        {
+          "title": "(주)덕산테코피아 임시주주총회결과",
+          "datetime": "2026-11-04",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=178554794&code=317330&page_notice="
+        },
+        {
           "title": "(주)덕산테코피아 주주명부폐쇄기간 또는 기준일 설정",
           "datetime": "2026-09-11",
           "url": "https://finance.naver.com/item/news_notice_read.naver?no=129343349&code=317330&page_notice="
-        },
-        {
-          "title": "(주)덕산테코피아 주주총회소집결의(임시주주총회)",
-          "datetime": "2026-09-11",
-          "url": "https://finance.naver.com/item/news_notice_read.naver?no=129341172&code=317330&page_notice="
-        },
-        {
-          "title": "(주)덕산테코피아 기업설명회(IR) 개최",
-          "datetime": "2026-09-07",
-          "url": "https://finance.naver.com/item/news_notice_read.naver?no=124874229&code=317330&page_notice="
         }
       ]
     },
     {
       "code": "015760",
       "name": "한국전력",
-      "price": "30,000",
-      "change": "950",
-      "change_pct": 3.27,
+      "price": "30,600",
+      "change": "1,550",
+      "change_pct": 5.34,
       "direction": "RISING",
       "market": "KOSPI",
       "market_cap_eok": null,
@@ -94,10 +94,10 @@
     {
       "code": "004170",
       "name": "신세계",
-      "price": "247,500",
-      "change": "-11,000",
-      "change_pct": -4.26,
-      "direction": "FALLING",
+      "price": "263,500",
+      "change": "5,000",
+      "change_pct": 1.93,
+      "direction": "RISING",
       "market": "KOSPI",
       "market_cap_eok": null,
       "market_cap_formatted": null,
@@ -123,10 +123,10 @@
     {
       "code": "278470",
       "name": "에이피알",
-      "price": "244,000",
-      "change": "-2,000",
-      "change_pct": -0.81,
-      "direction": "FALLING",
+      "price": "254,000",
+      "change": "8,000",
+      "change_pct": 3.25,
+      "direction": "RISING",
       "market": "KOSPI",
       "market_cap_eok": null,
       "market_cap_formatted": null,
@@ -160,9 +160,9 @@
     {
       "code": "GOOGL",
       "name": "Alphabet Inc.",
-      "price": "374,367",
+      "price": "374,795",
       "price_usd": "$280.03",
-      "change": "1,390",
+      "change": "1,392",
       "change_pct": 0.0,
       "direction": "RISING",
       "currency": "USD",
@@ -170,12 +170,12 @@
       "category": "us_watch",
       "fics": "Internet Content & Information",
       "per": 18.1,
-      "market_cap_eok": 46024616,
-      "market_cap_formatted": "4,602.5조",
+      "market_cap_eok": 46077289,
+      "market_cap_formatted": "4,607.7조",
       "market_cap_usd_formatted": "$3.4T",
       "analyst_target": {
-        "avg": 535244,
-        "avg_formatted": "535,244",
+        "avg": 535864,
+        "avg_formatted": "535,864",
         "avg_usd": "$400.37",
         "count": 53
       },
