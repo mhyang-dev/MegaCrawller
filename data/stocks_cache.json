@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-09T21:16:27+09:00",
+  "updated_at": "2026-11-10T13:59:02+09:00",
   "kr_port": [
 
   ],
@@ -7,9 +7,9 @@
     {
       "code": "095610",
       "name": "테스",
-      "price": "79,400",
-      "change": "1,600",
-      "change_pct": 2.06,
+      "price": "82,700",
+      "change": "1,300",
+      "change_pct": 1.6,
       "direction": "RISING",
       "market": "KOSDAQ",
       "market_cap_eok": null,
@@ -36,10 +36,10 @@
     {
       "code": "317330",
       "name": "덕산테코피아",
-      "price": "8,700",
-      "change": "-120",
-      "change_pct": -1.36,
-      "direction": "FALLING",
+      "price": "8,780",
+      "change": "180",
+      "change_pct": 2.09,
+      "direction": "RISING",
       "market": "KOSDAQ",
       "market_cap_eok": null,
       "market_cap_formatted": null,
@@ -65,10 +65,10 @@
     {
       "code": "015760",
       "name": "한국전력",
-      "price": "30,000",
-      "change": "-400",
-      "change_pct": -1.32,
-      "direction": "FALLING",
+      "price": "30,600",
+      "change": "700",
+      "change_pct": 2.34,
+      "direction": "RISING",
       "market": "KOSPI",
       "market_cap_eok": null,
       "market_cap_formatted": null,
@@ -94,39 +94,39 @@
     {
       "code": "004170",
       "name": "신세계",
-      "price": "245,500",
-      "change": "-6,000",
-      "change_pct": -2.39,
-      "direction": "FALLING",
+      "price": "249,500",
+      "change": "5,000",
+      "change_pct": 2.04,
+      "direction": "RISING",
       "market": "KOSPI",
       "market_cap_eok": null,
       "market_cap_formatted": null,
       "investor_streaks": null,
       "disclosure": [
         {
-          "title": "(주)신세계 결산실적공시 예고(안내공시)",
-          "datetime": "2026-11-03",
-          "url": "https://finance.naver.com/item/news_notice_read.naver?no=177391424&code=004170&page_notice="
-        },
-        {
           "title": "(주)신세계 영업(잠정)실적(공정공시)",
-          "datetime": "2026-10-08",
-          "url": "https://finance.naver.com/item/news_notice_read.naver?no=151435256&code=004170&page_notice="
+          "datetime": "2026-11-10",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=184974139&code=004170&page_notice="
         },
         {
-          "title": "(주)신세계 기업설명회(IR) 개최(안내공시)",
-          "datetime": "2026-09-18",
-          "url": "https://finance.naver.com/item/news_notice_read.naver?no=135839421&code=004170&page_notice="
+          "title": "(주)신세계 연결재무제표기준영업(잠정)실적(공정공시)",
+          "datetime": "2026-11-10",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=184972976&code=004170&page_notice="
+        },
+        {
+          "title": "(주)신세계 주식 소각 결정",
+          "datetime": "2026-11-10",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=184969506&code=004170&page_notice="
         }
       ]
     },
     {
       "code": "278470",
       "name": "에이피알",
-      "price": "243,500",
-      "change": "-12,000",
-      "change_pct": -4.7,
-      "direction": "FALLING",
+      "price": "250,500",
+      "change": "3,500",
+      "change_pct": 1.42,
+      "direction": "RISING",
       "market": "KOSPI",
       "market_cap_eok": null,
       "market_cap_formatted": null,
@@ -160,26 +160,26 @@
     {
       "code": "GOOGL",
       "name": "Alphabet Inc.",
-      "price": "383,311",
-      "price_usd": "$284.78",
-      "change": "2,975",
+      "price": "387,181",
+      "price_usd": "$288.15",
+      "change": "4,528",
       "change_pct": 0.01,
       "direction": "RISING",
       "currency": "USD",
       "market": "US",
       "category": "us_watch",
       "fics": "Internet Content & Information",
-      "per": 18.5,
-      "market_cap_eok": 47124256,
-      "market_cap_formatted": "4,712.4조",
+      "per": 18.7,
+      "market_cap_eok": 47600079,
+      "market_cap_formatted": "4,760.0조",
       "market_cap_usd_formatted": "$3.5T",
       "analyst_target": {
-        "avg": 538899,
-        "avg_formatted": "538,899",
+        "avg": 537974,
+        "avg_formatted": "537,974",
         "avg_usd": "$400.37",
         "count": 53
       },
-      "upside_pct": 40.6
+      "upside_pct": 38.9
     }
   ],
   "us_watch": [
