@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-10T22:07:33+09:00",
+  "updated_at": "2026-11-11T12:24:56+09:00",
   "kr_port": [
 
   ],
@@ -7,9 +7,9 @@
     {
       "code": "095610",
       "name": "테스",
-      "price": "82,800",
-      "change": "1,400",
-      "change_pct": 1.72,
+      "price": "92,000",
+      "change": "8,000",
+      "change_pct": 9.52,
       "direction": "RISING",
       "market": "KOSDAQ",
       "market_cap_eok": null,
@@ -36,9 +36,9 @@
     {
       "code": "317330",
       "name": "덕산테코피아",
-      "price": "8,820",
-      "change": "220",
-      "change_pct": 2.56,
+      "price": "9,310",
+      "change": "320",
+      "change_pct": 3.56,
       "direction": "RISING",
       "market": "KOSDAQ",
       "market_cap_eok": null,
@@ -65,9 +65,9 @@
     {
       "code": "015760",
       "name": "한국전력",
-      "price": "30,550",
-      "change": "650",
-      "change_pct": 2.17,
+      "price": "30,900",
+      "change": "300",
+      "change_pct": 0.98,
       "direction": "RISING",
       "market": "KOSPI",
       "market_cap_eok": null,
@@ -94,10 +94,10 @@
     {
       "code": "004170",
       "name": "신세계",
-      "price": "246,000",
-      "change": "1,500",
-      "change_pct": 0.61,
-      "direction": "RISING",
+      "price": "241,000",
+      "change": "-4,500",
+      "change_pct": -1.83,
+      "direction": "FALLING",
       "market": "KOSPI",
       "market_cap_eok": null,
       "market_cap_formatted": null,
@@ -123,10 +123,10 @@
     {
       "code": "278470",
       "name": "에이피알",
-      "price": "251,500",
-      "change": "4,500",
-      "change_pct": 1.82,
-      "direction": "RISING",
+      "price": "249,500",
+      "change": "-1,500",
+      "change_pct": -0.6,
+      "direction": "FALLING",
       "market": "KOSPI",
       "market_cap_eok": null,
       "market_cap_formatted": null,
@@ -160,26 +160,26 @@
     {
       "code": "GOOGL",
       "name": "Alphabet Inc.",
-      "price": "385,579",
-      "price_usd": "$288.15",
-      "change": "4,509",
-      "change_pct": 0.01,
-      "direction": "RISING",
+      "price": "383,560",
+      "price_usd": "$287.38",
+      "change": "1,028",
+      "change_pct": -0.0,
+      "direction": "FALLING",
       "currency": "USD",
       "market": "US",
       "category": "us_watch",
       "fics": "Internet Content & Information",
-      "per": 18.7,
-      "market_cap_eok": 47403115,
-      "market_cap_formatted": "4,740.3조",
+      "per": 18.6,
+      "market_cap_eok": 47154908,
+      "market_cap_formatted": "4,715.5조",
       "market_cap_usd_formatted": "$3.5T",
       "analyst_target": {
-        "avg": 535748,
-        "avg_formatted": "535,748",
+        "avg": 534371,
+        "avg_formatted": "534,371",
         "avg_usd": "$400.37",
         "count": 53
       },
-      "upside_pct": 38.9
+      "upside_pct": 39.3
     }
   ],
   "us_watch": [
