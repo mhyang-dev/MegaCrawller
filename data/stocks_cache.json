@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-16T12:26:43+09:00",
+  "updated_at": "2026-11-16T21:11:12+09:00",
   "kr_port": [
 
   ],
@@ -7,15 +7,20 @@
     {
       "code": "095610",
       "name": "테스",
-      "price": "80,200",
-      "change": "-8,000",
-      "change_pct": -9.07,
+      "price": "77,500",
+      "change": "-10,700",
+      "change_pct": -12.13,
       "direction": "FALLING",
       "market": "KOSDAQ",
       "market_cap_eok": null,
       "market_cap_formatted": null,
       "investor_streaks": null,
       "disclosure": [
+        {
+          "title": "(주)테스 기업설명회(IR) 개최",
+          "datetime": "2026-11-16",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=192006562&code=095610&page_notice="
+        },
         {
           "title": "(주)테스 단일판매ㆍ공급계약체결",
           "datetime": "2026-11-12",
@@ -25,20 +30,15 @@
           "title": "(주)테스 기업설명회(IR) 개최",
           "datetime": "2026-08-14",
           "url": "https://finance.naver.com/item/news_notice_read.naver?no=105590485&code=095610&page_notice="
-        },
-        {
-          "title": "(주)테스 단일판매ㆍ공급계약체결(자율공시)",
-          "datetime": "2026-06-05",
-          "url": "https://finance.naver.com/item/news_notice_read.naver?no=20173397&code=095610&page_notice="
         }
       ]
     },
     {
       "code": "317330",
       "name": "덕산테코피아",
-      "price": "8,690",
-      "change": "-330",
-      "change_pct": -3.66,
+      "price": "8,660",
+      "change": "-360",
+      "change_pct": -3.99,
       "direction": "FALLING",
       "market": "KOSDAQ",
       "market_cap_eok": null,
@@ -65,9 +65,9 @@
     {
       "code": "015760",
       "name": "한국전력",
-      "price": "26,400",
-      "change": "-1,250",
-      "change_pct": -4.52,
+      "price": "26,450",
+      "change": "-1,200",
+      "change_pct": -4.34,
       "direction": "FALLING",
       "market": "KOSPI",
       "market_cap_eok": null,
@@ -94,9 +94,9 @@
     {
       "code": "004170",
       "name": "신세계",
-      "price": "251,500",
-      "change": "2,500",
-      "change_pct": 1.0,
+      "price": "251,000",
+      "change": "2,000",
+      "change_pct": 0.8,
       "direction": "RISING",
       "market": "KOSPI",
       "market_cap_eok": null,
@@ -123,9 +123,9 @@
     {
       "code": "278470",
       "name": "에이피알",
-      "price": "239,000",
-      "change": "3,000",
-      "change_pct": 1.27,
+      "price": "238,500",
+      "change": "2,500",
+      "change_pct": 1.06,
       "direction": "RISING",
       "market": "KOSPI",
       "market_cap_eok": null,
@@ -160,22 +160,22 @@
     {
       "code": "GOOGL",
       "name": "Alphabet Inc.",
-      "price": "394,968",
+      "price": "394,729",
       "price_usd": "$295.77",
-      "change": "3,913",
+      "change": "3,910",
       "change_pct": -0.01,
       "direction": "FALLING",
       "currency": "USD",
       "market": "US",
       "category": "us_watch",
       "fics": "Internet Content & Information",
-      "per": 19.2,
-      "market_cap_eok": 48557398,
-      "market_cap_formatted": "4,855.7조",
+      "per": 19.5,
+      "market_cap_eok": 48527945,
+      "market_cap_formatted": "4,852.8조",
       "market_cap_usd_formatted": "$3.6T",
       "analyst_target": {
-        "avg": 534655,
-        "avg_formatted": "534,655",
+        "avg": 534331,
+        "avg_formatted": "534,331",
         "avg_usd": "$400.37",
         "count": 53
       },
