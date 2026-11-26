@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-26T01:19:36+09:00",
+  "updated_at": "2026-11-26T14:42:38+09:00",
   "kr_port": [
 
   ],
@@ -7,44 +7,49 @@
     {
       "code": "095610",
       "name": "테스",
-      "price": "75,700",
-      "change": "-9,000",
-      "change_pct": -10.63,
-      "direction": "FALLING",
+      "price": "80,000",
+      "change": "3,200",
+      "change_pct": 4.17,
+      "direction": "RISING",
       "market": "KOSDAQ",
       "market_cap_eok": null,
       "market_cap_formatted": null,
       "investor_streaks": null,
       "disclosure": [
         {
+          "title": "(주)테스 자기주식취득 신탁계약 체결 결정",
+          "datetime": "2026-11-26",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=203466274&code=095610&page_notice="
+        },
+        {
+          "title": "(주)테스 주식소각 결정",
+          "datetime": "2026-11-26",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=203466272&code=095610&page_notice="
+        },
+        {
           "title": "(주)테스 기업설명회(IR) 개최",
           "datetime": "2026-11-16",
           "url": "https://finance.naver.com/item/news_notice_read.naver?no=192006562&code=095610&page_notice="
-        },
-        {
-          "title": "(주)테스 단일판매ㆍ공급계약체결",
-          "datetime": "2026-11-12",
-          "url": "https://finance.naver.com/item/news_notice_read.naver?no=188065793&code=095610&page_notice="
-        },
-        {
-          "title": "(주)테스 기업설명회(IR) 개최",
-          "datetime": "2026-08-14",
-          "url": "https://finance.naver.com/item/news_notice_read.naver?no=105590485&code=095610&page_notice="
         }
       ]
     },
     {
       "code": "317330",
       "name": "덕산테코피아",
-      "price": "7,380",
-      "change": "-620",
-      "change_pct": -7.75,
-      "direction": "FALLING",
+      "price": "7,600",
+      "change": "140",
+      "change_pct": 1.88,
+      "direction": "RISING",
       "market": "KOSDAQ",
       "market_cap_eok": null,
       "market_cap_formatted": null,
       "investor_streaks": null,
       "disclosure": [
+        {
+          "title": "(주)덕산테코피아 (정정)신규시설투자등",
+          "datetime": "2026-11-26",
+          "url": "https://finance.naver.com/item/news_notice_read.naver?no=203508469&code=317330&page_notice="
+        },
         {
           "title": "(주)덕산테코피아 파생상품거래손실발생",
           "datetime": "2026-11-13",
@@ -54,21 +59,16 @@
           "title": "(주)덕산테코피아 종속회사등 상장에 관한 찬성 여부",
           "datetime": "2026-11-04",
           "url": "https://finance.naver.com/item/news_notice_read.naver?no=178634139&code=317330&page_notice="
-        },
-        {
-          "title": "(주)덕산테코피아 임시주주총회결과",
-          "datetime": "2026-11-04",
-          "url": "https://finance.naver.com/item/news_notice_read.naver?no=178554794&code=317330&page_notice="
         }
       ]
     },
     {
       "code": "015760",
       "name": "한국전력",
-      "price": "24,950",
-      "change": "-450",
-      "change_pct": -1.77,
-      "direction": "FALLING",
+      "price": "25,700",
+      "change": "450",
+      "change_pct": 1.78,
+      "direction": "RISING",
       "market": "KOSPI",
       "market_cap_eok": null,
       "market_cap_formatted": null,
@@ -94,10 +94,10 @@
     {
       "code": "004170",
       "name": "신세계",
-      "price": "273,000",
-      "change": "4,000",
-      "change_pct": 1.49,
-      "direction": "RISING",
+      "price": "276,000",
+      "change": "-500",
+      "change_pct": -0.18,
+      "direction": "FALLING",
       "market": "KOSPI",
       "market_cap_eok": null,
       "market_cap_formatted": null,
@@ -123,9 +123,9 @@
     {
       "code": "278470",
       "name": "에이피알",
-      "price": "291,500",
-      "change": "28,000",
-      "change_pct": 10.63,
+      "price": "298,000",
+      "change": "6,000",
+      "change_pct": 2.05,
       "direction": "RISING",
       "market": "KOSPI",
       "market_cap_eok": null,
@@ -160,26 +160,26 @@
     {
       "code": "GOOGL",
       "name": "Alphabet Inc.",
-      "price": "356,386",
-      "price_usd": "$264.24",
-      "change": "19,975",
-      "change_pct": -0.05,
+      "price": "366,741",
+      "price_usd": "$273.10",
+      "change": "7,990",
+      "change_pct": -0.02,
       "direction": "FALLING",
       "currency": "USD",
       "market": "US",
       "category": "us_watch",
       "fics": "Internet Content & Information",
-      "per": 17.3,
-      "market_cap_eok": 43814063,
-      "market_cap_formatted": "4,381.4조",
-      "market_cap_usd_formatted": "$3.2T",
+      "per": 17.9,
+      "market_cap_eok": 45087080,
+      "market_cap_formatted": "4,508.7조",
+      "market_cap_usd_formatted": "$3.4T",
       "analyst_target": {
-        "avg": 533389,
-        "avg_formatted": "533,389",
-        "avg_usd": "$395.48",
+        "avg": 530582,
+        "avg_formatted": "530,582",
+        "avg_usd": "$395.11",
         "count": 54
       },
-      "upside_pct": 49.7
+      "upside_pct": 44.7
     }
   ],
   "us_watch": [
